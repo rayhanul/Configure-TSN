@@ -5,9 +5,9 @@
         "username": "root",
         "password": "",
         "links": {
-            "p2": "es08",
-            "p4": "sw01",
-            "p5": "sw07"
+            "p2": "S1",
+            "p4": "sw02",
+            "p5": "sw01"
         }
     },
     "sw01": {
@@ -16,20 +16,18 @@
         "username": "root",
         "password": "",
         "links": {
-            "p2": "es09",
-            "p4": "sw02",
-            "p5": "sw00"
+            "p2": "sw00",
+            "p4": "sw03"
         }
     },
     "sw02": {
         "type": "sw",
-        "ip": "192.168.0.3",
+        "ip": "192.168.0.5",
         "username": "root",
         "password": "",
         "links": {
-            "p2": "es10",
-            "p4": "sw03",
-            "p5": "sw01"
+            "p3": "sw00",
+            "p5": "sw03"
         }
     },
     "sw03": {
@@ -38,125 +36,27 @@
         "username": "root",
         "password": "",
         "links": {
-            "p2": "es11",
-            "p4": "sw04",
-            "p5": "sw02"
+            "p2": "sw02",
+            "p3": "sw01",
+            "p5": "RS"
         }
     },
-    "sw04": {
-        "type": "sw",
-        "ip": "192.168.0.5",
-        "username": "root",
-        "password": "",
-        "links": {
-            "p2": "es12",
-            "p4": "sw05",
-            "p5": "sw03"
-        }
-    },
-    "sw05": {
-        "type": "sw",
-        "ip": "192.168.0.6",
-        "username": "root",
-        "password": "",
-        "links": {
-            "p2": "es13",
-            "p4": "sw06",
-            "p5": "sw04"
-        }
-    },
-    "sw06": {
-        "type": "sw",
-        "ip": "192.168.0.7",
-        "username": "root",
-        "password": "",
-        "links": {
-            "p2": "es14",
-            "p4": "sw07",
-            "p5": "sw05"
-        }
-    },
-    "sw07": {
-        "type": "sw",
-        "ip": "192.168.0.8",
-        "username": "root",
-        "password": "",
-        "links": {
-            "p2": "es15",
-            "p4": "sw00",
-            "p5": "sw06"
-        }
-    },
-    "es08": {
+    "RS": {
         "type": "end-station",
-        "ip": "192.168.50.9",
+        "ip": "137.99.253.167",
+        "username": "jdg24001",
+        "password": "1234567809",
+        "links": {
+            "p4": "sw03"
+        }
+    },
+    "S1": {
+        "type": "end-station",
+        "ip": "137.99.253.188",
         "username": "ubuntu",
         "password": "1234567809",
         "links": {
             "p2": "sw00"
-        }
-    },
-    "es09": {
-        "type": "end-station",
-        "ip": "192.168.50.10",
-        "username": "ubuntu",
-        "password": "1234567809",
-        "links": {
-            "p2": "sw01"
-        }
-    },
-    "es10": {
-        "type": "end-station",
-        "ip": "192.168.50.11",
-        "username": "ubuntu",
-        "password": "1234567809",
-        "links": {
-            "p2": "sw02"
-        }
-    },
-    "es11": {
-        "type": "end-station",
-        "ip": "192.168.50.12",
-        "username": "ubuntu",
-        "password": "1234567809",
-        "links": {
-            "p2": "sw03"
-        }
-    },
-    "es12": {
-        "type": "end-station",
-        "ip": "192.168.50.13",
-        "username": "ubuntu",
-        "password": "1234567809",
-        "links": {
-            "p2": "sw04"
-        }
-    },
-    "es13": {
-        "type": "end-station",
-        "ip": "192.168.50.14",
-        "username": "ubuntu",
-        "password": "1234567809",
-        "links": {
-            "p2": "sw05"
-        }
-    },
-    "es14": {
-        "type": "end-station",
-        "ip": "192.168.50.15",
-        "username": "ubuntu",
-        "password": "1234567809",
-        "links": {
-            "p2": "sw06"
-        }
-    },
-    "es15": {
-        "type": "end-station",
-        "ip": "192.168.50.16",
-        "username": "ubuntu",
-        "password": "1234567809",
-        "links": {
-            "p2": "sw07"
         }
     }
 }
