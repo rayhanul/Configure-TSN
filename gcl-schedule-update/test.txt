@@ -1,0 +1,74 @@
+Topology:{
+    "sw00": {
+        "type": "sw",
+        "ip": "192.168.0.1",
+        "username": "root",
+        "password": "",
+        "links": {
+            "p2": "S1",
+            "p2": "S2",
+            "p4": "sw02",
+            "p5": "sw01"
+        }
+    },
+    "sw01": {
+        "type": "sw",
+        "ip": "192.168.0.2",
+        "username": "root",
+        "password": "",
+        "links": {
+            "p2": "sw00",
+            "p4": "sw03"
+        }
+    },
+    "sw02": {
+        "type": "sw",
+        "ip": "192.168.0.5",
+        "username": "root",
+        "password": "",
+        "links": {
+            "p3": "sw00",
+            "p5": "sw03"
+        }
+    },
+    "sw03": {
+        "type": "sw",
+        "ip": "192.168.0.4",
+        "username": "root",
+        "password": "",
+        "links": {
+            "p2": "sw02",
+            "p3": "sw01",
+            "p5": "RS"
+        }
+    },
+    "RS": {
+        "type": "end-station",
+        "ip": "137.99.253.167",
+        "username": "jdg24001",
+        "password": "1234567809",
+        "links": {
+            "p4": "sw03"
+        }
+    },
+    "S1": {
+        "type": "end-station",
+        "ip": "137.99.253.188",
+        "username": "ubuntu",
+        "password": "1234567809",
+        "links": {
+            "p2": "sw00"
+        }
+    },
+     "S1": {
+        "type": "end-station",
+        "ip": "137.99.260.234",
+        "username": "ubuntu",
+        "password": "1234567809",
+        "links": {
+            "p3": "sw00"
+        }
+    }
+
+
+}
