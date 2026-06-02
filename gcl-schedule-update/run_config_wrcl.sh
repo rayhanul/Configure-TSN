@@ -59,7 +59,7 @@ USER="root"
 REPEAT=100
 GAP=10
 
-CSV_FILE="wrcl_${INTERFACE}_execution_times.csv"
+CSV_FILE="wrcl_${IP}_${INTERFACE}_execution_times.csv"
 
 echo "iteration,ip,interface,config_file,exit_status,execution_time_seconds" > "$CSV_FILE"
 
