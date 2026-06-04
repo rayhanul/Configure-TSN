@@ -5,6 +5,7 @@ import csv
 import os
 import statistics
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def read_csv_file(csv_file, only_success=False):
@@ -75,7 +76,7 @@ def plot_line_chart(datasets, output_file):
             label=data["label"]
         )
 
-    plt.xlabel("Iteration")
+    plt.xlabel("Number of Iteration")
     plt.ylabel("Execution Time (ms)")
     plt.title("TSN Command Execution Time Across Iterations")
     plt.grid(True, linestyle="--", alpha=0.5)
@@ -98,13 +99,18 @@ def plot_average_bar_chart(datasets, output_file):
 
     plt.figure(figsize=(8, 5))
 
-    bars = plt.bar(labels, averages)
+    x = np.arange(len(labels)) * 0.6
+    bar_width = 0.2
+    
+    bars = plt.bar(x, averages, width=bar_width)
 
-    plt.xlabel("Experiment")
+    plt.xlabel("Number of TSN switches")
     plt.ylabel("Average Execution Time (ms)")
     plt.title("Average TSN Command Execution Time")
     plt.grid(axis="y", linestyle="--", alpha=0.5)
 
+    plt.xticks(x, labels, rotation=45, ha="right")
+    
     for bar, avg in zip(bars, averages):
         plt.text(
             bar.get_x() + bar.get_width() / 2,
