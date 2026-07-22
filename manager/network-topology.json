@@ -46,7 +46,7 @@
         "type": "end-station",
         "ip": "137.99.253.167",
         "username": "jdg24001",
-        "password": "1234567809",
+        "password": "PROMPT",
         "links": {
             "p4": "sw03"
         }
@@ -62,9 +62,9 @@
     },
     "S3": {
         "type": "end-station",
-        "ip": "137.99.253.188",
+        "ip": "137.99.253.190",
         "username": "ubuntu",
-        "password": "1234567809",
+        "password": "PROMPT",
         "links": {
             "p2": "sw00"
         }
