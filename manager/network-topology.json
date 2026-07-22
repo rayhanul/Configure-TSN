@@ -6,6 +6,7 @@
         "password": "",
         "links": {
             "p2": "S1",
+            "p3":"S3",
             "p4": "sw02",
             "p5": "sw01"
         }
@@ -41,7 +42,7 @@
             "p5": "RS"
         }
     },
-    "S1": {
+    "S2": {
         "type": "end-station",
         "ip": "137.99.253.167",
         "username": "jdg24001",
@@ -50,7 +51,16 @@
             "p4": "sw03"
         }
     },
-    "S2": {
+    "S1": {
+        "type": "end-station",
+        "ip": "137.99.253.188",
+        "username": "ubuntu",
+        "password": "1234567809",
+        "links": {
+            "p2": "sw00"
+        }
+    },
+    "S3": {
         "type": "end-station",
         "ip": "137.99.253.188",
         "username": "ubuntu",
