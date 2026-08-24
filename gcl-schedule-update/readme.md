@@ -17,6 +17,8 @@ chmod +x run_wrcl_100_times.sh
 
 
 
+
+
 Now this the given amount of times using command :
 
 
