@@ -63,4 +63,15 @@
             "p2": "sw00"
         }
     }
+    //,
+    // "S3": {
+    //     "type": "end-station",
+    //     "label": "Node B (Kefan's desktop)",
+    //     "ip": "137.99.253.190",
+    //     "username": "ubuntu",
+    //     "password": "PROMPT",
+    //     "links": {
+    //         "p3": "sw00"
+    //     }
+    // }
 }

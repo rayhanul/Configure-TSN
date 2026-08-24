@@ -2,6 +2,7 @@
   "S1": {
     "label": "Node A",
     "management_ip": "137.99.253.188",
+    "cnc": true,
     "streams": {
       "objects": {
         "role": "sender",
@@ -26,6 +27,7 @@
   "S2": {
     "label": "Receiver",
     "management_ip": "137.99.253.167",
+    "cnc": false,
     "streams": {
       "S1_objects": {
         "role": "receiver",
@@ -68,6 +70,7 @@
   "S3": {
     "label": "Node B (Kefan's desktop)",
     "management_ip": "137.99.253.190",
+    "cnc": false,
     "streams": {
       "objects": {
         "role": "sender",
