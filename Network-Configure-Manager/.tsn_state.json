@@ -1,0 +1,54 @@
+{
+  "S1": {
+    "host": "137.99.253.118",
+    "user": "ubuntu",
+    "cmds": [
+      "ip link del enp1s0.10 2>/dev/null || true",
+      "ip link del enp1s0.20 2>/dev/null || true"
+    ]
+  },
+  "S2": {
+    "host": "137.99.253.167",
+    "user": "jdg24001",
+    "cmds": [
+      "ip link del enp1s0.10 2>/dev/null || true",
+      "ip link del enp1s0.20 2>/dev/null || true"
+    ]
+  },
+  "sw00": {
+    "host": "192.168.0.1",
+    "user": "root",
+    "cmds": [
+      "bridge vlan del dev sw0p2 vid 10 2>/dev/null || true",
+      "bridge vlan del dev sw0p5 vid 10 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 20 2>/dev/null || true",
+      "bridge vlan del dev sw0p4 vid 20 2>/dev/null || true"
+    ]
+  },
+  "sw01": {
+    "host": "192.168.0.2",
+    "user": "root",
+    "cmds": [
+      "bridge vlan del dev sw0p2 vid 10 2>/dev/null || true",
+      "bridge vlan del dev sw0p4 vid 10 2>/dev/null || true"
+    ]
+  },
+  "sw03": {
+    "host": "192.168.0.4",
+    "user": "root",
+    "cmds": [
+      "bridge vlan del dev sw0p3 vid 10 2>/dev/null || true",
+      "bridge vlan del dev sw0p4 vid 10 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 20 2>/dev/null || true",
+      "bridge vlan del dev sw0p4 vid 20 2>/dev/null || true"
+    ]
+  },
+  "sw02": {
+    "host": "192.168.0.5",
+    "user": "root",
+    "cmds": [
+      "bridge vlan del dev sw0p3 vid 20 2>/dev/null || true",
+      "bridge vlan del dev sw0p5 vid 20 2>/dev/null || true"
+    ]
+  }
+}

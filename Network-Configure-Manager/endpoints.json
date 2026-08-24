@@ -1,7 +1,7 @@
 {
   "S1": {
     "label": "Node A",
-    "management_ip": "137.99.253.188",
+    "management_ip": "137.99.253.118",
     "cnc": true,
     "streams": {
       "objects": {

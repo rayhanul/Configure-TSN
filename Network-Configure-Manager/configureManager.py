@@ -860,6 +860,7 @@ def apply_plan(plans, topology, mstp_plan=None, state_path=DEFAULT_STATE_FILE, c
         return d["ip"], d["username"], resolve_password(
             n, d["ip"], d["username"], d.get("password"))
 
+<<<<<<< HEAD
     def exec_node(n, cmds):
         host, user, pw = creds(n)
         if n == cnc:
@@ -868,6 +869,10 @@ def apply_plan(plans, topology, mstp_plan=None, state_path=DEFAULT_STATE_FILE, c
             ssh_run(host, user, pw, cmds)
 
     # Ask for every needed password up front, before opening any connection.
+=======
+    # Ask for (and verify) every needed password up front, before changing
+    # anything, so a mistyped password cannot leave a half-applied config.
+>>>>>>> 91c5c15 (updated configuration)
     asked = prompt_nodes(plans, topology, mstp_plan)
     if asked:
         prompt_and_verify(asked, topology)
@@ -983,6 +988,7 @@ def main():
                            and topology[n]["ip"] not in _pw_preset
                            and needs_prompt(topology[n].get("password")))
             if asked:
+<<<<<<< HEAD
                 print(f"Enter passwords for {len(asked)} node(s) to query live "
                       f"state (input is hidden; shared host+user asked once):")
                 for n in asked:
@@ -993,6 +999,12 @@ def main():
                   f"({cnc + ' locally, ' if cnc else ''}the rest over SSH; "
                   f"this connects even without --apply)...")
             teardown = build_hard_teardown(topology, nodes, cnc)
+=======
+                prompt_and_verify(asked, topology, purpose=" to query live state")
+            print(f"Querying {len(nodes)} node(s) live over SSH for --hard reset "
+                  f"(this connects even without --apply)...")
+            teardown = build_hard_teardown(topology, nodes)
+>>>>>>> 91c5c15 (updated configuration)
         else:
             teardown = load_state(state_path) or build_teardown(plans, topology)
         if not teardown:

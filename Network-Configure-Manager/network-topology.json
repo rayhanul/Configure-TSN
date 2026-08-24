@@ -56,7 +56,7 @@
         "type": "end-station",
         "label": "Node A",
         "cnc": true,
-        "ip": "137.99.253.188",
+        "ip": "137.99.253.118",
         "username": "ubuntu",
         "password": "1234567809",
         "links": {
