@@ -97,6 +97,32 @@ def resolve_password(node, host, user, raw):
     return _pw_cache[key]
 
 
+def prompt_and_verify(nodes, topology, purpose="", attempts=3):
+    """Prompt for each node's password, then prove it by opening (and closing)
+    an SSH session before anything is changed. A wrong password is re-asked
+    so a typo cannot abort a run halfway through the configuration."""
+    import paramiko
+    print(f"Enter passwords for {len(nodes)} node(s){purpose} "
+          f"(input is hidden; shared host+user asked once):")
+    for n in nodes:
+        d = topology[n]
+        host, user = d["ip"], d["username"]
+        for attempt in range(1, attempts + 1):
+            pw = resolve_password(n, host, user, d.get("password"))
+            try:
+                ssh_connect(host, user, pw).close()
+                break
+            except paramiko.AuthenticationException:
+                _pw_cache.pop((host, user), None)      # forget it, ask again
+                if attempt == attempts:
+                    raise SystemExit(f"  {n} ({user}@{host}): authentication "
+                                     f"failed {attempts} times; aborting before "
+                                     f"any changes were made.")
+                print(f"  {n} ({user}@{host}): authentication failed, "
+                      f"try again ({attempt}/{attempts}).")
+    print()
+
+
 # ---------------------------------------------------------------------------
 # Data model
 # ---------------------------------------------------------------------------
@@ -732,12 +758,41 @@ def print_teardown(teardown, header):
 # ---------------------------------------------------------------------------
 # SSH execution
 # ---------------------------------------------------------------------------
-def ssh_run(host, user, password, commands):
+def ssh_connect(host, user, password, timeout=15):
+    """Open an authenticated SSHClient.
+
+    An empty password means "passwordless": the TSN switches accept SSH
+    'none' authentication for root, which SSHClient.connect() never tries
+    (it raises "No authentication methods available"), so drive the
+    Transport directly in that case.
+    """
     import paramiko
+    import socket
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    client.connect(host, username=user, password=password or None,
-                   look_for_keys=False, allow_agent=False, timeout=15)
+    if password:
+        client.connect(host, username=user, password=password,
+                       look_for_keys=False, allow_agent=False, timeout=timeout)
+        return client
+    sock = socket.create_connection((host, 22), timeout=timeout)
+    transport = paramiko.Transport(sock)
+    transport.start_client(timeout=timeout)
+    try:
+        transport.auth_none(user)
+    except paramiko.BadAuthenticationType as e:
+        transport.close()
+        raise RuntimeError(
+            f"{user}@{host} rejected passwordless (none) auth; allowed types: "
+            f"{e.allowed_types}. Set a password for this node in the topology.")
+    if not transport.is_authenticated():
+        transport.close()
+        raise RuntimeError(f"{user}@{host}: SSH none auth did not authenticate")
+    client._transport = transport
+    return client
+
+
+def ssh_run(host, user, password, commands):
+    client = ssh_connect(host, user, password)
     try:
         for cmd in commands:
             full = cmd if user == "root" else f"sudo -S -p '' {cmd}"
@@ -757,11 +812,7 @@ def ssh_run(host, user, password, commands):
 
 def ssh_query(host, user, password, cmd):
     """Run a single read-only command over SSH and return its stdout text."""
-    import paramiko
-    client = paramiko.SSHClient()
-    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    client.connect(host, username=user, password=password or None,
-                   look_for_keys=False, allow_agent=False, timeout=15)
+    client = ssh_connect(host, user, password)
     try:
         full = cmd if user == "root" else f"sudo -S -p '' {cmd}"
         stdin, stdout, stderr = client.exec_command(full)
@@ -819,11 +870,7 @@ def apply_plan(plans, topology, mstp_plan=None, state_path=DEFAULT_STATE_FILE, c
     # Ask for every needed password up front, before opening any connection.
     asked = prompt_nodes(plans, topology, mstp_plan)
     if asked:
-        print(f"Enter passwords for {len(asked)} node(s) "
-              f"(input is hidden; shared host+user asked once):")
-        for n in asked:
-            creds(n)          # triggers the getpass prompt and caches it
-        print()
+        prompt_and_verify(asked, topology)
 
     # Remove whatever a previous --apply configured (idempotent + clears stale).
     prior = load_state(state_path)
