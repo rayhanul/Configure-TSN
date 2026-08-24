@@ -1,0 +1,92 @@
+{
+  "S1": {
+    "label": "Node A",
+    "management_ip": "137.99.253.188",
+    "streams": {
+      "objects": {
+        "role": "sender",
+        "vlan": 10,
+        "iface": "enp1s0.10",
+        "ip": "192.168.10.10",
+        "peer": "S2",
+        "peer_ip": "192.168.10.11",
+        "route": "S1 -> sw00 -> sw01 -> sw03 -> S2"
+      },
+      "frame": {
+        "role": "sender",
+        "vlan": 20,
+        "iface": "enp1s0.20",
+        "ip": "192.168.20.10",
+        "peer": "S2",
+        "peer_ip": "192.168.20.11",
+        "route": "S1 -> sw00 -> sw02 -> sw03 -> S2"
+      }
+    }
+  },
+  "S2": {
+    "label": "Receiver",
+    "management_ip": "137.99.253.167",
+    "streams": {
+      "S1_objects": {
+        "role": "receiver",
+        "vlan": 10,
+        "iface": "enp1s0.10",
+        "ip": "192.168.10.11",
+        "peer": "S1",
+        "peer_ip": "192.168.10.10",
+        "route": "S1 -> sw00 -> sw01 -> sw03 -> S2"
+      },
+      "S1_frame": {
+        "role": "receiver",
+        "vlan": 20,
+        "iface": "enp1s0.20",
+        "ip": "192.168.20.11",
+        "peer": "S1",
+        "peer_ip": "192.168.20.10",
+        "route": "S1 -> sw00 -> sw02 -> sw03 -> S2"
+      },
+      "S3_objects": {
+        "role": "receiver",
+        "vlan": 11,
+        "iface": "enp1s0.11",
+        "ip": "192.168.11.11",
+        "peer": "S3",
+        "peer_ip": "192.168.11.10",
+        "route": "S3 -> sw00 -> sw01 -> sw03 -> S2"
+      },
+      "S3_frame": {
+        "role": "receiver",
+        "vlan": 21,
+        "iface": "enp1s0.21",
+        "ip": "192.168.21.11",
+        "peer": "S3",
+        "peer_ip": "192.168.21.10",
+        "route": "S3 -> sw00 -> sw02 -> sw03 -> S2"
+      }
+    }
+  },
+  "S3": {
+    "label": "Node B (Kefan's desktop)",
+    "management_ip": "137.99.253.190",
+    "streams": {
+      "objects": {
+        "role": "sender",
+        "vlan": 11,
+        "iface": "enp1s0.11",
+        "ip": "192.168.11.10",
+        "peer": "S2",
+        "peer_ip": "192.168.11.11",
+        "route": "S3 -> sw00 -> sw01 -> sw03 -> S2"
+      },
+      "frame": {
+        "role": "sender",
+        "vlan": 21,
+        "iface": "enp1s0.21",
+        "ip": "192.168.21.10",
+        "peer": "S2",
+        "peer_ip": "192.168.21.11",
+        "route": "S3 -> sw00 -> sw02 -> sw03 -> S2"
+      }
+    }
+  }
+}

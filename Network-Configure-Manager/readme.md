@@ -26,6 +26,7 @@ route given for it in the CSV.
 - [Passwords](#passwords)
 - [Re-running, idempotency and cleanup](#re-running-idempotency-and-cleanup)
 - [config.txt output](#configtxt-output)
+- [endpoints.json output](#endpointsjson-output)
 - [MSTP option](#mstp-option)
 - [Command-line options](#command-line-options)
 - [Output and return value](#output-and-return-value)
@@ -169,25 +170,36 @@ For each flow, in order:
 
 ## VLAN and IP scheme
 
-For flow index `n` (0-based):
+CSV rows are grouped by their shared `id` column — each `id` is one **logical
+flow** with an ordered list of candidate routes: the first row for an `id` is
+its primary route (tier 0), the second is its backup route (tier 1), and so on.
+This is what lets a single fixed MSTP tree carry every flow's primary paths
+and another carry every flow's backup paths, however many flows there are
+(see [MSTP option](#mstp-option)).
 
-- **VLAN** = `VLAN_BASE + VLAN_STEP * n` → `10, 20, 30, …` by default. Validated
-  against the 1–4094 range.
+For a row belonging to logical flow index `f` (0-based order the `id` first
+appears) and path tier `t` (0-based order within that `id`):
+
+- **VLAN** = `VLAN_STEP * (t + 1) + f` → tier 0 gets `10, 11, 12, …`, tier 1
+  gets `20, 21, 22, …`, etc. Validated against the 1–4094 range.
 - **Subnet**:
   - `192.168.<vlan>.0/24` while the VLAN id is ≤ 254 (readable scheme), otherwise
-  - `10.<n//256>.<n%256>.0/24` (scalable fallback, so large flow counts never
-    collide).
+  - `10.<vlan//256>.<vlan%256>.0/24` (scalable fallback, so large flow counts
+    never collide).
 - **Sender IP** = `<subnet>.10`, **Receiver IP** = `<subnet>.11`.
 
-So the first two flows come out as:
+So two logical flows (`id=1`, `id=2`), each with a primary and a backup route,
+come out as:
 
-| Flow | VLAN | Subnet             | Sender IP       | Receiver IP     |
-|------|------|--------------------|-----------------|-----------------|
-| 1    | 10   | 192.168.10.0/24    | 192.168.10.10   | 192.168.10.11   |
-| 2    | 20   | 192.168.20.0/24    | 192.168.20.10   | 192.168.20.11   |
+| id | tier          | VLAN | Subnet             | Sender IP       | Receiver IP     |
+|----|---------------|------|--------------------|-----------------|-----------------|
+| 1  | 0 (primary)   | 10   | 192.168.10.0/24    | 192.168.10.10   | 192.168.10.11   |
+| 1  | 1 (backup)    | 20   | 192.168.20.0/24    | 192.168.20.10   | 192.168.20.11   |
+| 2  | 0 (primary)   | 11   | 192.168.11.0/24    | 192.168.11.10   | 192.168.11.11   |
+| 2  | 1 (backup)    | 21   | 192.168.21.0/24    | 192.168.21.10   | 192.168.21.11   |
 
-These values (base, step, host octets, subnet prefix) are all editable at the
-top of the script.
+`VLAN_STEP` (and the host octets / subnet prefix) is editable at the top of
+the script.
 
 ---
 
@@ -302,6 +314,52 @@ switch_path  =
     sw03 @ 192.168.0.4 : in=sw0p3  out=sw0p5  vid 10
 ```
 
+---
+
+## endpoints.json output
+
+`--endpoints` writes a machine-readable JSON file for a traffic-generation
+script to load directly, so it doesn't need to parse `config.txt`. With no
+argument it writes `endpoints.json`; pass a path to choose another name.
+
+```bash
+python3 tsn_configure.py --endpoints                  # -> endpoints.json
+python3 tsn_configure.py --endpoints my_endpoints.json
+```
+
+It's keyed by node, then by stream name. A sending node's stream carries the
+local interface + IP to bind and the peer's IP to send to; a receiving node
+gets one entry per `(sender, stream)` pair since it may hold several VLAN
+interfaces at once (one per sender × tier). The stream name for path tier 0
+is `objects`, tier 1 is `frame` (edit `TIER_LABELS` in the script for a 3rd+
+tier or different names):
+
+```json
+{
+  "S1": {
+    "label": "Node A",
+    "management_ip": "137.99.253.188",
+    "streams": {
+      "objects": {
+        "role": "sender", "vlan": 10, "iface": "enp1s0.10",
+        "ip": "192.168.10.10", "peer": "S2", "peer_ip": "192.168.10.11",
+        "route": "S1 -> sw00 -> sw01 -> sw03 -> S2"
+      },
+      "frame": { "role": "sender", "vlan": 20, "...": "..." }
+    }
+  },
+  "S2": {
+    "label": "Receiver",
+    "streams": {
+      "S1_objects": { "role": "receiver", "vlan": 10, "...": "..." },
+      "S1_frame":   { "role": "receiver", "vlan": 20, "...": "..." },
+      "S3_objects": { "role": "receiver", "vlan": 11, "...": "..." },
+      "S3_frame":   { "role": "receiver", "vlan": 21, "...": "..." }
+    }
+  }
+}
+```
+
 `--config` can be combined with any other mode (`--config --mstp`,
 `--apply --config`, etc.) and is regenerated whenever the CSV or topology changes.
 
@@ -309,21 +367,23 @@ switch_path  =
 
 ## MSTP option
 
-With `--mstp`, the script also emits a Multiple Spanning Tree Protocol plan that
-mirrors a one-tree-per-flow scheme:
+With `--mstp`, the script emits a Multiple Spanning Tree Protocol plan with
+**one MSTI per path tier** — every flow's primary route shares tree 1, every
+flow's backup route shares tree 2, a third backup (if any) would share tree 3,
+and so on. This is independent of how many logical flows exist:
 
 - On **every switch** on any route: create the MST region, create one tree per
-  flow, map each VLAN and its return VLAN (`vlan`, `vlan+1`) to a FID, and bind
-  each FID to its MSTI.
-- At any switch where the trees **diverge** (different egress ports), apply a high
-  `settreeportcost` to the ports used by the *other* trees, forcing each tree onto
-  its intended path.
-- On the **last switch** of each route, set `settreeprio … 0` to make it the root
-  bridge for every MSTI.
+  tier, map each tier's full set of VLANs (across all flows) to its FID, and
+  bind each FID to its MSTI.
+- At any switch where the trees **diverge** (different egress ports), apply a
+  high `settreeportcost` to the ports used by the *other* trees, forcing each
+  tree onto its intended path.
+- On the **last switch** of each route, set `settreeprio … 0` to make it the
+  root bridge for every MSTI.
 
-Review the return-VLAN mapping (`vlan+1`) against how you actually handle reverse
-(destination → source) traffic before applying, and treat the MSTP output as a
-starting point for topologies with multiple branch points.
+Treat the MSTP output as a starting point for topologies with multiple branch
+points, and double-check the port-cost commands against the actual physical
+wiring before applying.
 
 ---
 
@@ -336,6 +396,7 @@ starting point for topologies with multiple branch points.
 | `--apply`                | SSH into the devices and run the commands (otherwise dry-run)     |
 | `--mstp`                 | Also build/print/apply the MSTP plan                              |
 | `--config [PATH]`        | Write a config.txt summary (default filename `config.txt`)        |
+| `--endpoints [PATH]`     | Write a JSON per-node interface/IP map for traffic-gen code (default `endpoints.json`) |
 | `--reset`                | Tear down the previous run (dry-run unless combined with `--apply`) |
 | `--state PATH`           | State file path (default `.tsn_state.json`; `none` disables it)   |
 | `--password NODE=SECRET` | Pre-supply a password non-interactively (repeatable)             |
@@ -369,14 +430,28 @@ This is also printed at the end of every run as `return value: …`.
 
 ## Validation and error handling
 
-- If a flow's route references an unknown node, or a switch has no link to the
-  next/previous hop, that **single flow is skipped** with a specific message
-  (e.g. `route node 'badnode' is not defined in the topology`) and the remaining
-  flows are still configured.
-- A route shorter than two nodes, or a VLAN that would fall outside 1–4094, is
-  also reported and skipped.
+Per-row checks — **skip that one flow**, keep configuring the rest:
 
-This means one malformed CSV row cannot corrupt the configuration of the others.
+- The route references an unknown node, or a switch has no link to the
+  next/previous hop (e.g. `route node 'badnode' is not defined in the
+  topology`).
+- The route is shorter than two nodes, or starts/ends at a switch instead of
+  an end-station (a switch has no single ingress+egress pair when it's the
+  flow's own endpoint).
+- The computed VLAN would fall outside 1–4094.
+
+Whole-run checks — **stop before configuring anything**, since they indicate
+the CSV itself is inconsistent rather than one bad row:
+
+- Two rows share an `id` but disagree on `src`/`dst`. Every row sharing an
+  `id` is treated as an alternate route for the *same* logical flow (that's
+  what groups VLANs into MSTP tiers — see [VLAN and IP
+  scheme](#vlan-and-ip-scheme)), so a mismatched pair means the CSV itself is
+  ambiguous about what that `id` refers to.
+
+This means one malformed CSV row cannot corrupt the configuration of the
+others, and a CSV-wide inconsistency can't silently produce a wrong VLAN/MSTP
+plan — it fails loudly instead.
 
 ---
 
@@ -390,31 +465,22 @@ Set at the top of `tsn_configure.py`:
 | `DEFAULT_PORT_PREFIX` | `sw0`                | Switch port prefix when no override      |
 | `DEFAULT_BRIDGE`      | `br0`                | Bridge name when no override             |
 | `DEFAULT_STATE_FILE`  | `.tsn_state.json`    | Where applied config is recorded         |
-| `VLAN_BASE`           | `10`                 | VLAN of the first flow                   |
-| `VLAN_STEP`           | `10`                 | VLAN increment between flows             |
+| `VLAN_STEP`           | `10`                 | Spacing between path tiers (10, 20, 30 …) — see [VLAN and IP scheme](#vlan-and-ip-scheme) |
 | `SUBNET_PREFIX`       | `192.168`            | Readable-subnet prefix                   |
 | `SENDER_HOST`         | `10`                 | Last octet of the sender IP              |
 | `RECEIVER_HOST`       | `11`                 | Last octet of the receiver IP            |
 | `EGRESS_QOS_MAP`      | `0:0 1:1 … 7:7`      | VLAN egress QoS (priority) map           |
-| `NODE_ALIASES`        | `{"RS": "S2"}`       | Treat a link value as another node name  |
+| `NODE_ALIASES`        | `{}`                 | Treat a link value as another node name (for topologies where a link target isn't spelled like the node itself) |
 
 ---
 
 ## Known caveats for this network
 
-These stem from the sample data and are worth fixing at the source:
-
-1. **`sw03` port to the receiver is ambiguous.** The topology gives `sw03` a
-   port `"p5": "RS"` and `RS` is not defined as a node, so an alias `RS → S2` is
-   used and the script emits sw03's egress on `sw0p5`. Earlier manual configs
-   used `sw0p4`. Confirm the physical port and set `sw03`'s link accordingly
-   (e.g. `"p5": "S2"` or `"p4": "S2"`); the script trusts the topology.
-
-2. **Non-reciprocal link.** `S2` lists `p4 → sw03`, but `sw03` has no matching
-   back-link to `S2` (only `p5 → RS`). Make links symmetric to avoid relying on
-   the alias.
-
-3. **`S1` and `S3` share an IP** (`137.99.253.188`, user `ubuntu`). The current
-   flows only use `S1`, so this is harmless now, but a future flow sourced from
-   `S3` could not be addressed distinctly over SSH. Give them separate
-   management IPs.
+- `sw03`'s link to the receiver is `"p4": "S2"`, confirmed against the manually
+  tested switch commands (both VLAN 10 and VLAN 20 egress `sw0p4` there). If
+  the physical wiring ever changes, update that one link and every downstream
+  command regenerates automatically.
+- `S3`'s link back to `sw00` is `"p3": "sw00"`, matching `sw00`'s own
+  `"p3": "S3"` entry — keep links reciprocal like this; the script derives a
+  switch's port purely from that switch's own `links`, so a one-sided link
+  can't be inferred.

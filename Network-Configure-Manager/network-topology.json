@@ -39,11 +39,12 @@
         "links": {
             "p2": "sw02",
             "p3": "sw01",
-            "p5": "RS"
+            "p4": "S2"
         }
     },
     "S2": {
         "type": "end-station",
+        "label": "Receiver",
         "ip": "137.99.253.167",
         "username": "jdg24001",
         "password": "PROMPT",
@@ -53,6 +54,7 @@
     },
     "S1": {
         "type": "end-station",
+        "label": "Node A",
         "ip": "137.99.253.188",
         "username": "ubuntu",
         "password": "1234567809",
@@ -62,11 +64,12 @@
     },
     "S3": {
         "type": "end-station",
+        "label": "Node B (Kefan's desktop)",
         "ip": "137.99.253.190",
         "username": "ubuntu",
         "password": "PROMPT",
         "links": {
-            "p2": "sw00"
+            "p3": "sw00"
         }
     }
 }

@@ -57,20 +57,23 @@ DEFAULT_PORT_PREFIX = "sw0"       # topology port "p2" -> switch device "sw0p2"
 DEFAULT_BRIDGE = "br0"            # switch bridge name
 DEFAULT_STATE_FILE = ".tsn_state.json"   # records what --apply configured
 
-VLAN_BASE = 10                    # 1st flow -> VLAN 10
-VLAN_STEP = 10                    # 2nd -> 20, 3rd -> 30 ...  (must keep vlan <= 4094)
+VLAN_STEP = 10                    # spacing between path tiers: 10, 20, 30 ...
 SUBNET_PREFIX = "192.168"         # readable subnets: 192.168.<vlan>.0/24
 SENDER_HOST = 10                  # sender   = <subnet>.10
 RECEIVER_HOST = 11                # receiver = <subnet>.11
 EGRESS_QOS_MAP = "0:0 1:1 2:2 3:3 4:4 5:5 6:6 7:7"
 
-# Topology link values that should be treated as another node's name.
-# (Your topology has sw03 "p5":"RS"; the routes use "S2".)
-NODE_ALIASES = {"RS": "S2"}
+# Stream name per path tier, used only in --endpoints output; a tier beyond
+# this map (a 3rd+ route for the same flow id) falls back to "path_N".
+TIER_LABELS = {0: "objects", 1: "frame"}
+
+# Topology link values that should be treated as another node's name, for
+# topologies where a link target isn't spelled the same as the node itself.
+NODE_ALIASES = {}
 
 # A password field equal to one of these keywords (or missing entirely) means
 # "ask the user at run time" instead of failing. An explicit "" stays passwordless.
-PROMPT_KEYWORDS = {"prompt", "ask", "<ask>", "<prompt>"}
+PROMPT_KEYWORDS = {"prompt", "ask", "<ask>", "<prompt>", "promt", "<promt>"}
 _pw_cache = {}                     # (host, user) -> resolved password
 _pw_preset = {}                    # node/host -> password supplied via --password
 
@@ -105,6 +108,7 @@ class FlowPlan:
     dst: str
     route: list
     vlan: int
+    tier: int
     subnet: str
     sender_ip: str
     receiver_ip: str
@@ -133,8 +137,13 @@ def load_topology(path):
 
 
 def parse_route(raw):
-    """'[S1,sw00,sw01,sw03,S2]' -> ['S1','sw00','sw01','sw03','S2']"""
-    return [n.strip() for n in raw.strip().strip("[]").split(",") if n.strip()]
+    """Support both '[S1,sw00,sw01,sw03,S2]' and '[S1->sw00->sw01->sw03->S2]'"""
+    text = raw.strip().strip("[]")
+    if "->" in text:
+        parts = [n.strip() for n in text.split("->") if n.strip()]
+    else:
+        parts = [n.strip() for n in text.split(",") if n.strip()]
+    return parts
 
 
 def load_streams(path):
@@ -199,6 +208,12 @@ def validate_route(topology, flow):
     for n in route:
         if canon(n) not in topology:
             raise ValueError(f"route node '{n}' is not defined in the topology.")
+    if is_switch(topology, canon(route[0])) or is_switch(topology, canon(route[-1])):
+        raise ValueError(
+            f"route {route}: the first and last node must be end-stations, not "
+            f"switches (a switch has no single 'ingress+egress' pair when it's "
+            f"the flow's own endpoint)."
+        )
     for i, node in enumerate(route):
         if is_switch(topology, canon(node)):
             resolve_port(topology, canon(node), route[i - 1])
@@ -208,16 +223,48 @@ def validate_route(topology, flow):
 # ---------------------------------------------------------------------------
 # VLAN / subnet allocation (scales to thousands of flows)
 # ---------------------------------------------------------------------------
-def allocate(index):
-    vlan = VLAN_BASE + VLAN_STEP * index
+def assign_vlans(flows):
+    """
+    Pair each CSV row with a VLAN and a "tier" (0 = primary route, 1 = backup
+    route, 2 = 2nd backup, ...), grouping rows by their shared 'id' column —
+    each id is one logical flow with an ordered list of candidate routes.
+
+    VLAN = VLAN_STEP * (tier + 1) + flow_index, so with two logical flows and
+    the default VLAN_STEP=10, flow 0's routes land on VLAN 10 (tier 0) and 20
+    (tier 1), and flow 1's routes land on 11 (tier 0) and 21 (tier 1). Every
+    route sharing a tier shares one VLAN pool decade, so a fixed MSTP tree per
+    tier (see build_mstp) can carry every flow's primary paths on one tree and
+    every flow's backup paths on another, regardless of flow count.
+    """
+    flow_index, tier_counter, src_dst, out = {}, {}, {}, []
+    for f in flows:
+        fid = f["id"]
+        if fid not in flow_index:
+            flow_index[fid] = len(flow_index)
+            tier_counter[fid] = 0
+            src_dst[fid] = (f["src"], f["dst"])
+        elif src_dst[fid] != (f["src"], f["dst"]):
+            raise ValueError(
+                f"stream id '{fid}' is used by both {src_dst[fid]} and "
+                f"({f['src']}, {f['dst']}) — every row sharing an id must be "
+                f"an alternate route for the SAME (src, dst) logical flow."
+            )
+        tier = tier_counter[fid]
+        tier_counter[fid] += 1
+        vlan = VLAN_STEP * (tier + 1) + flow_index[fid]
+        out.append((f, vlan, tier))
+    return out
+
+
+def allocate(vlan):
     if not (1 <= vlan <= 4094):
-        raise ValueError(f"flow {index}: VLAN {vlan} out of range 1..4094; "
-                         f"lower VLAN_BASE/VLAN_STEP.")
+        raise ValueError(f"VLAN {vlan} out of range 1..4094; lower VLAN_STEP "
+                         f"or reduce the number of flows/tiers.")
     if vlan <= 254:                                  # readable scheme
         net = f"{SUBNET_PREFIX}.{vlan}"
     else:                                            # scalable fallback
-        net = f"10.{index // 256}.{index % 256}"
-    return vlan, f"{net}.0/24", f"{net}.{SENDER_HOST}", f"{net}.{RECEIVER_HOST}"
+        net = f"10.{vlan // 256}.{vlan % 256}"
+    return f"{net}.0/24", f"{net}.{SENDER_HOST}", f"{net}.{RECEIVER_HOST}"
 
 
 # ---------------------------------------------------------------------------
@@ -235,14 +282,14 @@ def endstation_cmds(iface, vlan, ip):
     ]
 
 
-def build_plan(topology, flow, index):
+def build_plan(topology, flow, vlan, tier, index):
     validate_route(topology, flow)
-    vlan, subnet, sender_ip, receiver_ip = allocate(index)
+    subnet, sender_ip, receiver_ip = allocate(vlan)
     route = [canon(n) for n in flow["route"]]
 
     plan = FlowPlan(index=index + 1, flow_id=flow["id"], src=canon(flow["src"]),
-                    dst=canon(flow["dst"]), route=route, vlan=vlan, subnet=subnet,
-                    sender_ip=sender_ip, receiver_ip=receiver_ip)
+                    dst=canon(flow["dst"]), route=route, vlan=vlan, tier=tier,
+                    subnet=subnet, sender_ip=sender_ip, receiver_ip=receiver_ip)
 
     # end-station config only when the endpoint is actually an end station
     if not is_switch(topology, plan.src):
@@ -273,7 +320,9 @@ def build_plan(topology, flow, index):
 
 
 # ---------------------------------------------------------------------------
-# MSTP (optional): one MSTI per flow; auto branch/root detection
+# MSTP (optional): one MSTI per path tier (all flows' primary routes share
+# tree 1, all their backup routes share tree 2, etc); auto branch/root
+# detection
 # ---------------------------------------------------------------------------
 def build_mstp(plans, topology, region="mstp_test", region_rev=1):
     all_switches = sorted({s for p in plans for s in p.switch_cmds})
@@ -285,34 +334,43 @@ def build_mstp(plans, topology, region="mstp_test", region_rev=1):
     def prefix(s):
         return node_attr(topology, s, "port_prefix", DEFAULT_PORT_PREFIX)
 
+    tiers = sorted({p.tier for p in plans})
+    tree_of_tier = {t: i + 1 for i, t in enumerate(tiers)}   # tier -> MSTI (1-based)
+    vlans_by_tree = {tree_of_tier[t]: sorted({p.vlan for p in plans if p.tier == t})
+                     for t in tiers}
+
     for s in all_switches:
         b = bridge(s)
         cmds = [f"mstpctl setmstconfid {b} {region_rev} {region}",
                 f"mstpctl showmstconfid {b}"]
-        for i, _ in enumerate(plans, 1):
-            cmds.append(f"mstpctl createtree {b} {i}")
-        for i, p in enumerate(plans, 1):
-            cmds.append(f"mstpctl setvid2fid {b} {i}:{p.vlan},{p.vlan + 1}")
-        for i, _ in enumerate(plans, 1):
-            cmds.append(f"mstpctl setfid2mstid {b} {i}:{i}")
+        for tree in vlans_by_tree:
+            cmds.append(f"mstpctl createtree {b} {tree}")
+        for tree, vlans in vlans_by_tree.items():
+            cmds.append(f"mstpctl setvid2fid {b} {tree}:{','.join(str(v) for v in vlans)}")
+        for tree in vlans_by_tree:
+            cmds.append(f"mstpctl setfid2mstid {b} {tree}:{tree}")
         per_switch[s].extend(cmds)
 
-    # force-route: at any switch where trees diverge, penalise foreign egress ports
+    # force-route: at any switch where trees diverge, penalise the egress
+    # ports used by *other* trees so each tree takes its intended path.
     for s in all_switches:
-        egress = {i: p.switch_hops[s][1]
-                  for i, p in enumerate(plans, 1) if s in p.switch_hops}
-        if len(set(egress.values())) > 1:
-            for tree, my_out in egress.items():
-                for other_out in set(egress.values()):
-                    if other_out != my_out:
-                        per_switch[s].append(
-                            f"mstpctl settreeportcost {bridge(s)} "
-                            f"{prefix(s)}{other_out} {tree} 5000000")
+        egress_by_tree = {}
+        for p in plans:
+            if s not in p.switch_hops:
+                continue
+            egress_by_tree.setdefault(tree_of_tier[p.tier], set()).add(p.switch_hops[s][1])
+        if len(egress_by_tree) > 1:
+            all_out_ports = {port for ports in egress_by_tree.values() for port in ports}
+            for tree, my_ports in egress_by_tree.items():
+                for other_port in all_out_ports - my_ports:
+                    per_switch[s].append(
+                        f"mstpctl settreeportcost {bridge(s)} "
+                        f"{prefix(s)}{other_port} {tree} 5000000")
 
     # root bridge for every MSTI on the last switch of each route
     for s in {p.last_switch for p in plans if p.last_switch}:
-        for i, _ in enumerate(plans, 1):
-            per_switch[s].append(f"mstpctl settreeprio {bridge(s)} {i} 0")
+        for tree in vlans_by_tree:
+            per_switch[s].append(f"mstpctl settreeprio {bridge(s)} {tree} 0")
 
     return per_switch
 
@@ -348,7 +406,8 @@ def prompt_nodes(plans, topology, mstp_plan=None):
 def print_plan(plans, topology, mstp_plan=None):
     for p in plans:
         print("=" * 72)
-        print(f"FLOW {p.index}  (id={p.flow_id})   {p.src} -> {p.dst}   "
+        tier_label = "primary" if p.tier == 0 else f"backup #{p.tier}"
+        print(f"FLOW {p.index}  (id={p.flow_id}, {tier_label})   {p.src} -> {p.dst}   "
               f"VLAN {p.vlan}   subnet {p.subnet}")
         print(f"  route      : {' -> '.join(p.route)}")
         print(f"  sender  IP : {p.sender_ip}   ({p.src})")
@@ -439,6 +498,76 @@ def write_config(plans, topology, path):
     with open(path, "w") as f:
         f.write("\n".join(lines))
     print(f"Wrote config to {path}")
+
+
+def tier_label(tier):
+    return TIER_LABELS.get(tier, f"path_{tier + 1}")
+
+
+def build_endpoints(plans, topology):
+    """
+    Per-node VLAN interface/IP info, keyed by stream name, for a traffic-gen
+    script to load directly: which local interface+IP to bind for a given
+    stream, and the peer IP to send to. A node that only receives (e.g. a
+    single receiver fed by several senders) gets one entry per (sender,
+    stream) pair since it holds several VLAN interfaces at once.
+
+    Keys default to the short form ("objects", "S1_objects", ...); if the
+    same node sources or receives more than one flow id on the same tier
+    (e.g. two separate logical flows both originating at S1), the flow id is
+    appended to keep every key unique instead of silently overwriting.
+    """
+    nodes = {}
+    sender_ids, receiver_ids = {}, {}
+    for p in plans:
+        stream = tier_label(p.tier)
+        if p.sender_cmds:
+            sender_ids.setdefault((p.src, stream), set()).add(p.flow_id)
+        if p.receiver_cmds:
+            receiver_ids.setdefault((p.dst, p.src, stream), set()).add(p.flow_id)
+
+    def entry(node):
+        d = topology[node]
+        return nodes.setdefault(node, {
+            "label": d.get("label", node),
+            "management_ip": d["ip"],
+            "streams": {},
+        })
+
+    for p in plans:
+        stream = tier_label(p.tier)
+        if p.sender_cmds:
+            iface = node_attr(topology, p.src, "iface", DEFAULT_IFACE)
+            key = stream if len(sender_ids[(p.src, stream)]) == 1 else f"{stream}_{p.flow_id}"
+            entry(p.src)["streams"][key] = {
+                "role": "sender",
+                "vlan": p.vlan,
+                "iface": f"{iface}.{p.vlan}",
+                "ip": p.sender_ip,
+                "peer": p.dst,
+                "peer_ip": p.receiver_ip,
+                "route": " -> ".join(p.route),
+            }
+        if p.receiver_cmds:
+            iface = node_attr(topology, p.dst, "iface", DEFAULT_IFACE)
+            base = f"{p.src}_{stream}"
+            key = base if len(receiver_ids[(p.dst, p.src, stream)]) == 1 else f"{base}_{p.flow_id}"
+            entry(p.dst)["streams"][key] = {
+                "role": "receiver",
+                "vlan": p.vlan,
+                "iface": f"{iface}.{p.vlan}",
+                "ip": p.receiver_ip,
+                "peer": p.src,
+                "peer_ip": p.sender_ip,
+                "route": " -> ".join(p.route),
+            }
+    return nodes
+
+
+def write_endpoints_json(plans, topology, path):
+    with open(path, "w") as f:
+        json.dump(build_endpoints(plans, topology), f, indent=2)
+    print(f"Wrote endpoint config to {path}")
 
 
 # ---------------------------------------------------------------------------
@@ -590,6 +719,11 @@ def main():
                     metavar="PATH",
                     help="write a config.txt summary (flow/vlan/sender/receiver). "
                          "PATH optional, defaults to config.txt")
+    ap.add_argument("--endpoints", nargs="?", const="endpoints.json", default=None,
+                    metavar="PATH",
+                    help="write a JSON file mapping each node's VLAN interface/IP "
+                         "per stream (objects/frame/...), for a traffic-gen script "
+                         "to load directly. PATH optional, defaults to endpoints.json")
     ap.add_argument("--password", action="append", default=[], metavar="NODE=SECRET",
                     help="pre-supply a password non-interactively (repeatable). "
                          "NODE may be a node name or an IP.")
@@ -611,10 +745,16 @@ def main():
     topology = load_topology(args.topology)
     flows = load_streams(args.csv)
 
+    try:
+        vlan_plan = assign_vlans(flows)
+    except ValueError as e:
+        print(f"[FATAL] {args.csv}: {e}", file=sys.stderr)
+        return []
+
     plans = []
-    for i, flow in enumerate(flows):
+    for i, (flow, vlan, tier) in enumerate(vlan_plan):
         try:
-            plans.append(build_plan(topology, flow, i))
+            plans.append(build_plan(topology, flow, vlan, tier, i))
         except ValueError as e:
             print(f"[SKIP] flow {i + 1} (id={flow.get('id')}) route "
                   f"{flow.get('route')}: {e}", file=sys.stderr)
@@ -646,6 +786,8 @@ def main():
         print_plan(plans, topology, mstp_plan)
     if args.config:
         write_config(plans, topology, args.config)
+    if args.endpoints:
+        write_endpoints_json(plans, topology, args.endpoints)
     return [p.summary() for p in plans]
 
 
