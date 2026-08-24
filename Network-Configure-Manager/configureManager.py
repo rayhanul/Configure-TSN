@@ -621,13 +621,14 @@ def build_teardown(plans, topology):
     return nodes
 
 
-def discover_stray_switch_vlans(host, user, password, ports):
+def discover_stray_switch_vlans(query, ports):
     """
-    Query the switch's live `bridge -j vlan show` and return {port: [vids]}
-    (the default VLAN 1 excluded) restricted to `ports` — the switch's known
-    port devices, e.g. {"sw0p2", "sw0p3", ...}.
+    Query the switch's live `bridge -j vlan show` (via `query(cmd) -> stdout`,
+    local or SSH) and return {port: [vids]} (the default VLAN 1 excluded)
+    restricted to `ports` — the switch's known port devices, e.g.
+    {"sw0p2", "sw0p3", ...}.
     """
-    out = ssh_query(host, user, password, "bridge -j vlan show")
+    out = query("bridge -j vlan show")
     try:
         data = json.loads(out)
     except ValueError:
@@ -644,14 +645,15 @@ def discover_stray_switch_vlans(host, user, password, ports):
     return found
 
 
-def discover_stray_endstation_vlans(host, user, password, iface):
+def discover_stray_endstation_vlans(query, iface):
     """
-    Query the node's live `ip -j link show type vlan` and return the names of
-    any VLAN sub-interfaces riding on `iface`. Filtering on `type vlan` means
-    this can only ever match 802.1Q sub-interfaces (e.g. enp1s0.10) — the
-    physical NIC itself is a different link type and is never a candidate.
+    Query the node's live `ip -j link show type vlan` (via `query(cmd) ->
+    stdout`, local or SSH) and return the names of any VLAN sub-interfaces
+    riding on `iface`. Filtering on `type vlan` means this can only ever
+    match 802.1Q sub-interfaces (e.g. enp1s0.10) — the physical NIC itself
+    is a different link type and is never a candidate.
     """
-    out = ssh_query(host, user, password, "ip -j link show type vlan")
+    out = query("ip -j link show type vlan")
     try:
         data = json.loads(out)
     except ValueError:
@@ -660,29 +662,34 @@ def discover_stray_endstation_vlans(host, user, password, iface):
             if e.get("link") == iface and e.get("ifname", "").startswith(f"{iface}.")]
 
 
-def build_hard_teardown(topology, nodes):
+def build_hard_teardown(topology, nodes, cnc=None):
     """
-    For each of `nodes`, connect over SSH and discover ALL VLAN configuration
-    actually present right now — not just what the current CSV/topology plan
-    would have created — then build teardown commands for everything found.
-    Use this to clean up leftovers from manual or pre-fix configuration this
-    tool never tracked in its state file.
+    For each of `nodes`, discover ALL VLAN configuration actually present
+    right now — not just what the current CSV/topology plan would have
+    created — then build teardown commands for everything found. Use this to
+    clean up leftovers from manual or pre-fix configuration this tool never
+    tracked in its state file. `cnc` (if any) is queried locally instead of
+    over SSH, same as everywhere else.
     """
     teardown = {}
     for node in nodes:
         d = topology[node]
         host, user = d["ip"], d["username"]
         pw = resolve_password(node, host, user, d.get("password"))
+        if node == cnc:
+            query = lambda cmd, u=user, p=pw: local_query(cmd, u, p)
+        else:
+            query = lambda cmd, h=host, u=user, p=pw: ssh_query(h, u, p, cmd)
         cmds = []
         if is_switch(topology, node):
             prefix = node_attr(topology, node, "port_prefix", DEFAULT_PORT_PREFIX)
             ports = {f"{prefix}{p}" for p in d.get("links", {})}
-            for port, vids in discover_stray_switch_vlans(host, user, pw, ports).items():
+            for port, vids in discover_stray_switch_vlans(query, ports).items():
                 for vid in vids:
                     cmds.append(f"bridge vlan del dev {port} vid {vid} 2>/dev/null || true")
         else:
             iface = node_attr(topology, node, "iface", DEFAULT_IFACE)
-            for sub in discover_stray_endstation_vlans(host, user, pw, iface):
+            for sub in discover_stray_endstation_vlans(query, iface):
                 cmds.append(f"ip link del {sub} 2>/dev/null || true")
         if cmds:
             teardown[node] = {"host": host, "user": user, "cmds": cmds}
@@ -701,14 +708,17 @@ def load_state(path):
     return {}
 
 
-def run_teardown(teardown, topology, label="teardown"):
-    """Execute a teardown dict over SSH."""
+def run_teardown(teardown, topology, label="teardown", cnc=None):
+    """Execute a teardown dict, locally for `cnc` and over SSH for everyone else."""
     for node, e in teardown.items():
         host, user = e["host"], e["user"]
         raw = topology.get(node, {}).get("password")  # None -> prompt
         pw = resolve_password(node, host, user, raw)
-        print(f"-- {label}: {node} ({host})")
-        ssh_run(host, user, pw, e["cmds"])
+        print(f"-- {label}: {node} ({'local' if node == cnc else host})")
+        if node == cnc:
+            run_local(e["cmds"], user, pw)
+        else:
+            ssh_run(host, user, pw, e["cmds"])
 
 
 def print_teardown(teardown, header):
@@ -763,11 +773,48 @@ def ssh_query(host, user, password, cmd):
         client.close()
 
 
-def apply_plan(plans, topology, mstp_plan=None, state_path=DEFAULT_STATE_FILE):
+# ---------------------------------------------------------------------------
+# Local execution — for a node marked "cnc": true, meaning this script is
+# itself running on that machine. SSHing to your own external IP often fails
+# (NAT hairpin isn't supported on many networks), so the CNC's own commands
+# run as a local subprocess instead of over the network.
+# ---------------------------------------------------------------------------
+def run_local(commands, user, password):
+    import subprocess
+    needs_sudo = user != "root"
+    for cmd in commands:
+        full = f"sudo -S -p '' {cmd}" if needs_sudo else cmd
+        proc = subprocess.run(full, shell=True, capture_output=True, text=True,
+                              input=f"{password}\n" if needs_sudo and password else None)
+        print(f"    [local] {'OK ' if proc.returncode == 0 else f'ERR({proc.returncode})'} {cmd}")
+        if proc.stdout.strip():
+            print(f"        stdout: {proc.stdout.strip()}")
+        if proc.stderr.strip() and proc.returncode != 0:
+            print(f"        stderr: {proc.stderr.strip()}")
+
+
+def local_query(cmd, user, password):
+    """Run a single read-only command locally and return its stdout text."""
+    import subprocess
+    needs_sudo = user != "root"
+    full = f"sudo -S -p '' {cmd}" if needs_sudo else cmd
+    proc = subprocess.run(full, shell=True, capture_output=True, text=True,
+                          input=f"{password}\n" if needs_sudo and password else None)
+    return proc.stdout
+
+
+def apply_plan(plans, topology, mstp_plan=None, state_path=DEFAULT_STATE_FILE, cnc=None):
     def creds(n):
         d = topology[n]
         return d["ip"], d["username"], resolve_password(
             n, d["ip"], d["username"], d.get("password"))
+
+    def exec_node(n, cmds):
+        host, user, pw = creds(n)
+        if n == cnc:
+            run_local(cmds, user, pw)
+        else:
+            ssh_run(host, user, pw, cmds)
 
     # Ask for every needed password up front, before opening any connection.
     asked = prompt_nodes(plans, topology, mstp_plan)
@@ -783,26 +830,26 @@ def apply_plan(plans, topology, mstp_plan=None, state_path=DEFAULT_STATE_FILE):
     if prior:
         print("### Tearing down previous configuration (from "
               f"{state_path}) ###")
-        run_teardown(prior, topology, label="remove old")
+        run_teardown(prior, topology, label="remove old", cnc=cnc)
         print()
 
     for p in plans:
         print(f"\n### FLOW {p.index}  VLAN {p.vlan} ###")
         if p.sender_cmds:
-            print(f"-- sender {p.src}")
-            ssh_run(*creds(p.src), p.sender_cmds)
+            print(f"-- sender {p.src}" + ("  (local)" if p.src == cnc else ""))
+            exec_node(p.src, p.sender_cmds)
         if p.receiver_cmds:
-            print(f"-- receiver {p.dst}")
-            ssh_run(*creds(p.dst), p.receiver_cmds)
+            print(f"-- receiver {p.dst}" + ("  (local)" if p.dst == cnc else ""))
+            exec_node(p.dst, p.receiver_cmds)
         for sw, cmds in p.switch_cmds.items():
-            print(f"-- switch {sw}")
-            ssh_run(*creds(sw), cmds)
+            print(f"-- switch {sw}" + ("  (local)" if sw == cnc else ""))
+            exec_node(sw, cmds)
 
     if mstp_plan:
         print("\n### MSTP ###")
         for sw, cmds in mstp_plan.items():
-            print(f"-- {sw}")
-            ssh_run(*creds(sw), cmds)
+            print(f"-- {sw}" + ("  (local)" if sw == cnc else ""))
+            exec_node(sw, cmds)
 
     # Record what we just configured so the next run can clean it up.
     if state_path:
@@ -895,16 +942,17 @@ def main():
                     d = topology[n]
                     resolve_password(n, d["ip"], d["username"], d.get("password"))
                 print()
-            print(f"Querying {len(nodes)} node(s) live over SSH for --hard reset "
-                  f"(this connects even without --apply)...")
-            teardown = build_hard_teardown(topology, nodes)
+            print(f"Querying {len(nodes)} node(s) live for --hard reset "
+                  f"({cnc + ' locally, ' if cnc else ''}the rest over SSH; "
+                  f"this connects even without --apply)...")
+            teardown = build_hard_teardown(topology, nodes, cnc)
         else:
             teardown = load_state(state_path) or build_teardown(plans, topology)
         if not teardown:
             print("Nothing to reset.")
             return []
         if args.apply:
-            run_teardown(teardown, topology, label="reset")
+            run_teardown(teardown, topology, label="reset", cnc=cnc)
             if state_path and os.path.exists(state_path):
                 os.remove(state_path)
                 print(f"\nCleared {state_path}.")
@@ -914,7 +962,7 @@ def main():
 
     mstp_plan = build_mstp(plans, topology) if args.mstp else None
     if args.apply:
-        apply_plan(plans, topology, mstp_plan, state_path)
+        apply_plan(plans, topology, mstp_plan, state_path, cnc)
     else:
         print_plan(plans, topology, mstp_plan, cnc)
     if args.config:

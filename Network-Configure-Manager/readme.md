@@ -68,7 +68,7 @@ Subnet = `192.168.<vlan>.0/24`, sender = `.10`, receiver = `.11`.
 | `port_prefix` | no       | Switch port prefix (default `sw0`)                   |
 | `bridge`      | no       | Bridge name (default `br0`)                          |
 | `label`       | no       | Human-readable name, shown in output only             |
-| `cnc`         | no       | `true` on at most one node — marks it as the station meant to run this tool from. Purely informational: printed in the dry-run header, `config.txt`, and `endpoints.json`; changes nothing about how the plan is built or applied. Two `true` nodes → the run fails fast. |
+| `cnc`         | no       | `true` on at most one node — marks it as the station this tool is run from. That node's commands run **locally** (subprocess) instead of over SSH, avoiding the self-connect timeout many networks hit when a machine SSHes to its own external IP; every other node is still reached over SSH as usual. Also printed in the dry-run header, `config.txt`, and `endpoints.json`. Two `true` nodes → the run fails fast. |
 
 Pre-supply passwords non-interactively: `--password NODE=SECRET` (repeatable).
 
