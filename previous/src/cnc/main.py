@@ -1,7 +1,7 @@
 import paramiko
 import time
-from model import *
-from tools import *
+from previous.src.cnc.model import *
+from previous.src.cnc.tools import *
 from tqdm import tqdm
 import os
 import argparse

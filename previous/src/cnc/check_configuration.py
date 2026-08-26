@@ -5,7 +5,7 @@ from tqdm import tqdm
 import argparse
 import os
 
-from main import find_unique_file
+from previous.src.cnc.main import find_unique_file
 
 
 def load_json(file_path):
