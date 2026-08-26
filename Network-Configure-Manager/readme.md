@@ -25,6 +25,18 @@ python3 configureManager.py --reset --apply             # tear down last run's c
 `--csv`/`--topology` default to `stream.csv` / `network-topology.json` in the
 current directory.
 
+
+
+
+## Configure 
+
+To configure and write configuration:
+
+
+```
+python3 configureManager.py --apply --mstp --endpoints
+```
+
 ## stream.csv
 
 ```

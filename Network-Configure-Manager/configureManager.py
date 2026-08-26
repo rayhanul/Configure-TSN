@@ -97,16 +97,23 @@ def resolve_password(node, host, user, raw):
     return _pw_cache[key]
 
 
-def prompt_and_verify(nodes, topology, purpose="", attempts=3):
+def prompt_and_verify(nodes, topology, purpose="", attempts=3, cnc=None):
     """Prompt for each node's password, then prove it by opening (and closing)
     an SSH session before anything is changed. A wrong password is re-asked
-    so a typo cannot abort a run halfway through the configuration."""
+    so a typo cannot abort a run halfway through the configuration.
+
+    The CNC node (if any) runs its own commands locally, not over SSH, so its
+    password is only collected here (for local `sudo -S`) and never
+    SSH-verified against itself."""
     import paramiko
     print(f"Enter passwords for {len(nodes)} node(s){purpose} "
           f"(input is hidden; shared host+user asked once):")
     for n in nodes:
         d = topology[n]
         host, user = d["ip"], d["username"]
+        if n == cnc:
+            resolve_password(n, host, user, d.get("password"))
+            continue
         for attempt in range(1, attempts + 1):
             pw = resolve_password(n, host, user, d.get("password"))
             try:
@@ -870,7 +877,7 @@ def apply_plan(plans, topology, mstp_plan=None, state_path=DEFAULT_STATE_FILE, c
     # Ask for every needed password up front, before opening any connection.
     asked = prompt_nodes(plans, topology, mstp_plan)
     if asked:
-        prompt_and_verify(asked, topology)
+        prompt_and_verify(asked, topology, cnc=cnc)
 
     # Remove whatever a previous --apply configured (idempotent + clears stale).
     prior = load_state(state_path)
