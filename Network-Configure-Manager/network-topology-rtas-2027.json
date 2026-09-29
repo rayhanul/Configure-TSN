@@ -6,9 +6,7 @@
         "username": "root",
         "password": "",
         "links": {
-            "p2": {
-              
-            },
+            "p2": {},
             "p3": {
                 "node": "S3"
             },
@@ -22,7 +20,6 @@
             }
         }
     },
-
     "sw02": {
         "type": "sw",
         "label": "Switch 2",
@@ -39,7 +36,7 @@
             },
             "p4": {
                 "node": "sw04",
-                "port": "p2"
+                "port": "p3"
             },
             "p5": {
                 "node": "sw05",
@@ -47,7 +44,6 @@
             }
         }
     },
-
     "sw03": {
         "type": "sw",
         "label": "Switch 3",
@@ -55,8 +51,7 @@
         "username": "root",
         "password": "",
         "links": {
-            "p2": {
-            },
+            "p2": {},
             "p3": {
                 "node": "sw01",
                 "port": "p4"
@@ -71,7 +66,6 @@
             }
         }
     },
-
     "sw04": {
         "type": "sw",
         "label": "Switch 4",
@@ -79,15 +73,14 @@
         "username": "root",
         "password": "",
         "links": {
-            "p2": {
-            },
+            "p2": {},
             "p3": {
                 "node": "sw02",
                 "port": "p4"
             },
             "p4": {
                 "node": "sw05",
-                "port": "p2"
+                "port": "p3"
             },
             "p5": {
                 "node": "sw03",
@@ -95,7 +88,6 @@
             }
         }
     },
-
     "sw05": {
         "type": "sw",
         "label": "Switch 5",
@@ -121,7 +113,6 @@
             }
         }
     },
-
     "sw06": {
         "type": "sw",
         "label": "Switch 6",
@@ -134,7 +125,7 @@
                 "port": "p4"
             },
             "p3": {
-                "node": "sw02",
+                "node": "sw03",
                 "port": "p4"
             },
             "p4": {
@@ -147,7 +138,6 @@
             }
         }
     },
-
     "sw07": {
         "type": "sw",
         "label": "Switch 7",
@@ -155,8 +145,7 @@
         "username": "root",
         "password": "",
         "links": {
-            "p2": {
-            },
+            "p2": {},
             "p3": {
                 "node": "sw05",
                 "port": "p2"
@@ -171,7 +160,6 @@
             }
         }
     },
-
     "sw08": {
         "type": "sw",
         "label": "Switch 8",
@@ -182,17 +170,17 @@
             "p2": {
                 "node": "S2"
             },
-            "p3": {            },
+            "p3": {},
             "p4": {
                 "node": "sw06",
-                "port": "p2"               
-            },"p5": {
+                "port": "p2"
+            },
+            "p5": {
                 "node": "sw07",
                 "port": "p4"
             }
         }
     },
-
     "S1": {
         "type": "end-station",
         "label": "Sender",
@@ -200,11 +188,10 @@
         "username": "ubuntu",
         "password": "1234567809",
         "links": {
-            "node": "sw01",
+            "node": "sw02",
             "port": "p2"
         }
     },
-
     "S2": {
         "type": "end-station",
         "label": "Receiver",
@@ -214,19 +201,18 @@
         "password": "PROMPT",
         "links": {
             "node": "sw08",
-            "port": "p4"
+            "port": "p2"
         }
     },
-        "S3": {
+    "S3": {
         "type": "end-station",
-        "label": "Receiver",
-        "cnc": true,
+        "label": "Kefan PC",
         "ip": "192.168.0.103",
         "username": "jdg24001",
         "password": "PROMPT",
         "links": {
-            "node": "sw08",
-            "port": "p4"
+            "node": "sw01",
+            "port": "p3"
         }
     }
 }

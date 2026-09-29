@@ -166,7 +166,82 @@ class FlowPlan:
 # ---------------------------------------------------------------------------
 def load_topology(path):
     with open(path) as f:
-        return json.load(f)
+        return normalize_topology(json.load(f))
+
+
+def _link_target(value):
+    """(neighbor, neighbor_port) for one link value, in either format:
+    "sw01" (old) or {"node": "sw01", "port": "p3"} (new; "port" optional).
+    An empty {} (unconnected port) gives (None, None)."""
+    if isinstance(value, str):
+        return (value or None), None
+    if isinstance(value, dict):
+        return value.get("node") or None, value.get("port") or None
+    return None, None
+
+
+def normalize_topology(topology):
+    """
+    Accept both topology formats and rewrite every node into the form the rest
+    of this tool uses:
+
+        links       {local_port: neighbor}        connected ports only
+        peer_ports  {local_port: neighbor_port}   when the file records it
+        all_ports   [local_port, ...]             incl. unconnected ({}) ports
+
+    New format:
+      switch       "links": {"p3": {"node": "sw02", "port": "p5"}, "p2": {}}
+      end station  "links": {"node": "sw01", "port": "p2"}     (a single link)
+    Old format:
+      any node     "links": {"p2": "sw00"}
+
+    An end station's single link is keyed by its NIC name (the `iface`).
+    """
+    for name, d in topology.items():
+        raw = d.get("links", {}) or {}
+        if isinstance(raw, dict) and "node" in raw:      # end station, single link
+            raw = {node_attr(topology, name, "iface", DEFAULT_IFACE): raw}
+        links, peer_ports = {}, {}
+        for port, value in raw.items():
+            neighbor, neighbor_port = _link_target(value)
+            if neighbor is None:
+                continue
+            links[port] = neighbor
+            if neighbor_port:
+                peer_ports[port] = neighbor_port
+        d["links"] = links
+        d["peer_ports"] = peer_ports
+        d["all_ports"] = list(raw)
+    return topology
+
+
+def link_problems(topology, a, port_a):
+    """
+    Check the link leaving `a` on `port_a` against the other end's record.
+    Returns a list of human-readable problems (empty when consistent).
+    """
+    b = canon(topology[a]["links"][port_a])
+    if b not in topology:
+        return [f"{a}:{port_a} -> '{b}', which is not defined in the topology"]
+    problems = []
+    back = [p for p, n in topology[b]["links"].items() if canon(n) == a]
+    if not back:
+        problems.append(f"{a}:{port_a} -> {b}, but {b} has no link back to {a}")
+    claimed = topology[a]["peer_ports"].get(port_a)
+    if claimed and is_switch(topology, b) and topology[b]["links"].get(claimed) != a:
+        actual = topology[b]["links"].get(claimed, "nothing")
+        problems.append(f"{a}:{port_a} says it reaches {b}:{claimed}, "
+                        f"but {b}:{claimed} is linked to {actual}")
+    return problems
+
+
+def check_topology(topology):
+    """All link inconsistencies in the topology (each link reported from both ends)."""
+    problems = []
+    for a, d in topology.items():
+        for port in d["links"]:
+            problems += link_problems(topology, a, port)
+    return problems
 
 
 def parse_route(raw):
@@ -262,10 +337,15 @@ def validate_route(topology, flow):
             f"switches (a switch has no single 'ingress+egress' pair when it's "
             f"the flow's own endpoint)."
         )
-    for i, node in enumerate(route):
-        if is_switch(topology, canon(node)):
-            resolve_port(topology, canon(node), route[i - 1])
-            resolve_port(topology, canon(node), route[i + 1])
+    # every hop must be a link both ends agree on, or the VLAN would be put on
+    # the wrong port
+    for a, b in zip(route, route[1:]):
+        a, b = canon(a), canon(b)
+        problems = (link_problems(topology, a, resolve_port(topology, a, b))
+                    + link_problems(topology, b, resolve_port(topology, b, a)))
+        if problems:
+            raise ValueError(f"hop {a} -> {b} is inconsistent in the topology: "
+                             + "; ".join(problems))
 
 
 # ---------------------------------------------------------------------------
@@ -716,7 +796,7 @@ def build_hard_teardown(topology, nodes, cnc=None):
         cmds = []
         if is_switch(topology, node):
             prefix = node_attr(topology, node, "port_prefix", DEFAULT_PORT_PREFIX)
-            ports = {f"{prefix}{p}" for p in d.get("links", {})}
+            ports = {f"{prefix}{p}" for p in d.get("all_ports", d.get("links", {}))}
             for port, vids in discover_stray_switch_vlans(query, ports).items():
                 for vid in vids:
                     cmds.append(f"bridge vlan del dev {port} vid {vid} 2>/dev/null || true")
@@ -960,6 +1040,14 @@ def main():
 
     topology = load_topology(args.topology)
     flows = load_streams(args.csv)
+
+    problems = check_topology(topology)
+    if problems:
+        print(f"[WARN] {args.topology} has {len(problems)} link inconsistenc"
+              f"{'y' if len(problems) == 1 else 'ies'} (flows crossing them are skipped):",
+              file=sys.stderr)
+        for p in problems:
+            print(f"    - {p}", file=sys.stderr)
 
     try:
         cnc = find_cnc(topology)

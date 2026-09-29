@@ -56,18 +56,34 @@ Subnet = `192.168.<vlan>.0/24`, sender = `.10`, receiver = `.11`.
 
 ## network-topology.json
 
+Each link records both ends — the neighbor node and the port on the neighbor
+it plugs into. Unconnected switch ports may be left as `{}`. An end station
+has a single link object.
+
 ```json
 {
-  "sw00": {
+  "sw01": {
     "type": "sw", "ip": "192.168.0.1", "username": "root", "password": "",
-    "links": { "p2": "S1", "p5": "sw01" }
+    "links": {
+      "p2": { "node": "S1" },
+      "p3": {},
+      "p5": { "node": "sw02", "port": "p3" }
+    }
   },
   "S1": {
-    "type": "end-station", "ip": "137.99.253.188", "username": "ubuntu",
-    "password": "1234567809", "links": { "p2": "sw00" }
+    "type": "end-station", "ip": "192.168.0.101", "username": "ubuntu",
+    "password": "1234567809", "links": { "node": "sw01", "port": "p2" }
   }
 }
 ```
+
+The older form `"links": { "p2": "S1", "p5": "sw02" }` is still accepted.
+
+On load, every link is checked against the other end (the neighbor must link
+back, and a recorded `port` must be the neighbor's port that points back).
+Inconsistencies are printed as `[WARN]`; any flow whose route crosses an
+inconsistent link is skipped, so a wiring typo can't put a VLAN on the wrong
+port.
 
 | Field         | Required | Meaning                                            |
 |---------------|----------|-----------------------------------------------------|
@@ -75,7 +91,7 @@ Subnet = `192.168.<vlan>.0/24`, sender = `.10`, receiver = `.11`.
 | `ip`          | yes      | Management IP for SSH                                |
 | `username`    | yes      | SSH username                                         |
 | `password`    | yes      | `""` passwordless, a literal password, or `PROMPT`/`ASK`/`<ask>`/`<prompt>` (asked at run time; missing field = also prompted) |
-| `links`       | yes      | `{ "<port>": "<neighbor node>" }`, must be reciprocal |
+| `links`       | yes      | Switch: `{ "<port>": {"node": "<neighbor>", "port": "<neighbor port>"} }` (`port` optional for end-station neighbors, `{}` = unconnected). End station: `{"node": "<switch>", "port": "<switch port>"}`. Must be reciprocal. |
 | `iface`       | no       | End-station NIC (default `enp1s0`)                   |
 | `port_prefix` | no       | Switch port prefix (default `sw0`)                   |
 | `bridge`      | no       | Bridge name (default `br0`)                          |
