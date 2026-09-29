@@ -1,0 +1,232 @@
+{
+    "sw01": {
+        "type": "sw",
+        "label": "Switch 1",
+        "ip": "192.168.0.1",
+        "username": "root",
+        "password": "",
+        "links": {
+            "p2": {
+              
+            },
+            "p3": {
+                "node": "S3"
+            },
+            "p4": {
+                "node": "sw03",
+                "port": "p3"
+            },
+            "p5": {
+                "node": "sw02",
+                "port": "p3"
+            }
+        }
+    },
+
+    "sw02": {
+        "type": "sw",
+        "label": "Switch 2",
+        "ip": "192.168.0.2",
+        "username": "root",
+        "password": "",
+        "links": {
+            "p2": {
+                "node": "S1"
+            },
+            "p3": {
+                "node": "sw01",
+                "port": "p5"
+            },
+            "p4": {
+                "node": "sw04",
+                "port": "p2"
+            },
+            "p5": {
+                "node": "sw05",
+                "port": "p5"
+            }
+        }
+    },
+
+    "sw03": {
+        "type": "sw",
+        "label": "Switch 3",
+        "ip": "192.168.0.5",
+        "username": "root",
+        "password": "",
+        "links": {
+            "p2": {
+            },
+            "p3": {
+                "node": "sw01",
+                "port": "p4"
+            },
+            "p4": {
+                "node": "sw06",
+                "port": "p3"
+            },
+            "p5": {
+                "node": "sw04",
+                "port": "p5"
+            }
+        }
+    },
+
+    "sw04": {
+        "type": "sw",
+        "label": "Switch 4",
+        "ip": "192.168.0.4",
+        "username": "root",
+        "password": "",
+        "links": {
+            "p2": {
+            },
+            "p3": {
+                "node": "sw02",
+                "port": "p4"
+            },
+            "p4": {
+                "node": "sw05",
+                "port": "p2"
+            },
+            "p5": {
+                "node": "sw03",
+                "port": "p5"
+            }
+        }
+    },
+
+    "sw05": {
+        "type": "sw",
+        "label": "Switch 5",
+        "ip": "192.168.0.3",
+        "username": "root",
+        "password": "",
+        "links": {
+            "p2": {
+                "node": "sw07",
+                "port": "p3"
+            },
+            "p3": {
+                "node": "sw04",
+                "port": "p4"
+            },
+            "p4": {
+                "node": "sw06",
+                "port": "p5"
+            },
+            "p5": {
+                "node": "sw02",
+                "port": "p5"
+            }
+        }
+    },
+
+    "sw06": {
+        "type": "sw",
+        "label": "Switch 6",
+        "ip": "192.168.0.6",
+        "username": "root",
+        "password": "",
+        "links": {
+            "p2": {
+                "node": "sw08",
+                "port": "p4"
+            },
+            "p3": {
+                "node": "sw02",
+                "port": "p4"
+            },
+            "p4": {
+                "node": "sw07",
+                "port": "p5"
+            },
+            "p5": {
+                "node": "sw05",
+                "port": "p4"
+            }
+        }
+    },
+
+    "sw07": {
+        "type": "sw",
+        "label": "Switch 7",
+        "ip": "192.168.0.7",
+        "username": "root",
+        "password": "",
+        "links": {
+            "p2": {
+            },
+            "p3": {
+                "node": "sw05",
+                "port": "p2"
+            },
+            "p4": {
+                "node": "sw08",
+                "port": "p5"
+            },
+            "p5": {
+                "node": "sw06",
+                "port": "p4"
+            }
+        }
+    },
+
+    "sw08": {
+        "type": "sw",
+        "label": "Switch 8",
+        "ip": "192.168.0.8",
+        "username": "root",
+        "password": "",
+        "links": {
+            "p2": {
+                "node": "S2"
+            },
+            "p3": {            },
+            "p4": {
+                "node": "sw06",
+                "port": "p2"               
+            },"p5": {
+                "node": "sw07",
+                "port": "p4"
+            }
+        }
+    },
+
+    "S1": {
+        "type": "end-station",
+        "label": "Sender",
+        "ip": "192.168.0.101",
+        "username": "ubuntu",
+        "password": "1234567809",
+        "links": {
+            "node": "sw01",
+            "port": "p2"
+        }
+    },
+
+    "S2": {
+        "type": "end-station",
+        "label": "Receiver",
+        "cnc": true,
+        "ip": "192.168.0.102",
+        "username": "jdg24001",
+        "password": "PROMPT",
+        "links": {
+            "node": "sw08",
+            "port": "p4"
+        }
+    },
+        "S3": {
+        "type": "end-station",
+        "label": "Receiver",
+        "cnc": true,
+        "ip": "192.168.0.103",
+        "username": "jdg24001",
+        "password": "PROMPT",
+        "links": {
+            "node": "sw08",
+            "port": "p4"
+        }
+    }
+}
