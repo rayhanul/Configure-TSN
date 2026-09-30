@@ -458,6 +458,20 @@ def build_plan(topology, flow, vlan, tier, index):
 # detection
 # ---------------------------------------------------------------------------
 def build_mstp(plans, topology, region="mstp_test", region_rev=1):
+    """One MSTI per distinct physical route, not just per tier.
+
+    Grouping by tier alone (tier = primary/backup/... rank among alternate
+    routes sharing one flow id) is correct when every flow in a tier takes
+    the same path, but breaks down as soon as two *different* primary
+    routes (both tier 0, e.g. two unrelated flows with different src/dst)
+    diverge on a ring/mesh topology: cramming them into one MSTI forces
+    plain spanning-tree math to pick a single loop-free shape for all of
+    them, which can silently block a link some of those flows have no
+    other path configured for at all (their VLAN was never bridged onto
+    the alternate route). Keying the tree by (tier, route) instead gives
+    every distinct route its own MSTI, so the force-route step below can
+    keep every one of them open independently.
+    """
     all_switches = sorted({s for p in plans for s in p.switch_cmds})
     per_switch = {s: [] for s in all_switches}
 
@@ -467,10 +481,15 @@ def build_mstp(plans, topology, region="mstp_test", region_rev=1):
     def prefix(s):
         return node_attr(topology, s, "port_prefix", DEFAULT_PORT_PREFIX)
 
-    tiers = sorted({p.tier for p in plans})
-    tree_of_tier = {t: i + 1 for i, t in enumerate(tiers)}   # tier -> MSTI (1-based)
-    vlans_by_tree = {tree_of_tier[t]: sorted({p.vlan for p in plans if p.tier == t})
-                     for t in tiers}
+    def route_key(p):
+        return (p.tier, tuple(p.route))
+
+    route_keys = sorted({route_key(p) for p in plans}, key=lambda k: (k[0], k[1]))
+    tree_of_route = {k: i + 1 for i, k in enumerate(route_keys)}   # route -> MSTI (1-based)
+    vlans_by_tree = {}
+    for p in plans:
+        vlans_by_tree.setdefault(tree_of_route[route_key(p)], set()).add(p.vlan)
+    vlans_by_tree = {t: sorted(vs) for t, vs in vlans_by_tree.items()}
 
     for s in all_switches:
         b = bridge(s)
@@ -491,7 +510,7 @@ def build_mstp(plans, topology, region="mstp_test", region_rev=1):
         for p in plans:
             if s not in p.switch_hops:
                 continue
-            egress_by_tree.setdefault(tree_of_tier[p.tier], set()).add(p.switch_hops[s][1])
+            egress_by_tree.setdefault(tree_of_route[route_key(p)], set()).add(p.switch_hops[s][1])
         if len(egress_by_tree) > 1:
             all_out_ports = {port for ports in egress_by_tree.values() for port in ports}
             for tree, my_ports in egress_by_tree.items():
@@ -500,10 +519,20 @@ def build_mstp(plans, topology, region="mstp_test", region_rev=1):
                         f"mstpctl settreeportcost {bridge(s)} "
                         f"{prefix(s)}{other_port} {tree} 5000000")
 
-    # root bridge for every MSTI on the last switch of each route
-    for s in {p.last_switch for p in plans if p.last_switch}:
-        for tree in vlans_by_tree:
-            per_switch[s].append(f"mstpctl settreeprio {bridge(s)} {tree} 0")
+    # root bridge for each route's own MSTI on that route's own last switch
+    # (not every MSTI -- a switch that ends one route isn't necessarily on
+    # any other route at all, let alone fit to be its root).
+    seen = set()
+    for p in plans:
+        if not p.last_switch:
+            continue
+        tree = tree_of_route[route_key(p)]
+        key = (p.last_switch, tree)
+        if key in seen:
+            continue
+        seen.add(key)
+        per_switch[p.last_switch].append(
+            f"mstpctl settreeprio {bridge(p.last_switch)} {tree} 0")
 
     return per_switch
 
@@ -852,18 +881,57 @@ def print_teardown(teardown, header):
 # ---------------------------------------------------------------------------
 # SSH execution
 # ---------------------------------------------------------------------------
-def ssh_connect(host, user, password, timeout=15):
+CANDIDATE_KEY_FILES = ["~/.ssh/id_ed25519", "~/.ssh/id_ed25519_s3",
+                       "~/.ssh/id_rsa", "~/.ssh/id_ecdsa"]
+
+
+def ssh_connect(host, user, password, timeout=15, retries=10, retry_delay=3.0):
+    """ssh_connect with retry-with-backoff around transient connection-level
+    failures (banner read errors, resets, timeouts -- seen in practice as
+    sshd throttling rapid successive connections from one source, e.g. a
+    MaxStartups-style limit). Authentication failures are NOT retried --
+    a wrong password won't fix itself, and retrying risks a lockout."""
+    import time
+    import paramiko
+    last_exc = None
+    for attempt in range(1, retries + 1):
+        try:
+            return _ssh_connect_once(host, user, password, timeout)
+        except paramiko.AuthenticationException:
+            raise
+        except (paramiko.SSHException, EOFError, ConnectionResetError, OSError) as e:
+            last_exc = e
+            if attempt < retries:
+                time.sleep(min(retry_delay * attempt, 10.0))  # linear backoff, capped at 10s
+    raise last_exc
+
+
+def _ssh_connect_once(host, user, password, timeout=15):
     """Open an authenticated SSHClient.
 
-    An empty password means "passwordless": the TSN switches accept SSH
-    'none' authentication for root, which SSHClient.connect() never tries
-    (it raises "No authentication methods available"), so drive the
-    Transport directly in that case.
+    SSH *login* always tries our known private keys first (silently, no
+    topology change needed) -- this is independent of `password`, which is
+    a separate secret only used for piping into remote `sudo -S` (see
+    ssh_run/run_local). Only if every key attempt fails does login fall
+    back to `password` itself (or, if empty, SSH 'none' auth -- the TSN
+    switches accept that for root, which SSHClient.connect() never tries on
+    its own).
     """
     import paramiko
     import socket
+    import os
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    for key_path in CANDIDATE_KEY_FILES:
+        key_path = os.path.expanduser(key_path)
+        if not os.path.exists(key_path):
+            continue
+        try:
+            client.connect(host, username=user, key_filename=key_path,
+                           look_for_keys=False, allow_agent=False, timeout=timeout)
+            return client
+        except paramiko.AuthenticationException:
+            continue  # this key isn't authorized here; try the next one
     if password:
         client.connect(host, username=user, password=password,
                        look_for_keys=False, allow_agent=False, timeout=timeout)

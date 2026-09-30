@@ -1,0 +1,18 @@
+Node S2: 6 in-scope flow(s), cycle 800000 ns
+
+  id=5   sender   vlan=12  192.168.12.10 <-> 192.168.12.11  pcp=7 size=200B period=200000ns offset=6720ns deadline=200000ns route=['S2', 'sw08', 'sw06', 'sw05', 'sw02', 'S1']
+  id=8   sender   vlan=13  192.168.13.10 <-> 192.168.13.11  pcp=6 size=100B period=800000ns offset=14720ns deadline=800000ns route=['S2', 'sw08', 'sw06', 'sw03', 'sw01', 'S3']
+  id=12  sender   vlan=15  192.168.15.10 <-> 192.168.15.11  pcp=6 size=100B period=400000ns offset=11200ns deadline=400000ns route=['S2', 'sw08', 'sw06', 'sw05', 'sw02', 'S1']
+  id=15  sender   vlan=16  192.168.16.10 <-> 192.168.16.11  pcp=6 size=400B period=100000ns offset=0ns deadline=100000ns route=['S2', 'sw08', 'sw06', 'sw03', 'sw01', 'S3']
+  id=16  receiver vlan=17  192.168.17.11 <-> 192.168.17.10  pcp=6 size=200B period=800000ns offset=20320ns deadline=800000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=18  receiver vlan=18  192.168.18.11 <-> 192.168.18.10  pcp=6 size=100B period=200000ns offset=10080ns deadline=200000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+
+Starting 6 thread(s) for 30.0s ...
+
+Summary:
+  id=5 sender: 149996 packet(s) sent
+  id=8 sender: 37510 packet(s) sent
+  id=12 sender: 74998 packet(s) sent
+  id=15 sender: 300340 packet(s) sent
+  id=16 receiver: 37080 received, latency ns min/avg/max = 42200/171254/320480824, jitter ns stddev/rfc3550 = 4055088/51815, deadline=800000ns, misses=81
+  id=18 receiver: 148261 received, latency ns min/avg/max = 34571/151452/320859194, jitter ns stddev/rfc3550 = 4143020/34085, deadline=200000ns, misses=1515

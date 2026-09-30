@@ -8,6 +8,7 @@
         "links": {
             "p2": {},
             "p3": {
+                "node": "S3"
             },
             "p4": {
                 "node": "sw03",
@@ -201,6 +202,17 @@
         "links": {
             "node": "sw08",
             "port": "p2"
+        }
+    },
+    "S3": {
+        "type": "end-station",
+        "label": "Kefan PC",
+        "ip": "137.99.252.240",
+        "username": "jdg24001",
+        "password": "PROMPT",
+        "links": {
+            "node": "sw01",
+            "port": "p3"
         }
     }
 }

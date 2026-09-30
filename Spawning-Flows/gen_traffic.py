@@ -163,8 +163,21 @@ def summarize(flow, stream, stats):
     if not lat:
         print(f"  id={flow['id']} receiver: 0 packets received")
         return
+    mean = sum(lat) / len(lat)
+    # jitter, two common definitions:
+    #  - stddev of latency: overall spread around the mean
+    #  - RFC 3550 interarrival jitter: mean absolute difference between
+    #    consecutive packets' latency (what RTP/VoIP calls "jitter")
+    variance = sum((x - mean) ** 2 for x in lat) / len(lat)
+    stddev = variance ** 0.5
+    if len(lat) > 1:
+        consecutive_abs_diffs = [abs(lat[i] - lat[i - 1]) for i in range(1, len(lat))]
+        rfc3550_jitter = sum(consecutive_abs_diffs) / len(consecutive_abs_diffs)
+    else:
+        rfc3550_jitter = 0.0
     print(f"  id={flow['id']} receiver: {len(lat)} received, "
-          f"latency ns min/avg/max = {min(lat):.0f}/{sum(lat)/len(lat):.0f}/{max(lat):.0f}, "
+          f"latency ns min/avg/max = {min(lat):.0f}/{mean:.0f}/{max(lat):.0f}, "
+          f"jitter ns stddev/rfc3550 = {stddev:.0f}/{rfc3550_jitter:.0f}, "
           f"deadline={flow['deadline']}ns, misses={stats.get('misses', 0)}")
 
 
