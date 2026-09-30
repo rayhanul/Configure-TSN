@@ -53,6 +53,14 @@ def load_in_scope_flows(schedule_path, endpoints_path, node):
         endpoints = json.load(f)
 
     flows_by_id = {f["id"]: f for f in schedule["flows"]}
+    # Flow ids aren't always small (some schedule packages use ids like
+    # 300000+ for dynamically-added flows) -- BASE_PORT + id can exceed the
+    # 65535 UDP port limit. Map each id to a rank over the *sorted* id list
+    # instead, so the port stays in range and is still identical across every
+    # node (all nodes load the same schedule.json and sort the same ids).
+    port_by_id = {fid: BASE_PORT + rank for rank, fid in enumerate(sorted(flows_by_id))}
+    for fid, flow in flows_by_id.items():
+        flow["_port"] = port_by_id[fid]
     local_streams = endpoints.get(node, {}).get("streams", {})
 
     in_scope = []
@@ -94,7 +102,7 @@ def next_release(now, period_s, offset_s):
 def sender_loop(flow, stream, stop_event, stats):
     period_s = flow["period"] / 1e9
     offset_s = flow["offset_ns"] / 1e9
-    port = BASE_PORT + flow["id"]
+    port = flow["_port"]
 
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
@@ -128,7 +136,7 @@ def sender_loop(flow, stream, stop_event, stats):
 
 
 def receiver_loop(flow, stream, stop_event, stats):
-    port = BASE_PORT + flow["id"]
+    port = flow["_port"]
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.bind((stream["ip"], port))
     sock.settimeout(0.5)

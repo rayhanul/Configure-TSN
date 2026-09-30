@@ -1,0 +1,73 @@
+
+Node S3: 33 in-scope flow(s), cycle 800000 ns
+
+  id=1   sender   vlan=10  192.168.10.10 <-> 192.168.10.11  pcp=7 size=500B period=200000ns offset=0ns deadline=200000ns route=['S3', 'sw01', 'sw02', 'S1']
+  id=8   receiver vlan=13  192.168.13.11 <-> 192.168.13.10  pcp=7 size=100B period=800000ns offset=12480ns deadline=800000ns route=['S2', 'sw08', 'sw06', 'sw03', 'sw01', 'S3']
+  id=9   sender   vlan=14  192.168.14.10 <-> 192.168.14.11  pcp=7 size=500B period=200000ns offset=5120ns deadline=200000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=10  receiver vlan=15  192.168.15.11 <-> 192.168.15.10  pcp=7 size=100B period=800000ns offset=6080ns deadline=800000ns route=['S1', 'sw02', 'sw01', 'S3']
+  id=17  receiver vlan=17  192.168.17.11 <-> 192.168.17.10  pcp=6 size=200B period=800000ns offset=14400ns deadline=800000ns route=['S2', 'sw08', 'sw06', 'sw03', 'sw01', 'S3']
+  id=19  sender   vlan=18  192.168.18.10 <-> 192.168.18.11  pcp=7 size=500B period=400000ns offset=14080ns deadline=400000ns route=['S3', 'sw01', 'sw02', 'S1']
+  id=20  sender   vlan=19  192.168.19.10 <-> 192.168.19.11  pcp=7 size=200B period=200000ns offset=11200ns deadline=200000ns route=['S3', 'sw01', 'sw02', 'S1']
+  id=300000 sender   vlan=20  192.168.20.10 <-> 192.168.20.11  pcp=7 size=500B period=200000ns offset=158400ns deadline=200000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=300007 sender   vlan=22  192.168.22.10 <-> 192.168.22.11  pcp=7 size=500B period=200000ns offset=162560ns deadline=200000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=300012 sender   vlan=23  192.168.23.10 <-> 192.168.23.11  pcp=7 size=500B period=200000ns offset=166720ns deadline=200000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=300023 sender   vlan=24  192.168.24.10 <-> 192.168.24.11  pcp=7 size=500B period=200000ns offset=170880ns deadline=200000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=300005 sender   vlan=26  192.168.26.10 <-> 192.168.26.11  pcp=7 size=500B period=400000ns offset=175040ns deadline=400000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=16  sender   vlan=27  192.168.27.10 <-> 192.168.27.11  pcp=7 size=200B period=200000ns offset=9280ns deadline=200000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=15  receiver vlan=28  192.168.28.11 <-> 192.168.28.10  pcp=7 size=400B period=400000ns offset=6400ns deadline=400000ns route=['S2', 'sw08', 'sw06', 'sw03', 'sw01', 'S3']
+  id=300001 receiver vlan=30  192.168.30.11 <-> 192.168.30.10  pcp=7 size=300B period=400000ns offset=9920ns deadline=400000ns route=['S2', 'sw08', 'sw06', 'sw03', 'sw01', 'S3']
+  id=300009 sender   vlan=31  192.168.31.10 <-> 192.168.31.11  pcp=7 size=300B period=400000ns offset=179200ns deadline=400000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=300024 receiver vlan=32  192.168.32.11 <-> 192.168.32.10  pcp=7 size=500B period=400000ns offset=16320ns deadline=400000ns route=['S1', 'sw02', 'sw01', 'S3']
+  id=11  sender   vlan=33  192.168.33.10 <-> 192.168.33.11  pcp=6 size=500B period=800000ns offset=18240ns deadline=800000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=3   sender   vlan=35  192.168.35.10 <-> 192.168.35.11  pcp=7 size=100B period=200000ns offset=4160ns deadline=200000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=300016 sender   vlan=39  192.168.39.10 <-> 192.168.39.11  pcp=6 size=500B period=800000ns offset=22400ns deadline=800000ns route=['S3', 'sw01', 'sw02', 'S1']
+  id=300014 sender   vlan=40  192.168.40.10 <-> 192.168.40.11  pcp=7 size=200B period=400000ns offset=181760ns deadline=400000ns route=['S3', 'sw01', 'sw02', 'S1']
+  id=300020 sender   vlan=41  192.168.41.10 <-> 192.168.41.11  pcp=7 size=100B period=200000ns offset=183680ns deadline=200000ns route=['S3', 'sw01', 'sw02', 'S1']
+  id=300006 receiver vlan=42  192.168.42.11 <-> 192.168.42.10  pcp=6 size=400B period=800000ns offset=100160ns deadline=800000ns route=['S1', 'sw02', 'sw01', 'S3']
+  id=18  sender   vlan=43  192.168.43.10 <-> 192.168.43.11  pcp=6 size=100B period=400000ns offset=13120ns deadline=400000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=300021 sender   vlan=47  192.168.47.10 <-> 192.168.47.11  pcp=7 size=100B period=400000ns offset=184640ns deadline=400000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=300025 sender   vlan=48  192.168.48.10 <-> 192.168.48.11  pcp=6 size=200B period=800000ns offset=26560ns deadline=800000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=300028 sender   vlan=49  192.168.49.10 <-> 192.168.49.11  pcp=7 size=100B period=400000ns offset=185600ns deadline=400000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=4   receiver vlan=51  192.168.51.11 <-> 192.168.51.10  pcp=6 size=300B period=800000ns offset=535360ns deadline=800000ns route=['S1', 'sw02', 'sw01', 'S3']
+  id=300018 receiver vlan=52  192.168.52.11 <-> 192.168.52.10  pcp=6 size=300B period=800000ns offset=700160ns deadline=800000ns route=['S1', 'sw02', 'sw01', 'S3']
+  id=300026 sender   vlan=53  192.168.53.10 <-> 192.168.53.11  pcp=6 size=300B period=800000ns offset=134720ns deadline=800000ns route=['S3', 'sw01', 'sw02', 'S1']
+  id=300011 receiver vlan=54  192.168.54.11 <-> 192.168.54.10  pcp=7 size=100B period=400000ns offset=20480ns deadline=400000ns route=['S1', 'sw02', 'sw01', 'S3']
+  id=300022 sender   vlan=55  192.168.55.10 <-> 192.168.55.11  pcp=6 size=200B period=800000ns offset=137280ns deadline=800000ns route=['S3', 'sw01', 'sw02', 'S1']
+  id=300017 receiver vlan=57  192.168.57.11 <-> 192.168.57.10  pcp=7 size=100B period=800000ns offset=155200ns deadline=800000ns route=['S2', 'sw08', 'sw06', 'sw03', 'sw01', 'S3']
+
+Starting 33 thread(s) for 30.0s ...
+
+Summary:
+  id=1 sender: 149997 packet(s) sent
+  id=8 receiver: 37479 received, latency ns min/avg/max = 40293/165251/2604008, jitter ns stddev/rfc3550 = 89354/87553, deadline=800000ns, misses=11
+  id=9 sender: 149995 packet(s) sent
+  id=10 receiver: 37031 received, latency ns min/avg/max = 30756/138322/2722740, jitter ns stddev/rfc3550 = 85653/70736, deadline=800000ns, misses=5
+  id=17 receiver: 37478 received, latency ns min/avg/max = 44107/169073/2492905, jitter ns stddev/rfc3550 = 97289/95273, deadline=800000ns, misses=6
+  id=19 sender: 74997 packet(s) sent
+  id=20 sender: 149994 packet(s) sent
+  id=300000 sender: 149993 packet(s) sent
+  id=300007 sender: 149992 packet(s) sent
+  id=300012 sender: 149991 packet(s) sent
+  id=300023 sender: 149991 packet(s) sent
+  id=300005 sender: 74995 packet(s) sent
+  id=16 sender: 149990 packet(s) sent
+  id=15 receiver: 74929 received, latency ns min/avg/max = 53406/176777/5816698, jitter ns stddev/rfc3550 = 102416/96398, deadline=400000ns, misses=1887
+  id=300001 receiver: 74927 received, latency ns min/avg/max = 49114/178904/1768589, jitter ns stddev/rfc3550 = 101969/92788, deadline=400000ns, misses=1881
+  id=300009 sender: 74994 packet(s) sent
+  id=300024 receiver: 74035 received, latency ns min/avg/max = 43392/162262/3044605, jitter ns stddev/rfc3550 = 85076/98632, deadline=400000ns, misses=553
+  id=11 sender: 37508 packet(s) sent
+  id=3 sender: 149985 packet(s) sent
+  id=300016 sender: 37507 packet(s) sent
+  id=300014 sender: 74992 packet(s) sent
+  id=300020 sender: 149984 packet(s) sent
+  id=300006 receiver: 37028 received, latency ns min/avg/max = 48876/408410/2469063, jitter ns stddev/rfc3550 = 214891/145736, deadline=800000ns, misses=1006
+  id=18 sender: 74992 packet(s) sent
+  id=300021 sender: 74990 packet(s) sent
+  id=300025 sender: 37506 packet(s) sent
+  id=300028 sender: 74990 packet(s) sent
+  id=4 receiver: 37027 received, latency ns min/avg/max = 44346/405175/2937555, jitter ns stddev/rfc3550 = 218057/129170, deadline=800000ns, misses=607
+  id=300018 receiver: 37027 received, latency ns min/avg/max = 41246/405350/2631903, jitter ns stddev/rfc3550 = 211055/134586, deadline=800000ns, misses=563
+  id=300026 sender: 37505 packet(s) sent
+  id=300011 receiver: 74029 received, latency ns min/avg/max = 29564/148922/2625227, jitter ns stddev/rfc3550 = 83846/98015, deadline=400000ns, misses=388
+  id=300022 sender: 37505 packet(s) sent
+  id=300017 receiver: 37461 received, latency ns min/avg/max = 38624/160352/2596378, jitter ns stddev/rfc3550 = 89627/87033, deadline=800000ns, misses=9

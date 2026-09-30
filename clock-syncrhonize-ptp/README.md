@@ -65,3 +65,54 @@ All switches at once:
 ```bash
 for ip in 192.168.0.{1..8}; do echo "== $ip =="; ssh root@$ip deptp_tool --get-current-dataset | grep -E 'offset-from-master-ns|steps-removed'; done
 ```
+
+Single readings of `offset-from-master-ns` are instantaneous and noisy, and the switches' sshd
+drops rapid back-to-back connections (`Connection closed by ... port 22`), so the loop above can
+skip switches. For a real measurement use `measure_switch_offsets.sh`: it reuses one SSH connection
+per switch, retries, and prints hop count and mean/rms/min/max over N one-second samples:
+```bash
+./measure_switch_offsets.sh 20                  # all switches, 20 samples each (~3 min)
+./measure_switch_offsets.sh 60 192.168.0.2      # one switch, 60 samples
+```
+Note the IP/name mismatch: sw03 is `192.168.0.5` and sw05 is `192.168.0.3`.
+
+## Improving sync accuracy
+
+Observed 2026-09-30 (single readings, S1 grandmaster on sw02): offset-from-master was always
+positive and grew with hop count: 151–308 ns at 2 hops (sw01, sw05, sw04), 279–463 ns at 3 hops
+(sw03, sw06, sw07). An error with one sign that grows per hop points at a wandering grandmaster
+(each hop's servo lags a bit more) or uncorrected timestamp latency, not random noise. Against
+TAS windows of a few µs per cycle (see `GCL_Schedules/.../results/results.md`), this is a large
+share of the margin. Measures, in order of expected impact:
+
+1. **Free-running grandmaster (not yet applied).** On S1, `tsn-phc2sys` runs
+   `phc2sys -s CLOCK_REALTIME -c enp1s0`, copying the system clock into the PHC, and
+   systemd-timesyncd steers that system clock from NTP. Every NTP slew is therefore pushed into the
+   whole network (the CNC's phc2sys log shows the PHC swinging -140…+600 ns within seconds). The
+   fix is to reverse the direction on the GM, as on the slaves: let the PHC free-run and have the
+   system clock follow it.
+   ```bash
+   # on S1
+   sudo systemctl disable --now systemd-timesyncd
+   # tsn-phc2sys ExecStart on the GM:
+   /usr/sbin/phc2sys -s enp1s0 -c CLOCK_REALTIME -w -f /etc/linuxptp/gptp_gm.cfg
+   ```
+   Set the PHC to system time + 37 s (TAI) only when it is far off (e.g. after a power cycle), never
+   on every service restart, or each restart steps the whole network. Cost: network time slowly
+   drifts from true UTC, which is irrelevant for the GCL schedules (they only need all nodes to
+   agree). Restarting PTP on the GM breaks sync for ~10–20 s, so do not do it during an experiment.
+2. **Correct fixed timestamp latency.** If the mean offset stays positive and grows per hop after
+   (1), set `ingressLatency` / `egressLatency` (ns, NIC-specific) in `gptp_gm.cfg` and
+   `gptp_slave.cfg`, and check `/etc/deptp/ptp_config.xml` on the switches for per-port
+   latency/asymmetry corrections.
+3. **Faster sync.** `logSyncInterval -3` (8/s) could go to -4 or -5 so every servo tracks faster,
+   but only together with a matching change in the switches' deptp config; mismatched intervals
+   cause sync timeouts.
+4. **Central grandmaster.** Error adds up per hop. With S1 on sw02, sw08 is at `steps-removed` 4
+   and S2 at 5. The best-placed switch with a free port is **sw03 (`192.168.0.5`), port p2**: every
+   other switch is within 2 hops of it, so the farthest switch drops to 3 and S2 to 4. sw05 and sw06
+   are equally central but have no free port. Free ports now: sw01 p2, sw03 p2, sw04 p2, sw07 p2,
+   sw08 p3. After recabling, update S1's link in `network-topology-rtas-2027.json` and check that
+   the port on sw03 runs `profile gptp`.
+
+Measure with `measure_switch_offsets.sh` before and after each change.
