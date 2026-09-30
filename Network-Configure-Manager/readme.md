@@ -22,8 +22,8 @@ python3 configureManager.py --apply                    # re-apply (tears down pr
 python3 configureManager.py --reset --apply             # tear down last run's config
 ```
 
-`--csv`/`--topology` default to `stream.csv` / `network-topology.json` in the
-current directory.
+`--csv`/`--topology` default to `stream.csv` in the current directory /
+`../network-topology/network-topology.json`.
 
 
 
@@ -54,7 +54,7 @@ VLAN = `VLAN_STEP * (tier + 1) + flow_index` (tier = 0 for the primary route,
 1 for the backup, ...; flow_index = 0-based order the `id` first appears).
 Subnet = `192.168.<vlan>.0/24`, sender = `.10`, receiver = `.11`.
 
-## network-topology.json
+## network-topology/network-topology.json
 
 Each link records both ends — the neighbor node and the port on the neighbor
 it plugs into. Unconnected switch ports may be left as `{}`. An end station
@@ -143,7 +143,7 @@ sets `settreeprio ... 0` on the last switch of each route. Not covered by
 | Option                   | Description                                                   |
 |--------------------------|-----------------------------------------------------------------|
 | `--csv PATH`             | Flows file (default `stream.csv`)                              |
-| `--topology PATH`        | Topology file (default `network-topology.json`)                |
+| `--topology PATH`        | Topology file (default `../network-topology/network-topology.json`) |
 | `--apply`                | SSH in and run (otherwise dry-run)                              |
 | `--mstp`                 | Also build/print/apply the MSTP plan                            |
 | `--config [PATH]`        | Write config.txt (default `config.txt`)                         |

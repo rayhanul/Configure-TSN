@@ -29,3 +29,39 @@ ptp4l's management socket); chrony (ES2) / systemd-timesyncd (RS) are disabled s
 fight phc2sys. The CNC keeps systemd-timesyncd: its system clock is the NTP-disciplined source.
 Check: `systemctl status tsn-ptp4l tsn-phc2sys`, `journalctl -u tsn-ptp4l -f`.
 Manual fallback: `ptp_start.sh`. Old hand-started logs: `logs/` (CNC), `/home/pwh24004/ptp/` (ES2, RS).
+
+## Verifying sync per node
+
+Current testbed (`network-topology-rtas-2027.json`): S1 (`ubuntu@137.99.253.118`) is the
+grandmaster, S2 (`jdg24001@137.99.253.167`) is a slave, sw01–sw08 (`192.168.0.1`–`.8`) are the
+switch fabric.
+
+**Grandmaster end station (S1):**
+```bash
+systemctl status tsn-ptp4l tsn-phc2sys --no-pager
+journalctl -u tsn-ptp4l -n 5 --no-pager        # look for "assuming the grand master role";
+                                                # no recent FAULTY entries
+journalctl -u tsn-phc2sys -n 5 --no-pager -o cat  # "offset" column small, state s2 = locked
+```
+
+**Slave end station (S2):**
+```bash
+systemctl status tsn-ptp4l tsn-phc2sys --no-pager
+sudo journalctl -u tsn-ptp4l -n 5 --no-pager -o cat    # "rms ... max ..." small = good, rising = drifting
+sudo journalctl -u tsn-phc2sys -n 5 --no-pager -o cat  # "sys offset ... s2" — s2 = locked, s0/s1 = still converging
+```
+(`journalctl` needs `sudo` unless the user is in the `systemd-journal` group.)
+
+**TTTech switches (sw01–sw08)** — via the switch's own `deptp_tool`, not linuxptp:
+```bash
+ssh root@<switch-ip> deptp_tool --get-current-dataset
+```
+Check `offset-from-master-ns` (small = good) and `steps-removed` (hop count from the grandmaster;
+should match the switch's position in the tree — never 0 unless it IS the grandmaster). A switch
+reporting `offset-from-master-ns 0` / `steps-removed 0` unexpectedly means it thinks it's the
+grandmaster — a sign of a split/rogue master.
+
+All switches at once:
+```bash
+for ip in 192.168.0.{1..8}; do echo "== $ip =="; ssh root@$ip deptp_tool --get-current-dataset | grep -E 'offset-from-master-ns|steps-removed'; done
+```

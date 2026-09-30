@@ -8,7 +8,6 @@
         "links": {
             "p2": {},
             "p3": {
-                "node": "S3"
             },
             "p4": {
                 "node": "sw03",
@@ -184,7 +183,7 @@
     "S1": {
         "type": "end-station",
         "label": "Sender",
-        "ip": "192.168.0.101",
+        "ip": "137.99.253.118",
         "username": "ubuntu",
         "password": "1234567809",
         "links": {
@@ -196,23 +195,12 @@
         "type": "end-station",
         "label": "Receiver",
         "cnc": true,
-        "ip": "192.168.0.102",
+        "ip": "137.99.253.167",
         "username": "jdg24001",
         "password": "PROMPT",
         "links": {
             "node": "sw08",
             "port": "p2"
-        }
-    },
-    "S3": {
-        "type": "end-station",
-        "label": "Kefan PC",
-        "ip": "192.168.0.103",
-        "username": "jdg24001",
-        "password": "PROMPT",
-        "links": {
-            "node": "sw01",
-            "port": "p3"
         }
     }
 }

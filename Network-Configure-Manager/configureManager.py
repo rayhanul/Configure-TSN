@@ -12,7 +12,7 @@ each flow being configured strictly along the route given in the CSV.
 Inputs
   stream.csv              id,src,dst,route,size,period,deadline,jitter
                           route = ordered node list, e.g. [S1,sw00,sw01,sw03,S2]
-  network-topology.json   per node: type, ip, username, password, links{port:neighbor}
+  network-topology/network-topology.json   per node: type, ip, username, password, links{port:neighbor}
                           optional per-node overrides:
                               "iface"       (end-station NIC name,   default enp1s0)
                               "port_prefix" (switch local port name,  default sw0)
@@ -319,7 +319,7 @@ def resolve_port(topology, switch, neighbor):
     raise ValueError(
         f"'{switch}' has no port linking to '{neighbor}'. "
         f"Links present: {topology[switch]['links']}. "
-        f"Add the missing link to network-topology.json (or a NODE_ALIASES entry)."
+        f"Add the missing link to network-topology/network-topology.json (or a NODE_ALIASES entry)."
     )
 
 
@@ -998,7 +998,7 @@ def apply_plan(plans, topology, mstp_plan=None, state_path=DEFAULT_STATE_FILE, c
 def main():
     ap = argparse.ArgumentParser(description="Topology-agnostic TSN/VLAN config")
     ap.add_argument("--csv", default="stream.csv")
-    ap.add_argument("--topology", default="network-topology.json")
+    ap.add_argument("--topology", default="../network-topology/network-topology.json")
     ap.add_argument("--apply", action="store_true", help="SSH in and run (else dry-run)")
     ap.add_argument("--mstp", action="store_true", help="also build the MSTP plan")
     ap.add_argument("--config", nargs="?", const="config.txt", default=None,
