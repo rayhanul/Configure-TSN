@@ -1,0 +1,56 @@
+{
+  "S2": {
+    "label": "Receiver",
+    "management_ip": "137.99.253.167",
+    "cnc": true,
+    "streams": {
+      "objects_5": {
+        "role": "sender",
+        "flow_id": "5",
+        "vlan": 10,
+        "iface": "enp1s0.10",
+        "ip": "192.168.10.10",
+        "peer": "S1",
+        "peer_ip": "192.168.10.11",
+        "route": "S2 -> sw08 -> sw06 -> sw05 -> sw02 -> S1"
+      },
+      "objects_12": {
+        "role": "sender",
+        "flow_id": "12",
+        "vlan": 11,
+        "iface": "enp1s0.11",
+        "ip": "192.168.11.10",
+        "peer": "S1",
+        "peer_ip": "192.168.11.11",
+        "route": "S2 -> sw08 -> sw06 -> sw05 -> sw02 -> S1"
+      }
+    }
+  },
+  "S1": {
+    "label": "Sender",
+    "management_ip": "137.99.253.118",
+    "cnc": false,
+    "streams": {
+      "S2_objects_5": {
+        "role": "receiver",
+        "flow_id": "5",
+        "vlan": 10,
+        "iface": "enp1s0.10",
+        "ip": "192.168.10.11",
+        "peer": "S2",
+        "peer_ip": "192.168.10.10",
+        "route": "S2 -> sw08 -> sw06 -> sw05 -> sw02 -> S1"
+      },
+      "S2_objects_12": {
+        "role": "receiver",
+        "flow_id": "12",
+        "vlan": 11,
+        "iface": "enp1s0.11",
+        "ip": "192.168.11.11",
+        "peer": "S2",
+        "peer_ip": "192.168.11.10",
+        "route": "S2 -> sw08 -> sw06 -> sw05 -> sw02 -> S1"
+      }
+    }
+  }
+}

@@ -311,10 +311,15 @@ def find_cnc(topology):
 
 
 def resolve_port(topology, switch, neighbor):
-    """Port key on `switch` whose link points at `neighbor` (alias-aware)."""
+    """Port key on `switch` whose link points at `neighbor` (alias-aware).
+
+    A link value is either the neighbor's name directly, or an object
+    {"node": name, "port": ...} (used by some topology files); empty links
+    ({}) mean an unconnected port and are skipped."""
     neighbor = canon(neighbor)
     for port, node in topology[switch]["links"].items():
-        if canon(node) == neighbor:
+        node_name = node.get("node") if isinstance(node, dict) else node
+        if node_name and canon(node_name) == neighbor:
             return port
     raise ValueError(
         f"'{switch}' has no port linking to '{neighbor}'. "
@@ -673,6 +678,7 @@ def build_endpoints(plans, topology):
             key = stream if len(sender_ids[(p.src, stream)]) == 1 else f"{stream}_{p.flow_id}"
             entry(p.src)["streams"][key] = {
                 "role": "sender",
+                "flow_id": p.flow_id,
                 "vlan": p.vlan,
                 "iface": f"{iface}.{p.vlan}",
                 "ip": p.sender_ip,
@@ -686,6 +692,7 @@ def build_endpoints(plans, topology):
             key = base if len(receiver_ids[(p.dst, p.src, stream)]) == 1 else f"{base}_{p.flow_id}"
             entry(p.dst)["streams"][key] = {
                 "role": "receiver",
+                "flow_id": p.flow_id,
                 "vlan": p.vlan,
                 "iface": f"{iface}.{p.vlan}",
                 "ip": p.receiver_ip,

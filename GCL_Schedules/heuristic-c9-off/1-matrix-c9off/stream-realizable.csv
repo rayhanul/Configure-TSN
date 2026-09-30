@@ -1,0 +1,3 @@
+id,src,dst,route,size,period,deadline,jitter
+5,S2,S1,[S2->sw08->sw06->sw05->sw02->S1],200,200000,200000,200000
+12,S2,S1,[S2->sw08->sw06->sw05->sw02->S1],100,400000,400000,400000

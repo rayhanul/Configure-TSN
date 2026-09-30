@@ -1,0 +1,109 @@
+{
+  "sw01": {
+    "type": "sw",
+    "label": "Switch 1",
+    "ip": "192.168.0.1",
+    "links": {
+      "p3": "S3",
+      "p4": "sw03",
+      "p5": "sw02"
+    }
+  },
+  "sw02": {
+    "type": "sw",
+    "label": "Switch 2",
+    "ip": "192.168.0.2",
+    "links": {
+      "p2": "S1",
+      "p3": "sw01",
+      "p4": "sw04",
+      "p5": "sw05"
+    }
+  },
+  "sw03": {
+    "type": "sw",
+    "label": "Switch 3",
+    "ip": "192.168.0.5",
+    "links": {
+      "p3": "sw01",
+      "p4": "sw06",
+      "p5": "sw04"
+    }
+  },
+  "sw04": {
+    "type": "sw",
+    "label": "Switch 4",
+    "ip": "192.168.0.4",
+    "links": {
+      "p3": "sw02",
+      "p4": "sw05",
+      "p5": "sw03"
+    }
+  },
+  "sw05": {
+    "type": "sw",
+    "label": "Switch 5",
+    "ip": "192.168.0.3",
+    "links": {
+      "p2": "sw07",
+      "p3": "sw04",
+      "p4": "sw06",
+      "p5": "sw02"
+    }
+  },
+  "sw06": {
+    "type": "sw",
+    "label": "Switch 6",
+    "ip": "192.168.0.6",
+    "links": {
+      "p2": "sw08",
+      "p3": "sw03",
+      "p4": "sw07",
+      "p5": "sw05"
+    }
+  },
+  "sw07": {
+    "type": "sw",
+    "label": "Switch 7",
+    "ip": "192.168.0.7",
+    "links": {
+      "p3": "sw05",
+      "p4": "sw08",
+      "p5": "sw06"
+    }
+  },
+  "sw08": {
+    "type": "sw",
+    "label": "Switch 8",
+    "ip": "192.168.0.8",
+    "links": {
+      "p2": "S2",
+      "p4": "sw06",
+      "p5": "sw07"
+    }
+  },
+  "S1": {
+    "type": "end-station",
+    "label": "Sender",
+    "ip": "192.168.0.101",
+    "links": {
+      "p0": "sw02"
+    }
+  },
+  "S2": {
+    "type": "end-station",
+    "label": "Receiver",
+    "ip": "192.168.0.102",
+    "links": {
+      "p0": "sw08"
+    }
+  },
+  "S3": {
+    "type": "end-station",
+    "label": "Kefan PC",
+    "ip": "192.168.0.103",
+    "links": {
+      "p0": "sw01"
+    }
+  }
+}

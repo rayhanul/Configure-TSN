@@ -1,0 +1,5 @@
+{
+  "link_rate_bps": 1000000000,
+  "proc_delay_ns": 2000,
+  "prop_delay_ns": 0
+}
