@@ -31,6 +31,10 @@ reference switch's own PTP-synchronized clock plus a lead time (`--lead-seconds`
 30). A schedule only behaves correctly network-wide if every switch starts its gate cycle
 at the same absolute instant -- see `time-sync-gptp/` for the sync setup this
 depends on.
+After activation the gate grid the switches actually run on is read back (`ConfigChangeTime`) and
+saved to `basetime.json` next to `schedule.json`; `Spawning-Flows/gen_traffic.py` sends each flow on
+that grid. The switches report `OperBaseTime` 0 and ignore the requested basetime's phase, so the
+requested value is not used for this.
 
 ## Why it doesn't use SFTP
 

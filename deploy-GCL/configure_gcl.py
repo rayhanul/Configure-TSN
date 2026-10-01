@@ -376,6 +376,48 @@ def main():
                 print(f"   configure {sw}/{iface}: {status}" +
                       (f"  {err or out}" if rc else ""))
 
+        # save the gate grid next to schedule.json for gen_traffic.py, which sends
+        # each flow at basetime + n*period + first-hop psi_ns. Use the
+        # ConfigChangeTime the switches report, not the requested basetime: the
+        # hardware reports OperBaseTime 0 and runs on its own grid, so the
+        # requested value is not necessarily what the gates follow.
+        change_ns = {}
+        for sw in sorted(ports):
+            for port in sorted(ports[sw]):
+                iface = f"{args.port_prefix}{port}"
+                rc, out, _ = run(clients[sw],
+                                 f"cat /sys/class/net/{iface}/ieee8021ST/ConfigChangeTime")
+                if rc == 0 and out.strip():
+                    sec, _, nsec = out.strip().partition(".")
+                    change_ns[f"{sw}/{iface}"] = (int(sec) * 1_000_000_000
+                                                  + int((nsec + "000000000")[:9]))
+        ref_key = f"{ref_sw}/{ref_iface}"
+        grid_ns = change_ns.get(ref_key)
+        if grid_ns is None:
+            print(f"\nWARNING: could not read ConfigChangeTime from {ref_key}; "
+                  f"basetime.json not written")
+        else:
+            off = {k: (v - grid_ns + cycle_ns // 2) % cycle_ns - cycle_ns // 2
+                   for k, v in change_ns.items()}
+            off_grid = {k: v for k, v in off.items() if abs(v) > 1000}
+            if off_grid:
+                print(f"\nWARNING: ports not on {ref_key}'s gate grid (ns): {off_grid}")
+            sec, _, nsec = basetime.partition(".")
+            requested_ns = int(sec) * 1_000_000_000 + int(nsec)
+            basetime_path = os.path.join(
+                os.path.dirname(os.path.normpath(args.gcl_dir)), "basetime.json")
+            with open(basetime_path, "w") as f:
+                json.dump({"basetime_ns": grid_ns,
+                           "cycle_ns": cycle_ns,
+                           "clock": "TAI",
+                           "source": f"ConfigChangeTime of {ref_key}",
+                           "requested_basetime_ns": requested_ns,
+                           "port_offsets_ns": off}, f, indent=2)
+                f.write("\n")
+            print(f"\nGate grid: {grid_ns} ns (TAI), phase {grid_ns % cycle_ns} ns of the "
+                  f"cycle; requested basetime phase {requested_ns % cycle_ns} ns. "
+                  f"Saved to {basetime_path}")
+
         # 4) verify -- GatesEnabled/ConfigPending can look fine even when the
         #    activation silently didn't take (e.g. basetime already in the
         #    past by the time it ran), so compare AdminControlList against

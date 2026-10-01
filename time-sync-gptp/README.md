@@ -21,6 +21,12 @@ sudo apt install -y linuxptp ethtool
 sudo ./gptp.sh install gm    enp1s0       # S1 only, first
 sudo ./gptp.sh install slave enp1s0       # S2, S3
 ```
+`install` also sets the kernel TAI offset (`CLOCK_TAI` = UTC + 37 s, needed by `gen_traffic.py` and
+taprio/etf) at every boot; on its own: `sudo ./gptp.sh tai`.
+`sudo ./gptp.sh launchtime on|off` sets up the NIC launch-time queues `gen_traffic.py` needs
+(socket priority 7 → TX queue 0, 5 → queue 1, etf with hardware offload), now and at boot. It
+resets the NIC and its PHC, so it stops and restarts PTP around the change; on the grandmaster
+that pauses sync for the whole network (~20 s). Don't remove the queues with plain `tc`.
 `sudo ./gptp.sh run gm|slave` runs the same in the foreground for testing.
 Installing on the grandmaster restarts sync for the whole network (~20 s); not during experiments.
 

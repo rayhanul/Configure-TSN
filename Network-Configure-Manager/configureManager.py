@@ -61,7 +61,9 @@ VLAN_STEP = 10                    # spacing between path tiers: 10, 20, 30 ...
 SUBNET_PREFIX = "192.168"         # readable subnets: 192.168.<vlan>.0/24
 SENDER_HOST = 10                  # sender   = <subnet>.10
 RECEIVER_HOST = 11                # receiver = <subnet>.11
-EGRESS_QOS_MAP = "0:0 1:1 2:2 3:3 4:4 5:5 6:6 7:7"
+# socket priority -> PCP. 5:6 because gen_traffic.py sends pcp-6 flows with priority 5
+# (priority 6 is what Linux gives interactive-TOS traffic; it must stay out of the launch-time queue)
+EGRESS_QOS_MAP = "0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7"
 
 # Stream name per path tier, used only in --endpoints output; a tier beyond
 # this map (a 3rd+ route for the same flow id) falls back to "path_N".

@@ -5,6 +5,8 @@
 #   gptp.sh check   [IF]            verify hardware timestamping; report EEE and NTP state
 #   gptp.sh run     gm|slave [IF]   run ptp4l + phc2sys in the foreground (-m), Ctrl-C stops both (root)
 #   gptp.sh install gm|slave [IF]   install config + systemd units and start them (root)
+#   gptp.sh tai                     set the kernel TAI offset (CLOCK_TAI = UTC + 37 s) now and at boot (root)
+#   gptp.sh launchtime on|off       NIC launch-time TX queues for SO_TXTIME traffic, now and at boot (root)
 #   gptp.sh status                  service state, ptp4l port state, last log lines (root)
 #   gptp.sh verify  [SECONDS]       PASS if every locked offset in the window is < 1 us (default 120 s) (root)
 #   gptp.sh uninstall               stop and remove the units (root)
@@ -18,6 +20,7 @@ HERE=$(cd "$(dirname "$0")" && pwd)
 ENV=/etc/linuxptp/tsn-gptp.env      # ROLE, IF, CFG of the installed setup
 TAI_UTC=37                          # TAI - UTC in seconds (unchanged since 2017)
 THRESH_NS=${THRESH_NS:-1000}
+ETF_DELTA_NS=300000                 # etf hands a frame to the NIC this long before its launch time (gen_traffic.py uses the same)
 # -N 5: read the PHC 5 times per update and use the fastest read. On I210 the PCIe read takes ~3.7 us and
 # jitters; this cut the system clock's worst offset from 843 to ~510 ns (rms 228 -> 165 ns).
 PHC2SYS_OPTS=${PHC2SYS_OPTS:--N 5}
@@ -124,6 +127,99 @@ disable_ntp() {
   return 0
 }
 
+set_tai() {  # kernel TAI offset via adjtimex(ADJ_TAI); CLOCK_TAI is used by taprio/etf/SO_TXTIME and gen_traffic.py
+  python3 - "$TAI_UTC" <<'PY'
+import ctypes, struct, sys, time
+tai = int(sys.argv[1])
+buf = ctypes.create_string_buffer(256)       # struct timex (x86_64 layout)
+struct.pack_into("I", buf, 0, 0x80)          # modes = ADJ_TAI
+struct.pack_into("q", buf, 48, tai)          # constant = TAI - UTC
+if ctypes.CDLL("libc.so.6", use_errno=True).adjtimex(buf) < 0:
+    sys.exit("adjtimex(ADJ_TAI) failed: " + str(ctypes.get_errno()))
+off = time.clock_gettime(time.CLOCK_TAI) - time.time()
+print(f"CLOCK_TAI - CLOCK_REALTIME = {off:.3f} s")
+sys.exit(abs(off - tai) > 0.5)
+PY
+}
+
+cmd_tai() {  # set it now and install tsn-tai.service so it is set at every boot; does not touch ptp4l/phc2sys
+  need_root tai
+  local self; self=$(readlink -f "$0")
+  [ "$self" = /usr/local/sbin/tsn-gptp ] || install -m 755 "$self" /usr/local/sbin/tsn-gptp
+  cat > /etc/systemd/system/tsn-tai.service <<UNIT
+[Unit]
+Description=Kernel TAI offset (CLOCK_TAI = UTC + $TAI_UTC s)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/tsn-gptp set-tai
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+UNIT
+  systemctl daemon-reload
+  systemctl enable -q tsn-tai.service
+  set_tai
+}
+
+apply_launchtime() {  # socket priority 7 (pcp 7) -> TX queue 0, priority 5 (pcp 6, VLAN egress-qos-map 5:6) ->
+                      # TX queue 1: the I210's launch-time queues, each etf with hardware offload. Priority 6
+                      # stays out: Linux gives it to interactive-TOS traffic such as ssh, and etf drops any
+                      # frame without a launch time. Everything else, ptp4l included, -> queues 2-3 as before.
+  tc qdisc del dev "$IF" root 2>/dev/null   # an existing mqprio cannot be changed in place
+  tc qdisc add dev "$IF" parent root handle 100 mqprio num_tc 3 \
+     map 2 2 2 2 2 1 2 0 2 2 2 2 2 2 2 2 queues 1@0 1@1 2@2 hw 0
+  tc qdisc add dev "$IF" parent 100:1 etf clockid CLOCK_TAI delta $ETF_DELTA_NS offload
+  tc qdisc add dev "$IF" parent 100:2 etf clockid CLOCK_TAI delta $ETF_DELTA_NS offload
+}
+
+cmd_launchtime() {
+  # Switching etf offload resets the NIC, and with it the PHC (it comes back ~37 s off). PTP is
+  # stopped around the switch and restarted after it, so ptp4l steps the PHC (the grandmaster's
+  # init-phc resets it to TAI) instead of slewing for minutes or serving a wrong time.
+  # On the grandmaster this pauses sync for the whole network (~20 s): not during experiments.
+  need_root launchtime "$@"; load_env
+  local w
+  case ${1:-} in on|off) ;; *) die "usage: $0 launchtime on|off" ;; esac
+  local self; self=$(readlink -f "$0")
+  [ "$self" = /usr/local/sbin/tsn-gptp ] || install -m 755 "$self" /usr/local/sbin/tsn-gptp
+  if [ "$1" = on ]; then
+    cat > /etc/systemd/system/tsn-launchtime.service <<UNIT
+[Unit]
+Description=NIC launch-time TX queues (etf offload) on $IF
+After=sys-subsystem-net-devices-$IF.device
+Before=tsn-ptp4l.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/tsn-gptp apply-launchtime
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+UNIT
+    systemctl daemon-reload; systemctl enable -q tsn-launchtime.service
+  else
+    systemctl disable -q tsn-launchtime.service 2>/dev/null
+    rm -f /etc/systemd/system/tsn-launchtime.service; systemctl daemon-reload
+  fi
+  systemctl stop tsn-phc2sys tsn-ptp4l
+  if [ "$1" = on ]; then apply_launchtime; else tc qdisc del dev "$IF" root 2>/dev/null; fi
+  for w in $(seq 30); do [ "$(cat /sys/class/net/$IF/carrier 2>/dev/null)" = 1 ] && break; sleep 1; done
+  sleep 2
+  local t0; t0=$(date +%s)
+  systemctl start tsn-ptp4l
+  # phc2sys only once ptp4l has stepped the PHC (rms below 1 us) or holds the grandmaster role;
+  # started earlier, it would slew the system clock after the reset PHC
+  for w in $(seq 90); do
+    journalctl -u tsn-ptp4l --since "@$t0" -o cat --no-pager | grep -qE 'grand master role|rms +[0-9]{1,3} max' && break
+    sleep 1
+  done
+  systemctl start tsn-phc2sys
+  tc qdisc show dev "$IF" | grep -E 'mqprio|etf' || echo "default queues (no launch time)"
+}
+
 cmd_init_phc() {  # GM: set the PHC to TAI only if it is more than 1 s off (never steps a running network)
   local phc now
   [ -n "${IF:-}" ] || load_env
@@ -149,7 +245,7 @@ cmd_run() {
   CFG=$HERE/gptp_$ROLE.cfg
   local log=$HERE/logs; mkdir -p "$log"
   systemctl stop tsn-phc2sys tsn-ptp4l 2>/dev/null; pkill -x phc2sys; pkill -x ptp4l; sleep 1
-  disable_ntp; disable_eee "$IF"
+  disable_ntp; disable_eee "$IF"; set_tai
   [ "$ROLE" = gm ] && cmd_init_phc
   trap 'kill $(jobs -p) 2>/dev/null; wait; exit' INT TERM
   ptp4l -i "$IF" -f "$CFG" -m 2>&1 | tee "$log/ptp4l_$ROLE.log" | sed -u 's/^/[ptp4l]   /' &
@@ -208,6 +304,7 @@ WantedBy=multi-user.target
 UNIT
 
   disable_ntp
+  cmd_tai
   systemctl stop tsn-phc2sys tsn-ptp4l 2>/dev/null; pkill -x phc2sys; pkill -x ptp4l
   systemctl daemon-reload
   systemctl enable --now tsn-ptp4l.service tsn-phc2sys.service
@@ -220,6 +317,8 @@ cmd_status() {
   need_root status; load_env
   local u
   echo "role=$ROLE  if=$IF  phc=/dev/$(phc_of "$IF")  cfg=$CFG"
+  python3 -c "import time; o = time.clock_gettime(time.CLOCK_TAI) - time.time(); print(f'CLOCK_TAI - REALTIME = {o:.1f} s', '' if abs(o - $TAI_UTC) < 0.5 else '-> WRONG, run: sudo $0 tai')"
+  echo "launch time: $(tc qdisc show dev "$IF" | grep -c 'etf.*offload on') etf queue(s) with offload"
   for u in tsn-ptp4l tsn-phc2sys; do
     printf '%-12s %s\n' "$u" "$(systemctl is-active $u)"
     journalctl -u $u -n 3 -o cat --no-pager | sed 's/^/    /'
@@ -275,8 +374,9 @@ cmd_verify_log() {  # same check on log files written by 'run' (or any ptp4l/phc
 
 cmd_uninstall() {
   need_root uninstall
-  systemctl disable --now tsn-phc2sys tsn-ptp4l 2>/dev/null
-  rm -f /etc/systemd/system/tsn-ptp4l.service /etc/systemd/system/tsn-phc2sys.service \
+  systemctl disable --now tsn-phc2sys tsn-ptp4l tsn-tai tsn-launchtime 2>/dev/null
+  rm -f /etc/systemd/system/tsn-ptp4l.service /etc/systemd/system/tsn-phc2sys.service /etc/systemd/system/tsn-tai.service \
+        /etc/systemd/system/tsn-launchtime.service \
         /usr/local/sbin/tsn-gptp "$ENV"
   systemctl daemon-reload
   echo "removed. NTP stays off; turn it back on with: sudo timedatectl set-ntp true"
@@ -289,9 +389,13 @@ case $CMD in
   run)        cmd_run "$@" ;;
   install)    cmd_install "$@" ;;
   init-phc)   cmd_init_phc ;;
+  tai)        cmd_tai ;;
+  launchtime) cmd_launchtime "$@" ;;
+  apply-launchtime) need_root apply-launchtime; load_env; apply_launchtime ;;
+  set-tai)    need_root set-tai; set_tai ;;
   status)     cmd_status ;;
   verify)     cmd_verify "$@" ;;
   verify-log) cmd_verify_log "$@" ;;
   uninstall)  cmd_uninstall ;;
-  *) sed -n '2,11p' "$0" | sed 's/^# \{0,1\}//'; exit 1 ;;
+  *) sed -n '2,13p' "$0" | sed 's/^# \{0,1\}//'; exit 1 ;;
 esac
