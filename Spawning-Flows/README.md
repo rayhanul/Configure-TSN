@@ -51,7 +51,7 @@ already set up.
   `50000 + flow id` on the peer's VLAN IP.
 - **Receiver**: binds the same deterministic port, computes one-way latency as
   `recv_time - embedded_send_time` -- valid because sender and receiver are already
-  PTP-synchronized to sub-microsecond accuracy (see `clock-syncrhonize-ptp/`) -- and flags misses
+  PTP-synchronized to sub-microsecond accuracy (see `time-sync-gptp/`) -- and flags misses
   against the flow's `deadline`.
 
 ## Timing precision (read before trusting the numbers)

@@ -2,3 +2,4 @@ config-tsn
 config-tsn.pub
 __pycache__/
 *.pyc
+time-sync-gptp/logs/

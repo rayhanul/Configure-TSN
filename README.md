@@ -10,7 +10,7 @@ schedule deployment, VLAN/flow admission, and real traffic generation against th
   SSH access to every switch and to S1/S3, and is where every command below is run from unless
   noted otherwise. PTP slave.
 - **S3** (`jdg24001@137.99.252.240`, "Kefan PC") -- end-station, PTP slave, onboarded later than
-  S1/S2 (needs SSH key auth -- see `clock-syncrhonize-ptp/README.md`).
+  S1/S2 (SSH key `~/.ssh/id_ed25519_s3`).
 - **sw01-sw08** (`192.168.0.1`-`.8`) -- the switch fabric, all reachable by SSH as `root` (no
   password) from the CNC.
 
@@ -52,8 +52,8 @@ open up VLAN paths onto them, so admitted traffic is gated correctly from the mo
 systemctl status tsn-ptp4l tsn-phc2sys
 ```
 Both `active (running)` on every node, `phc2sys` state `s2` (locked). Already installed on
-S1/S2/S3 -- see `clock-syncrhonize-ptp/README.md` if it isn't running; don't blindly re-run its
-install script on a node that already has it.
+S1/S2/S3 -- see `time-sync-gptp/README.md` if it isn't running; `sudo ./gptp.sh verify` checks
+sub-microsecond sync.
 
 ## Step 1 -- filter the package's admitted flows
 
@@ -286,7 +286,7 @@ files, joined by flow id). **Output:** `$PKG/results/results_S1.log` / `results_
 | Path | What |
 |---|---|
 | `network-topology/` | Topology JSON files (real SSH credentials) |
-| `clock-syncrhonize-ptp/` | gPTP setup notes + configs; systemd services already installed |
+| `time-sync-gptp/` | gPTP (802.1AS) setup, install and sync verification for end stations and switches |
 | `Network-Configure-Manager/` | `configureManager.py` -- VLAN/MSTP/addressing per flow; `.tsn_state.json` (teardown state) |
 | `deploy-GCL/` | `configure_gcl.py` -- pushes GCL schedules to switches via `tsntool` |
 | `GCL_Schedules/` | Schedule packages (`offsets.csv`, `schedule.json`, `report.md`, `gcl/*.cfg`, per-package `stream-realizable.csv`/`endpoints.json`/`results/`) |

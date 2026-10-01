@@ -29,7 +29,7 @@ Cycle time is read from `schedule.json` next to `--gcl-dir` (its `cycle_ns` fiel
 Every port on every switch is activated with **one shared basetime**, sampled from a
 reference switch's own PTP-synchronized clock plus a lead time (`--lead-seconds`, default
 30). A schedule only behaves correctly network-wide if every switch starts its gate cycle
-at the same absolute instant -- see `clock-syncrhonize-ptp/` for the sync setup this
+at the same absolute instant -- see `time-sync-gptp/` for the sync setup this
 depends on.
 
 ## Why it doesn't use SFTP

@@ -18,7 +18,7 @@ For every port found it:
      every port on every switch, so all switches start their gate cycle at
      the same absolute instant -- this only produces a correct schedule if
      the switches' clocks are already synchronized (see
-     clock-syncrhonize-ptp/), since the basetime is an absolute PTP/TAI
+     time-sync-gptp/), since the basetime is an absolute PTP/TAI
      timestamp, not a per-switch relative offset.
 
 Run:

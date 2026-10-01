@@ -36,7 +36,7 @@ can exist for a flow whose endpoint isn't there to run one.
    `tsntool` (see that folder's README for the tick-granularity rounding this needed).
 3. `Spawning-Flows/gen_traffic.py` -- generates/receives real PCP-tagged UDP traffic per flow's
    actual period/offset/size, timestamped against the existing PTP sync
-   (`clock-syncrhonize-ptp/`) to measure real one-way latency and jitter.
+   (`time-sync-gptp/`) to measure real one-way latency and jitter.
 
 See the root `README.md` for the exact commands, organized by which node (CNC/sender/receiver) runs
 what.

@@ -18,7 +18,7 @@ Each in-scope flow is:
     sent every `period` ns at the flow's `offset_ns` within the cycle.
   - a UDP receiver (role "receiver") logging one-way latency (valid because
     sender and receiver are already PTP-synchronized -- see
-    clock-syncrhonize-ptp/) against the flow's `deadline`.
+    time-sync-gptp/) against the flow's `deadline`.
 
 Timing precision: Python userspace `time.sleep` realistically achieves
 ~tens-to-hundreds of microseconds of jitter on Linux, not the sub-microsecond
