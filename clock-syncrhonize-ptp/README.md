@@ -85,7 +85,8 @@ positive and grew with hop count: 151–308 ns at 2 hops (sw01, sw05, sw04), 279
 TAS windows of a few µs per cycle (see `GCL_Schedules/.../results/results.md`), this is a large
 share of the margin. Measures, in order of expected impact:
 
-1. **Free-running grandmaster (not yet applied).** On S1, `tsn-phc2sys` runs
+1. **Free-running grandmaster (applied 2026-10-01 with `time-sync-gptp/`; switch offsets dropped to
+   ±25 ns mean, see `time-sync-gptp/README.md`).** On S1, `tsn-phc2sys` runs
    `phc2sys -s CLOCK_REALTIME -c enp1s0`, copying the system clock into the PHC, and
    systemd-timesyncd steers that system clock from NTP. Every NTP slew is therefore pushed into the
    whole network (the CNC's phc2sys log shows the PHC swinging -140…+600 ns within seconds). The
