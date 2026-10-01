@@ -41,7 +41,7 @@ PKG=GCL_Schedules/prob3-rl-c9-on/1-rl-c9on-matrix   # swap for whichever package
 | 4 | Verify connectivity (optional but recommended) | ad-hoc ping sweep | `$PKG/endpoints.json` | -- |
 | 5 | Push generator + schedule to each remote end-station | SFTP | `Spawning-Flows/gen_traffic.py`, `$PKG/schedule.json`, `$PKG/endpoints.json` | copies under `/tmp/spawning-flows-test/` on S1/S3 |
 | 6 | Run traffic concurrently on S1, S2, S3 | `gen_traffic.py --run` | files from step 5 | per-node log (`run_<NODE>.log`) |
-| 7 | Collect + write results | pull logs, parse | `run_<NODE>.log` from each node | `$PKG/results/results_<NODE>.log`, `$PKG/results/results.md` |
+| 7 | Collect + write results | pull logs, parse | `run_<NODE>.log` from each node | `$PKG/results/results-<date>/results_<NODE>.log`, `.../results.md` (`Spawning-Flows/run_experiment.py` does steps 4-7) |
 
 Step 2 must run **before** step 3: the switches' GCL/TAS gates should already be live before you
 open up VLAN paths onto them, so admitted traffic is gated correctly from the moment it can flow.
@@ -246,10 +246,10 @@ Each log's `Summary:` section has one line per in-scope flow: `id=<id> sender: N
 deadline=...ns, misses=...`. Cross-reference a flow's sender-side `sent` count (from whichever
 node sent it) against its receiver-side stats (from whichever node received it) using
 `schedule.json`'s flow list (`pcp`/`size`/`period`/`deadline`/`route`) -- there's no ready-made
-script for this merge in the repo yet; see `GCL_Schedules/prob3-rl-c9-on/1-rl-c9on-matrix/results/results.md`
+script for this merge in the repo yet; see `GCL_Schedules/prob3-rl-c9-on/1-rl-c9on-matrix/results/results-2026-09-30/results.md`
 for the exact table format and regex approach used there (`sender_re`/`recv_re` over the three log
 files, joined by flow id). **Output:** `$PKG/results/results_S1.log` / `results_S2.log` /
-`results_S3.log` (raw copies) and `$PKG/results/results.md` (the merged table + narrative).
+`results_S3.log` (raw copies) and `$PKG/results/results-<date>/results.md` (the merged table + narrative).
 
 ## Known gotchas
 
@@ -275,7 +275,7 @@ files, joined by flow id). **Output:** `$PKG/results/results_S1.log` / `results_
   own limit, not a schedule or switch defect. At larger flow counts, a *further* effect shows up:
   many high-rate (short-period) receiver threads sharing one Python process's GIL on the same node
   can starve each other by milliseconds -- see the "GIL/thread-scheduling contention" section in
-  `GCL_Schedules/prob3-rl-c9-on/1-rl-c9on-matrix/results/results.md` for a worked example and how
+  `GCL_Schedules/prob3-rl-c9-on/1-rl-c9on-matrix/results/results-2026-09-30/results.md` for a worked example and how
   to recognize it (delivery% collapses specifically for the node with the most concurrent
   high-rate receivers, while other nodes stay normal).
 - **Git push**: this environment has no credential helper configured for
