@@ -1,0 +1,18 @@
+Node S1: 6 in-scope flow(s), cycle 800000 ns, basetime 1790884632075199751 ns (TAI)
+
+  id=1   receiver vlan=10  192.168.10.11 <-> 192.168.10.10  pcp=7 frame=500B (payload 450B) period=800000ns phase=12000ns deadline=800000ns route=['S3', 'sw01', 'sw02', 'S1']
+  id=4   sender   vlan=11  192.168.11.10 <-> 192.168.11.11  pcp=6 frame=300B (payload 250B) period=100000ns phase=0ns deadline=100000ns route=['S1', 'sw02', 'sw01', 'S3']
+  id=5   receiver vlan=12  192.168.12.11 <-> 192.168.12.10  pcp=7 frame=200B (payload 150B) period=200000ns phase=6720ns deadline=200000ns route=['S2', 'sw08', 'sw06', 'sw05', 'sw02', 'S1']
+  id=10  sender   vlan=14  192.168.14.10 <-> 192.168.14.11  pcp=7 frame=100B (payload 50B) period=400000ns phase=5120ns deadline=400000ns route=['S1', 'sw02', 'sw01', 'S3']
+  id=12  receiver vlan=15  192.168.15.11 <-> 192.168.15.10  pcp=6 frame=100B (payload 50B) period=400000ns phase=11200ns deadline=400000ns route=['S2', 'sw08', 'sw06', 'sw05', 'sw02', 'S1']
+  id=20  receiver vlan=19  192.168.19.11 <-> 192.168.19.10  pcp=6 frame=200B (payload 150B) period=100000ns phase=4160ns deadline=100000ns route=['S3', 'sw01', 'sw02', 'S1']
+
+2 sender / 4 receiver flow(s); sending 30 s from TAI 1790885518.197, NIC launch time, real-time on CPU 7 (tx) / 6 (rx) ...
+
+Summary:
+  id=1 receiver: 37497 received, latency ns min/avg/max = 13085/13277/13469, jitter ns stddev/rfc3550 = 94/23, deadline=800000ns, misses=0, no_nic_ts=0
+  id=4 sender: 300000 packet(s) sent, 0 skipped
+  id=5 receiver: 149999 received, latency ns min/avg/max = 15493/86563/157637, jitter ns stddev/rfc3550 = 70880/141758, deadline=200000ns, misses=0, no_nic_ts=0
+  id=10 sender: 75000 packet(s) sent, 0 skipped
+  id=12 receiver: 75000 received, latency ns min/avg/max = 12933/51200/92309, jitter ns stddev/rfc3550 = 38078/76155, deadline=400000ns, misses=0, no_nic_ts=0
+  id=20 receiver: 299976 received, latency ns min/avg/max = 6605/18253/100309, jitter ns stddev/rfc3550 = 29869/22715, deadline=100000ns, misses=1, no_nic_ts=0
