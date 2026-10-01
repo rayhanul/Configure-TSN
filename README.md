@@ -3,6 +3,54 @@
 End-to-end pipeline for the 8-switch TTTech TSN testbed: clock sync, IEEE 802.1Qbv (GCL/TAS)
 schedule deployment, VLAN/flow admission, and real traffic generation against that schedule.
 
+## Quickstart
+
+### 1. NIC + clock sync (once per end-station: S1, S2, S3)
+
+```bash
+cd time-sync-gptp
+sudo apt install -y linuxptp ethtool
+./gptp.sh detect                      # find the NIC, e.g. enp1s0
+./gptp.sh check enp1s0                # must end "supports hardware timestamping"
+sudo ./gptp.sh install gm enp1s0      # S1 only, run first (grandmaster)
+sudo ./gptp.sh install slave enp1s0   # S2, S3
+sudo ./gptp.sh launchtime on          # every node: NIC launch-time TX queues
+sudo ./gptp.sh verify                 # confirm sync < 1us
+```
+
+### 2. Filter the schedule's admitted flows (from the CNC, once per package)
+
+```bash
+PKG=GCL_Schedules/prob3-rl-c9-on/1-rl-c9on-matrix   # swap for your package
+
+tr -d '\r' < $PKG/offsets.csv | awk -F, \
+  'NR==1{print "id,src,dst,route,size,period,deadline,jitter"; next}
+   $10=="yes"{print $1","$2","$3",["$4"],"$5","$6","$7","$8}' \
+  > $PKG/stream-realizable.csv
+```
+
+### 3. Deploy the GCL schedule, then admit the flows (from the CNC)
+
+```bash
+python3 deploy-GCL/configure_gcl.py --gcl-dir $PKG/gcl \
+  --topology network-topology/network-topology-rtas-2027.json --apply
+
+python3 Network-Configure-Manager/configureManager.py \
+  --topology network-topology/network-topology-rtas-2027.json \
+  --csv $PKG/stream-realizable.csv --endpoints $PKG/endpoints.json \
+  --mstp --apply
+```
+
+### 4. Generate and transmit traffic (from the CNC)
+
+```bash
+cd Spawning-Flows
+S3_PW='<S3 sudo password>' python3 run_experiment.py --pkg ../$PKG --duration 30 --ping
+```
+
+Results land in `$PKG/results/results-<date>/results.md`. Details, troubleshooting, and the
+per-step breakdown are below.
+
 ## Topology
 
 - **S1** (`ubuntu@137.99.253.118`) -- end-station, PTP grandmaster.
