@@ -900,7 +900,7 @@ CANDIDATE_KEY_FILES = ["~/.ssh/id_ed25519", "~/.ssh/id_ed25519_s3",
                        "~/.ssh/id_rsa", "~/.ssh/id_ecdsa"]
 
 
-def ssh_connect(host, user, password, timeout=15, retries=10, retry_delay=3.0):
+def ssh_connect(host, user, password, timeout=15, retries=20, retry_delay=3.0):
     """ssh_connect with retry-with-backoff around transient connection-level
     failures (banner read errors, resets, timeouts -- seen in practice as
     sshd throttling rapid successive connections from one source, e.g. a
@@ -917,7 +917,8 @@ def ssh_connect(host, user, password, timeout=15, retries=10, retry_delay=3.0):
         except (paramiko.SSHException, EOFError, ConnectionResetError, OSError) as e:
             last_exc = e
             if attempt < retries:
-                time.sleep(min(retry_delay * attempt, 10.0))  # linear backoff, capped at 10s
+                time.sleep(min(retry_delay * attempt, 30.0))  # linear backoff, capped at 30s: the
+                # switches stayed throttled past 10 retries capped at 10s (2026-10-07, flow 29 of 48)
     raise last_exc
 
 
