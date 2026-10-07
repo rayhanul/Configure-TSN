@@ -23,6 +23,19 @@ python3 configure_gcl.py --gcl-dir <dir> --topology <topo.json> --apply --exclud
 python3 configure_gcl.py --gcl-dir <dir> --topology <topo.json> --apply --only sw01 sw02
 ```
 
+## Check a package before deploying it
+
+```bash
+python3 check_schedule.py --pkg ../GCL_Schedules/<package>/<run>
+```
+
+Replays every flow through the package's own `gcl/*.cfg` the way the switches forward
+(store-and-forward, per-hop delay 2.1-4.0 µs, no frame starts within 2.4 µs of its gate closing)
+and exits 1 if any flow would miss its deadline. The scheduler's `e2e_ns` can't be trusted for
+this: C9-on packages assume cut-through hops, so frames reach their windows late on the real
+switches and wait for a later window. Add `--results <run>/results.md -v` to compare against a
+testbed run.
+
 Cycle time is read from `schedule.json` next to `--gcl-dir` (its `cycle_ns` field) unless
 `--cycle-ns` is given explicitly.
 

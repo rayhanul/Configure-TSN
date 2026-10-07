@@ -503,23 +503,36 @@ def build_mstp(plans, topology, region="mstp_test", region_rev=1):
             cmds.append(f"mstpctl setvid2fid {b} {tree}:{','.join(str(v) for v in vlans)}")
         for tree in vlans_by_tree:
             cmds.append(f"mstpctl setfid2mstid {b} {tree}:{tree}")
+        # Back to defaults first: a tree's root priority and port costs outlive the VLANs a
+        # previous --apply tore down, and a leftover priority 0 on another switch wins the
+        # root election (lower MAC) and blocks this deploy's route (seen 2026-10-07: sw08 kept
+        # tree 5's root, so sw01 discarded sw0p5 and every S3->S1 flow was lost).
+        ports = sorted(p for p, l in topology[s].get("links", {}).items()
+                       if (l.get("node") if isinstance(l, dict) else l))
+        for tree in vlans_by_tree:
+            cmds.append(f"mstpctl settreeprio {b} {tree} 8")
+            for port in ports:
+                cmds.append(f"mstpctl settreeportcost {b} {prefix(s)}{port} {tree} 0")
         per_switch[s].extend(cmds)
 
-    # force-route: at any switch where trees diverge, penalise the egress
-    # ports used by *other* trees so each tree takes its intended path.
-    for s in all_switches:
-        egress_by_tree = {}
-        for p in plans:
-            if s not in p.switch_hops:
-                continue
-            egress_by_tree.setdefault(tree_of_route[route_key(p)], set()).add(p.switch_hops[s][1])
-        if len(egress_by_tree) > 1:
-            all_out_ports = {port for ports in egress_by_tree.values() for port in ports}
-            for tree, my_ports in egress_by_tree.items():
-                for other_port in all_out_ports - my_ports:
-                    per_switch[s].append(
-                        f"mstpctl settreeportcost {bridge(s)} "
-                        f"{prefix(s)}{other_port} {tree} 5000000")
+    # force-route: on every switch of a route, penalise every port of that route's tree
+    # except the route's own ingress and egress, so the route is the tree's only cheap path
+    # to its root. Penalising only ports other trees use is not enough: a port no flow
+    # uses can tie with the route's egress on path cost, and the tie goes to the lower
+    # bridge id (seen 2026-10-07: sw05 reached tree 2's root via sw06 instead of sw07 at
+    # equal cost, discarding sw0p2 and every S1->S2 flow with it).
+    route_ports = {}
+    for p in plans:
+        tree = tree_of_route[route_key(p)]
+        for s, hop in p.switch_hops.items():
+            route_ports.setdefault((s, tree), set()).update(hop)
+    for (s, tree), used in sorted(route_ports.items()):
+        links = topology[s].get("links", {})
+        for port in sorted(p for p, l in links.items()
+                           if (l.get("node") if isinstance(l, dict) else l)):
+            if port not in used:
+                per_switch[s].append(
+                    f"mstpctl settreeportcost {bridge(s)} {prefix(s)}{port} {tree} 5000000")
 
     # root bridge for each route's own MSTI on that route's own last switch
     # (not every MSTI -- a switch that ends one route isn't necessarily on

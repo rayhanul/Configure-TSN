@@ -299,20 +299,50 @@ for the exact table format and regex approach used there (`sender_re`/`recv_re` 
 files, joined by flow id). **Output:** `$PKG/results/results_S1.log` / `results_S2.log` /
 `results_S3.log` (raw copies) and `$PKG/results/results-<date>/results.md` (the merged table + narrative).
 
+## Why schedules missed deadlines on the testbed
+
+`prob3-rl-c9-on` missed deadlines on the switches (flows 2 and 300003: 75% and 50% misses)
+although the scheduler's own e2e bound was 12-18 µs. The schedule assumed timing the TTTech
+switches don't have, so frames reached a switch after their reserved window had closed and
+waited for the next window of their queue, sometimes more than 200 µs away:
+
+1. **Cut-through vs store-and-forward.** With C9 on, the next hop's window opens
+   `proc_delay_ns` after the previous hop's window opens, as if the switch forwards a frame
+   while it is still arriving. The switches are store-and-forward: a frame is ready at the
+   next hop only after it has fully arrived plus the relay delay, so it arrives late for a
+   window sized exactly to it.
+2. **Hop delay too small.** The scheduler used 2000 ns; `tsntool brport getdelays` gives
+   1740-4020 ns per hop on top of the frame time.
+3. **No gate guard band.** A switch doesn't start a frame within ~2.4 µs of its gate closing,
+   even when the frame would fit, so windows of ~2 µs carry nothing.
+
+The "c9-off" packages missed too: RL-TSN's `matrix_worker.sh` passed C9 off only to the SMT
+stage, so the enlarge and Problem-3 stages still placed windows as if the switches were
+cut-through.
+
+**Fix (RL-TSN):** C9 off in every stage, `proc_delay_ns` 4000, and `gate_guard_ns` 2400
+(every frame reserves at least that long in its window), all in `hw/tttech-sw0p3.json`.
+The regenerated package `prob3-heuristic-c9-off-hw` ran on the testbed with 0 misses over
+42 flows (`results/results-2026-10-07_4`). Run `deploy-GCL/check_schedule.py` on every
+package before deploying it: it replays the flows through the GCLs the way the switches
+forward and fails if any flow would miss.
+
+Not fully explained: the switch model doesn't reproduce every flow of the original
+`prob3-rl-c9-on` run, and four flows of the passing run (1, 15, 20, 22) were slower than
+predicted, though still within their deadlines.
+
 ## Known gotchas
 
 - **SSH backgrounding**: `cd dir && nohup cmd &` backgrounds the *whole* `cd && cmd` as one
   subshell job that does **not** detach -- it keeps the SSH channel open and blocks for the
   command's entire runtime. Use `cd dir; nohup cmd < /dev/null > log 2>&1 &` (`;`, and redirect
   stdin) instead. Full discussion: `Spawning-Flows/README.md`.
-- **Stale MSTI root priority**: `configureManager.py`'s `build_mstp()` assigns each distinct
-  `(tier, route)` pair its own MSTI and sets `settreeprio(tree, 0)` on the intended root switch --
-  but doesn't reset priority on a switch that held priority-0 for that same *numeric* tree ID from
-  an earlier, different schedule package (where that number meant a different route). If a newly
-  admitted flow's route is unexpectedly blocked, check `mstpctl showtreeport br0 <tree>` on
-  switches along it; fix live with `mstpctl settreeprio br0 <tree> 8` on whichever switch wrongly
-  holds priority 0 (8 is `mstpctl`'s priority *step*, not the raw value). This is a known,
-  unpatched gap -- flagged here, not fixed in code.
+- **Stale MSTI root priority / port costs** (fixed 2026-10-07): VLAN teardown doesn't reset
+  MSTP, so a priority 0 left from an earlier package could win a tree's root election and block
+  a route (it blocked every S3->S1 flow). `build_mstp()` now resets every tree to priority 8 and
+  automatic port costs before applying its own, and makes every port off a route expensive for
+  that route's tree (an unused port tying on cost blocked every S1->S2 flow). If a route is
+  still blocked, check `mstpctl showtreeport br0 <port> <tree>` on the switches along it.
 - **UDP port range**: `gen_traffic.py` maps each flow id to a port by its *rank* in the sorted id
   list (`BASE_PORT + rank`), not `BASE_PORT + id` -- some packages use large synthetic ids
   (e.g. `300000`+) that would overflow the 65535 port ceiling otherwise. This is already handled;
