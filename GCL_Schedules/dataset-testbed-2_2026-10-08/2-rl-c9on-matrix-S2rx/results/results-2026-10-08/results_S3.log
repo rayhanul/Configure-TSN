@@ -1,0 +1,36 @@
+Node S3: 15 in-scope flow(s), cycle 800000 ns, basetime 1791467000383200000 ns (TAI)
+
+  id=4   receiver vlan=11  192.168.11.11 <-> 192.168.11.10  pcp=6 frame=400B (payload 350B) period=800000ns phase=49920ns deadline=800000ns route=['S1', 'sw02', 'sw01', 'S3']
+  id=7   sender   vlan=12  192.168.12.10 <-> 192.168.12.11  pcp=7 frame=300B (payload 250B) period=400000ns phase=24960ns deadline=400000ns route=['S3', 'sw01', 'sw02', 'S1']
+  id=10  sender   vlan=14  192.168.14.10 <-> 192.168.14.11  pcp=6 frame=300B (payload 250B) period=800000ns phase=74880ns deadline=800000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=14  sender   vlan=17  192.168.17.10 <-> 192.168.17.11  pcp=6 frame=500B (payload 450B) period=200000ns phase=0ns deadline=200000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=20  sender   vlan=20  192.168.20.10 <-> 192.168.20.11  pcp=6 frame=300B (payload 250B) period=400000ns phase=49920ns deadline=400000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=17  sender   vlan=21  192.168.21.10 <-> 192.168.21.11  pcp=7 frame=200B (payload 150B) period=200000ns phase=12480ns deadline=200000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=13  sender   vlan=24  192.168.24.10 <-> 192.168.24.11  pcp=7 frame=100B (payload 50B) period=400000ns phase=157120ns deadline=400000ns route=['S3', 'sw01', 'sw02', 'S1']
+  id=2   sender   vlan=25  192.168.25.10 <-> 192.168.25.11  pcp=6 frame=100B (payload 50B) period=800000ns phase=87360ns deadline=800000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=50  receiver vlan=28  192.168.28.11 <-> 192.168.28.10  pcp=7 frame=300B (payload 250B) period=800000ns phase=150080ns deadline=800000ns route=['S1', 'sw02', 'sw01', 'S3']
+  id=24  sender   vlan=30  192.168.30.10 <-> 192.168.30.11  pcp=6 frame=200B (payload 150B) period=800000ns phase=462400ns deadline=800000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=35  sender   vlan=31  192.168.31.10 <-> 192.168.31.11  pcp=7 frame=400B (payload 350B) period=800000ns phase=225920ns deadline=800000ns route=['S3', 'sw01', 'sw03', 'sw06', 'sw08', 'S2']
+  id=23  receiver vlan=34  192.168.34.11 <-> 192.168.34.10  pcp=6 frame=400B (payload 350B) period=400000ns phase=12480ns deadline=400000ns route=['S1', 'sw02', 'sw01', 'S3']
+  id=29  receiver vlan=35  192.168.35.11 <-> 192.168.35.10  pcp=6 frame=500B (payload 450B) period=400000ns phase=62400ns deadline=400000ns route=['S1', 'sw02', 'sw01', 'S3']
+  id=30  receiver vlan=40  192.168.40.11 <-> 192.168.40.10  pcp=6 frame=300B (payload 250B) period=200000ns phase=94400ns deadline=200000ns route=['S1', 'sw02', 'sw01', 'S3']
+  id=42  receiver vlan=41  192.168.41.11 <-> 192.168.41.10  pcp=6 frame=500B (payload 450B) period=200000ns phase=106880ns deadline=200000ns route=['S1', 'sw02', 'sw01', 'S3']
+
+9 sender / 6 receiver flow(s); sending 30 s from TAI 1791468384.544, NIC launch time, real-time on CPU 15 (tx) / 14 (rx) ...
+
+Summary:
+  id=4 receiver: 37500 received, latency ns min/avg/max = 9679/10148/10630, jitter ns stddev/rfc3550 = 163/168, deadline=800000ns, misses=0, no_nic_ts=0
+  id=7 sender: 75000 packet(s) sent, 0 skipped
+  id=10 sender: 37500 packet(s) sent, 0 skipped
+  id=14 sender: 150000 packet(s) sent, 0 skipped
+  id=20 sender: 75000 packet(s) sent, 0 skipped
+  id=17 sender: 150000 packet(s) sent, 0 skipped
+  id=13 sender: 75000 packet(s) sent, 0 skipped
+  id=2 sender: 37500 packet(s) sent, 0 skipped
+  id=50 receiver: 37500 received, latency ns min/avg/max = 497823/498050/498248, jitter ns stddev/rfc3550 = 95/18, deadline=800000ns, misses=0, no_nic_ts=0
+  id=24 sender: 37500 packet(s) sent, 0 skipped
+  id=35 sender: 37500 packet(s) sent, 0 skipped
+  id=23 receiver: 75000 received, latency ns min/avg/max = 9673/10147/11203, jitter ns stddev/rfc3550 = 163/208, deadline=400000ns, misses=0, no_nic_ts=0
+  id=29 receiver: 75000 received, latency ns min/avg/max = 11409/13465/15366, jitter ns stddev/rfc3550 = 1707/3406, deadline=400000ns, misses=0, no_nic_ts=0
+  id=30 receiver: 150000 received, latency ns min/avg/max = 8099/8961/11069, jitter ns stddev/rfc3550 = 752/918, deadline=200000ns, misses=0, no_nic_ts=0
+  id=42 receiver: 150000 received, latency ns min/avg/max = 11405/11762/12439, jitter ns stddev/rfc3550 = 138/122, deadline=200000ns, misses=0, no_nic_ts=0
