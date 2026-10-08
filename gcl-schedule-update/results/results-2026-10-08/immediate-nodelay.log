@@ -1,0 +1,411 @@
+1-switch: 1 switch(es), 4 port(s): sw05[p2 p3 p4 p5]
+line-4: 4 switch(es), 8 port(s): sw02[p2 p5], sw05[p2 p5], sw07[p3 p4], sw08[p2 p5]
+ring-4: 4 switch(es), 9 port(s): sw05[p2 p4], sw06[p2 p5], sw07[p3 p4], sw08[p2 p4 p5]
+star-5: 5 switch(es), 9 port(s): sw02[p2 p5], sw04[p4], sw05[p2 p3 p4 p5], sw06[p5], sw07[p3]
+grid-6: 6 switch(es), 18 port(s): sw01[p3 p4 p5], sw02[p2 p3 p4 p5], sw03[p3 p4 p5], sw04[p3 p4 p5], sw05[p3 p4 p5], sw06[p3 p5]
+mesh-8: 8 switch(es), 27 port(s): sw01[p3 p4 p5], sw02[p2 p3 p4 p5], sw03[p3 p4 p5], sw04[p3 p4 p5], sw05[p2 p3 p4 p5], sw06[p2 p3 p4 p5], sw07[p3 p4 p5], sw08[p2 p4 p5]
+
+Results: results/results-2026-10-08/immediate-nodelay
+Connecting to 8 switch(es) ...
+Reading every port's current GCL ...
+  1-switch  sequential immediate   rep  1: update   313.2 ms, commands   317.3 ms, live 4/4
+  1-switch  sequential immediate   rep  2: update   306.0 ms, commands   309.4 ms, live 4/4
+  1-switch  sequential immediate   rep  3: update   324.3 ms, commands   328.5 ms, live 4/4
+  1-switch  sequential immediate   rep  4: update   303.2 ms, commands   307.4 ms, live 4/4
+  1-switch  sequential immediate   rep  5: update   315.4 ms, commands   320.0 ms, live 4/4
+  1-switch  sequential immediate   rep  6: update   301.2 ms, commands   305.5 ms, live 4/4
+  1-switch  sequential immediate   rep  7: update   312.2 ms, commands   315.3 ms, live 4/4
+  1-switch  sequential immediate   rep  8: update   308.5 ms, commands   312.3 ms, live 4/4
+  1-switch  sequential immediate   rep  9: update   309.7 ms, commands   313.4 ms, live 4/4
+  1-switch  sequential immediate   rep 10: update   304.8 ms, commands   309.0 ms, live 4/4
+  1-switch  sequential immediate   rep 11: update   307.3 ms, commands   311.5 ms, live 4/4
+  1-switch  sequential immediate   rep 12: update   309.2 ms, commands   313.6 ms, live 4/4
+  1-switch  sequential immediate   rep 13: update   310.3 ms, commands   314.4 ms, live 4/4
+  1-switch  sequential immediate   rep 14: update   306.5 ms, commands   311.1 ms, live 4/4
+  1-switch  sequential immediate   rep 15: update   348.1 ms, commands   351.9 ms, live 4/4
+  1-switch  sequential immediate   rep 16: update   337.3 ms, commands   343.3 ms, live 4/4
+  1-switch  sequential immediate   rep 17: update   344.5 ms, commands   350.2 ms, live 4/4
+  1-switch  sequential immediate   rep 18: update   349.0 ms, commands   353.3 ms, live 4/4
+  1-switch  sequential immediate   rep 19: update   350.3 ms, commands   356.3 ms, live 4/4
+  1-switch  sequential immediate   rep 20: update   304.3 ms, commands   309.2 ms, live 4/4
+  1-switch  parallel   immediate   rep  1: update   311.1 ms, commands   314.9 ms, live 4/4
+  1-switch  parallel   immediate   rep  2: update   301.8 ms, commands   305.0 ms, live 4/4
+  1-switch  parallel   immediate   rep  3: update   361.5 ms, commands   366.1 ms, live 4/4
+  1-switch  parallel   immediate   rep  4: update   304.0 ms, commands   308.4 ms, live 4/4
+  1-switch  parallel   immediate   rep  5: update   307.3 ms, commands   311.5 ms, live 4/4
+  1-switch  parallel   immediate   rep  6: update   297.0 ms, commands   301.0 ms, live 4/4
+  1-switch  parallel   immediate   rep  7: update   306.3 ms, commands   309.3 ms, live 4/4
+  1-switch  parallel   immediate   rep  8: update   615.7 ms, commands   619.2 ms, live 4/4
+  1-switch  parallel   immediate   rep  9: update   309.3 ms, commands   313.6 ms, live 4/4
+  1-switch  parallel   immediate   rep 10: update   341.0 ms, commands   344.9 ms, live 4/4
+  1-switch  parallel   immediate   rep 11: update   352.3 ms, commands   358.3 ms, live 4/4
+  1-switch  parallel   immediate   rep 12: update   344.6 ms, commands   348.8 ms, live 4/4
+  1-switch  parallel   immediate   rep 13: update   359.6 ms, commands   365.8 ms, live 4/4
+  1-switch  parallel   immediate   rep 14: update   350.2 ms, commands   354.4 ms, live 4/4
+  1-switch  parallel   immediate   rep 15: update   347.0 ms, commands   352.6 ms, live 4/4
+  1-switch  parallel   immediate   rep 16: update   349.7 ms, commands   355.3 ms, live 4/4
+  1-switch  parallel   immediate   rep 17: update   349.2 ms, commands   354.8 ms, live 4/4
+  1-switch  parallel   immediate   rep 18: update   341.8 ms, commands   346.5 ms, live 4/4
+  1-switch  parallel   immediate   rep 19: update   338.5 ms, commands   344.6 ms, live 4/4
+  1-switch  parallel   immediate   rep 20: update   303.8 ms, commands   308.0 ms, live 4/4
+  1-switch  batched    immediate   rep  1: update   264.8 ms, commands   268.4 ms, live 4/4
+  1-switch  batched    immediate   rep  2: update   271.5 ms, commands   275.6 ms, live 4/4
+  1-switch  batched    immediate   rep  3: update   258.9 ms, commands   263.7 ms, live 4/4
+  1-switch  batched    immediate   rep  4: update   262.6 ms, commands   266.1 ms, live 4/4
+  1-switch  batched    immediate   rep  5: update   257.1 ms, commands   262.1 ms, live 4/4
+  1-switch  batched    immediate   rep  6: update   260.3 ms, commands   264.3 ms, live 4/4
+  1-switch  batched    immediate   rep  7: update   260.8 ms, commands   265.0 ms, live 4/4
+  1-switch  batched    immediate   rep  8: update   262.6 ms, commands   266.9 ms, live 4/4
+  1-switch  batched    immediate   rep  9: update   263.7 ms, commands   267.8 ms, live 4/4
+  1-switch  batched    immediate   rep 10: update   263.2 ms, commands   266.8 ms, live 4/4
+  1-switch  batched    immediate   rep 11: update   265.2 ms, commands   268.8 ms, live 4/4
+  1-switch  batched    immediate   rep 12: update   601.4 ms, commands   606.0 ms, live 4/4
+  1-switch  batched    immediate   rep 13: update   594.2 ms, commands   599.1 ms, live 4/4
+  1-switch  batched    immediate   rep 14: update   265.9 ms, commands   269.7 ms, live 4/4
+  1-switch  batched    immediate   rep 15: update   259.4 ms, commands   265.3 ms, live 4/4
+  1-switch  batched    immediate   rep 16: update   258.6 ms, commands   262.8 ms, live 4/4
+  1-switch  batched    immediate   rep 17: update   261.2 ms, commands   266.4 ms, live 4/4
+  1-switch  batched    immediate   rep 18: update   254.8 ms, commands   259.8 ms, live 4/4
+  1-switch  batched    immediate   rep 19: update   265.7 ms, commands   270.1 ms, live 4/4
+  1-switch  batched    immediate   rep 20: update   259.2 ms, commands   262.9 ms, live 4/4
+  line-4    sequential immediate   rep  1: update   681.5 ms, commands   685.6 ms, live 8/8
+  line-4    sequential immediate   rep  2: update   644.0 ms, commands   647.6 ms, live 8/8
+  line-4    sequential immediate   rep  3: update   663.7 ms, commands   668.5 ms, live 8/8
+  line-4    sequential immediate   rep  4: update   651.4 ms, commands   656.4 ms, live 8/8
+  line-4    sequential immediate   rep  5: update   656.8 ms, commands   661.3 ms, live 8/8
+  line-4    sequential immediate   rep  6: update   643.8 ms, commands   648.7 ms, live 8/8
+  line-4    sequential immediate   rep  7: update   637.1 ms, commands   642.0 ms, live 8/8
+  line-4    sequential immediate   rep  8: update   657.6 ms, commands   661.7 ms, live 8/8
+  line-4    sequential immediate   rep  9: update   645.7 ms, commands   649.8 ms, live 8/8
+  line-4    sequential immediate   rep 10: update   801.6 ms, commands   805.6 ms, live 8/8
+  line-4    sequential immediate   rep 11: update   672.5 ms, commands   677.5 ms, live 8/8
+  line-4    sequential immediate   rep 12: update   645.4 ms, commands   650.3 ms, live 8/8
+  line-4    sequential immediate   rep 13: update   652.0 ms, commands   655.7 ms, live 8/8
+  line-4    sequential immediate   rep 14: update   649.6 ms, commands   654.2 ms, live 8/8
+  line-4    sequential immediate   rep 15: update   671.6 ms, commands   676.7 ms, live 8/8
+  line-4    sequential immediate   rep 16: update   648.6 ms, commands   653.0 ms, live 8/8
+  line-4    sequential immediate   rep 17: update   682.9 ms, commands   687.3 ms, live 8/8
+  line-4    sequential immediate   rep 18: update   661.4 ms, commands   665.3 ms, live 8/8
+  line-4    sequential immediate   rep 19: update   624.2 ms, commands   628.8 ms, live 8/8
+  line-4    sequential immediate   rep 20: update   650.8 ms, commands   655.4 ms, live 8/8
+  line-4    parallel   immediate   rep  1: update   184.7 ms, commands   187.8 ms, live 8/8
+  line-4    parallel   immediate   rep  2: update   183.6 ms, commands   188.4 ms, live 8/8
+  line-4    parallel   immediate   rep  3: update   237.2 ms, commands   242.0 ms, live 8/8
+  line-4    parallel   immediate   rep  4: update   176.9 ms, commands   180.8 ms, live 8/8
+  line-4    parallel   immediate   rep  5: update   170.1 ms, commands   174.5 ms, live 8/8
+  line-4    parallel   immediate   rep  6: update   174.8 ms, commands   179.0 ms, live 8/8
+  line-4    parallel   immediate   rep  7: update   174.6 ms, commands   178.1 ms, live 8/8
+  line-4    parallel   immediate   rep  8: update   174.2 ms, commands   179.4 ms, live 8/8
+  line-4    parallel   immediate   rep  9: update   177.7 ms, commands   183.2 ms, live 8/8
+  line-4    parallel   immediate   rep 10: update   169.3 ms, commands   174.2 ms, live 8/8
+  line-4    parallel   immediate   rep 11: update   171.6 ms, commands   175.3 ms, live 8/8
+  line-4    parallel   immediate   rep 12: update   179.2 ms, commands   182.9 ms, live 8/8
+  line-4    parallel   immediate   rep 13: update   184.8 ms, commands   189.3 ms, live 8/8
+  line-4    parallel   immediate   rep 14: update   172.6 ms, commands   175.5 ms, live 8/8
+  line-4    parallel   immediate   rep 15: update   175.3 ms, commands   180.1 ms, live 8/8
+  line-4    parallel   immediate   rep 16: update   172.3 ms, commands   175.8 ms, live 8/8
+  line-4    parallel   immediate   rep 17: update   172.6 ms, commands   177.2 ms, live 8/8
+  line-4    parallel   immediate   rep 18: update   190.8 ms, commands   194.4 ms, live 8/8
+  line-4    parallel   immediate   rep 19: update   170.0 ms, commands   175.3 ms, live 8/8
+  line-4    parallel   immediate   rep 20: update   176.7 ms, commands   181.0 ms, live 8/8
+  line-4    batched    immediate   rep  1: update   154.6 ms, commands   159.4 ms, live 8/8
+  line-4    batched    immediate   rep  2: update   183.7 ms, commands   187.9 ms, live 8/8
+  line-4    batched    immediate   rep  3: update   161.0 ms, commands   167.3 ms, live 8/8
+  line-4    batched    immediate   rep  4: update   179.5 ms, commands   185.0 ms, live 8/8
+  line-4    batched    immediate   rep  5: update   164.3 ms, commands   170.9 ms, live 8/8
+  line-4    batched    immediate   rep  6: update   178.6 ms, commands   182.4 ms, live 8/8
+  line-4    batched    immediate   rep  7: update   160.8 ms, commands   165.1 ms, live 8/8
+  line-4    batched    immediate   rep  8: update   152.8 ms, commands   156.6 ms, live 8/8
+  line-4    batched    immediate   rep  9: update   155.8 ms, commands   160.8 ms, live 8/8
+  line-4    batched    immediate   rep 10: update   156.0 ms, commands   160.1 ms, live 8/8
+  line-4    batched    immediate   rep 11: update   159.7 ms, commands   165.5 ms, live 8/8
+  line-4    batched    immediate   rep 12: update   152.3 ms, commands   157.3 ms, live 8/8
+  line-4    batched    immediate   rep 13: update   165.1 ms, commands   171.0 ms, live 8/8
+  line-4    batched    immediate   rep 14: update   159.1 ms, commands   163.5 ms, live 8/8
+  line-4    batched    immediate   rep 15: update   165.8 ms, commands   170.0 ms, live 8/8
+  line-4    batched    immediate   rep 16: update   166.5 ms, commands   172.0 ms, live 8/8
+  line-4    batched    immediate   rep 17: update   166.8 ms, commands   172.4 ms, live 8/8
+  line-4    batched    immediate   rep 18: update   169.7 ms, commands   175.7 ms, live 8/8
+  line-4    batched    immediate   rep 19: update   186.3 ms, commands   191.8 ms, live 8/8
+  line-4    batched    immediate   rep 20: update   162.1 ms, commands   168.2 ms, live 8/8
+  ring-4    sequential immediate   rep  1: update   757.8 ms, commands   762.5 ms, live 9/9
+  ring-4    sequential immediate   rep  2: update   698.6 ms, commands   703.2 ms, live 9/9
+  ring-4    sequential immediate   rep  3: update   659.6 ms, commands   663.4 ms, live 9/9
+  ring-4    sequential immediate   rep  4: update   731.4 ms, commands   735.3 ms, live 9/9
+  ring-4    sequential immediate   rep  5: update   713.8 ms, commands   718.6 ms, live 9/9
+  ring-4    sequential immediate   rep  6: update   749.7 ms, commands   754.6 ms, live 9/9
+  ring-4    sequential immediate   rep  7: update   723.9 ms, commands   727.6 ms, live 9/9
+  ring-4    sequential immediate   rep  8: update   714.9 ms, commands   719.0 ms, live 9/9
+  ring-4    sequential immediate   rep  9: update   720.2 ms, commands   725.5 ms, live 9/9
+  ring-4    sequential immediate   rep 10: update   777.9 ms, commands   781.8 ms, live 9/9
+  ring-4    sequential immediate   rep 11: update   798.7 ms, commands   803.0 ms, live 9/9
+  ring-4    sequential immediate   rep 12: update   696.6 ms, commands   700.7 ms, live 9/9
+  ring-4    sequential immediate   rep 13: update   732.9 ms, commands   736.7 ms, live 9/9
+  ring-4    sequential immediate   rep 14: update   673.8 ms, commands   678.4 ms, live 9/9
+  ring-4    sequential immediate   rep 15: update   891.5 ms, commands   896.0 ms, live 9/9
+  ring-4    sequential immediate   rep 16: update   630.4 ms, commands   634.0 ms, live 9/9
+  ring-4    sequential immediate   rep 17: update   630.1 ms, commands   634.0 ms, live 9/9
+  ring-4    sequential immediate   rep 18: update   664.2 ms, commands   668.7 ms, live 9/9
+  ring-4    sequential immediate   rep 19: update   646.8 ms, commands   650.5 ms, live 9/9
+  ring-4    sequential immediate   rep 20: update   654.9 ms, commands   658.9 ms, live 9/9
+  ring-4    parallel   immediate   rep  1: update   197.2 ms, commands   201.8 ms, live 9/9
+  ring-4    parallel   immediate   rep  2: update   223.0 ms, commands   227.7 ms, live 9/9
+  ring-4    parallel   immediate   rep  3: update   226.0 ms, commands   231.2 ms, live 9/9
+  ring-4    parallel   immediate   rep  4: update   195.2 ms, commands   199.6 ms, live 9/9
+  ring-4    parallel   immediate   rep  5: update   216.1 ms, commands   220.5 ms, live 9/9
+  ring-4    parallel   immediate   rep  6: update   234.5 ms, commands   238.8 ms, live 9/9
+  ring-4    parallel   immediate   rep  7: update   206.5 ms, commands   210.7 ms, live 9/9
+  ring-4    parallel   immediate   rep  8: update   200.9 ms, commands   204.8 ms, live 9/9
+  ring-4    parallel   immediate   rep  9: update   210.0 ms, commands   213.8 ms, live 9/9
+  ring-4    parallel   immediate   rep 10: update   203.0 ms, commands   207.4 ms, live 9/9
+  ring-4    parallel   immediate   rep 11: update   209.2 ms, commands   213.3 ms, live 9/9
+  ring-4    parallel   immediate   rep 12: update   205.5 ms, commands   209.2 ms, live 9/9
+  ring-4    parallel   immediate   rep 13: update   213.7 ms, commands   218.9 ms, live 9/9
+  ring-4    parallel   immediate   rep 14: update   191.9 ms, commands   196.0 ms, live 9/9
+  ring-4    parallel   immediate   rep 15: update   225.2 ms, commands   229.6 ms, live 9/9
+  ring-4    parallel   immediate   rep 16: update   198.3 ms, commands   202.8 ms, live 9/9
+  ring-4    parallel   immediate   rep 17: update   220.1 ms, commands   225.7 ms, live 9/9
+  ring-4    parallel   immediate   rep 18: update   208.4 ms, commands   213.0 ms, live 9/9
+  ring-4    parallel   immediate   rep 19: update   232.5 ms, commands   237.0 ms, live 9/9
+  ring-4    parallel   immediate   rep 20: update   200.0 ms, commands   204.0 ms, live 9/9
+  ring-4    batched    immediate   rep  1: update   177.0 ms, commands   182.6 ms, live 9/9
+  ring-4    batched    immediate   rep  2: update   175.6 ms, commands   179.4 ms, live 9/9
+  ring-4    batched    immediate   rep  3: update   180.2 ms, commands   184.4 ms, live 9/9
+  ring-4    batched    immediate   rep  4: update   183.9 ms, commands   187.7 ms, live 9/9
+  ring-4    batched    immediate   rep  5: update   175.3 ms, commands   179.6 ms, live 9/9
+  ring-4    batched    immediate   rep  6: update   169.7 ms, commands   174.7 ms, live 9/9
+  ring-4    batched    immediate   rep  7: update   172.9 ms, commands   178.4 ms, live 9/9
+  ring-4    batched    immediate   rep  8: update   205.1 ms, commands   209.5 ms, live 9/9
+  ring-4    batched    immediate   rep  9: update   211.0 ms, commands   214.4 ms, live 9/9
+  ring-4    batched    immediate   rep 10: update   189.8 ms, commands   193.5 ms, live 9/9
+  ring-4    batched    immediate   rep 11: update   197.1 ms, commands   201.7 ms, live 9/9
+  ring-4    batched    immediate   rep 12: update   172.5 ms, commands   176.4 ms, live 9/9
+  ring-4    batched    immediate   rep 13: update   174.5 ms, commands   178.2 ms, live 9/9
+  ring-4    batched    immediate   rep 14: update   179.7 ms, commands   183.7 ms, live 9/9
+  ring-4    batched    immediate   rep 15: update   182.1 ms, commands   187.7 ms, live 9/9
+  ring-4    batched    immediate   rep 16: update   176.3 ms, commands   181.1 ms, live 9/9
+  ring-4    batched    immediate   rep 17: update   170.7 ms, commands   174.6 ms, live 9/9
+  ring-4    batched    immediate   rep 18: update   166.5 ms, commands   170.8 ms, live 9/9
+  ring-4    batched    immediate   rep 19: update   170.4 ms, commands   174.3 ms, live 9/9
+  ring-4    batched    immediate   rep 20: update   207.0 ms, commands   211.4 ms, live 9/9
+  star-5    sequential immediate   rep  1: update   728.3 ms, commands   732.0 ms, live 9/9
+  star-5    sequential immediate   rep  2: update   695.6 ms, commands   699.1 ms, live 9/9
+  star-5    sequential immediate   rep  3: update   682.3 ms, commands   687.0 ms, live 9/9
+  star-5    sequential immediate   rep  4: update   696.9 ms, commands   700.8 ms, live 9/9
+  star-5    sequential immediate   rep  5: update   822.6 ms, commands   825.9 ms, live 9/9
+  star-5    sequential immediate   rep  6: update   695.6 ms, commands   699.1 ms, live 9/9
+  star-5    sequential immediate   rep  7: update   677.7 ms, commands   682.2 ms, live 9/9
+  star-5    sequential immediate   rep  8: update   692.0 ms, commands   696.6 ms, live 9/9
+  star-5    sequential immediate   rep  9: update   682.0 ms, commands   685.3 ms, live 9/9
+  star-5    sequential immediate   rep 10: update   677.2 ms, commands   681.4 ms, live 9/9
+  star-5    sequential immediate   rep 11: update   693.4 ms, commands   699.2 ms, live 9/9
+  star-5    sequential immediate   rep 12: update   694.2 ms, commands   698.3 ms, live 9/9
+  star-5    sequential immediate   rep 13: update   707.9 ms, commands   712.2 ms, live 9/9
+  star-5    sequential immediate   rep 14: update   908.6 ms, commands   911.9 ms, live 9/9
+  star-5    sequential immediate   rep 15: update   785.6 ms, commands   789.7 ms, live 9/9
+  star-5    sequential immediate   rep 16: update   713.6 ms, commands   719.2 ms, live 9/9
+  star-5    sequential immediate   rep 17: update   701.7 ms, commands   707.9 ms, live 9/9
+  star-5    sequential immediate   rep 18: update   751.5 ms, commands   757.2 ms, live 9/9
+  star-5    sequential immediate   rep 19: update   712.5 ms, commands   716.2 ms, live 9/9
+  star-5    sequential immediate   rep 20: update   725.4 ms, commands   730.7 ms, live 9/9
+  star-5    parallel   immediate   rep  1: update   301.1 ms, commands   304.8 ms, live 9/9
+  star-5    parallel   immediate   rep  2: update   305.4 ms, commands   309.4 ms, live 9/9
+  star-5    parallel   immediate   rep  3: update   347.9 ms, commands   353.8 ms, live 9/9
+  star-5    parallel   immediate   rep  4: update   345.7 ms, commands   350.2 ms, live 9/9
+  star-5    parallel   immediate   rep  5: update   591.0 ms, commands   594.8 ms, live 9/9
+  star-5    parallel   immediate   rep  6: update   350.3 ms, commands   354.1 ms, live 9/9
+  star-5    parallel   immediate   rep  7: update   354.8 ms, commands   359.2 ms, live 9/9
+  star-5    parallel   immediate   rep  8: update   345.0 ms, commands   350.7 ms, live 9/9
+  star-5    parallel   immediate   rep  9: update   352.9 ms, commands   356.8 ms, live 9/9
+  star-5    parallel   immediate   rep 10: update   368.3 ms, commands   373.0 ms, live 9/9
+  star-5    parallel   immediate   rep 11: update   346.4 ms, commands   349.3 ms, live 9/9
+  star-5    parallel   immediate   rep 12: update   329.8 ms, commands   334.4 ms, live 9/9
+  star-5    parallel   immediate   rep 13: update   317.5 ms, commands   321.2 ms, live 9/9
+  star-5    parallel   immediate   rep 14: update   312.7 ms, commands   316.2 ms, live 9/9
+  star-5    parallel   immediate   rep 15: update   311.5 ms, commands   316.1 ms, live 9/9
+  star-5    parallel   immediate   rep 16: update   306.4 ms, commands   310.1 ms, live 9/9
+  star-5    parallel   immediate   rep 17: update   306.0 ms, commands   310.8 ms, live 9/9
+  star-5    parallel   immediate   rep 18: update   308.4 ms, commands   312.9 ms, live 9/9
+  star-5    parallel   immediate   rep 19: update   312.7 ms, commands   316.7 ms, live 9/9
+  star-5    parallel   immediate   rep 20: update   308.6 ms, commands   312.4 ms, live 9/9
+  star-5    batched    immediate   rep  1: update   262.7 ms, commands   266.7 ms, live 9/9
+  star-5    batched    immediate   rep  2: update   258.4 ms, commands   263.0 ms, live 9/9
+  star-5    batched    immediate   rep  3: update   266.1 ms, commands   271.6 ms, live 9/9
+  star-5    batched    immediate   rep  4: update   258.6 ms, commands   262.6 ms, live 9/9
+  star-5    batched    immediate   rep  5: update   266.6 ms, commands   271.0 ms, live 9/9
+  star-5    batched    immediate   rep  6: update   254.2 ms, commands   258.5 ms, live 9/9
+  star-5    batched    immediate   rep  7: update   268.0 ms, commands   273.5 ms, live 9/9
+  star-5    batched    immediate   rep  8: update   265.6 ms, commands   269.3 ms, live 9/9
+  star-5    batched    immediate   rep  9: update   286.5 ms, commands   292.2 ms, live 9/9
+  star-5    batched    immediate   rep 10: update   468.9 ms, commands   474.0 ms, live 9/9
+  star-5    batched    immediate   rep 11: update   269.6 ms, commands   274.6 ms, live 9/9
+  star-5    batched    immediate   rep 12: update   262.5 ms, commands   266.4 ms, live 9/9
+  star-5    batched    immediate   rep 13: update   270.4 ms, commands   275.8 ms, live 9/9
+  star-5    batched    immediate   rep 14: update   267.6 ms, commands   272.5 ms, live 9/9
+  star-5    batched    immediate   rep 15: update   270.9 ms, commands   275.7 ms, live 9/9
+  star-5    batched    immediate   rep 16: update   267.3 ms, commands   271.8 ms, live 9/9
+  star-5    batched    immediate   rep 17: update   265.3 ms, commands   270.8 ms, live 9/9
+  star-5    batched    immediate   rep 18: update   261.1 ms, commands   265.3 ms, live 9/9
+  star-5    batched    immediate   rep 19: update   272.8 ms, commands   277.9 ms, live 9/9
+  star-5    batched    immediate   rep 20: update   256.5 ms, commands   260.6 ms, live 9/9
+  grid-6    sequential immediate   rep  1: update  1425.4 ms, commands  1429.1 ms, live 18/18
+  grid-6    sequential immediate   rep  2: update  1664.7 ms, commands  1668.7 ms, live 18/18
+  grid-6    sequential immediate   rep  3: update  1399.2 ms, commands  1404.1 ms, live 18/18
+  grid-6    sequential immediate   rep  4: update  1398.9 ms, commands  1404.3 ms, live 18/18
+  grid-6    sequential immediate   rep  5: update  1445.8 ms, commands  1449.8 ms, live 18/18
+  grid-6    sequential immediate   rep  6: update  1400.0 ms, commands  1403.6 ms, live 18/18
+  grid-6    sequential immediate   rep  7: update  1379.7 ms, commands  1383.0 ms, live 18/18
+  grid-6    sequential immediate   rep  8: update  1376.7 ms, commands  1380.3 ms, live 18/18
+  grid-6    sequential immediate   rep  9: update  1433.1 ms, commands  1438.4 ms, live 18/18
+  grid-6    sequential immediate   rep 10: update  1423.7 ms, commands  1427.7 ms, live 18/18
+  grid-6    sequential immediate   rep 11: update  1433.6 ms, commands  1438.7 ms, live 18/18
+  grid-6    sequential immediate   rep 12: update  1473.9 ms, commands  1478.1 ms, live 18/18
+  grid-6    sequential immediate   rep 13: update  1413.0 ms, commands  1417.1 ms, live 18/18
+  grid-6    sequential immediate   rep 14: update  1363.1 ms, commands  1367.0 ms, live 18/18
+  grid-6    sequential immediate   rep 15: update  1395.2 ms, commands  1400.4 ms, live 18/18
+  grid-6    sequential immediate   rep 16: update  1601.0 ms, commands  1606.1 ms, live 18/18
+  grid-6    sequential immediate   rep 17: update  1398.9 ms, commands  1404.1 ms, live 18/18
+  grid-6    sequential immediate   rep 18: update  1432.2 ms, commands  1436.1 ms, live 18/18
+  grid-6    sequential immediate   rep 19: update  1455.2 ms, commands  1458.7 ms, live 18/18
+  grid-6    sequential immediate   rep 20: update  1371.1 ms, commands  1375.9 ms, live 18/18
+  grid-6    parallel   immediate   rep  1: update   329.8 ms, commands   334.3 ms, live 18/18
+  grid-6    parallel   immediate   rep  2: update   315.1 ms, commands   318.9 ms, live 18/18
+  grid-6    parallel   immediate   rep  3: update   308.4 ms, commands   312.7 ms, live 18/18
+  grid-6    parallel   immediate   rep  4: update   322.4 ms, commands   327.2 ms, live 18/18
+  grid-6    parallel   immediate   rep  5: update   468.9 ms, commands   473.0 ms, live 18/18
+  grid-6    parallel   immediate   rep  6: update   308.0 ms, commands   313.9 ms, live 18/18
+  grid-6    parallel   immediate   rep  7: update   322.7 ms, commands   326.6 ms, live 18/18
+  grid-6    parallel   immediate   rep  8: update   302.6 ms, commands   307.4 ms, live 18/18
+  grid-6    parallel   immediate   rep  9: update   320.6 ms, commands   325.0 ms, live 18/18
+  grid-6    parallel   immediate   rep 10: update   310.7 ms, commands   315.6 ms, live 18/18
+  grid-6    parallel   immediate   rep 11: update   320.6 ms, commands   324.2 ms, live 18/18
+  grid-6    parallel   immediate   rep 12: update   338.2 ms, commands   341.8 ms, live 18/18
+  grid-6    parallel   immediate   rep 13: update   326.8 ms, commands   331.9 ms, live 18/18
+  grid-6    parallel   immediate   rep 14: update   364.6 ms, commands   370.7 ms, live 18/18
+  grid-6    parallel   immediate   rep 15: update   346.9 ms, commands   350.3 ms, live 18/18
+  grid-6    parallel   immediate   rep 16: update   306.7 ms, commands   310.9 ms, live 18/18
+  grid-6    parallel   immediate   rep 17: update   310.8 ms, commands   314.7 ms, live 18/18
+  grid-6    parallel   immediate   rep 18: update   309.4 ms, commands   313.3 ms, live 18/18
+  grid-6    parallel   immediate   rep 19: update   306.9 ms, commands   311.1 ms, live 18/18
+  grid-6    parallel   immediate   rep 20: update   329.7 ms, commands   334.8 ms, live 18/18
+  grid-6    batched    immediate   rep  1: update   294.3 ms, commands   299.4 ms, live 18/18
+  grid-6    batched    immediate   rep  2: update   298.9 ms, commands   303.7 ms, live 18/18
+  grid-6    batched    immediate   rep  3: update   303.4 ms, commands   307.3 ms, live 18/18
+  grid-6    batched    immediate   rep  4: update   300.2 ms, commands   304.9 ms, live 18/18
+  grid-6    batched    immediate   rep  5: update   295.4 ms, commands   301.4 ms, live 18/18
+  grid-6    batched    immediate   rep  6: update   306.3 ms, commands   310.5 ms, live 18/18
+  grid-6    batched    immediate   rep  7: update   303.8 ms, commands   307.7 ms, live 18/18
+  grid-6    batched    immediate   rep  8: update   303.7 ms, commands   308.1 ms, live 18/18
+  grid-6    batched    immediate   rep  9: update   308.4 ms, commands   314.7 ms, live 18/18
+  grid-6    batched    immediate   rep 10: update   297.7 ms, commands   303.3 ms, live 18/18
+  grid-6    batched    immediate   rep 11: update   297.8 ms, commands   303.4 ms, live 18/18
+  grid-6    batched    immediate   rep 12: update   270.7 ms, commands   275.0 ms, live 18/18
+  grid-6    batched    immediate   rep 13: update   266.3 ms, commands   271.8 ms, live 18/18
+  grid-6    batched    immediate   rep 14: update   268.2 ms, commands   272.6 ms, live 18/18
+  grid-6    batched    immediate   rep 15: update   261.2 ms, commands   265.4 ms, live 18/18
+  grid-6    batched    immediate   rep 16: update   268.0 ms, commands   273.0 ms, live 18/18
+  grid-6    batched    immediate   rep 17: update   610.2 ms, commands   615.1 ms, live 18/18
+  grid-6    batched    immediate   rep 18: update   267.1 ms, commands   273.2 ms, live 18/18
+  grid-6    batched    immediate   rep 19: update   262.3 ms, commands   266.8 ms, live 18/18
+  grid-6    batched    immediate   rep 20: update   263.9 ms, commands   269.6 ms, live 18/18
+  mesh-8    sequential immediate   rep  1: update  2274.7 ms, commands  2279.4 ms, live 27/27
+  mesh-8    sequential immediate   rep  2: update  2067.0 ms, commands  2072.0 ms, live 27/27
+  mesh-8    sequential immediate   rep  3: update  2087.5 ms, commands  2091.7 ms, live 27/27
+  mesh-8    sequential immediate   rep  4: update  2228.0 ms, commands  2232.2 ms, live 27/27
+  mesh-8    sequential immediate   rep  5: update  2089.8 ms, commands  2094.1 ms, live 27/27
+  mesh-8    sequential immediate   rep  6: update  2055.3 ms, commands  2058.0 ms, live 27/27
+  mesh-8    sequential immediate   rep  7: update  2115.7 ms, commands  2120.4 ms, live 27/27
+  mesh-8    sequential immediate   rep  8: update  2147.8 ms, commands  2151.6 ms, live 27/27
+  mesh-8    sequential immediate   rep  9: update  2152.7 ms, commands  2156.4 ms, live 27/27
+  mesh-8    sequential immediate   rep 10: update  2140.1 ms, commands  2146.5 ms, live 27/27
+  mesh-8    sequential immediate   rep 11: update  2136.5 ms, commands  2143.1 ms, live 27/27
+  mesh-8    sequential immediate   rep 12: update  2120.9 ms, commands  2123.9 ms, live 27/27
+  mesh-8    sequential immediate   rep 13: update  2132.6 ms, commands  2135.9 ms, live 27/27
+  mesh-8    sequential immediate   rep 14: update  2204.9 ms, commands  2208.7 ms, live 27/27
+  mesh-8    sequential immediate   rep 15: update  2161.1 ms, commands  2164.7 ms, live 27/27
+  mesh-8    sequential immediate   rep 16: update  2193.9 ms, commands  2197.9 ms, live 27/27
+  mesh-8    sequential immediate   rep 17: update  2152.8 ms, commands  2156.8 ms, live 27/27
+  mesh-8    sequential immediate   rep 18: update  2197.3 ms, commands  2200.4 ms, live 27/27
+  mesh-8    sequential immediate   rep 19: update  2187.9 ms, commands  2192.9 ms, live 27/27
+  mesh-8    sequential immediate   rep 20: update  2125.4 ms, commands  2129.7 ms, live 27/27
+  mesh-8    parallel   immediate   rep  1: update   366.1 ms, commands   375.4 ms, live 27/27
+  mesh-8    parallel   immediate   rep  2: update   365.7 ms, commands   374.8 ms, live 27/27
+  mesh-8    parallel   immediate   rep  3: update   349.1 ms, commands   355.4 ms, live 27/27
+  mesh-8    parallel   immediate   rep  4: update   362.3 ms, commands   367.3 ms, live 27/27
+  mesh-8    parallel   immediate   rep  5: update   358.6 ms, commands   361.1 ms, live 27/27
+  mesh-8    parallel   immediate   rep  6: update   532.6 ms, commands   535.3 ms, live 27/27
+  mesh-8    parallel   immediate   rep  7: update   362.7 ms, commands   366.1 ms, live 27/27
+  mesh-8    parallel   immediate   rep  8: update   414.0 ms, commands   417.2 ms, live 27/27
+  mesh-8    parallel   immediate   rep  9: update   493.4 ms, commands   497.4 ms, live 27/27
+  mesh-8    parallel   immediate   rep 10: update   314.5 ms, commands   317.9 ms, live 27/27
+  mesh-8    parallel   immediate   rep 11: update   314.9 ms, commands   320.1 ms, live 27/27
+  mesh-8    parallel   immediate   rep 12: update   313.0 ms, commands   317.8 ms, live 27/27
+  mesh-8    parallel   immediate   rep 13: update   344.3 ms, commands   348.6 ms, live 27/27
+  mesh-8    parallel   immediate   rep 14: update   332.4 ms, commands   337.6 ms, live 27/27
+  mesh-8    parallel   immediate   rep 15: update   336.2 ms, commands   341.3 ms, live 27/27
+  mesh-8    parallel   immediate   rep 16: update   327.6 ms, commands   331.8 ms, live 27/27
+  mesh-8    parallel   immediate   rep 17: update   331.4 ms, commands   337.7 ms, live 27/27
+  mesh-8    parallel   immediate   rep 18: update   320.0 ms, commands   325.5 ms, live 27/27
+  mesh-8    parallel   immediate   rep 19: update   329.9 ms, commands   334.2 ms, live 27/27
+  mesh-8    parallel   immediate   rep 20: update   348.0 ms, commands   352.4 ms, live 27/27
+  mesh-8    batched    immediate   rep  1: update   271.4 ms, commands   275.0 ms, live 27/27
+  mesh-8    batched    immediate   rep  2: update   317.0 ms, commands   321.5 ms, live 27/27
+  mesh-8    batched    immediate   rep  3: update   278.4 ms, commands   283.9 ms, live 27/27
+  mesh-8    batched    immediate   rep  4: update   282.4 ms, commands   288.6 ms, live 27/27
+  mesh-8    batched    immediate   rep  5: update   266.6 ms, commands   271.9 ms, live 27/27
+  mesh-8    batched    immediate   rep  6: update   278.5 ms, commands   282.2 ms, live 27/27
+  mesh-8    batched    immediate   rep  7: update   271.4 ms, commands   275.3 ms, live 27/27
+  mesh-8    batched    immediate   rep  8: update   271.6 ms, commands   275.9 ms, live 27/27
+  mesh-8    batched    immediate   rep  9: update   289.1 ms, commands   293.2 ms, live 27/27
+  mesh-8    batched    immediate   rep 10: update   276.6 ms, commands   280.4 ms, live 27/27
+  mesh-8    batched    immediate   rep 11: update   289.6 ms, commands   293.7 ms, live 27/27
+  mesh-8    batched    immediate   rep 12: update   271.9 ms, commands   276.2 ms, live 27/27
+  mesh-8    batched    immediate   rep 13: update   288.4 ms, commands   293.0 ms, live 27/27
+  mesh-8    batched    immediate   rep 14: update   275.2 ms, commands   279.9 ms, live 27/27
+  mesh-8    batched    immediate   rep 15: update   270.5 ms, commands   273.9 ms, live 27/27
+  mesh-8    batched    immediate   rep 16: update   272.4 ms, commands   276.6 ms, live 27/27
+  mesh-8    batched    immediate   rep 17: update   269.4 ms, commands   274.6 ms, live 27/27
+  mesh-8    batched    immediate   rep 18: update   281.0 ms, commands   286.6 ms, live 27/27
+  mesh-8    batched    immediate   rep 19: update   269.4 ms, commands   274.5 ms, live 27/27
+  mesh-8    batched    immediate   rep 20: update   604.5 ms, commands   608.2 ms, live 27/27
+
+# GCL update timing, 2026-10-08 13:56
+
+Testbed: 8 TTTech switches, CNC S2 on sw08 via the management LAN. 20 repetitions per row; values are median (p5-p95) in ms. GCL per port: each port's own OperControlList (gates unchanged). TCP_NODELAY: on.
+
+SSH session setup per switch (once, not part of any update): sw01 227, sw02 126, sw03 125, sw04 134, sw05 140, sw06 127, sw07 123, sw08 124 ms.
+
+## Network update time
+
+update = first command sent -> last port running the new GCL (its ConfigChangeTime). commands = first command sent -> last result back at the CNC. mixed = time old and new GCLs coexist in the network (last - first ConfigChangeTime). send / switch = sums over all ports of command-send time and exact on-switch time.
+
+| topology | switches | ports | strategy | mode | update | commands | mixed | send (sum) | switch (sum) | live ports |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1-switch | 1 | 4 | sequential | immediate | 310.0 (303.2-349.0) | 314.0 (307.4-353.3) | 236.0 (228.8-263.2) | 52.1 (50.0-65.3) | 249.2 (243.6-274.7) | 80/80 |
+| 1-switch | 1 | 4 | parallel | immediate | 341.4 (301.8-361.5) | 345.7 (305.0-366.1) | 260.4 (227.2-269.6) | 59.9 (50.7-66.8) | 268.9 (241.0-285.7) | 80/80 |
+| 1-switch | 1 | 4 | batched | immediate | 262.6 (257.1-594.2) | 266.6 (262.1-599.1) | 187.6 (183.2-210.4) | 17.0 (16.0-17.5) | 247.1 (242.4-579.0) | 80/80 |
+| line-4 | 4 | 8 | sequential | immediate | 651.7 (637.1-682.9) | 656.1 (642.0-687.3) | 570.8 (557.6-598.4) | 101.8 (99.8-105.4) | 528.2 (510.8-555.4) | 160/160 |
+| line-4 | 4 | 8 | parallel | immediate | 175.1 (170.0-190.8) | 179.8 (174.5-194.4) | 99.6 (95.2-112.0) | 115.1 (107.7-121.4) | 517.9 (498.8-548.9) | 160/160 |
+| line-4 | 4 | 8 | batched | immediate | 163.2 (152.8-183.7) | 169.1 (157.3-187.9) | 91.2 (79.2-104.8) | 68.4 (63.3-76.0) | 528.2 (502.2-554.6) | 160/160 |
+| ring-4 | 4 | 9 | sequential | immediate | 714.4 (630.4-798.7) | 718.8 (634.0-803.0) | 629.6 (559.2-716.8) | 119.2 (112.3-125.0) | 567.3 (491.5-653.1) | 180/180 |
+| ring-4 | 4 | 9 | parallel | immediate | 208.8 (195.2-232.5) | 213.2 (199.6-237.0) | 140.0 (129.6-161.6) | 123.3 (117.7-131.0) | 528.9 (500.9-553.0) | 180/180 |
+| ring-4 | 4 | 9 | batched | immediate | 176.7 (169.7-207.0) | 181.8 (174.3-211.4) | 108.8 (103.2-143.2) | 63.8 (61.4-67.4) | 529.0 (496.5-560.2) | 180/180 |
+| star-5 | 5 | 9 | sequential | immediate | 699.3 (677.7-822.6) | 704.4 (682.2-825.9) | 630.0 (609.6-752.8) | 115.5 (111.9-135.6) | 555.1 (536.3-693.7) | 180/180 |
+| star-5 | 5 | 9 | parallel | immediate | 323.6 (305.4-368.3) | 327.8 (309.4-373.0) | 253.6 (235.2-302.4) | 136.6 (120.2-153.1) | 587.0 (553.2-781.8) | 180/180 |
+| star-5 | 5 | 9 | batched | immediate | 266.3 (256.5-286.5) | 271.3 (260.6-292.2) | 194.8 (183.2-215.2) | 80.1 (75.2-96.1) | 562.8 (544.7-595.6) | 180/180 |
+| grid-6 | 6 | 18 | sequential | immediate | 1418.3 (1371.1-1601.0) | 1422.4 (1375.9-1606.1) | 1349.6 (1307.2-1538.4) | 237.1 (229.4-246.8) | 1118.1 (1076.6-1294.0) | 360/360 |
+| grid-6 | 6 | 18 | parallel | immediate | 320.6 (306.7-364.6) | 324.6 (310.9-370.7) | 248.0 (233.6-288.8) | 269.5 (254.3-304.8) | 1146.8 (1094.9-1247.4) | 360/360 |
+| grid-6 | 6 | 18 | batched | immediate | 296.6 (262.3-308.4) | 302.4 (266.8-314.7) | 230.0 (196.0-246.4) | 110.5 (101.8-124.1) | 1120.6 (1074.6-1177.5) | 360/360 |
+| mesh-8 | 8 | 27 | sequential | immediate | 2143.9 (2067.0-2228.0) | 2149.0 (2072.0-2232.2) | 2080.8 (2004.8-2164.0) | 355.4 (341.4-393.6) | 1687.7 (1632.5-1734.7) | 540/540 |
+| mesh-8 | 8 | 27 | parallel | immediate | 346.2 (314.5-493.4) | 350.5 (317.9-497.4) | 281.2 (252.0-426.4) | 388.9 (340.0-443.9) | 1624.5 (1588.9-1809.1) | 540/540 |
+| mesh-8 | 8 | 27 | batched | immediate | 275.9 (269.4-317.0) | 280.1 (273.9-321.5) | 209.6 (204.8-252.8) | 149.6 (138.6-163.7) | 1624.4 (1598.6-1700.6) | 540/540 |
+
+## Per port: where the time goes
+
+send = CNC issues the command -> the switch starts running it (channel open + exec request + shell start). switch = exact time on the switch: upload (write the list to a file) + `tsntool st wrcl` + `tsntool st configure`. activation = configure issued -> hardware runs the new list (ConfigChangeTime). return = result back at the CNC. Per-port send counts only the first port of a batched command.
+
+| strategy | mode | send | chan open | exec req | shell start | upload | wrcl | configure | switch | activation | return | RTT |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| sequential | immediate | 12.67 | 1.35 | 2.61 | 8.69 | 46.99 | 6.86 | 7.33 | 61.51 | 6.50 | 3.18 | 77.80 |
+| parallel | immediate | 14.09 | 1.89 | 2.80 | 8.61 | 46.22 | 6.89 | 7.77 | 60.85 | 6.55 | 3.37 | 79.34 |
+| batched | immediate | 15.13 | 2.99 | 3.76 | 8.36 | 46.14 | 6.86 | 7.60 | 60.69 | 6.50 | 3.19 | 175.36 |

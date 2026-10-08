@@ -1,0 +1,189 @@
+{
+  "pkg": "GCL_Schedules/dataset-testbed-2_2026-10-08/2-rl-c9on-matrix-S2rx",
+  "scenario": "mesh-8",
+  "strategy": "sequential",
+  "mode": "immediate",
+  "nodelay": false,
+  "target_gcl": "../GCL_Schedules/dataset-testbed-2_2026-10-08/2-rl-c9off-matrix/gcl",
+  "start_ns": 1791483333644561408,
+  "end_ns": 1791483363644561408,
+  "bin_ms": 10,
+  "nodes": [
+    "S1",
+    "S2"
+  ],
+  "skipped_nodes": [
+    "S3"
+  ],
+  "flows": [
+    1,
+    8,
+    9
+  ],
+  "updates": [
+    {
+      "label": "update",
+      "ports": 27,
+      "live_ports": 27,
+      "switches": 8,
+      "ssh_commands": 27,
+      "commands_ms": 2490.360165,
+      "update_ms": 2485.737277,
+      "configured_ms": 2486.445134,
+      "activation_spread_ms": 2420.0,
+      "send_ms_sum": 588.083384,
+      "switch_ms_sum": 1832.465439,
+      "switch_ms_max_per_switch": 298.465766,
+      "t_first_send": 1791483343644662723,
+      "t_last_cct": 1791483346130400000,
+      "t_first_cct": 1791483343710400000
+    },
+    {
+      "label": "restore",
+      "ports": 27,
+      "live_ports": 27,
+      "switches": 8,
+      "ssh_commands": 27,
+      "commands_ms": 2534.85923,
+      "update_ms": 2531.348697,
+      "configured_ms": 2532.81276,
+      "activation_spread_ms": 2454.4,
+      "send_ms_sum": 631.020409,
+      "switch_ms_sum": 1835.883629,
+      "switch_ms_max_per_switch": 288.914861,
+      "t_first_send": 1791483353644651303,
+      "t_last_cct": 1791483356176000000,
+      "t_first_cct": 1791483353721600000
+    }
+  ],
+  "phases": [
+    {
+      "phase": "before",
+      "start_ms": 0.0,
+      "length_ms": 10000.101315,
+      "sent": 112502,
+      "lost": 3,
+      "loss_pct": 0.0026666192601020426,
+      "lost_per_s": 0.2999969605807939,
+      "deadline_miss": 0,
+      "lat_p50_us": 29.724,
+      "lat_p99_us": 81.494,
+      "lat_max_us": 81.549
+    },
+    {
+      "phase": "during update 1",
+      "start_ms": 10000.101315,
+      "length_ms": 2485.737277,
+      "sent": 27963,
+      "lost": 0,
+      "loss_pct": 0.0,
+      "lost_per_s": 0.0,
+      "deadline_miss": 1,
+      "lat_p50_us": 93.728,
+      "lat_p99_us": 192.183,
+      "lat_max_us": 254.87
+    },
+    {
+      "phase": "after update 1",
+      "start_ms": 12485.838592,
+      "length_ms": 7514.251303,
+      "sent": 84537,
+      "lost": 3,
+      "loss_pct": 0.0035487419709712906,
+      "lost_per_s": 0.3992413720316056,
+      "deadline_miss": 0,
+      "lat_p50_us": 107.736,
+      "lat_p99_us": 131.74,
+      "lat_max_us": 131.783
+    },
+    {
+      "phase": "during update 2",
+      "start_ms": 20000.089895,
+      "length_ms": 2531.348697,
+      "sent": 28476,
+      "lost": 0,
+      "loss_pct": 0.0,
+      "lost_per_s": 0.0,
+      "deadline_miss": 0,
+      "lat_p50_us": 67.012,
+      "lat_p99_us": 131.759,
+      "lat_max_us": 131.784
+    },
+    {
+      "phase": "after update 2",
+      "start_ms": 22531.438592,
+      "length_ms": 7468.561408,
+      "sent": 84022,
+      "lost": 2,
+      "loss_pct": 0.002380328961462474,
+      "lost_per_s": 0.2677891886726253,
+      "deadline_miss": 0,
+      "lat_p50_us": 29.723,
+      "lat_p99_us": 81.493,
+      "lat_max_us": 81.544
+    }
+  ],
+  "per_flow": [
+    {
+      "flow": 1,
+      "sent": 150000,
+      "lost": 4,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 8,
+      "sent": 37500,
+      "lost": 1,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 9,
+      "sent": 150000,
+      "lost": 3,
+      "deadline_miss": 1
+    }
+  ],
+  "switch_qdrops": {
+    "sw01/p3": 0,
+    "sw01/p4": 0,
+    "sw01/p5": 0,
+    "sw02/p2": 0,
+    "sw02/p3": 0,
+    "sw02/p4": 0,
+    "sw02/p5": 0,
+    "sw03/p3": 0,
+    "sw03/p4": 0,
+    "sw03/p5": 0,
+    "sw04/p3": 0,
+    "sw04/p4": 0,
+    "sw04/p5": 0,
+    "sw05/p2": 0,
+    "sw05/p3": 0,
+    "sw05/p4": 0,
+    "sw05/p5": 0,
+    "sw06/p2": 0,
+    "sw06/p3": 0,
+    "sw06/p4": 0,
+    "sw06/p5": 0,
+    "sw07/p3": 0,
+    "sw07/p4": 0,
+    "sw07/p5": 0,
+    "sw08/p2": 0,
+    "sw08/p4": 0,
+    "sw08/p5": 0
+  },
+  "connect_ms": {
+    "sw01": 220.07442265748978,
+    "sw02": 142.57788192480803,
+    "sw03": 123.39880876243114,
+    "sw04": 131.39477465301752,
+    "sw05": 135.68041287362576,
+    "sw06": 126.73228979110718,
+    "sw07": 121.33826594799757,
+    "sw08": 125.09609665721655
+  },
+  "ptp": {
+    "S1": "active/active",
+    "S2": "active/active"
+  }
+}

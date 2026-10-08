@@ -1,0 +1,28 @@
+Node S1: 11 in-scope flow(s), cycle 800000 ns, basetime 1791467000383200000 ns (TAI)
+
+  id=1   sender   vlan=10  192.168.10.10 <-> 192.168.10.11  pcp=7 frame=500B (payload 450B) period=200000ns phase=0ns deadline=200000ns route=['S1', 'sw02', 'sw05', 'sw07', 'sw08', 'S2']
+  id=4   sender   vlan=11  192.168.11.10 <-> 192.168.11.11  pcp=6 frame=400B (payload 350B) period=800000ns phase=49920ns deadline=800000ns route=['S1', 'sw02', 'sw01', 'S3']
+  id=7   receiver vlan=12  192.168.12.11 <-> 192.168.12.10  pcp=7 frame=300B (payload 250B) period=400000ns phase=24960ns deadline=400000ns route=['S3', 'sw01', 'sw02', 'S1']
+  id=9   sender   vlan=13  192.168.13.10 <-> 192.168.13.11  pcp=6 frame=400B (payload 350B) period=200000ns phase=24960ns deadline=200000ns route=['S1', 'sw02', 'sw05', 'sw07', 'sw08', 'S2']
+  id=13  receiver vlan=24  192.168.24.11 <-> 192.168.24.10  pcp=7 frame=100B (payload 50B) period=400000ns phase=157120ns deadline=400000ns route=['S3', 'sw01', 'sw02', 'S1']
+  id=8   sender   vlan=27  192.168.27.10 <-> 192.168.27.11  pcp=6 frame=500B (payload 450B) period=800000ns phase=37440ns deadline=800000ns route=['S1', 'sw02', 'sw05', 'sw07', 'sw08', 'S2']
+  id=50  sender   vlan=28  192.168.28.10 <-> 192.168.28.11  pcp=7 frame=300B (payload 250B) period=800000ns phase=150080ns deadline=800000ns route=['S1', 'sw02', 'sw01', 'S3']
+  id=23  sender   vlan=34  192.168.34.10 <-> 192.168.34.11  pcp=6 frame=400B (payload 350B) period=400000ns phase=12480ns deadline=400000ns route=['S1', 'sw02', 'sw01', 'S3']
+  id=29  sender   vlan=35  192.168.35.10 <-> 192.168.35.11  pcp=6 frame=500B (payload 450B) period=400000ns phase=62400ns deadline=400000ns route=['S1', 'sw02', 'sw01', 'S3']
+  id=30  sender   vlan=40  192.168.40.10 <-> 192.168.40.11  pcp=6 frame=300B (payload 250B) period=200000ns phase=94400ns deadline=200000ns route=['S1', 'sw02', 'sw01', 'S3']
+  id=42  sender   vlan=41  192.168.41.10 <-> 192.168.41.11  pcp=6 frame=500B (payload 450B) period=200000ns phase=106880ns deadline=200000ns route=['S1', 'sw02', 'sw01', 'S3']
+
+9 sender / 2 receiver flow(s); sending 30 s from TAI 1791483410.604, NIC launch time, real-time on CPU 7 (tx) / 6 (rx) ...
+
+Summary:
+  id=1 sender: 150000 packet(s) sent, 0 skipped
+  id=4 sender: 37500 packet(s) sent, 0 skipped
+  id=7 receiver: 0 packets received
+  id=9 sender: 150000 packet(s) sent, 0 skipped
+  id=13 receiver: 0 packets received
+  id=8 sender: 37500 packet(s) sent, 0 skipped
+  id=50 sender: 37500 packet(s) sent, 0 skipped
+  id=23 sender: 75000 packet(s) sent, 0 skipped
+  id=29 sender: 75000 packet(s) sent, 0 skipped
+  id=30 sender: 150000 packet(s) sent, 0 skipped
+  id=42 sender: 150000 packet(s) sent, 0 skipped

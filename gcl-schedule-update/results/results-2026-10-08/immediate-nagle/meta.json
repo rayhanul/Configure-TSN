@@ -1,0 +1,177 @@
+{
+  "args": {
+    "topology": "/home/jdg24001/Documents/github/Configure-TSN/network-topology/network-topology-rtas-2027.json",
+    "scenarios": "/home/jdg24001/Documents/github/Configure-TSN/gcl-schedule-update/topologies.json",
+    "scenario": null,
+    "strategy": [
+      "sequential",
+      "parallel",
+      "batched"
+    ],
+    "mode": [
+      "immediate"
+    ],
+    "reps": 20,
+    "gap": 0.3,
+    "lead_seconds": 3.0,
+    "entries": null,
+    "nodelay": false,
+    "out": "results/results-2026-10-08/immediate-nagle",
+    "apply": true
+  },
+  "connect_ms": {
+    "sw01": 236.2819043919444,
+    "sw02": 157.70746115595102,
+    "sw03": 161.2009471282363,
+    "sw04": 139.2372315749526,
+    "sw05": 128.51516157388687,
+    "sw06": 127.01034639030695,
+    "sw07": 120.3281506896019,
+    "sw08": 124.82874281704426
+  },
+  "scenarios": {
+    "1-switch": {
+      "sw05": [
+        "p2",
+        "p3",
+        "p4",
+        "p5"
+      ]
+    },
+    "line-4": {
+      "sw07": [
+        "p3",
+        "p4"
+      ],
+      "sw08": [
+        "p2",
+        "p5"
+      ],
+      "sw02": [
+        "p2",
+        "p5"
+      ],
+      "sw05": [
+        "p2",
+        "p5"
+      ]
+    },
+    "ring-4": {
+      "sw06": [
+        "p2",
+        "p5"
+      ],
+      "sw08": [
+        "p2",
+        "p4",
+        "p5"
+      ],
+      "sw07": [
+        "p3",
+        "p4"
+      ],
+      "sw05": [
+        "p2",
+        "p4"
+      ]
+    },
+    "star-5": {
+      "sw02": [
+        "p2",
+        "p5"
+      ],
+      "sw05": [
+        "p2",
+        "p3",
+        "p4",
+        "p5"
+      ],
+      "sw06": [
+        "p5"
+      ],
+      "sw04": [
+        "p4"
+      ],
+      "sw07": [
+        "p3"
+      ]
+    },
+    "grid-6": {
+      "sw02": [
+        "p2",
+        "p3",
+        "p4",
+        "p5"
+      ],
+      "sw05": [
+        "p3",
+        "p4",
+        "p5"
+      ],
+      "sw06": [
+        "p3",
+        "p5"
+      ],
+      "sw04": [
+        "p3",
+        "p4",
+        "p5"
+      ],
+      "sw01": [
+        "p3",
+        "p4",
+        "p5"
+      ],
+      "sw03": [
+        "p3",
+        "p4",
+        "p5"
+      ]
+    },
+    "mesh-8": {
+      "sw02": [
+        "p2",
+        "p3",
+        "p4",
+        "p5"
+      ],
+      "sw05": [
+        "p2",
+        "p3",
+        "p4",
+        "p5"
+      ],
+      "sw06": [
+        "p2",
+        "p3",
+        "p4",
+        "p5"
+      ],
+      "sw04": [
+        "p3",
+        "p4",
+        "p5"
+      ],
+      "sw01": [
+        "p3",
+        "p4",
+        "p5"
+      ],
+      "sw03": [
+        "p3",
+        "p4",
+        "p5"
+      ],
+      "sw07": [
+        "p3",
+        "p4",
+        "p5"
+      ],
+      "sw08": [
+        "p2",
+        "p4",
+        "p5"
+      ]
+    }
+  }
+}

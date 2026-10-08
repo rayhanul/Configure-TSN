@@ -1,0 +1,13 @@
+{
+  "_comment": "Update scenarios on the physical 8-switch mesh (network-topology-rtas-2027.json). Each scenario updates the GCL of every port on its links (both ends) plus its end-station ports. 'switches' alone = the induced subgraph; 'edges' restricts it to those links; 'ports' lists ports explicitly. 'hosts' adds the end-station-facing ports of these switches.",
+  "1-switch": {"switches": ["sw05"], "ports": {"sw05": ["p2", "p3", "p4", "p5"]}},
+  "line-4":   {"switches": ["sw02", "sw05", "sw07", "sw08"], "hosts": true},
+  "ring-4":   {"switches": ["sw05", "sw06", "sw07", "sw08"],
+               "edges": [["sw05", "sw06"], ["sw06", "sw08"], ["sw08", "sw07"], ["sw07", "sw05"]],
+               "hosts": true},
+  "star-5":   {"switches": ["sw05", "sw02", "sw04", "sw06", "sw07"],
+               "edges": [["sw05", "sw02"], ["sw05", "sw04"], ["sw05", "sw06"], ["sw05", "sw07"]],
+               "hosts": true},
+  "grid-6":   {"switches": ["sw01", "sw02", "sw03", "sw04", "sw05", "sw06"], "hosts": true},
+  "mesh-8":   {"switches": ["sw01", "sw02", "sw03", "sw04", "sw05", "sw06", "sw07", "sw08"], "hosts": true}
+}

@@ -1,0 +1,146 @@
+{
+  "pkg": "GCL_Schedules/dataset-testbed-2_2026-10-08/2-rl-c9on-matrix-S2rx",
+  "scenario": "mesh-8",
+  "strategy": "sequential",
+  "mode": "immediate",
+  "nodelay": false,
+  "target_gcl": null,
+  "start_ns": 1791483257924004096,
+  "end_ns": 1791483287924004096,
+  "bin_ms": 10,
+  "nodes": [
+    "S1",
+    "S2"
+  ],
+  "skipped_nodes": [
+    "S3"
+  ],
+  "flows": [
+    1,
+    8,
+    9
+  ],
+  "updates": [
+    {
+      "label": "update",
+      "ports": 27,
+      "live_ports": 27,
+      "switches": 8,
+      "ssh_commands": 27,
+      "commands_ms": 2373.090028,
+      "update_ms": 2370.299517,
+      "configured_ms": 2371.014456,
+      "activation_spread_ms": 2299.2,
+      "send_ms_sum": 500.376807,
+      "switch_ms_sum": 1804.068215,
+      "switch_ms_max_per_switch": 308.130457,
+      "t_first_send": 1791483267924100483,
+      "t_last_cct": 1791483270294400000,
+      "t_first_cct": 1791483267995200000
+    }
+  ],
+  "phases": [
+    {
+      "phase": "before",
+      "start_ms": 0.0,
+      "length_ms": 10000.096387,
+      "sent": 112502,
+      "lost": 0,
+      "loss_pct": 0.0,
+      "lost_per_s": 0.0,
+      "deadline_miss": 0,
+      "lat_p50_us": 29.725,
+      "lat_p99_us": 81.495,
+      "lat_max_us": 81.544
+    },
+    {
+      "phase": "during update 1",
+      "start_ms": 10000.096387,
+      "length_ms": 2370.299517,
+      "sent": 26664,
+      "lost": 2,
+      "loss_pct": 0.007500750075007501,
+      "lost_per_s": 0.843775221509274,
+      "deadline_miss": 0,
+      "lat_p50_us": 29.711,
+      "lat_p99_us": 81.48039,
+      "lat_max_us": 81.516
+    },
+    {
+      "phase": "after update 1",
+      "start_ms": 12370.395904,
+      "length_ms": 17629.604096,
+      "sent": 198334,
+      "lost": 4,
+      "loss_pct": 0.0020167999435296018,
+      "lost_per_s": 0.22689108491707785,
+      "deadline_miss": 0,
+      "lat_p50_us": 29.719,
+      "lat_p99_us": 81.489,
+      "lat_max_us": 81.544
+    }
+  ],
+  "per_flow": [
+    {
+      "flow": 1,
+      "sent": 150000,
+      "lost": 3,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 8,
+      "sent": 37500,
+      "lost": 1,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 9,
+      "sent": 150000,
+      "lost": 2,
+      "deadline_miss": 0
+    }
+  ],
+  "switch_qdrops": {
+    "sw01/p3": 0,
+    "sw01/p4": 0,
+    "sw01/p5": 0,
+    "sw02/p2": 0,
+    "sw02/p3": 0,
+    "sw02/p4": 0,
+    "sw02/p5": 0,
+    "sw03/p3": 0,
+    "sw03/p4": 0,
+    "sw03/p5": 0,
+    "sw04/p3": 0,
+    "sw04/p4": 0,
+    "sw04/p5": 0,
+    "sw05/p2": 0,
+    "sw05/p3": 0,
+    "sw05/p4": 0,
+    "sw05/p5": 0,
+    "sw06/p2": 0,
+    "sw06/p3": 0,
+    "sw06/p4": 0,
+    "sw06/p5": 0,
+    "sw07/p3": 0,
+    "sw07/p4": 0,
+    "sw07/p5": 0,
+    "sw08/p2": 0,
+    "sw08/p4": 0,
+    "sw08/p5": 0
+  },
+  "connect_ms": {
+    "sw01": 216.55515115708113,
+    "sw02": 125.10374188423157,
+    "sw03": 124.33285731822252,
+    "sw04": 146.85609191656113,
+    "sw05": 128.73571179807186,
+    "sw06": 125.93420967459679,
+    "sw07": 138.6841954663396,
+    "sw08": 128.33916954696178
+  },
+  "ptp": {
+    "S1": "active/active",
+    "S2": "active/active"
+  }
+}

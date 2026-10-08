@@ -11,6 +11,7 @@ RX timestamp - NIC launch time, jitter, deadline misses. No timestamp comes from
 """
 
 import argparse
+import array
 import heapq
 import json
 import multiprocessing as mp
@@ -138,12 +139,18 @@ def realtime(cpu):
         print(f"[WARN] real-time setup failed: {e}", file=sys.stderr)
 
 
-def sender_proc(flows, basetime_ns, start_ns, end_ns, lead_ns, cpu, out):
+def write_log(path, log):
+    with open(path, "wb") as f:
+        log.tofile(f)
+
+
+def sender_proc(flows, basetime_ns, start_ns, end_ns, lead_ns, cpu, out, log_path=None):
     """all sender flows of this node in one loop, ordered by launch time. Each frame is handed to
-    the kernel lead_ns early with its launch time; the NIC sends it at exactly that time."""
+    the kernel lead_ns early with its launch time; the NIC sends it at exactly that time.
+    log_path: also write every sent frame as int64 (flow id, launch time)."""
     if cpu is not False:
         realtime(cpu)
-    socks, heap, stats = {}, [], {}
+    socks, heap, stats, log = {}, [], {}, array.array("q")
     for flow, stream in flows:
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         try:
@@ -173,18 +180,23 @@ def sender_proc(flows, basetime_ns, start_ns, end_ns, lead_ns, cpu, out):
             sock.sendmsg([make_payload(size, t)],
                          [(socket.SOL_SOCKET, SCM_TXTIME, struct.pack("Q", t))], 0, addr)
             stats[fid]["sent"] += 1
+            if log_path:
+                log.extend((fid, t))
         heapq.heappush(heap, (t + period, fid))
+    if log_path:
+        write_log(log_path, log)
     out.put(("sender", stats))
 
 
-def receiver_proc(flows, end_ns, rcvbuf, cpu, out):
+def receiver_proc(flows, end_ns, rcvbuf, cpu, out, log_path=None):
     """all receiver flows of this node in one epoll loop; latency = NIC RX timestamp - launch time,
-    kept as running sums. A frame without a NIC timestamp is counted, not measured."""
+    kept as running sums. A frame without a NIC timestamp is counted, not measured.
+    log_path: also write every received frame as int64 (flow id, launch time, NIC RX time or 0)."""
     if cpu is not False:
         realtime(cpu)
     sel = selectors.DefaultSelector()
     anc_size = socket.CMSG_SPACE(48)
-    stats = {}
+    stats, log = {}, array.array("q")
     for flow, stream in flows:
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_RCVBUF, rcvbuf)
@@ -192,7 +204,7 @@ def receiver_proc(flows, end_ns, rcvbuf, cpu, out):
         sock.bind((stream["ip"], flow["_port"]))
         sock.setblocking(False)
         st = stats[flow["id"]] = dict(n=0, no_ts=0, sum=0, sumsq=0, min=None, max=None, last=None,
-                                      absdiff=0, misses=0, deadline=flow["deadline"])
+                                      absdiff=0, misses=0, deadline=flow["deadline"], id=flow["id"])
         sel.register(sock, selectors.EVENT_READ, st)
 
     while tai_ns() < end_ns:
@@ -210,10 +222,12 @@ def receiver_proc(flows, end_ns, rcvbuf, cpu, out):
                     if level == socket.SOL_SOCKET and ctype == SCM_TIMESTAMPING and len(cdata) >= 48:
                         hw_s, hw_n = struct.unpack("2q", cdata[32:48])  # third timespec: raw hardware
                         rx = hw_s * 1_000_000_000 + hw_n
+                (tx,) = struct.unpack(HEADER_FMT, data[:HEADER_SIZE])
+                if log_path:
+                    log.extend((st["id"], tx, rx))
                 if not rx:
                     st["no_ts"] += 1
                     continue
-                (tx,) = struct.unpack(HEADER_FMT, data[:HEADER_SIZE])
                 lat = rx - tx
                 st["n"] += 1
                 st["sum"] += lat
@@ -224,6 +238,8 @@ def receiver_proc(flows, end_ns, rcvbuf, cpu, out):
                     st["absdiff"] += abs(lat - st["last"])
                 st["last"] = lat
                 st["misses"] += lat > st["deadline"]
+    if log_path:
+        write_log(log_path, log)
     out.put(("receiver", stats))
 
 
@@ -265,6 +281,9 @@ def main():
     ap.add_argument("--lead-us", type=float, default=1000,
                      help="hand each frame to the kernel this long before its launch time (default 1000)")
     ap.add_argument("--rcvbuf", type=int, default=4 << 20, help="SO_RCVBUF per receiver socket (default 4 MiB)")
+    ap.add_argument("--packet-log", default=None, metavar="PREFIX",
+                     help="also write every frame to PREFIX.tx (sent: flow id, launch time) and PREFIX.rx "
+                          "(received: flow id, launch time, NIC RX time), raw int64")
     ap.add_argument("--rt", action=argparse.BooleanOptionalAction, default=True,
                      help="pin sender/receiver to their own CPUs, SCHED_FIFO, CPU power-saving states off "
                           "(default; needs root)")
@@ -308,10 +327,13 @@ def main():
             print(f"[WARN] /dev/cpu_dma_latency: {e}", file=sys.stderr)
 
     out = mp.Queue()
-    procs = [mp.Process(target=receiver_proc, args=(receivers, end_ns + 300_000_000, args.rcvbuf, rx_cpu, out))]
+    log = args.packet_log
+    procs = [mp.Process(target=receiver_proc, args=(receivers, end_ns + 300_000_000, args.rcvbuf, rx_cpu, out,
+                                                    log and log + ".rx"))]
     if senders:
         procs.append(mp.Process(target=sender_proc,
-                                args=(senders, basetime_ns, start_ns, end_ns, lead_ns, tx_cpu, out)))
+                                args=(senders, basetime_ns, start_ns, end_ns, lead_ns, tx_cpu, out,
+                                      log and log + ".tx")))
     print(f"\n{len(senders)} sender / {len(receivers)} receiver flow(s); sending "
           f"{args.duration:g} s from TAI {start_ns / 1e9:.3f}, NIC launch time"
           + (f", real-time on CPU {tx_cpu} (tx) / {rx_cpu} (rx)" if args.rt else "") + " ...")
