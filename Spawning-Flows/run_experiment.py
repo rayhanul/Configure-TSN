@@ -308,6 +308,10 @@ def main():
     ap.add_argument("--duration", type=int, default=30)
     ap.add_argument("--lead", type=float, default=8, help="seconds from launch to the common sender start")
     ap.add_argument("--ping", action="store_true", help="ping every sender route first")
+    ap.add_argument("--lead-us", type=float, default=1000,
+                    help="hand each frame to the kernel this long before its launch time (default 1000, "
+                         "gen_traffic.py's own). More lead gives the Python sender more slack, but at 5000 "
+                         "S3's etf qdisc dropped ~10x more frames (2026-10-07), so raise it with care")
     ap.add_argument("--rt", action=argparse.BooleanOptionalAction, default=True,
                     help="real-time sender/receiver processes (default; see gen_traffic.py)")
     args = ap.parse_args()
@@ -339,12 +343,13 @@ def main():
     print("Counters before:")
     before = {"hosts": host_counters(nodes, info), "switches": switch_drops(topo, pkg)}
     print("Traffic:")
-    extra = "--rt" if args.rt else "--no-rt"
+    extra = ("--rt" if args.rt else "--no-rt") + f" --lead-us {args.lead_us:g}"
     run_traffic(nodes, pkg, out_dir, args.duration, args.lead, extra)
     print("Counters after:")
     after = {"hosts": host_counters(nodes, info), "switches": switch_drops(topo, pkg)}
     sent, recv, skipped = parse_logs(out_dir, names)
-    mode = "NIC launch time, NIC RX timestamps" + (", real-time processes" if args.rt else "")
+    mode = (f"NIC launch time ({args.lead_us:g} µs sender lead), NIC RX timestamps"
+            + (", real-time processes" if args.rt else ""))
     print()
     write_report(out_dir, pkg, schedule, sent, recv, skipped, info, pings, args.duration, started,
                  mode, before, after)
