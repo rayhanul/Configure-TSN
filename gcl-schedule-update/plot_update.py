@@ -216,11 +216,8 @@ def plot_per_switch(dirs):
         data.append((nodelay, sws, tx, up))
     data.sort(key=lambda x: x[0])  # default TCP first
     sws = data[0][1]
-    for _, _, tx, up in data:  # a final "Mean" group: average over the switches
-        tx["mean"] = statistics.fmean(tx[s] for s in sws)
-        up["mean"] = statistics.fmean(up[s] for s in sws)
-    cats = sws + ["mean"]
-    pos = np.append(np.arange(len(sws)), len(sws) + 0.4)
+    cats = sws
+    pos = np.arange(len(sws))
     style = {"font.family": "serif", "font.serif": ["Times New Roman", "Times", "STIXGeneral", "DejaVu Serif"],
              "mathtext.fontset": "stix", "font.size": 8, "axes.labelsize": 8.5, "xtick.labelsize": 8,
              "ytick.labelsize": 8, "legend.fontsize": 7.5, "axes.linewidth": 0.6, "grid.linewidth": 0.4,
@@ -245,9 +242,7 @@ def plot_per_switch(dirs):
                 ax.text(xi, ti / 2, f"{ti:.1f}", ha="center", va="center", fontsize=6,
                         color="white" if not nodelay else INK)
                 ax.text(xi, ti + ui / 2, f"{ui:.1f}", ha="center", va="center", fontsize=6, color=INK)
-        ax.axvline(len(sws) - 0.3, color=INK2, lw=0.6, ls=(0, (3, 2)))
-        ax.set_xticks(pos, [s.replace("sw0", "SW") for s in sws] + ["Mean"])
-        ax.get_xticklabels()[-1].set_fontweight("bold")
+        ax.set_xticks(pos, [s.replace("sw0", "SW") for s in sws])
         ax.set_xlabel("Switch")
         ax.set_ylabel("Time (ms)")
         ax.set_ylim(0, max(tx[s] + up[s] for _, _, tx, up in data for s in cats) * 1.18)
