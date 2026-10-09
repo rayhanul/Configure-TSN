@@ -1,0 +1,419 @@
+{
+  "pkg": "GCL_Schedules/prob3-heuristic-c9-off-hw/1-heuristic-c9off-matrix",
+  "scenario": "mesh-8",
+  "strategy": "sequential",
+  "mode": "immediate",
+  "nodelay": false,
+  "target_gcl": "../GCL_Schedules/prob3-heuristic-c9-off-hw/1-heuristic-c9off-matrix/gcl",
+  "start_ns": 1791560941770184704,
+  "end_ns": 1791560971770184704,
+  "bin_ms": 10,
+  "nodes": [
+    "S1",
+    "S2",
+    "S3"
+  ],
+  "skipped_nodes": [],
+  "flows": [
+    1,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    22,
+    23,
+    25,
+    26,
+    27,
+    29,
+    30,
+    32,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    45,
+    46,
+    47,
+    49,
+    50
+  ],
+  "updates": [
+    {
+      "label": "update",
+      "ports": 27,
+      "live_ports": 27,
+      "switches": 8,
+      "ssh_commands": 27,
+      "commands_ms": 2529.405869,
+      "update_ms": 2525.71109,
+      "configured_ms": 2527.388737,
+      "activation_spread_ms": 2459.200249,
+      "send_ms_sum": 645.038174,
+      "switch_ms_sum": 1816.304965,
+      "switch_ms_max_per_switch": 311.652171,
+      "t_first_send": 1791560951770288910,
+      "t_last_cct": 1791560954296000000,
+      "t_first_cct": 1791560951836799751
+    }
+  ],
+  "phases": [
+    {
+      "phase": "before",
+      "start_ms": 0.0,
+      "length_ms": 10000.104206,
+      "sent": 1062507,
+      "lost": 11,
+      "loss_pct": 0.0010352872969307497,
+      "lost_per_s": 1.0999885374594467,
+      "deadline_miss": 1,
+      "lat_p50_us": 19.835,
+      "lat_p99_us": 598.082,
+      "lat_max_us": 598.381
+    },
+    {
+      "phase": "during update 1",
+      "start_ms": 10000.104206,
+      "length_ms": 2525.71109,
+      "sent": 268350,
+      "lost": 4,
+      "loss_pct": 0.001490590646543693,
+      "lost_per_s": 1.5837124110659861,
+      "deadline_miss": 0,
+      "lat_p50_us": 19.836,
+      "lat_p99_us": 598.098,
+      "lat_max_us": 598.399
+    },
+    {
+      "phase": "after update 1",
+      "start_ms": 12525.815296,
+      "length_ms": 17474.184704,
+      "sent": 1856361,
+      "lost": 17265,
+      "loss_pct": 0.9300453952652529,
+      "lost_per_s": 988.0289291006455,
+      "deadline_miss": 192,
+      "lat_p50_us": 19.81,
+      "lat_p99_us": 598.085,
+      "lat_max_us": 321200.53
+    }
+  ],
+  "per_flow": [
+    {
+      "flow": 1,
+      "sent": 149998,
+      "lost": 13,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 3,
+      "sent": 149998,
+      "lost": 18,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 4,
+      "sent": 37494,
+      "lost": 398,
+      "deadline_miss": 7
+    },
+    {
+      "flow": 5,
+      "sent": 75000,
+      "lost": 791,
+      "deadline_miss": 11
+    },
+    {
+      "flow": 6,
+      "sent": 75000,
+      "lost": 792,
+      "deadline_miss": 10
+    },
+    {
+      "flow": 7,
+      "sent": 37500,
+      "lost": 1,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 8,
+      "sent": 37500,
+      "lost": 1,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 9,
+      "sent": 149998,
+      "lost": 1609,
+      "deadline_miss": 12
+    },
+    {
+      "flow": 10,
+      "sent": 37486,
+      "lost": 0,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 11,
+      "sent": 37500,
+      "lost": 403,
+      "deadline_miss": 3
+    },
+    {
+      "flow": 12,
+      "sent": 37500,
+      "lost": 0,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 13,
+      "sent": 74984,
+      "lost": 2,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 14,
+      "sent": 149988,
+      "lost": 1597,
+      "deadline_miss": 15
+    },
+    {
+      "flow": 15,
+      "sent": 75000,
+      "lost": 787,
+      "deadline_miss": 16
+    },
+    {
+      "flow": 16,
+      "sent": 149998,
+      "lost": 18,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 17,
+      "sent": 37500,
+      "lost": 1,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 18,
+      "sent": 74999,
+      "lost": 804,
+      "deadline_miss": 5
+    },
+    {
+      "flow": 19,
+      "sent": 74999,
+      "lost": 797,
+      "deadline_miss": 9
+    },
+    {
+      "flow": 20,
+      "sent": 149998,
+      "lost": 13,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 22,
+      "sent": 75000,
+      "lost": 786,
+      "deadline_miss": 17
+    },
+    {
+      "flow": 23,
+      "sent": 149955,
+      "lost": 1598,
+      "deadline_miss": 14
+    },
+    {
+      "flow": 25,
+      "sent": 37489,
+      "lost": 401,
+      "deadline_miss": 4
+    },
+    {
+      "flow": 26,
+      "sent": 74999,
+      "lost": 807,
+      "deadline_miss": 5
+    },
+    {
+      "flow": 27,
+      "sent": 37494,
+      "lost": 1,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 29,
+      "sent": 75000,
+      "lost": 792,
+      "deadline_miss": 10
+    },
+    {
+      "flow": 30,
+      "sent": 74999,
+      "lost": 11,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 32,
+      "sent": 74980,
+      "lost": 795,
+      "deadline_miss": 12
+    },
+    {
+      "flow": 34,
+      "sent": 149953,
+      "lost": 4,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 35,
+      "sent": 74999,
+      "lost": 801,
+      "deadline_miss": 8
+    },
+    {
+      "flow": 36,
+      "sent": 37500,
+      "lost": 0,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 37,
+      "sent": 37500,
+      "lost": 401,
+      "deadline_miss": 4
+    },
+    {
+      "flow": 38,
+      "sent": 37500,
+      "lost": 1,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 39,
+      "sent": 37486,
+      "lost": 2,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 40,
+      "sent": 37485,
+      "lost": 0,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 41,
+      "sent": 149998,
+      "lost": 18,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 42,
+      "sent": 74999,
+      "lost": 806,
+      "deadline_miss": 5
+    },
+    {
+      "flow": 43,
+      "sent": 37500,
+      "lost": 400,
+      "deadline_miss": 5
+    },
+    {
+      "flow": 45,
+      "sent": 74973,
+      "lost": 795,
+      "deadline_miss": 13
+    },
+    {
+      "flow": 46,
+      "sent": 37500,
+      "lost": 403,
+      "deadline_miss": 3
+    },
+    {
+      "flow": 47,
+      "sent": 37500,
+      "lost": 400,
+      "deadline_miss": 5
+    },
+    {
+      "flow": 49,
+      "sent": 74999,
+      "lost": 11,
+      "deadline_miss": 0
+    },
+    {
+      "flow": 50,
+      "sent": 74970,
+      "lost": 2,
+      "deadline_miss": 0
+    }
+  ],
+  "switch_qdrops": {
+    "sw01/p3": 5,
+    "sw01/p4": 4781,
+    "sw01/p5": 0,
+    "sw02/p2": 2769,
+    "sw02/p3": 1969,
+    "sw02/p4": 0,
+    "sw02/p5": 0,
+    "sw03/p3": 0,
+    "sw03/p4": 0,
+    "sw03/p5": 0,
+    "sw04/p3": 0,
+    "sw04/p4": 0,
+    "sw04/p5": 0,
+    "sw05/p2": 3578,
+    "sw05/p3": 0,
+    "sw05/p4": 0,
+    "sw05/p5": 0,
+    "sw06/p2": 0,
+    "sw06/p3": 0,
+    "sw06/p4": 0,
+    "sw06/p5": 0,
+    "sw07/p3": 2375,
+    "sw07/p4": 0,
+    "sw07/p5": 0,
+    "sw08/p2": 0,
+    "sw08/p4": 1573,
+    "sw08/p5": 0
+  },
+  "connect_ms": {
+    "sw01": 223.70590269565582,
+    "sw02": 123.40880185365677,
+    "sw03": 123.70024062693119,
+    "sw04": 139.33962490409613,
+    "sw05": 136.41989137977362,
+    "sw06": 126.1407257989049,
+    "sw07": 120.82287948578596,
+    "sw08": 128.7185987457633
+  },
+  "ptp": {
+    "S1": "active/active",
+    "S2": "active/active",
+    "S3": "active/active"
+  }
+}

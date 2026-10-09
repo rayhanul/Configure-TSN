@@ -14,7 +14,7 @@
         "peer_ip": "192.168.10.11",
         "route": "S3 -> sw01 -> sw02 -> S1"
       },
-      "objects_4": {
+      "S1_objects_4": {
         "role": "receiver",
         "flow_id": "4",
         "vlan": 11,
@@ -24,7 +24,7 @@
         "peer_ip": "192.168.11.10",
         "route": "S1 -> sw02 -> sw01 -> S3"
       },
-      "objects_8": {
+      "S2_objects_8": {
         "role": "receiver",
         "flow_id": "8",
         "vlan": 13,
@@ -44,7 +44,7 @@
         "peer_ip": "192.168.14.11",
         "route": "S3 -> sw01 -> sw03 -> sw06 -> sw08 -> S2"
       },
-      "objects_15": {
+      "S2_objects_15": {
         "role": "receiver",
         "flow_id": "15",
         "vlan": 16,
@@ -54,7 +54,7 @@
         "peer_ip": "192.168.16.10",
         "route": "S2 -> sw08 -> sw06 -> sw03 -> sw01 -> S3"
       },
-      "objects_17": {
+      "S2_objects_17": {
         "role": "receiver",
         "flow_id": "17",
         "vlan": 17,
@@ -124,7 +124,7 @@
         "peer_ip": "192.168.25.11",
         "route": "S3 -> sw01 -> sw03 -> sw06 -> sw08 -> S2"
       },
-      "objects_10": {
+      "S1_objects_10": {
         "role": "receiver",
         "flow_id": "10",
         "vlan": 28,
@@ -134,7 +134,7 @@
         "peer_ip": "192.168.28.10",
         "route": "S1 -> sw02 -> sw01 -> S3"
       },
-      "objects_39": {
+      "S1_objects_39": {
         "role": "receiver",
         "flow_id": "39",
         "vlan": 29,
@@ -164,7 +164,7 @@
         "peer_ip": "192.168.31.11",
         "route": "S3 -> sw01 -> sw02 -> S1"
       },
-      "objects_27": {
+      "S1_objects_27": {
         "role": "receiver",
         "flow_id": "27",
         "vlan": 32,
@@ -184,7 +184,7 @@
         "peer_ip": "192.168.33.11",
         "route": "S3 -> sw01 -> sw02 -> S1"
       },
-      "objects_38": {
+      "S2_objects_38": {
         "role": "receiver",
         "flow_id": "38",
         "vlan": 35,
@@ -204,7 +204,7 @@
         "peer_ip": "192.168.37.11",
         "route": "S3 -> sw01 -> sw03 -> sw06 -> sw08 -> S2"
       },
-      "objects_32": {
+      "S1_objects_32": {
         "role": "receiver",
         "flow_id": "32",
         "vlan": 38,
@@ -224,7 +224,7 @@
         "peer_ip": "192.168.39.11",
         "route": "S3 -> sw01 -> sw02 -> S1"
       },
-      "objects_45": {
+      "S1_objects_45": {
         "role": "receiver",
         "flow_id": "45",
         "vlan": 41,
@@ -234,7 +234,7 @@
         "peer_ip": "192.168.41.10",
         "route": "S1 -> sw02 -> sw01 -> S3"
       },
-      "objects_22": {
+      "S2_objects_22": {
         "role": "receiver",
         "flow_id": "22",
         "vlan": 42,
@@ -301,7 +301,7 @@
     "management_ip": "137.99.253.118",
     "cnc": false,
     "streams": {
-      "objects_1": {
+      "S3_objects_1": {
         "role": "receiver",
         "flow_id": "1",
         "vlan": 10,
@@ -321,7 +321,7 @@
         "peer_ip": "192.168.11.11",
         "route": "S1 -> sw02 -> sw01 -> S3"
       },
-      "objects_5": {
+      "S2_objects_5": {
         "role": "receiver",
         "flow_id": "5",
         "vlan": 12,
@@ -341,7 +341,7 @@
         "peer_ip": "192.168.15.11",
         "route": "S1 -> sw02 -> sw05 -> sw07 -> sw08 -> S2"
       },
-      "objects_19": {
+      "S3_objects_19": {
         "role": "receiver",
         "flow_id": "19",
         "vlan": 18,
@@ -351,7 +351,7 @@
         "peer_ip": "192.168.18.10",
         "route": "S3 -> sw01 -> sw02 -> S1"
       },
-      "objects_20": {
+      "S3_objects_20": {
         "role": "receiver",
         "flow_id": "20",
         "vlan": 19,
@@ -361,7 +361,7 @@
         "peer_ip": "192.168.19.10",
         "route": "S3 -> sw01 -> sw02 -> S1"
       },
-      "objects_6": {
+      "S2_objects_6": {
         "role": "receiver",
         "flow_id": "6",
         "vlan": 22,
@@ -381,7 +381,7 @@
         "peer_ip": "192.168.23.11",
         "route": "S1 -> sw02 -> sw05 -> sw07 -> sw08 -> S2"
       },
-      "objects_7": {
+      "S2_objects_7": {
         "role": "receiver",
         "flow_id": "7",
         "vlan": 26,
@@ -391,7 +391,7 @@
         "peer_ip": "192.168.26.10",
         "route": "S2 -> sw08 -> sw07 -> sw05 -> sw02 -> S1"
       },
-      "objects_12": {
+      "S2_objects_12": {
         "role": "receiver",
         "flow_id": "12",
         "vlan": 27,
@@ -421,7 +421,7 @@
         "peer_ip": "192.168.29.11",
         "route": "S1 -> sw02 -> sw01 -> S3"
       },
-      "objects_43": {
+      "S3_objects_43": {
         "role": "receiver",
         "flow_id": "43",
         "vlan": 30,
@@ -431,7 +431,7 @@
         "peer_ip": "192.168.30.10",
         "route": "S3 -> sw01 -> sw02 -> S1"
       },
-      "objects_47": {
+      "S3_objects_47": {
         "role": "receiver",
         "flow_id": "47",
         "vlan": 31,
@@ -451,7 +451,7 @@
         "peer_ip": "192.168.32.11",
         "route": "S1 -> sw02 -> sw01 -> S3"
       },
-      "objects_37": {
+      "S3_objects_37": {
         "role": "receiver",
         "flow_id": "37",
         "vlan": 33,
@@ -491,7 +491,7 @@
         "peer_ip": "192.168.38.11",
         "route": "S1 -> sw02 -> sw01 -> S3"
       },
-      "objects_35": {
+      "S3_objects_35": {
         "role": "receiver",
         "flow_id": "35",
         "vlan": 39,
@@ -501,7 +501,7 @@
         "peer_ip": "192.168.39.10",
         "route": "S3 -> sw01 -> sw02 -> S1"
       },
-      "objects_36": {
+      "S2_objects_36": {
         "role": "receiver",
         "flow_id": "36",
         "vlan": 40,
@@ -521,7 +521,7 @@
         "peer_ip": "192.168.41.11",
         "route": "S1 -> sw02 -> sw01 -> S3"
       },
-      "objects_29": {
+      "S2_objects_29": {
         "role": "receiver",
         "flow_id": "29",
         "vlan": 43,
@@ -541,7 +541,7 @@
         "peer_ip": "192.168.47.11",
         "route": "S1 -> sw02 -> sw05 -> sw07 -> sw08 -> S2"
       },
-      "objects_41": {
+      "S3_objects_41": {
         "role": "receiver",
         "flow_id": "41",
         "vlan": 48,
@@ -598,7 +598,7 @@
         "peer_ip": "192.168.13.11",
         "route": "S2 -> sw08 -> sw06 -> sw03 -> sw01 -> S3"
       },
-      "objects_9": {
+      "S3_objects_9": {
         "role": "receiver",
         "flow_id": "9",
         "vlan": 14,
@@ -608,7 +608,7 @@
         "peer_ip": "192.168.14.10",
         "route": "S3 -> sw01 -> sw03 -> sw06 -> sw08 -> S2"
       },
-      "objects_14": {
+      "S1_objects_14": {
         "role": "receiver",
         "flow_id": "14",
         "vlan": 15,
@@ -638,7 +638,7 @@
         "peer_ip": "192.168.17.11",
         "route": "S2 -> sw08 -> sw06 -> sw03 -> sw01 -> S3"
       },
-      "objects_3": {
+      "S3_objects_3": {
         "role": "receiver",
         "flow_id": "3",
         "vlan": 20,
@@ -648,7 +648,7 @@
         "peer_ip": "192.168.20.10",
         "route": "S3 -> sw01 -> sw03 -> sw06 -> sw08 -> S2"
       },
-      "objects_16": {
+      "S3_objects_16": {
         "role": "receiver",
         "flow_id": "16",
         "vlan": 21,
@@ -668,7 +668,7 @@
         "peer_ip": "192.168.22.11",
         "route": "S2 -> sw08 -> sw07 -> sw05 -> sw02 -> S1"
       },
-      "objects_13": {
+      "S1_objects_13": {
         "role": "receiver",
         "flow_id": "13",
         "vlan": 23,
@@ -678,7 +678,7 @@
         "peer_ip": "192.168.23.10",
         "route": "S1 -> sw02 -> sw05 -> sw07 -> sw08 -> S2"
       },
-      "objects_18": {
+      "S3_objects_18": {
         "role": "receiver",
         "flow_id": "18",
         "vlan": 24,
@@ -688,7 +688,7 @@
         "peer_ip": "192.168.24.10",
         "route": "S3 -> sw01 -> sw03 -> sw06 -> sw08 -> S2"
       },
-      "objects_11": {
+      "S3_objects_11": {
         "role": "receiver",
         "flow_id": "11",
         "vlan": 25,
@@ -718,7 +718,7 @@
         "peer_ip": "192.168.27.11",
         "route": "S2 -> sw08 -> sw07 -> sw05 -> sw02 -> S1"
       },
-      "objects_25": {
+      "S1_objects_25": {
         "role": "receiver",
         "flow_id": "25",
         "vlan": 34,
@@ -738,7 +738,7 @@
         "peer_ip": "192.168.35.11",
         "route": "S2 -> sw08 -> sw06 -> sw03 -> sw01 -> S3"
       },
-      "objects_40": {
+      "S1_objects_40": {
         "role": "receiver",
         "flow_id": "40",
         "vlan": 36,
@@ -748,7 +748,7 @@
         "peer_ip": "192.168.36.10",
         "route": "S1 -> sw02 -> sw05 -> sw07 -> sw08 -> S2"
       },
-      "objects_46": {
+      "S3_objects_46": {
         "role": "receiver",
         "flow_id": "46",
         "vlan": 37,
@@ -788,7 +788,7 @@
         "peer_ip": "192.168.43.11",
         "route": "S2 -> sw08 -> sw07 -> sw05 -> sw02 -> S1"
       },
-      "objects_30": {
+      "S3_objects_30": {
         "role": "receiver",
         "flow_id": "30",
         "vlan": 44,
@@ -798,7 +798,7 @@
         "peer_ip": "192.168.44.10",
         "route": "S3 -> sw01 -> sw03 -> sw06 -> sw08 -> S2"
       },
-      "objects_42": {
+      "S3_objects_42": {
         "role": "receiver",
         "flow_id": "42",
         "vlan": 45,
@@ -808,7 +808,7 @@
         "peer_ip": "192.168.45.10",
         "route": "S3 -> sw01 -> sw03 -> sw06 -> sw08 -> S2"
       },
-      "objects_49": {
+      "S3_objects_49": {
         "role": "receiver",
         "flow_id": "49",
         "vlan": 46,
@@ -818,7 +818,7 @@
         "peer_ip": "192.168.46.10",
         "route": "S3 -> sw01 -> sw03 -> sw06 -> sw08 -> S2"
       },
-      "objects_50": {
+      "S1_objects_50": {
         "role": "receiver",
         "flow_id": "50",
         "vlan": 47,
@@ -828,7 +828,7 @@
         "peer_ip": "192.168.47.10",
         "route": "S1 -> sw02 -> sw05 -> sw07 -> sw08 -> S2"
       },
-      "objects_26": {
+      "S3_objects_26": {
         "role": "receiver",
         "flow_id": "26",
         "vlan": 49,
@@ -838,7 +838,7 @@
         "peer_ip": "192.168.49.10",
         "route": "S3 -> sw01 -> sw03 -> sw06 -> sw08 -> S2"
       },
-      "objects_34": {
+      "S1_objects_34": {
         "role": "receiver",
         "flow_id": "34",
         "vlan": 50,
@@ -848,7 +848,7 @@
         "peer_ip": "192.168.50.10",
         "route": "S1 -> sw02 -> sw05 -> sw07 -> sw08 -> S2"
       },
-      "objects_23": {
+      "S1_objects_23": {
         "role": "receiver",
         "flow_id": "23",
         "vlan": 51,
