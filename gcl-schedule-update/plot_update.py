@@ -4,11 +4,15 @@ plot_update.py -- figures for measure_update.py and loss_during_update.py.
 
     python3 plot_update.py timing results/<date>/immediate-nagle results/<date>/immediate-nodelay
     python3 plot_update.py loss <pkg>/results/update-loss-<date>
+    python3 plot_update.py switches results/<date>/immediate-nagle results/<date>/immediate-nodelay
 
 timing: network update time per topology and strategy (median, p5-p95), and where one port's
 update time goes (send / on-switch upload, wrcl, configure / return). Writes PNGs into the
 first directory's parent.  loss: lost frames, deadline misses and max latency per bin over the
 run, with the before / during / after phases of every update shaded. Writes loss_timeline.png.
+switches: per switch, mean transmission time (CNC sends the command -> the switch starts running
+it) plus update time with the list already on the switch (wrcl issued -> new GCL live). Writes
+per_switch_activation.png next to the runs.
 """
 
 import csv
@@ -197,11 +201,78 @@ def plot_loss(d):
     print(f"wrote {p1}\nwrote {p2}")
 
 
+def plot_per_switch(dirs):
+    """paper figure, no title: per switch, CNC transmission + on-switch update, per TCP setting."""
+    out_dir = os.path.dirname(os.path.abspath(dirs[0]))
+    data = []
+    for d in dirs:
+        rows = [r for r in read_csv(os.path.join(d, "ports.csv")) if r.get("live") == "1"]
+        sws = sorted({r["switch"] for r in rows})
+        tx = {sw: statistics.fmean((int(r["sw_a"]) - int(r["t_send"])) / 1e6 for r in rows
+                                   if r["switch"] == sw and r["pos_in_exec"] == "0") for sw in sws}
+        up = {sw: statistics.fmean((int(r["cct"]) - int(r["sw_b"])) / 1e6 for r in rows
+                                   if r["switch"] == sw) for sw in sws}
+        nodelay = json.load(open(os.path.join(d, "meta.json")))["args"]["nodelay"]
+        data.append((nodelay, sws, tx, up))
+    data.sort(key=lambda x: x[0])  # default TCP first
+    sws = data[0][1]
+    for _, _, tx, up in data:  # a final "Mean" group: average over the switches
+        tx["mean"] = statistics.fmean(tx[s] for s in sws)
+        up["mean"] = statistics.fmean(up[s] for s in sws)
+    cats = sws + ["mean"]
+    pos = np.append(np.arange(len(sws)), len(sws) + 0.4)
+    style = {"font.family": "serif", "font.serif": ["Times New Roman", "Times", "STIXGeneral", "DejaVu Serif"],
+             "mathtext.fontset": "stix", "font.size": 8, "axes.labelsize": 8.5, "xtick.labelsize": 8,
+             "ytick.labelsize": 8, "legend.fontsize": 7.5, "axes.linewidth": 0.6, "grid.linewidth": 0.4,
+             "xtick.major.width": 0.6, "ytick.major.width": 0.6}
+    # muted slate purple / pale cream / dusty rose: OKLab distance >= 20 for every pair, also under
+    # simulated protan, deutan and tritan vision; labels white on purple, dark on the lighter fills
+    tx_col = {False: "#5d587a", True: "#e2ddb8"}  # transmission: default TCP / TCP_NODELAY
+    up_col = "#c08d80"                             # GCL update on the switch
+    with plt.rc_context(style):
+        fig, ax = plt.subplots(figsize=(7.0, 2.4))
+        w = 0.4
+        for k, (nodelay, _, tx, up) in enumerate(data):
+            x = pos + (k - (len(data) - 1) / 2) * (w + 0.02)
+            t = np.array([tx[s] for s in cats])
+            u = np.array([up[s] for s in cats])
+            ax.bar(x, t, w, color=tx_col[nodelay], edgecolor="white", lw=0.6,
+                   label="Transmission, TCP_NODELAY " + ("on" if nodelay else "off (default)"))
+            ax.bar(x, u, w, bottom=t, color=up_col, edgecolor="white", lw=0.6,
+                   label=None if k else "GCL update on switch")
+            for xi, ti, ui in zip(x, t, u):
+                ax.text(xi, ti + ui + 0.5, f"{ti + ui:.1f}", ha="center", va="bottom", fontsize=6.5, color=INK)
+                ax.text(xi, ti / 2, f"{ti:.1f}", ha="center", va="center", fontsize=6,
+                        color="white" if not nodelay else INK)
+                ax.text(xi, ti + ui / 2, f"{ui:.1f}", ha="center", va="center", fontsize=6, color=INK)
+        ax.axvline(len(sws) - 0.3, color=INK2, lw=0.6, ls=(0, (3, 2)))
+        ax.set_xticks(pos, [s.replace("sw0", "SW") for s in sws] + ["Mean"])
+        ax.get_xticklabels()[-1].set_fontweight("bold")
+        ax.set_xlabel("Switch")
+        ax.set_ylabel("Time (ms)")
+        ax.set_ylim(0, max(tx[s] + up[s] for _, _, tx, up in data for s in cats) * 1.18)
+        ax.set_xlim(pos[0] - 0.6, pos[-1] + 0.6)
+        ax.grid(axis="x", visible=False)
+        ax.tick_params(length=2.5)
+        h, l = ax.get_legend_handles_labels()
+        order = [0, 2, 1] if len(h) == 3 else range(len(h))
+        ax.legend([h[i] for i in order], [l[i] for i in order], ncol=3, loc="upper center",
+                  bbox_to_anchor=(0.5, 1.14), frameon=False, columnspacing=1.5, handlelength=1.6)
+        fig.tight_layout(pad=0.3)
+        paths = [os.path.join(out_dir, f"per_switch_activation.{ext}") for ext in ("pdf", "png")]
+        fig.savefig(paths[0])
+        fig.savefig(paths[1], dpi=300)
+        plt.close(fig)
+    print("wrote " + ", ".join(paths))
+
+
 if __name__ == "__main__":
-    if len(sys.argv) < 3 or sys.argv[1] not in ("timing", "loss"):
+    if len(sys.argv) < 3 or sys.argv[1] not in ("timing", "loss", "switches"):
         sys.exit(__doc__)
     if sys.argv[1] == "timing":
         plot_timing(sys.argv[2:])
+    elif sys.argv[1] == "switches":
+        plot_per_switch(sys.argv[2:])
     else:
         for d in sys.argv[2:]:
             plot_loss(d)
