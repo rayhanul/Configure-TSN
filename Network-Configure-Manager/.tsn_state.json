@@ -1,18 +1,4 @@
 {
-  "S3": {
-    "host": "137.99.252.240",
-    "user": "jdg24001",
-    "cmds": [
-      "ip link del enp1s0.10 2>/dev/null || true",
-      "ip link del enp1s0.11 2>/dev/null || true",
-      "ip link del enp1s0.13 2>/dev/null || true",
-      "ip link del enp1s0.14 2>/dev/null || true",
-      "ip link del enp1s0.16 2>/dev/null || true",
-      "ip link del enp1s0.17 2>/dev/null || true",
-      "ip link del enp1s0.18 2>/dev/null || true",
-      "ip link del enp1s0.19 2>/dev/null || true"
-    ]
-  },
   "S1": {
     "host": "137.99.253.118",
     "user": "ubuntu",
@@ -20,127 +6,159 @@
       "ip link del enp1s0.10 2>/dev/null || true",
       "ip link del enp1s0.11 2>/dev/null || true",
       "ip link del enp1s0.12 2>/dev/null || true",
-      "ip link del enp1s0.15 2>/dev/null || true",
+      "ip link del enp1s0.13 2>/dev/null || true",
+      "ip link del enp1s0.16 2>/dev/null || true",
       "ip link del enp1s0.18 2>/dev/null || true",
       "ip link del enp1s0.19 2>/dev/null || true"
-    ]
-  },
-  "sw01": {
-    "host": "192.168.0.1",
-    "user": "root",
-    "cmds": [
-      "bridge vlan del dev sw0p3 vid 10 2>/dev/null || true",
-      "bridge vlan del dev sw0p5 vid 10 2>/dev/null || true",
-      "bridge vlan del dev sw0p5 vid 11 2>/dev/null || true",
-      "bridge vlan del dev sw0p3 vid 11 2>/dev/null || true",
-      "bridge vlan del dev sw0p4 vid 13 2>/dev/null || true",
-      "bridge vlan del dev sw0p3 vid 13 2>/dev/null || true",
-      "bridge vlan del dev sw0p3 vid 14 2>/dev/null || true",
-      "bridge vlan del dev sw0p4 vid 14 2>/dev/null || true",
-      "bridge vlan del dev sw0p4 vid 16 2>/dev/null || true",
-      "bridge vlan del dev sw0p3 vid 16 2>/dev/null || true",
-      "bridge vlan del dev sw0p4 vid 17 2>/dev/null || true",
-      "bridge vlan del dev sw0p3 vid 17 2>/dev/null || true",
-      "bridge vlan del dev sw0p3 vid 18 2>/dev/null || true",
-      "bridge vlan del dev sw0p5 vid 18 2>/dev/null || true",
-      "bridge vlan del dev sw0p3 vid 19 2>/dev/null || true",
-      "bridge vlan del dev sw0p5 vid 19 2>/dev/null || true"
-    ]
-  },
-  "sw02": {
-    "host": "192.168.0.2",
-    "user": "root",
-    "cmds": [
-      "bridge vlan del dev sw0p3 vid 10 2>/dev/null || true",
-      "bridge vlan del dev sw0p2 vid 10 2>/dev/null || true",
-      "bridge vlan del dev sw0p2 vid 11 2>/dev/null || true",
-      "bridge vlan del dev sw0p3 vid 11 2>/dev/null || true",
-      "bridge vlan del dev sw0p5 vid 12 2>/dev/null || true",
-      "bridge vlan del dev sw0p2 vid 12 2>/dev/null || true",
-      "bridge vlan del dev sw0p2 vid 15 2>/dev/null || true",
-      "bridge vlan del dev sw0p5 vid 15 2>/dev/null || true",
-      "bridge vlan del dev sw0p3 vid 18 2>/dev/null || true",
-      "bridge vlan del dev sw0p2 vid 18 2>/dev/null || true",
-      "bridge vlan del dev sw0p3 vid 19 2>/dev/null || true",
-      "bridge vlan del dev sw0p2 vid 19 2>/dev/null || true"
     ]
   },
   "S2": {
     "host": "137.99.253.167",
     "user": "jdg24001",
     "cmds": [
-      "ip link del enp1s0.12 2>/dev/null || true",
+      "ip link del enp1s0.10 2>/dev/null || true",
       "ip link del enp1s0.13 2>/dev/null || true",
       "ip link del enp1s0.14 2>/dev/null || true",
       "ip link del enp1s0.15 2>/dev/null || true",
       "ip link del enp1s0.16 2>/dev/null || true",
-      "ip link del enp1s0.17 2>/dev/null || true"
+      "ip link del enp1s0.17 2>/dev/null || true",
+      "ip link del enp1s0.18 2>/dev/null || true",
+      "ip link del enp1s0.19 2>/dev/null || true",
+      "ip link del enp1s0.20 2>/dev/null || true"
     ]
   },
-  "sw08": {
-    "host": "192.168.0.8",
+  "sw02": {
+    "host": "192.168.0.2",
     "user": "root",
     "cmds": [
-      "bridge vlan del dev sw0p2 vid 12 2>/dev/null || true",
-      "bridge vlan del dev sw0p5 vid 12 2>/dev/null || true",
-      "bridge vlan del dev sw0p2 vid 13 2>/dev/null || true",
-      "bridge vlan del dev sw0p4 vid 13 2>/dev/null || true",
-      "bridge vlan del dev sw0p4 vid 14 2>/dev/null || true",
-      "bridge vlan del dev sw0p2 vid 14 2>/dev/null || true",
-      "bridge vlan del dev sw0p5 vid 15 2>/dev/null || true",
-      "bridge vlan del dev sw0p2 vid 15 2>/dev/null || true",
-      "bridge vlan del dev sw0p2 vid 16 2>/dev/null || true",
-      "bridge vlan del dev sw0p4 vid 16 2>/dev/null || true",
-      "bridge vlan del dev sw0p2 vid 17 2>/dev/null || true",
-      "bridge vlan del dev sw0p4 vid 17 2>/dev/null || true"
-    ]
-  },
-  "sw07": {
-    "host": "192.168.0.7",
-    "user": "root",
-    "cmds": [
-      "bridge vlan del dev sw0p4 vid 12 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 10 2>/dev/null || true",
+      "bridge vlan del dev sw0p5 vid 10 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 11 2>/dev/null || true",
+      "bridge vlan del dev sw0p3 vid 11 2>/dev/null || true",
       "bridge vlan del dev sw0p3 vid 12 2>/dev/null || true",
-      "bridge vlan del dev sw0p3 vid 15 2>/dev/null || true",
-      "bridge vlan del dev sw0p4 vid 15 2>/dev/null || true"
+      "bridge vlan del dev sw0p2 vid 12 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 13 2>/dev/null || true",
+      "bridge vlan del dev sw0p5 vid 13 2>/dev/null || true",
+      "bridge vlan del dev sw0p5 vid 16 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 16 2>/dev/null || true",
+      "bridge vlan del dev sw0p5 vid 18 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 18 2>/dev/null || true",
+      "bridge vlan del dev sw0p5 vid 19 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 19 2>/dev/null || true"
     ]
   },
   "sw05": {
     "host": "192.168.0.3",
     "user": "root",
     "cmds": [
-      "bridge vlan del dev sw0p2 vid 12 2>/dev/null || true",
-      "bridge vlan del dev sw0p5 vid 12 2>/dev/null || true",
-      "bridge vlan del dev sw0p5 vid 15 2>/dev/null || true",
-      "bridge vlan del dev sw0p2 vid 15 2>/dev/null || true"
+      "bridge vlan del dev sw0p5 vid 10 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 10 2>/dev/null || true",
+      "bridge vlan del dev sw0p5 vid 13 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 13 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 16 2>/dev/null || true",
+      "bridge vlan del dev sw0p5 vid 16 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 18 2>/dev/null || true",
+      "bridge vlan del dev sw0p5 vid 18 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 19 2>/dev/null || true",
+      "bridge vlan del dev sw0p5 vid 19 2>/dev/null || true"
     ]
   },
-  "sw06": {
-    "host": "192.168.0.6",
+  "sw07": {
+    "host": "192.168.0.7",
     "user": "root",
     "cmds": [
-      "bridge vlan del dev sw0p2 vid 13 2>/dev/null || true",
+      "bridge vlan del dev sw0p3 vid 10 2>/dev/null || true",
+      "bridge vlan del dev sw0p4 vid 10 2>/dev/null || true",
       "bridge vlan del dev sw0p3 vid 13 2>/dev/null || true",
-      "bridge vlan del dev sw0p3 vid 14 2>/dev/null || true",
-      "bridge vlan del dev sw0p2 vid 14 2>/dev/null || true",
-      "bridge vlan del dev sw0p2 vid 16 2>/dev/null || true",
+      "bridge vlan del dev sw0p4 vid 13 2>/dev/null || true",
+      "bridge vlan del dev sw0p4 vid 16 2>/dev/null || true",
       "bridge vlan del dev sw0p3 vid 16 2>/dev/null || true",
+      "bridge vlan del dev sw0p4 vid 18 2>/dev/null || true",
+      "bridge vlan del dev sw0p3 vid 18 2>/dev/null || true",
+      "bridge vlan del dev sw0p4 vid 19 2>/dev/null || true",
+      "bridge vlan del dev sw0p3 vid 19 2>/dev/null || true"
+    ]
+  },
+  "sw08": {
+    "host": "192.168.0.8",
+    "user": "root",
+    "cmds": [
+      "bridge vlan del dev sw0p5 vid 10 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 10 2>/dev/null || true",
+      "bridge vlan del dev sw0p5 vid 13 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 13 2>/dev/null || true",
+      "bridge vlan del dev sw0p4 vid 14 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 14 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 15 2>/dev/null || true",
+      "bridge vlan del dev sw0p4 vid 15 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 16 2>/dev/null || true",
+      "bridge vlan del dev sw0p5 vid 16 2>/dev/null || true",
+      "bridge vlan del dev sw0p4 vid 17 2>/dev/null || true",
       "bridge vlan del dev sw0p2 vid 17 2>/dev/null || true",
-      "bridge vlan del dev sw0p3 vid 17 2>/dev/null || true"
+      "bridge vlan del dev sw0p2 vid 18 2>/dev/null || true",
+      "bridge vlan del dev sw0p5 vid 18 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 19 2>/dev/null || true",
+      "bridge vlan del dev sw0p5 vid 19 2>/dev/null || true",
+      "bridge vlan del dev sw0p4 vid 20 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 20 2>/dev/null || true"
+    ]
+  },
+  "S3": {
+    "host": "137.99.252.240",
+    "user": "jdg24001",
+    "cmds": [
+      "ip link del enp1s0.11 2>/dev/null || true",
+      "ip link del enp1s0.12 2>/dev/null || true",
+      "ip link del enp1s0.14 2>/dev/null || true",
+      "ip link del enp1s0.15 2>/dev/null || true",
+      "ip link del enp1s0.17 2>/dev/null || true",
+      "ip link del enp1s0.20 2>/dev/null || true"
+    ]
+  },
+  "sw01": {
+    "host": "192.168.0.1",
+    "user": "root",
+    "cmds": [
+      "bridge vlan del dev sw0p5 vid 11 2>/dev/null || true",
+      "bridge vlan del dev sw0p3 vid 11 2>/dev/null || true",
+      "bridge vlan del dev sw0p3 vid 12 2>/dev/null || true",
+      "bridge vlan del dev sw0p5 vid 12 2>/dev/null || true",
+      "bridge vlan del dev sw0p3 vid 14 2>/dev/null || true",
+      "bridge vlan del dev sw0p4 vid 14 2>/dev/null || true",
+      "bridge vlan del dev sw0p4 vid 15 2>/dev/null || true",
+      "bridge vlan del dev sw0p3 vid 15 2>/dev/null || true",
+      "bridge vlan del dev sw0p3 vid 17 2>/dev/null || true",
+      "bridge vlan del dev sw0p4 vid 17 2>/dev/null || true",
+      "bridge vlan del dev sw0p3 vid 20 2>/dev/null || true",
+      "bridge vlan del dev sw0p4 vid 20 2>/dev/null || true"
     ]
   },
   "sw03": {
     "host": "192.168.0.5",
     "user": "root",
     "cmds": [
-      "bridge vlan del dev sw0p4 vid 13 2>/dev/null || true",
-      "bridge vlan del dev sw0p3 vid 13 2>/dev/null || true",
       "bridge vlan del dev sw0p3 vid 14 2>/dev/null || true",
       "bridge vlan del dev sw0p4 vid 14 2>/dev/null || true",
-      "bridge vlan del dev sw0p4 vid 16 2>/dev/null || true",
-      "bridge vlan del dev sw0p3 vid 16 2>/dev/null || true",
+      "bridge vlan del dev sw0p4 vid 15 2>/dev/null || true",
+      "bridge vlan del dev sw0p3 vid 15 2>/dev/null || true",
+      "bridge vlan del dev sw0p3 vid 17 2>/dev/null || true",
       "bridge vlan del dev sw0p4 vid 17 2>/dev/null || true",
-      "bridge vlan del dev sw0p3 vid 17 2>/dev/null || true"
+      "bridge vlan del dev sw0p3 vid 20 2>/dev/null || true",
+      "bridge vlan del dev sw0p4 vid 20 2>/dev/null || true"
+    ]
+  },
+  "sw06": {
+    "host": "192.168.0.6",
+    "user": "root",
+    "cmds": [
+      "bridge vlan del dev sw0p3 vid 14 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 14 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 15 2>/dev/null || true",
+      "bridge vlan del dev sw0p3 vid 15 2>/dev/null || true",
+      "bridge vlan del dev sw0p3 vid 17 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 17 2>/dev/null || true",
+      "bridge vlan del dev sw0p3 vid 20 2>/dev/null || true",
+      "bridge vlan del dev sw0p2 vid 20 2>/dev/null || true"
     ]
   }
 }
