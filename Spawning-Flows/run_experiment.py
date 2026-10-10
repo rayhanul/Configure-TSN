@@ -162,9 +162,11 @@ def ping_check(nodes, endpoints):
                              f"&& echo {s['flow_id']} OK || echo {s['flow_id']} FAIL) &")
         _, out, _ = n.run(" ".join(lines) + " wait", timeout=60)
         for line in out.split("\n"):
-            if line.strip():
-                fid, res = line.split()
-                results[int(fid)] = (n.name, res)
+            m = re.match(r"^\s*(\d+) (OK|FAIL)\s*$", line)
+            if m:
+                results[int(m[1])] = (n.name, m[2])
+            elif line.strip():   # anything else the shell printed is not a ping result
+                print(f"  [{n.name}] {line.strip()}")
     bad = {f: v for f, v in results.items() if v[1] != "OK"}
     print(f"  {len(results)} sender routes pinged, {len(bad)} failed" + (f": {sorted(bad)}" if bad else ""))
     return results
@@ -232,7 +234,7 @@ def write_report(out_dir, pkg, schedule, sent, recv, skipped, info, pings, durat
         route = f"{f['src']}→{f['dst']}"
         if r is None:
             rows.append(f"| {i} | {f['id']} | {route} | {f['pcp']} | {f['size']} | {us(f['period'])} | "
-                        f"{us(f['deadline'])} | {us(f.get('e2e_ns', 0))} | {s} | – | – | – | – | – | – | – | – |")
+                        f"{us(f['deadline'])} | {us(f['e2e_ns']) if f.get('e2e_ns') is not None else '–'} | {s} | – | – | – | – | – | – | – | – |")
             continue
         n = r["n"] + (r.get("no_ts") or 0)
         tot_sent, tot_recv = tot_sent + s, tot_recv + n
@@ -241,12 +243,12 @@ def write_report(out_dir, pkg, schedule, sent, recv, skipped, info, pings, durat
         if n:
             tot_miss += r["miss"]; pn["miss"] += r["miss"]; pn["lat"] += r["avg"] * r["n"]
             rows.append(f"| {i} | {f['id']} | {route} | {f['pcp']} | {f['size']} | {us(f['period'])} | "
-                        f"{us(f['deadline'])} | {us(f.get('e2e_ns', 0))} | {s} | {n} | {pct(n, s):.2f}% | "
+                        f"{us(f['deadline'])} | {us(f['e2e_ns']) if f.get('e2e_ns') is not None else '–'} | {s} | {n} | {pct(n, s):.2f}% | "
                         f"{us(r['min'])} / {us(r['avg'])} / {us(r['max'])} | {us(r['sd'])} | {us(r['rfc'])} | "
                         f"{r['miss']} | {pct(r['miss'], r['n']):.2f}% | {r['no_ts']} |")
         else:
             rows.append(f"| {i} | {f['id']} | {route} | {f['pcp']} | {f['size']} | {us(f['period'])} | "
-                        f"{us(f['deadline'])} | {us(f.get('e2e_ns', 0))} | {s} | 0 | 0.00% | – | – | – | – | – | – |")
+                        f"{us(f['deadline'])} | {us(f['e2e_ns']) if f.get('e2e_ns') is not None else '–'} | {s} | 0 | 0.00% | – | – | – | – | – | – |")
 
     met = sum(1 for f in flows if (r := recv.get(f["id"])) and r["n"] and r["miss"] == 0)
     name = os.path.relpath(pkg, os.path.join(REPO, "GCL_Schedules"))

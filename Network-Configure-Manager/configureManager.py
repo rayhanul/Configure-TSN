@@ -474,7 +474,14 @@ def build_mstp(plans, topology, region="mstp_test", region_rev=1):
     every distinct route its own MSTI, so the force-route step below can
     keep every one of them open independently.
     """
-    all_switches = sorted({s for p in plans for s in p.switch_cmds})
+    # Every switch of the topology, not only those this run's routes cross: MSTIs only span
+    # switches whose MST configuration digest matches, and the digest covers the whole
+    # VLAN->MSTI table. A switch left out keeps its old table (or none -- sw04 never got
+    # one), so it lands in a region of its own, and between regions only the CIST applies
+    # (seen 2026-10-09: four regions, and every S2->S1 flow cut where the CIST blocked
+    # sw07's port to sw08).
+    all_switches = sorted({n for n, v in topology.items() if v.get("type") == "sw"}
+                          | {s for p in plans for s in p.switch_cmds})
     per_switch = {s: [] for s in all_switches}
 
     def bridge(s):
@@ -495,8 +502,21 @@ def build_mstp(plans, topology, region="mstp_test", region_rev=1):
 
     for s in all_switches:
         b = bridge(s)
+        # Start every switch from the same empty table: setvid2fid only adds this run's VLANs,
+        # and VLANs earlier runs mapped would otherwise stay on their old trees, differently
+        # on each switch, and split the region again.
         cmds = [f"mstpctl setmstconfid {b} {region_rev} {region}",
+                f"mstpctl setvid2fid {b} 0:1-4094",
+                f"mstpctl setfid2mstid {b} 0:0-4095",
                 f"mstpctl showmstconfid {b}"]
+        # Every cabled port is a full-duplex point-to-point link. Several were set to
+        # admin point-to-point "no" (sw01-sw03, sw03-sw06, sw01-sw02, sw02-sw04 and the
+        # S1/S3 ports), which makes MSTP treat them as shared: no proposal/agreement
+        # handshake, and the MSTI could not cross sw01-sw03 (seen 2026-10-09: tree 3's
+        # S2->S3 route blocked at sw06 in every package).
+        for port, l in sorted(topology[s].get("links", {}).items()):
+            if (l.get("node") if isinstance(l, dict) else l):
+                cmds.append(f"mstpctl setportp2p {b} {prefix(s)}{port} yes")
         for tree in vlans_by_tree:
             cmds.append(f"mstpctl createtree {b} {tree}")
         for tree, vlans in vlans_by_tree.items():
@@ -1032,6 +1052,24 @@ def local_query(cmd, user, password):
     return proc.stdout
 
 
+def check_mst_region(mstp_plan, creds):
+    """Every switch must report the same MST configuration digest, or the MSTIs stop at
+    the region boundaries and the CIST decides which links forward there."""
+    digests = {}
+    for sw in mstp_plan:
+        host, user, pw = creds(sw)
+        out = ssh_query(host, user, pw, "mstpctl showmstconfid br0")
+        digests[sw] = next((l.split(":", 1)[1].strip() for l in out.splitlines()
+                            if "Digest" in l), "?")
+    if len(set(digests.values())) == 1:
+        print(f"\nMST region: all {len(digests)} switches share digest {next(iter(digests.values()))}")
+    else:
+        print("\nWARNING: switches are in different MST regions -- routes crossing a region "
+              "boundary follow the CIST and can be blocked:")
+        for sw, d in sorted(digests.items()):
+            print(f"  {sw}: {d}")
+
+
 def apply_plan(plans, topology, mstp_plan=None, state_path=DEFAULT_STATE_FILE, cnc=None):
     def creds(n):
         d = topology[n]
@@ -1075,6 +1113,7 @@ def apply_plan(plans, topology, mstp_plan=None, state_path=DEFAULT_STATE_FILE, c
         for sw, cmds in mstp_plan.items():
             print(f"-- {sw}" + ("  (local)" if sw == cnc else ""))
             exec_node(sw, cmds)
+        check_mst_region(mstp_plan, creds)
 
     # Record what we just configured so the next run can clean it up.
     if state_path:

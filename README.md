@@ -343,6 +343,16 @@ predicted, though still within their deadlines.
   automatic port costs before applying its own, and makes every port off a route expensive for
   that route's tree (an unused port tying on cost blocked every S1->S2 flow). If a route is
   still blocked, check `mstpctl showtreeport br0 <port> <tree>` on the switches along it.
+- **Split MST region** (fixed 2026-10-09): MSTIs only span switches with the same MST
+  configuration digest, which covers the whole VLAN->MSTI table. `build_mstp()` used to map only
+  the current package's VLANs, only on the switches its routes cross, and teardown never cleared
+  the table -- so old mappings piled up differently on each switch (sw04 never got any) and the
+  testbed fell apart into four regions. Between regions only the CIST applies; it blocked sw07's
+  port to sw08, so every S2->S1 flow over sw08-sw07-sw05-sw02 was lost in some packages and not
+  others. `build_mstp()` now configures all switches, resets each one's VLAN->FID and
+  FID->MSTID tables first (`setvid2fid br0 0:1-4094`, `setfid2mstid br0 0:0-4095`), and after
+  `--apply` prints `MST region: all N switches share digest ...` or a warning listing each
+  switch's digest. Check by hand with `mstpctl showmstconfid br0` on every switch.
 - **UDP port range**: `gen_traffic.py` maps each flow id to a port by its *rank* in the sorted id
   list (`BASE_PORT + rank`), not `BASE_PORT + id` -- some packages use large synthetic ids
   (e.g. `300000`+) that would overflow the 65535 port ceiling otherwise. This is already handled;
