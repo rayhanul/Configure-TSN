@@ -4,28 +4,48 @@ Final round of the C9-on packages (regenerated with the store-and-forward fix B)
 
 Each package's GCLs were deployed on all of its switch ports (all live), its scheduled flows admitted (VLANs + MSTP, all 8 switches in one MST region), leftover VLAN interfaces removed on S1/S2/S3, every route pinged, then 30 s of traffic on S1, S2, S3 at once (NIC launch time, NIC RX timestamps). Full per-flow reports: `<package>/results/results-<date>/results.md`.
 
-| package | approach | flows | routes ping OK | delivered | lost | deadline misses | flows with misses | switch queue drops |
+Rows in pipeline order, each approach C9 off then on. **Rank** orders the packages by deadline misses, then frames lost, then max latency (1 = best). **Flows** = admitted / offered: every flow of the dataset's base flow set for SMT, heuristic and RL; the base schedule's flows plus the arriving candidates for Problem 3. **Lost** = sent − received. **Deadline misses** = received frames whose latency exceeded their flow's deadline (deadline = period), with their share of received frames. **Latency** = receiver NIC's RX timestamp − sender NIC's launch time over all received frames (min / frame-weighted avg / max). **Jitter** = per-flow standard deviation of latency: best flow / average over the package's flows / worst flow.
+
+| Rank | Package | Flows (admitted / offered) | Sent | Received | Lost | Deadline misses (%) | Latency min / avg / max (µs) | Jitter stddev best / avg / worst flow (µs) |
 |---|---|---|---|---|---|---|---|---|
-| `../result-2026-10-09-dataset-testbed-4-avgwin/smt-c9-off/4-t3600-c9off-minlat` | smt-c9-off | 11 | 11/11 | 100.00% | 0 | 0 (0.00%) | 0 | none |
-| `../result-2026-10-09-dataset-testbed-4-avgwin/heuristic-c9-off/4-matrix-c9off` | heuristic-c9-off | 11 | 11/11 | 100.00% | 9 | 0 (0.00%) | 0 | none |
-| `../result-2026-10-09-dataset-testbed-4-avgwin/rl-c9-off/4-matrix-c9off` | rl-c9-off | 11 | 11/11 | 100.00% | 0 | 0 (0.00%) | 0 | none |
-| `../result-2026-10-09-dataset-testbed-4-avgwin/prob3-heuristic-c9-off/4-heuristic-c9off-matrix` | prob3-heuristic-c9-off | 24 | 24/24 | 100.00% | 8 | 0 (0.00%) | 0 | none |
-| `../result-2026-10-09-dataset-testbed-4-avgwin/prob3-rl-c9-off/4-rl-c9off-matrix` | prob3-rl-c9-off | 28 | 28/28 | 100.00% | 0 | 0 (0.00%) | 0 | none |
-| `smt-c9-on/4-saf-retimed-c9on` | smt-c9-on | 11 | 11/11 | 100.00% | 4 | 0 (0.00%) | 0 | none |
-| `heuristic-c9-on/4-matrix-c9on` | heuristic-c9-on | 11 | 11/11 | 100.00% | 8 | 0 (0.00%) | 0 | none |
-| `rl-c9-on/4-matrix-c9on` | rl-c9-on | 11 | 11/11 | 100.00% | 0 | 0 (0.00%) | 0 | none |
-| `prob3-heuristic-c9-on/4-heuristic-c9on-matrix` | prob3-heuristic-c9-on | 27 | 27/27 | 100.00% | 4 | 0 (0.00%) | 0 | none |
-| `prob3-rl-c9-on/4-rl-c9on-matrix` | prob3-rl-c9-on | 29 | 29/29 | 100.00% | 1 | 0 (0.00%) | 0 | none |
+| 2 | SMT C9-off | 11 / 20 | 1,012,445 | 1,012,445 | 0 | 0 (0.00%) | 66.8 / 90.0 / 133.7 | 0.1 / 0.1 / 0.1 |
+| 6 | SMT C9-on | 11 / 20 | 1,012,484 | 1,012,480 | 4 | 0 (0.00%) | 21.0 / 39.1 / 62.1 | 0.1 / 0.1 / 0.2 |
+| 10 | heuristic C9-off | 11 / 20 | 1,012,482 | 1,012,473 | 9 | 0 (0.00%) | 19.0 / 73.7 / 134.0 | 0.1 / 0.6 / 5.7 |
+| 8 | heuristic C9-on | 11 / 20 | 1,012,448 | 1,012,440 | 8 | 0 (0.00%) | 21.3 / 34.7 / 156.6 | 0.1 / 0.2 / 0.5 |
+| 2 | RL C9-off | 11 / 20 | 1,012,488 | 1,012,488 | 0 | 0 (0.00%) | 19.1 / 72.0 / 133.7 | 0.1 / 1.8 / 18.7 |
+| 1 | RL C9-on | 11 / 20 | 1,012,483 | 1,012,483 | 0 | 0 (0.00%) | 21.0 / 33.6 / 44.5 | 0.1 / 0.1 / 0.3 |
+| 9 | Problem 3 heuristic C9-off | 24 / 50 | 1,612,431 | 1,612,423 | 8 | 0 (0.00%) | 12.8 / 82.4 / 420.7 | 0.1 / 2.5 / 49.9 |
+| 7 | Problem 3 heuristic C9-on | 27 / 50 | 1,912,365 | 1,912,361 | 4 | 0 (0.00%) | 9.6 / 38.6 / 408.2 | 0.1 / 0.6 / 4.8 |
+| 4 | Problem 3 RL C9-off | 28 / 50 | 2,024,967 | 2,024,967 | 0 | 0 (0.00%) | 9.7 / 67.4 / 235.5 | 0.1 / 2.6 / 25.0 |
+| 5 | Problem 3 RL C9-on | 29 / 50 | 2,024,957 | 2,024,956 | 1 | 0 (0.00%) | 9.7 / 36.9 / 139.8 | 0.1 / 2.2 / 49.5 |
+| | **Total** | | **13,649,550** | **13,649,516** | **34** | **0 (0.00%)** | | |
+
+## Details
+
+**Received %** shows a lost frame even when it rounds to 100%. **No NIC ts** = received frames without a hardware timestamp (left out of latency). **Jitter RFC 3550** = mean |Δ latency| between consecutive frames, best flow / average / worst flow. **Worst latency, % of deadline** = the largest max latency / deadline over the package's flows. **Above e2e bound** = flows whose max latency exceeded the scheduler's own end-to-end bound.
+
+| Package | Received % | No NIC ts | Jitter RFC 3550 best / avg / worst flow (µs) | Worst latency, % of deadline | Above e2e bound | Routes ping OK | Switch queue drops | Run (`results.md` inside) |
+|---|---|---|---|---|---|---|---|---|
+| SMT C9-off | 100.0000% | 0 | 0.0 / 0.0 / 0.1 | 67% | 1 | 11/11 | none | `../result-2026-10-09-dataset-testbed-4-avgwin/smt-c9-off/4-t3600-c9off-minlat/results/results-2026-10-10_5` |
+| SMT C9-on | 99.9996% | 0 | 0.0 / 0.0 / 0.0 | 24% | 1 | 11/11 | none | `smt-c9-on/4-saf-retimed-c9on/results/results-2026-10-10_3` |
+| heuristic C9-off | 99.9991% | 0 | 0.0 / 0.6 / 6.6 | 67% | 0 | 11/11 | none | `../result-2026-10-09-dataset-testbed-4-avgwin/heuristic-c9-off/4-matrix-c9off/results/results-2026-10-10_3` |
+| heuristic C9-on | 99.9992% | 0 | 0.0 / 0.1 / 0.2 | 39% | 1 | 11/11 | none | `heuristic-c9-on/4-matrix-c9on/results/results-2026-10-10_2` |
+| RL C9-off | 100.0000% | 0 | 0.0 / 3.5 / 37.4 | 67% | 0 | 11/11 | none | `../result-2026-10-09-dataset-testbed-4-avgwin/rl-c9-off/4-matrix-c9off/results/results-2026-10-10_3` |
+| RL C9-on | 100.0000% | 0 | 0.0 / 0.1 / 0.2 | 21% | 0 | 11/11 | none | `rl-c9-on/4-matrix-c9on/results/results-2026-10-10_2` |
+| Problem 3 heuristic C9-off | 99.9995% | 0 | 0.0 / 4.6 / 99.8 | 75% | 0 | 24/24 | none | `../result-2026-10-09-dataset-testbed-4-avgwin/prob3-heuristic-c9-off/4-heuristic-c9off-matrix/results/results-2026-10-10_3` |
+| Problem 3 heuristic C9-on | 99.9998% | 0 | 0.0 / 0.8 / 7.3 | 51% | 0 | 27/27 | none | `prob3-heuristic-c9-on/4-heuristic-c9on-matrix/results/results-2026-10-10_2` |
+| Problem 3 RL C9-off | 100.0000% | 0 | 0.0 / 4.8 / 50.0 | 67% | 0 | 28/28 | none | `../result-2026-10-09-dataset-testbed-4-avgwin/prob3-rl-c9-off/4-rl-c9off-matrix/results/results-2026-10-10_4` |
+| Problem 3 RL C9-on | 99.99995% | 0 | 0.0 / 3.9 / 98.9 | 35% | 0 | 29/29 | none | `prob3-rl-c9-on/4-rl-c9on-matrix/results/results-2026-10-10_2` |
 
 ## Flows with misses or notable loss
 
-- **../result-2026-10-09-dataset-testbed-4-avgwin/smt-c9-off/4-t3600-c9off-minlat** (`../result-2026-10-09-dataset-testbed-4-avgwin/smt-c9-off/4-t3600-c9off-minlat/results/results-2026-10-10_5/results.md`): no flow lost >100 frames or missed a deadline
-- **../result-2026-10-09-dataset-testbed-4-avgwin/heuristic-c9-off/4-matrix-c9off** (`../result-2026-10-09-dataset-testbed-4-avgwin/heuristic-c9-off/4-matrix-c9off/results/results-2026-10-10_3/results.md`): no flow lost >100 frames or missed a deadline
-- **../result-2026-10-09-dataset-testbed-4-avgwin/rl-c9-off/4-matrix-c9off** (`../result-2026-10-09-dataset-testbed-4-avgwin/rl-c9-off/4-matrix-c9off/results/results-2026-10-10_3/results.md`): no flow lost >100 frames or missed a deadline
-- **../result-2026-10-09-dataset-testbed-4-avgwin/prob3-heuristic-c9-off/4-heuristic-c9off-matrix** (`../result-2026-10-09-dataset-testbed-4-avgwin/prob3-heuristic-c9-off/4-heuristic-c9off-matrix/results/results-2026-10-10_3/results.md`): no flow lost >100 frames or missed a deadline
-- **../result-2026-10-09-dataset-testbed-4-avgwin/prob3-rl-c9-off/4-rl-c9off-matrix** (`../result-2026-10-09-dataset-testbed-4-avgwin/prob3-rl-c9-off/4-rl-c9off-matrix/results/results-2026-10-10_4/results.md`): no flow lost >100 frames or missed a deadline
-- **smt-c9-on/4-saf-retimed-c9on** (`smt-c9-on/4-saf-retimed-c9on/results/results-2026-10-10_3/results.md`): no flow lost >100 frames or missed a deadline
-- **heuristic-c9-on/4-matrix-c9on** (`heuristic-c9-on/4-matrix-c9on/results/results-2026-10-10_2/results.md`): no flow lost >100 frames or missed a deadline
-- **rl-c9-on/4-matrix-c9on** (`rl-c9-on/4-matrix-c9on/results/results-2026-10-10_2/results.md`): no flow lost >100 frames or missed a deadline
-- **prob3-heuristic-c9-on/4-heuristic-c9on-matrix** (`prob3-heuristic-c9-on/4-heuristic-c9on-matrix/results/results-2026-10-10_2/results.md`): no flow lost >100 frames or missed a deadline
-- **prob3-rl-c9-on/4-rl-c9on-matrix** (`prob3-rl-c9-on/4-rl-c9on-matrix/results/results-2026-10-10_2/results.md`): no flow lost >100 frames or missed a deadline
+- **SMT C9-off**: no flow lost >100 frames or missed a deadline
+- **SMT C9-on**: no flow lost >100 frames or missed a deadline
+- **heuristic C9-off**: no flow lost >100 frames or missed a deadline
+- **heuristic C9-on**: no flow lost >100 frames or missed a deadline
+- **RL C9-off**: no flow lost >100 frames or missed a deadline
+- **RL C9-on**: no flow lost >100 frames or missed a deadline
+- **Problem 3 heuristic C9-off**: no flow lost >100 frames or missed a deadline
+- **Problem 3 heuristic C9-on**: no flow lost >100 frames or missed a deadline
+- **Problem 3 RL C9-off**: no flow lost >100 frames or missed a deadline
+- **Problem 3 RL C9-on**: no flow lost >100 frames or missed a deadline

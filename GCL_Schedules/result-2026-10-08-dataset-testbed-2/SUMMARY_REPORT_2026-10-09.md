@@ -19,14 +19,41 @@ testbed on 2026-10-09. Per-package numbers and per-flow details:
 
 ## Results
 
-| package | approach | flows | routes OK | delivered | deadline misses | without the S2→S3 route: delivered / misses |
-|---|---|---|---|---|---|---|
-| `smt-c9-off/2-t3600-c9off-minlat` | SMT, C9 off | 11 | 10/11 | 92.59% | 75,001 (8.00%) | **100.00%** / 75,001 |
-| `smt-c9-on/2-fair-retimed-c9on` | SMT, C9 on | 11 | 11/11 | **100.00%** | **14 (0.00%)** | 100.00% / 14 |
-| `prob3-heuristic-c9-off/2-heuristic-c9off-matrix` | Problem 3 heuristic, C9 off | 22 | 15/22 | 27.44% | 2,527 (0.56%) | 37.72% / 2,527 |
-| `prob3-heuristic-c9-on/2-heuristic-c9on-matrix` | Problem 3 heuristic, C9 on | 25 | 18/25 | 76.92% | 4 (0.00%) | **99.99%** / 4 |
-| `prob3-rl-c9-off/2-rl-c9off-matrix` | Problem 3 RL, C9 off | 26 | 22/26 | 88.23% | 1 (0.00%) | **99.99%** / 1 |
-| `prob3-rl-c9-on/2-rl-c9on-matrix` | Problem 3 RL, C9 on | 32 | 25/32 | 82.35% | 149,986 (7.14%) | **100.00%** / 149,986 |
+Rows in pipeline order, each approach C9 off then on. **Rank** orders the packages by deadline misses, then frames lost, then max latency (1 = best). **Flows** = admitted / offered: every flow of the dataset's base flow set for SMT, heuristic and RL; the base schedule's flows plus the arriving candidates for Problem 3. **Lost** = sent − received. **Deadline misses** = received frames whose latency exceeded their flow's deadline (deadline = period), with their share of received frames. **Latency** = receiver NIC's RX timestamp − sender NIC's launch time over all received frames (min / frame-weighted avg / max). **Jitter** = per-flow standard deviation of latency: best flow / average over the package's flows / worst flow.
+
+| Rank | Package | Flows (admitted / offered) | Sent | Received | Lost | Deadline misses (%) | Latency min / avg / max (µs) | Jitter stddev best / avg / worst flow (µs) |
+|---|---|---|---|---|---|---|---|---|
+| 5 | SMT C9-off | 11 / 20 | 1,012,500 | 937,473 | 75,027 | 75,001 (8.00%) | 33.5 / 97.9 / 833.7 | 0.1 / 1.3 / 10.9 |
+| 3 | SMT C9-on | 11 / 20 | 1,012,493 | 1,012,477 | 16 | 14 (0.00%) | 8.8 / 38.8 / 813.5 | 0.1 / 18.4 / 72.3 |
+| 4 | Problem 3 heuristic C9-off | 22 / 50 | 1,649,990 | 452,677 | 1,197,313 | 2,527 (0.56%) | 21.6 / 6233.8 / 2998350.4 | 0.1 / 241842.2 / 542721.5 |
+| 2 | Problem 3 heuristic C9-on | 25 / 50 | 1,949,972 | 1,499,844 | 450,128 | 4 (0.00%) | 5.0 / 39.6 / 404.9 | 0.1 / 12.5 / 68.6 |
+| 1 | Problem 3 RL C9-off | 26 / 50 | 1,912,475 | 1,687,384 | 225,091 | 1 (0.00%) | 8.5 / 63.2 / 360.8 | 0.1 / 0.7 / 6.4 |
+| 6 | Problem 3 RL C9-on | 32 / 50 | 2,549,967 | 2,099,884 | 450,083 | 149,986 (7.14%) | 8.1 / 56.8 / 498.2 | 0.1 / 7.8 / 75.8 |
+| | **Total** | | **10,087,397** | **7,689,739** | **2,397,658** | **227,533 (2.96%)** | | |
+
+### Details
+
+**Received %** shows a lost frame even when it rounds to 100%. **No NIC ts** = received frames without a hardware timestamp (left out of latency). **Jitter RFC 3550** = mean |Δ latency| between consecutive frames, best flow / average / worst flow. **Worst latency, % of deadline** = the largest max latency / deadline over the package's flows. **Above e2e bound** = flows whose max latency exceeded the scheduler's own end-to-end bound.
+
+| Package | Received % | No NIC ts | Jitter RFC 3550 best / avg / worst flow (µs) | Worst latency, % of deadline | Above e2e bound | Routes ping OK | Switch queue drops | Run (`results.md` inside) |
+|---|---|---|---|---|---|---|---|---|
+| SMT C9-off | 92.5899% | 0 | 0.0 / 0.0 / 0.3 | 108% | 2 | 10/11 (failed: 11) | none | `smt-c9-off/2-t3600-c9off-minlat/results/results-2026-10-09_2` |
+| SMT C9-on | 99.9984% | 0 | 0.0 / 32.4 / 144.7 | 102% | 5 | 11/11 | none | `smt-c9-on/2-fair-retimed-c9on/results/results-2026-10-09` |
+| Problem 3 heuristic C9-off | 27.4351% | 0 | 0.0 / 127813.0 / 301985.3 | 1499175% | 12 | 15/22 (failed: 11, 15, 22, 26, 36, 37, 48) | sw08/p2 +560893, sw08/p5 +186346 | `prob3-heuristic-c9-off/2-heuristic-c9off-matrix/results/results-2026-10-09` |
+| Problem 3 heuristic C9-on | 76.9162% | 0 | 0.0 / 24.7 / 137.2 | 115% | 7 | 18/25 (failed: 11, 15, 22, 26, 36, 37, 48) | none | `prob3-heuristic-c9-on/2-heuristic-c9on-matrix/results/results-2026-10-09` |
+| Problem 3 RL C9-off | 88.2304% | 0 | 0.0 / 0.9 / 12.8 | 180% | 2 | 22/26 (failed: 11, 15, 22, 37) | none | `prob3-rl-c9-off/2-rl-c9off-matrix/results/results-2026-10-09` |
+| Problem 3 RL C9-on | 82.3495% | 0 | 0.0 / 15.0 / 151.5 | 111% | 3 | 25/32 (failed: 11, 15, 22, 26, 36, 37, 48) | none | `prob3-rl-c9-on/2-rl-c9on-matrix/results/results-2026-10-09` |
+
+Without the S2→S3 route (blocked by the spanning tree in these runs):
+
+| Package | Delivered | Deadline misses |
+|---|---|---|
+| SMT, C9 off | **100.00%** | 75,001 |
+| SMT, C9 on | 100.00% | 14 |
+| Problem 3 heuristic, C9 off | 37.72% | 2,527 |
+| Problem 3 heuristic, C9 on | **99.99%** | 4 |
+| Problem 3 RL, C9 off | **99.99%** | 1 |
+| Problem 3 RL, C9 on | **100.00%** | 149,986 |
 
 "Without the S2→S3 route" counts only the flows whose route was not blocked (all S2→S3 flows ride
 the one blocked path). The few lost frames that remain there (16-139 per package) are host-side:

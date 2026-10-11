@@ -27,13 +27,19 @@ reserves at least 12.48 µs; new windows for empty queues take the network-avera
 
 ## 3. Main result
 
-| Metric | Value |
-|---|---|
-| Flows deployed | 26 |
-| Packets delivered | 1,912,467 / 1,912,500 (100.00%) |
-| Flows with zero deadline misses | 25 / 26 |
-| Switch queue drops | 0 |
-| Measured latency vs. schedule bound | at or below the bound for 24 of 26 flows |
+Rows in pipeline order, each approach C9 off then on. **Rank** orders the packages by deadline misses, then frames lost, then max latency (1 = best). **Flows** = admitted / offered: every flow of the dataset's base flow set for SMT, heuristic and RL; the base schedule's flows plus the arriving candidates for Problem 3. **Lost** = sent − received. **Deadline misses** = received frames whose latency exceeded their flow's deadline (deadline = period), with their share of received frames. **Latency** = receiver NIC's RX timestamp − sender NIC's launch time over all received frames (min / frame-weighted avg / max). **Jitter** = per-flow standard deviation of latency: best flow / average over the package's flows / worst flow.
+
+| Rank | Package | Flows (admitted / offered) | Sent | Received | Lost | Deadline misses (%) | Latency min / avg / max (µs) | Jitter stddev best / avg / worst flow (µs) |
+|---|---|---|---|---|---|---|---|---|
+| 1 | Problem 3 RL C9-off | 26 / 50 | 1,912,500 | 1,912,467 | 33 | 37,499 (1.96%) | 11.3 / 72.1 / 307.2 | 0.1 / 3.5 / 77.3 |
+
+#### Details
+
+**Received %** shows a lost frame even when it rounds to 100%. **No NIC ts** = received frames without a hardware timestamp (left out of latency). **Jitter RFC 3550** = mean |Δ latency| between consecutive frames, best flow / average / worst flow. **Worst latency, % of deadline** = the largest max latency / deadline over the package's flows. **Above e2e bound** = flows whose max latency exceeded the scheduler's own end-to-end bound.
+
+| Package | Received % | No NIC ts | Jitter RFC 3550 best / avg / worst flow (µs) | Worst latency, % of deadline | Above e2e bound | Routes ping OK | Switch queue drops | Run (`results.md` inside) |
+|---|---|---|---|---|---|---|---|---|
+| Problem 3 RL C9-off | 99.9983% | 0 | 0.0 / 6.2 / 138.8 | 107% | 2 | 26/26 | none | `2-rl-c9off-matrix/results/results-2026-10-08` |
 
 One flow (S2→S1, 200 µs period) missed its deadline on one of its four frames per cycle (25% of
 its frames). That instance waits one period for the next window, which points to a model gap
@@ -82,14 +88,20 @@ C9-off schedules are valid by construction on these store-and-forward switches.
 
 The RL schedule planned with cut-through timing (C9 on), same dataset and hardware model (4 µs hop, 12.4 µs guard). It admits 21/39 arrivals (32 flows) and passes the pre-deploy check because the 12.48 µs reservations absorb the store-and-forward delay. Results: `2-rl-c9on-matrix/results/results-2026-10-08/`.
 
-| Metric | RL, C9 off (section 3) | RL, C9 on |
-|---|---|---|
-| Flows deployed | 26 | 32 |
-| Packets delivered | 1,912,467 / 1,912,500 (100.00%) | 2,549,636 / 2,549,998 (99.99%) |
-| Flows with zero deadline misses | 25 / 26 | 29 / 32 |
-| Deadline misses | 37,499 (1.96% of received) | 149,967 (5.88% of received) |
-| Routes answering ping | 26 / 26 | 32 / 32 |
-| Switch queue drops | 0 | 0 |
+| Rank | Package | Flows (admitted / offered) | Sent | Received | Lost | Deadline misses (%) | Latency min / avg / max (µs) | Jitter stddev best / avg / worst flow (µs) |
+|---|---|---|---|---|---|---|---|---|
+| 1 | Problem 3 RL C9-off | 26 / 50 | 1,912,500 | 1,912,467 | 33 | 37,499 (1.96%) | 11.3 / 72.1 / 307.2 | 0.1 / 3.5 / 77.3 |
+| 2 | Problem 3 RL C9-on | 32 / 50 | 2,549,998 | 2,549,636 | 362 | 149,967 (5.88%) | 8.1 / 56.8 / 498.3 | 0.1 / 7.5 / 75.8 |
+| | **Total** | | **4,462,498** | **4,462,103** | **395** | **187,466 (4.20%)** | | |
+
+#### Details
+
+**Received %** shows a lost frame even when it rounds to 100%. **No NIC ts** = received frames without a hardware timestamp (left out of latency). **Jitter RFC 3550** = mean |Δ latency| between consecutive frames, best flow / average / worst flow. **Worst latency, % of deadline** = the largest max latency / deadline over the package's flows. **Above e2e bound** = flows whose max latency exceeded the scheduler's own end-to-end bound.
+
+| Package | Received % | No NIC ts | Jitter RFC 3550 best / avg / worst flow (µs) | Worst latency, % of deadline | Above e2e bound | Routes ping OK | Switch queue drops | Run (`results.md` inside) |
+|---|---|---|---|---|---|---|---|---|
+| Problem 3 RL C9-off | 99.9983% | 0 | 0.0 / 6.2 / 138.8 | 107% | 2 | 26/26 | none | `2-rl-c9off-matrix/results/results-2026-10-08` |
+| Problem 3 RL C9-on | 99.9858% | 0 | 0.0 / 14.3 / 151.6 | 111% | 9 | 32/32 | none | `2-rl-c9on-matrix/results/results-2026-10-08` |
 
 Flows with misses:
 

@@ -31,18 +31,56 @@ fixes A-D (its first run, `results-2026-10-10`, in `../result-2026-10-09-dataset
 "After the fixes" is each package's latest run with all fixes in place: C9-off packages in the avgwin
 folder, the regenerated C9-on packages in this folder.
 
-| package | flows | before the fixes (round 1): delivered / lost / misses | after the fixes (final round): delivered / lost / misses | final max latency |
-|---|---|---|---|---|
-| SMT C9-off | 11 | 100.00% / 21 / 74,994 | 100.00% / 0 / **0** | 133.7 µs |
-| SMT C9-on | 11 | 100.00% / 28 / 12,320 | 100.00% / 4 / **0** | 62.1 µs |
-| heuristic C9-off | 11 | 100.00% / 46 / 74,983 | 100.00% / 9 / **0** | 134.0 µs |
-| heuristic C9-on | 11 | 100.00% / 25 / 1 | 100.00% / 8 / **0** | 156.6 µs |
-| RL C9-off | 11 | 100.00% / 49 / 0 | 100.00% / 0 / **0** | 133.7 µs |
-| RL C9-on | 11 | 100.00% / 23 / 27,392 | 100.00% / 0 / **0** | 44.5 µs |
-| Problem 3 heuristic C9-off | 24 | 99.99% / 117 / 74,994 | 100.00% / 8 / **0** | 420.7 µs |
-| Problem 3 heuristic C9-on | 29 → 27 | 99.98% / 321 / 37,499 | 100.00% / 4 / **0** | 408.2 µs |
-| Problem 3 RL C9-off | 28 | 99.25% / 15,124 / 74,364 | 100.00% / 0 / **0** | 235.5 µs |
-| Problem 3 RL C9-on | 28 → 29 | 99.50% / 10,299 / 27,316 | 100.00% / 1 / **0** | 139.8 µs |
+### After the fixes (final round)
+
+Rows in pipeline order, each approach C9 off then on. **Rank** orders the packages by deadline misses, then frames lost, then max latency (1 = best). **Flows** = admitted / offered: every flow of the dataset's base flow set for SMT, heuristic and RL; the base schedule's flows plus the arriving candidates for Problem 3. **Lost** = sent − received. **Deadline misses** = received frames whose latency exceeded their flow's deadline (deadline = period), with their share of received frames. **Latency** = receiver NIC's RX timestamp − sender NIC's launch time over all received frames (min / frame-weighted avg / max). **Jitter** = per-flow standard deviation of latency: best flow / average over the package's flows / worst flow.
+
+| Rank | Package | Flows (admitted / offered) | Sent | Received | Lost | Deadline misses (%) | Latency min / avg / max (µs) | Jitter stddev best / avg / worst flow (µs) |
+|---|---|---|---|---|---|---|---|---|
+| 2 | SMT C9-off | 11 / 20 | 1,012,445 | 1,012,445 | 0 | 0 (0.00%) | 66.8 / 90.0 / 133.7 | 0.1 / 0.1 / 0.1 |
+| 6 | SMT C9-on | 11 / 20 | 1,012,484 | 1,012,480 | 4 | 0 (0.00%) | 21.0 / 39.1 / 62.1 | 0.1 / 0.1 / 0.2 |
+| 10 | heuristic C9-off | 11 / 20 | 1,012,482 | 1,012,473 | 9 | 0 (0.00%) | 19.0 / 73.7 / 134.0 | 0.1 / 0.6 / 5.7 |
+| 8 | heuristic C9-on | 11 / 20 | 1,012,448 | 1,012,440 | 8 | 0 (0.00%) | 21.3 / 34.7 / 156.6 | 0.1 / 0.2 / 0.5 |
+| 2 | RL C9-off | 11 / 20 | 1,012,488 | 1,012,488 | 0 | 0 (0.00%) | 19.1 / 72.0 / 133.7 | 0.1 / 1.8 / 18.7 |
+| 1 | RL C9-on | 11 / 20 | 1,012,483 | 1,012,483 | 0 | 0 (0.00%) | 21.0 / 33.6 / 44.5 | 0.1 / 0.1 / 0.3 |
+| 9 | Problem 3 heuristic C9-off | 24 / 50 | 1,612,431 | 1,612,423 | 8 | 0 (0.00%) | 12.8 / 82.4 / 420.7 | 0.1 / 2.5 / 49.9 |
+| 7 | Problem 3 heuristic C9-on | 27 / 50 | 1,912,365 | 1,912,361 | 4 | 0 (0.00%) | 9.6 / 38.6 / 408.2 | 0.1 / 0.6 / 4.8 |
+| 4 | Problem 3 RL C9-off | 28 / 50 | 2,024,967 | 2,024,967 | 0 | 0 (0.00%) | 9.7 / 67.4 / 235.5 | 0.1 / 2.6 / 25.0 |
+| 5 | Problem 3 RL C9-on | 29 / 50 | 2,024,957 | 2,024,956 | 1 | 0 (0.00%) | 9.7 / 36.9 / 139.8 | 0.1 / 2.2 / 49.5 |
+| | **Total** | | **13,649,550** | **13,649,516** | **34** | **0 (0.00%)** | | |
+
+#### Details
+
+**Received %** shows a lost frame even when it rounds to 100%. **No NIC ts** = received frames without a hardware timestamp (left out of latency). **Jitter RFC 3550** = mean |Δ latency| between consecutive frames, best flow / average / worst flow. **Worst latency, % of deadline** = the largest max latency / deadline over the package's flows. **Above e2e bound** = flows whose max latency exceeded the scheduler's own end-to-end bound.
+
+| Package | Received % | No NIC ts | Jitter RFC 3550 best / avg / worst flow (µs) | Worst latency, % of deadline | Above e2e bound | Routes ping OK | Switch queue drops | Run (`results.md` inside) |
+|---|---|---|---|---|---|---|---|---|
+| SMT C9-off | 100.0000% | 0 | 0.0 / 0.0 / 0.1 | 67% | 1 | 11/11 | none | `../result-2026-10-09-dataset-testbed-4-avgwin/smt-c9-off/4-t3600-c9off-minlat/results/results-2026-10-10_5` |
+| SMT C9-on | 99.9996% | 0 | 0.0 / 0.0 / 0.0 | 24% | 1 | 11/11 | none | `smt-c9-on/4-saf-retimed-c9on/results/results-2026-10-10_3` |
+| heuristic C9-off | 99.9991% | 0 | 0.0 / 0.6 / 6.6 | 67% | 0 | 11/11 | none | `../result-2026-10-09-dataset-testbed-4-avgwin/heuristic-c9-off/4-matrix-c9off/results/results-2026-10-10_3` |
+| heuristic C9-on | 99.9992% | 0 | 0.0 / 0.1 / 0.2 | 39% | 1 | 11/11 | none | `heuristic-c9-on/4-matrix-c9on/results/results-2026-10-10_2` |
+| RL C9-off | 100.0000% | 0 | 0.0 / 3.5 / 37.4 | 67% | 0 | 11/11 | none | `../result-2026-10-09-dataset-testbed-4-avgwin/rl-c9-off/4-matrix-c9off/results/results-2026-10-10_3` |
+| RL C9-on | 100.0000% | 0 | 0.0 / 0.1 / 0.2 | 21% | 0 | 11/11 | none | `rl-c9-on/4-matrix-c9on/results/results-2026-10-10_2` |
+| Problem 3 heuristic C9-off | 99.9995% | 0 | 0.0 / 4.6 / 99.8 | 75% | 0 | 24/24 | none | `../result-2026-10-09-dataset-testbed-4-avgwin/prob3-heuristic-c9-off/4-heuristic-c9off-matrix/results/results-2026-10-10_3` |
+| Problem 3 heuristic C9-on | 99.9998% | 0 | 0.0 / 0.8 / 7.3 | 51% | 0 | 27/27 | none | `prob3-heuristic-c9-on/4-heuristic-c9on-matrix/results/results-2026-10-10_2` |
+| Problem 3 RL C9-off | 100.0000% | 0 | 0.0 / 4.8 / 50.0 | 67% | 0 | 28/28 | none | `../result-2026-10-09-dataset-testbed-4-avgwin/prob3-rl-c9-off/4-rl-c9off-matrix/results/results-2026-10-10_4` |
+| Problem 3 RL C9-on | 99.99995% | 0 | 0.0 / 3.9 / 98.9 | 35% | 0 | 29/29 | none | `prob3-rl-c9-on/4-rl-c9on-matrix/results/results-2026-10-10_2` |
+
+### Before the fixes (round 1)
+
+| Rank | Package | Flows (admitted / offered) | Sent | Received | Lost | Deadline misses (%) | Latency min / avg / max (µs) | Jitter stddev best / avg / worst flow (µs) |
+|---|---|---|---|---|---|---|---|---|
+| 9 | SMT C9-off | 11 / 20 | 1,012,500 | 1,012,479 | 21 | 74,994 (7.41%) | 67.0 / 111.7 / 273.3 | 0.1 / 12.3 / 94.5 |
+| 3 | SMT C9-on | 11 / 20 | 1,012,500 | 1,012,472 | 28 | 12,320 (1.22%) | 17.1 / 51.0 / 1198.1 | 0.1 / 15.1 / 138.6 |
+| 8 | heuristic C9-off | 11 / 20 | 1,012,482 | 1,012,436 | 46 | 74,983 (7.41%) | 19.0 / 93.8 / 224.4 | 0.1 / 12.9 / 97.4 |
+| 2 | heuristic C9-on | 11 / 20 | 1,012,500 | 1,012,475 | 25 | 1 (0.00%) | 15.8 / 32.4 / 428.0 | 0.1 / 2.9 / 18.0 |
+| 1 | RL C9-off | 11 / 20 | 1,012,493 | 1,012,444 | 49 | 0 (0.00%) | 19.0 / 81.7 / 133.8 | 0.1 / 7.8 / 46.2 |
+| 5 | RL C9-on | 11 / 20 | 1,012,500 | 1,012,477 | 23 | 27,392 (2.71%) | 16.9 / 56.2 / 422.1 | 0.1 / 17.3 / 176.1 |
+| 10 | Problem 3 heuristic C9-off | 24 / 50 | 1,612,418 | 1,612,301 | 117 | 74,994 (4.65%) | 12.8 / 94.7 / 420.6 | 0.1 / 8.1 / 97.3 |
+| 6 | Problem 3 heuristic C9-on | 29 / 50 | 2,137,495 | 2,137,174 | 321 | 37,499 (1.75%) | 9.7 / 49.7 / 568.3 | 0.1 / 9.9 / 197.7 |
+| 7 | Problem 3 RL C9-off | 28 / 50 | 2,025,000 | 2,009,876 | 15,124 | 74,364 (3.70%) | 9.6 / 107.0 / 320964.9 | 0.2 / 1960.5 / 4668.9 |
+| 4 | Problem 3 RL C9-on | 28 / 50 | 2,062,500 | 2,052,201 | 10,299 | 27,316 (1.33%) | 9.7 / 67.0 / 324839.5 | 0.1 / 2375.7 / 6468.4 |
+| | **Total** | | **13,912,388** | **13,886,335** | **26,053** | **403,863 (2.91%)** | | |
 
 The flow counts of the two Problem 3 C9-on packages changed (29 → 27 and 28 → 29) because they were
 regenerated with fix B: Problem 3 admits a different set of extra flows when the C9-on spacing changes.
