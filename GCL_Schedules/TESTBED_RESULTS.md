@@ -1,50 +1,48 @@
-# Testbed results: which schedules had no deadline misses
+# Testbed results after the fixes
 
-**Only one schedule ran on the physical testbed with zero deadline misses and full delivery:
-dataset 1, `prob3-heuristic-c9-off-hw/1-heuristic-c9off-matrix`, run `results-2026-10-07_4`**
-(42 flows, 3,187,354 / 3,187,500 packets delivered, 0 misses). No dataset-2 schedule has had a
-zero-miss run yet.
+Only runs with all four fixes in place are listed. These are the final round of dataset 4,
+2026-10-10: **all 10 packages delivered 100.00% of their frames with 0 deadline misses**.
+Datasets 1-3 have no runs since the fixes (see the end).
 
-Every run: 8 TTTech switches, 3 end stations (S1, S2, S3), 1 Gb/s, 800 µs GCL cycle, 30 s of
-traffic. Senders transmit each frame at its scheduled offset with NIC launch time (SO_TXTIME +
-etf offload) and receivers use NIC hardware RX timestamps. A deadline miss is a frame whose
-latency exceeds its deadline (deadline = period). Each run's full per-flow report is
-`<package>/results/<run>/results.md`.
+The fixes:
+**A** pcp 6 and pcp 7 share one NIC launch-time queue (`time-sync-gptp/gptp.sh`);
+**B** C9-on schedules wait for store-and-forward (`store_and_forward` in RL-TSN's hw profile);
+**C** etf delta 600 µs (`gptp.sh`, `Spawning-Flows/gen_traffic.py`);
+**D** wait for the spanning tree to settle after admission (`Network-Configure-Manager/wait_stp_quiet.py`).
 
-## Dataset 1 (`RL-TSN/data/dataset-testbed/1`, seed 42)
+Every run: 8 TTTech switches in a tree, 3 end stations (S1, S2, S3), 1 Gb/s, 800 µs GCL cycle, 30 s
+of traffic, NIC launch time on send and NIC hardware timestamps on receive. A deadline miss is a
+frame whose latency exceeds its deadline (deadline = period); lost = sent but not received.
 
-| Package | Timing model | Run | Flows | Delivered | Deadline misses |
-|---|---|---|---|---|---|
-| **`prob3-heuristic-c9-off-hw/1-heuristic-c9off-matrix`** | C9 off, 4 µs hop, 2.4 µs guard | **`results-2026-10-07_4`** | **42** | **100.00%** | **0** ✅ |
-| same | same | `results-2026-10-07_2`, `_3` | 42 | 77-79% | 161 / 1 (routes blocked by stale MSTP state, since fixed) |
-| `prob3-rl-c9-on/1-rl-c9on-matrix` | C9 on (cut-through), 2 µs hop | `results-2026-10-01_3` ... `_5` | 48 | 99.99% | ~187k (flows 2 and 300003) |
-| same | same | `results-2026-10-07`, `_2`, `_3` | 48 | 84.4% | ~2.5k (sw08 drops pcp-6 traffic) |
-| `prob3-rl-c9-on/1-rl-c9on-matrix-S1S2` | same, S1<->S2 flows only | `results-2026-10-07`, `_2` | 15 | 63-100% | 2,250 / 187,492 |
-| `heuristic-c9-off/1-matrix-c9off` | stages after SMT still cut-through | `results-2026-10-01_3` | 10 | 100.00% | 75,003 (flow 15) |
+## Best results (dataset 4, ranked)
 
-## Dataset 2 (`RL-TSN/data/dataset-testbed/2`, seed 7)
+Ranked by deadline misses, then frames lost, then max latency.
 
-| Package | Timing model | Run | Flows | Delivered | Deadline misses |
-|---|---|---|---|---|---|
-| `dataset-testbed-2_2026-10-08/2-rl-c9off-matrix` | C9 off, 4 µs hop, 12.4 µs guard | `results-2026-10-08` | 26 | 100.00% | 37,499: flow 19 (S2->S1, 200 µs), 25% of its frames |
-| `dataset-testbed-2_2026-10-07/2-heuristic-c9off-matrix` | C9 off, 4 µs hop, 2.4 µs guard | `results-2026-10-08` | 43 | 100.00% | 150,000: flow 1 (S1->S2, 200 µs), 100% of its frames |
-| `dataset-testbed-2_2026-10-08/2-rl-c9on-matrix` | C9 on (cut-through), 4 µs hop, 12.4 µs guard | `results-2026-10-08` | 32 | 99.99% | 149,967: flows 14 and 18, 50% each |
-| same | same | `results-2026-10-08_2` | 32 | 77.94% | 74,993: flow 14; S2->S1 route blocked at sw07 (CIST port state) |
-| `dataset-testbed-2_2026-10-08/2-rl-c9on-matrix-S2rx` | same, S2 only receives | `results-2026-10-08` | 18 | 100.00% | 74,994: flow 14 (S3->S2, 200 µs), 50% |
+| Rank | Package | Flows | Delivered | Lost | Deadline misses | Max latency | Run |
+|---|---|---|---|---|---|---|---|
+| 1 | RL C9-on | 11 | 100.00% | 0 | 0 | 44.5 µs | `result-2026-10-10-dataset-testbed-4-saf/rl-c9-on/4-matrix-c9on/results/results-2026-10-10_2` |
+| 2 | SMT C9-off | 11 | 100.00% | 0 | 0 | 133.7 µs | `result-2026-10-09-dataset-testbed-4-avgwin/smt-c9-off/4-t3600-c9off-minlat/results/results-2026-10-10_5` |
+| 2 | RL C9-off | 11 | 100.00% | 0 | 0 | 133.7 µs | `result-2026-10-09-dataset-testbed-4-avgwin/rl-c9-off/4-matrix-c9off/results/results-2026-10-10_3` |
+| 4 | Problem 3 RL C9-off | 28 | 100.00% | 0 | 0 | 235.5 µs | `result-2026-10-09-dataset-testbed-4-avgwin/prob3-rl-c9-off/4-rl-c9off-matrix/results/results-2026-10-10_4` |
+| 5 | Problem 3 RL C9-on | 29 | 100.00% | 1 | 0 | 139.8 µs | `result-2026-10-10-dataset-testbed-4-saf/prob3-rl-c9-on/4-rl-c9on-matrix/results/results-2026-10-10_2` |
+| 6 | SMT C9-on | 11 | 100.00% | 4 | 0 | 62.1 µs | `result-2026-10-10-dataset-testbed-4-saf/smt-c9-on/4-saf-retimed-c9on/results/results-2026-10-10_3` |
+| 7 | Problem 3 heuristic C9-on | 27 | 100.00% | 4 | 0 | 408.2 µs | `result-2026-10-10-dataset-testbed-4-saf/prob3-heuristic-c9-on/4-heuristic-c9on-matrix/results/results-2026-10-10_2` |
+| 8 | heuristic C9-on | 11 | 100.00% | 8 | 0 | 156.6 µs | `result-2026-10-10-dataset-testbed-4-saf/heuristic-c9-on/4-matrix-c9on/results/results-2026-10-10_2` |
+| 9 | Problem 3 heuristic C9-off | 24 | 100.00% | 8 | 0 | 420.7 µs | `result-2026-10-09-dataset-testbed-4-avgwin/prob3-heuristic-c9-off/4-heuristic-c9off-matrix/results/results-2026-10-10_3` |
+| 10 | heuristic C9-off | 11 | 100.00% | 9 | 0 | 134.0 µs | `result-2026-10-09-dataset-testbed-4-avgwin/heuristic-c9-off/4-matrix-c9off/results/results-2026-10-10_3` |
 
-In every dataset-2 run all missed frames come from one or two 200 µs flows, each missing a fixed
-share of its instances (25/50/100%): those instances wait one period for the next window, a
-schedule/model gap rather than congestion.
+- **Fewest misses and losses:** the four packages with 0 misses and 0 lost frames: RL C9-on, SMT
+  C9-off, RL C9-off and Problem 3 RL C9-off. The largest of them, Problem 3 RL C9-off, carries 28
+  flows.
+- **Lowest latency:** RL C9-on (44.5 µs worst case), then SMT C9-on (62.1 µs).
+- The few lost frames (34 in 13.6 million across all packages) are launch-time drops on the sending
+  hosts; the switches dropped nothing.
 
-## Not yet run on the testbed
+Each run's full per-flow report is `<run>/results.md`. The causes, the earlier rounds and how each
+fix changed the results: [result-2026-10-10-dataset-testbed-4-saf/SUMMARY_REPORT_2026-10-10.md](result-2026-10-10-dataset-testbed-4-saf/SUMMARY_REPORT_2026-10-10.md).
 
-`heuristic-c9-off-hw`, `heuristic-c9-on-hw`, `rl-c9-off-hw`, `smt-c9-off-hw`, `smt-c9-on-hw`
-(dataset-1 base and enlarged schedules) and `prob3-rl-c9-off-hw` (dataset 1, RL + Problem 3,
-C9 off; passes `deploy-GCL/check_schedule.py`).
+## Not run since the fixes
 
-## What separates the zero-miss run
-
-Schedules generated with store-and-forward timing in every stage (C9 off), the switches'
-measured per-hop delay, and a gate guard, then checked with `deploy-GCL/check_schedule.py`
-before deploying. C9-on schedules assume cut-through forwarding and miss deadlines on these
-store-and-forward switches. See "Why schedules missed deadlines on the testbed" in `../README.md`.
+Datasets 1, 2 and 3. They were generated for the original cabling with loops; the testbed is now
+cabled as a tree (`network-topology/network-topology-rtas-2027-tree.json`), so they need
+regenerating on it before running.
