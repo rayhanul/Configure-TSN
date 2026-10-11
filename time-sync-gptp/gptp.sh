@@ -163,13 +163,18 @@ UNIT
   set_tai
 }
 
-apply_launchtime() {  # socket priority 7 (pcp 7) -> TX queue 0, priority 5 (pcp 6, VLAN egress-qos-map 5:6) ->
-                      # TX queue 1: the I210's launch-time queues, each etf with hardware offload. Priority 6
-                      # stays out: Linux gives it to interactive-TOS traffic such as ssh, and etf drops any
-                      # frame without a launch time. Everything else, ptp4l included, -> queues 2-3 as before.
+apply_launchtime() {  # socket priorities 7 (pcp 7) and 5 (pcp 6, VLAN egress-qos-map 5:6) -> TX queue 0, one
+                      # etf with hardware offload, so the NIC sends every scheduled frame strictly in launch-time
+                      # order. With pcp 6 on its own queue 1 (as before 2026-10-10) the I210 held a queue-1 frame
+                      # back while a queue-0 frame waited for a launch time a few us later, so it missed its first
+                      # window (flow 14 of dataset-testbed 4: 2 of 4 instances per cycle a full period late; 0 late
+                      # once S3's pcp-7 flows were stopped). The VLAN tags keep pcp 6/7 apart on the switches.
+                      # Queue 1 keeps its etf but is unused. Priority 6 stays out: Linux gives it to
+                      # interactive-TOS traffic such as ssh, and etf drops any frame without a launch time.
+                      # Everything else, ptp4l included, -> queues 2-3 as before.
   tc qdisc del dev "$IF" root 2>/dev/null   # an existing mqprio cannot be changed in place
   tc qdisc add dev "$IF" parent root handle 100 mqprio num_tc 3 \
-     map 2 2 2 2 2 1 2 0 2 2 2 2 2 2 2 2 queues 1@0 1@1 2@2 hw 0
+     map 2 2 2 2 2 0 2 0 2 2 2 2 2 2 2 2 queues 1@0 1@1 2@2 hw 0
   tc qdisc add dev "$IF" parent 100:1 etf clockid CLOCK_TAI delta $ETF_DELTA_NS offload
   tc qdisc add dev "$IF" parent 100:2 etf clockid CLOCK_TAI delta $ETF_DELTA_NS offload
 }

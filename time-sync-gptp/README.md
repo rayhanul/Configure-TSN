@@ -24,7 +24,10 @@ sudo ./gptp.sh install slave enp1s0       # S2, S3
 `install` also sets the kernel TAI offset (`CLOCK_TAI` = UTC + 37 s, needed by `gen_traffic.py` and
 taprio/etf) at every boot; on its own: `sudo ./gptp.sh tai`.
 `sudo ./gptp.sh launchtime on|off` sets up the NIC launch-time queues `gen_traffic.py` needs
-(socket priority 7 → TX queue 0, 5 → queue 1, etf with hardware offload), now and at boot. It
+(socket priorities 7 and 5, i.e. pcp 7 and pcp 6, → TX queue 0 with etf hardware offload; queue 1's etf is
+left unused), now and at boot. One queue for both: with pcp 6 on queue 1 the I210 held a pcp-6 frame back
+while a pcp-7 frame waited for a launch time a few µs later, so it missed its first window and arrived a
+full period late (2026-10-10, dataset-testbed 4 flow 14: 50% late before, 1 of 74,990 after). It
 resets the NIC and its PHC, so it stops and restarts PTP around the change; on the grandmaster
 that pauses sync for the whole network (~20 s). Don't remove the queues with plain `tc`.
 `sudo ./gptp.sh run gm|slave` runs the same in the foreground for testing.
