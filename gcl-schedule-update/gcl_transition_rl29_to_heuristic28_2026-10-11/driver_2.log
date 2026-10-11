@@ -1,0 +1,98 @@
+Results: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/prob3-rl-c9-on/5-rl-c9on-matrix/results/update-loss-2026-10-11_2
+Switches (dataset-5-affected): connecting, reading current GCLs ...
+End stations: S1, S2, S3
+  S1: TAI offset 37.0 s, ptp4l/phc2sys active/active
+  S2: TAI offset 37.0 s, ptp4l/phc2sys active/active
+  S3: TAI offset 37.0 s, ptp4l/phc2sys active/active
+Traffic: 30 s from TAI 1791696242.929; update at +10 s
+  update at +10.071 s: update 1694.8 ms, commands 1698.6 ms, live 17/17
+  original lists restored on 17 port(s)
+# Packet loss around a GCL update, 2026-10-11 01:23
+
+Package `GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/prob3-rl-c9-on/5-rl-c9on-matrix`, 29 flows (S1, S2, S3 running; all end stations). Update: dataset-5-affected (17 ports), sequential, immediate, TCP_NODELAY off, to `GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/prob3-heuristic-c9-on/5-heuristic-c9on-matrix/gcl`.
+
+- Update 1 (update): first command at +10070.8 ms, network on the new lists after **1694.8 ms** (commands back after 1698.6 ms), 17/17 ports live.
+
+| phase | from (ms) | length (ms) | sent | lost | loss % | lost/s | deadline misses | latency p50 / p99 / max (µs) |
+|---|---|---|---|---|---|---|---|---|
+| before | 0.0 | 10070.8 | 730140 | 0 | 0.000 | 0.0 | 0 | 40.7 / 186.7 / 187.2 |
+| during update 1 | 10070.8 | 1694.8 | 122863 | 0 | 0.000 | 0.0 | 9021 | 53.3 / 443.7 / 450.2 |
+| after update 1 | 11765.6 | 18234.4 | 1321955 | 0 | 0.000 | 0.0 | 91164 | 65.4 / 443.7 / 443.8 |
+
+Switch queue drops (Q DROP) during the run: none.
+
+| flow | sent | lost | deadline misses |
+|---|---|---|---|
+| 1 | 37498 | 0 | 0 |
+| 2 | 150000 | 0 | 0 |
+| 3 | 37500 | 0 | 0 |
+| 4 | 37500 | 0 | 0 |
+| 5 | 37500 | 0 | 0 |
+| 6 | 75000 | 0 | 0 |
+| 7 | 74996 | 0 | 49342 |
+| 8 | 149991 | 0 | 50843 |
+| 9 | 75000 | 0 | 0 |
+| 10 | 150000 | 0 | 0 |
+| 11 | 74999 | 0 | 0 |
+| 12 | 149991 | 0 | 0 |
+| 13 | 37500 | 0 | 0 |
+| 14 | 150000 | 0 | 0 |
+| 15 | 150000 | 0 | 0 |
+| 16 | 37498 | 0 | 0 |
+| 17 | 75000 | 0 | 0 |
+| 18 | 75000 | 0 | 0 |
+| 19 | 74996 | 0 | 0 |
+| 22 | 37498 | 0 | 0 |
+| 28 | 37500 | 0 | 0 |
+| 30 | 37499 | 0 | 0 |
+| 31 | 37497 | 0 | 0 |
+| 37 | 37500 | 0 | 0 |
+| 38 | 149999 | 0 | 0 |
+| 39 | 74999 | 0 | 0 |
+| 43 | 37497 | 0 | 0 |
+| 45 | 37500 | 0 | 0 |
+| 50 | 37500 | 0 | 0 |
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/jdg24001/Documents/github/Configure-TSN/gcl-schedule-update/loss_during_update.py", line 342, in <module>
+    sys.exit(main())
+  File "/home/jdg24001/Documents/github/Configure-TSN/gcl-schedule-update/loss_during_update.py", line 334, in main
+    import plot_update
+  File "/home/jdg24001/Documents/github/Configure-TSN/gcl-schedule-update/plot_update.py", line 24, in <module>
+    import matplotlib
+  File "/home/jdg24001/anaconda3/lib/python3.12/site-packages/matplotlib/__init__.py", line 159, in <module>
+    from . import _api, _version, cbook, _docstring, rcsetup
+  File "/home/jdg24001/anaconda3/lib/python3.12/site-packages/matplotlib/rcsetup.py", line 28, in <module>
+    from matplotlib.colors import Colormap, is_color_like
+  File "/home/jdg24001/anaconda3/lib/python3.12/site-packages/matplotlib/colors.py", line 57, in <module>
+    from matplotlib import _api, _cm, cbook, scale
+  File "/home/jdg24001/anaconda3/lib/python3.12/site-packages/matplotlib/scale.py", line 22, in <module>
+    from matplotlib.ticker import (
+  File "/home/jdg24001/anaconda3/lib/python3.12/site-packages/matplotlib/ticker.py", line 144, in <module>
+    from matplotlib import transforms as mtransforms
+  File "/home/jdg24001/anaconda3/lib/python3.12/site-packages/matplotlib/transforms.py", line 49, in <module>
+    from matplotlib._path import (
+Traceback (most recent call last):
+  File "/home/jdg24001/anaconda3/lib/python3.12/site-packages/numpy/core/_multiarray_umath.py", line 44, in __getattr__
+    raise ImportError(msg)
+ImportError:
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+
+
+[info] no plot (initialization failed); run: python3 plot_update.py loss /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/prob3-rl-c9-on/5-rl-c9on-matrix/results/update-loss-2026-10-11_2

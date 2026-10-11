@@ -22,6 +22,7 @@ per-bin counts (bins.csv), per-phase table (summary.md), raw packet logs, and lo
 """
 
 import argparse
+import concurrent.futures
 import datetime
 import json
 import os
@@ -37,6 +38,41 @@ sys.path.insert(0, os.path.join(REPO, "Spawning-Flows"))
 import measure_update as mu  # noqa: E402
 import run_experiment as rx  # noqa: E402  (also puts configureManager on the path)
 import configure_gcl as cg  # noqa: E402
+
+
+def queue_snapshot(clients, ports, label):
+    """Read affected-port Q DROP counters over the existing switch sessions.
+
+    Counter timestamps bracket each read on the switch clock; samples are near
+    phase boundaries, rather than exactly at hardware ConfigChangeTime.
+    """
+    def one(sw):
+        commands = []
+        for p in ports[sw]:
+            iface = mu.PORT_PREFIX + p
+            clock = f"/sys/class/net/{iface}/ieee8021ST/CurrentTime"
+            commands.append(f"read a < {clock}; q=$(ethtool -S {iface} | "
+                            "awk '/Q DROP/{print $3}'); "
+                            f"read b < {clock}; echo Q {p} $q $a $b")
+        rc, out, err = mu.run(clients[sw], "; ".join(commands))
+        if rc:
+            raise RuntimeError(f"{sw}: Q DROP read failed: {err}")
+        result = {}
+        for line in out.splitlines():
+            v = line.split()
+            if len(v) == 5 and v[0] == "Q":
+                result[f"{sw}/{v[1]}"] = dict(count=int(v[2]),
+                                              read_start_ns=mu.ts_ns(v[3]),
+                                              read_end_ns=mu.ts_ns(v[4]))
+        if len(result) != len(ports[sw]):
+            raise RuntimeError(f"{sw}: incomplete Q DROP reading: {out}")
+        return result
+
+    counters = {}
+    with concurrent.futures.ThreadPoolExecutor(max_workers=len(ports)) as pool:
+        for result in pool.map(one, sorted(ports)):
+            counters.update(result)
+    return dict(label=label, counters=counters)
 
 
 def available_nodes(endpoints, topo):
@@ -207,7 +243,9 @@ def main():
     print(f"End stations: {', '.join(names)}")
     nodes = [rx.Node(n, topo) for n in names]
     info = rx.preflight(nodes, endpoints)
-    drops_before = rx.switch_drops(topo, pkg)
+    queue_samples = [queue_snapshot(clients, ports, "before_traffic")]
+    drops_before = {k: v["count"] for k, v in queue_samples[0]["counters"].items()}
+    hosts_before = rx.host_counters(nodes, info)
 
     start_ns = int((time.clock_gettime(time.CLOCK_TAI) + args.lead) * 1e9)
     end_ns = start_ns + int(args.duration * 1e9)
@@ -224,22 +262,28 @@ def main():
     try:
         for at, contents, label in plan:
             mu.wait_until(start_ns + int(at * 1e9))
+            queue_samples.append(queue_snapshot(clients, ports, f"before_{label}"))
             rows, bt = mu.update_network(clients, ports, contents, args.strategy, args.mode)
             res = mu.derive(rows, bt)
+            queue_samples.append(queue_snapshot(clients, ports, f"after_{label}"))
             updates.append(dict(label=label, **res))
             port_rows += [dict(scenario=args.scenario, strategy=args.strategy, mode=args.mode,
                                rep=len(updates), **r) for r in rows]
             print(f"  {label} at +{(res['t_first_send'] - start_ns) / 1e9:.3f} s: update {res['update_ms']:.1f} ms, "
                   f"commands {res['commands_ms']:.1f} ms, live {res['live_ports']}/{res['ports']}")
+            if res["live_ports"] != res["ports"]:
+                raise RuntimeError("GCL update did not activate on every affected port")
         for t in th:
             t.join()
+        queue_samples.append(queue_snapshot(clients, ports, "after_traffic"))
+        hosts_after = rx.host_counters(nodes, info)
     finally:
         if not restored:
             rows, _ = mu.update_network(clients, ports, snap, "batched", "immediate")
             print(f"  original lists restored on {mu.derive(rows)['live_ports']} port(s)")
         for c in clients.values():
             c.close()
-    drops_after = rx.switch_drops(topo, pkg)
+    drops_after = {k: v["count"] for k, v in queue_samples[-1]["counters"].items()}
 
     tx, rcv = load_logs(out, names)
     flows, bins, phases, per_flow = analyse(tx, rcv, schedule, endpoints, names, start_ns, end_ns,
@@ -255,7 +299,10 @@ def main():
                 nodelay=args.nodelay, target_gcl=args.target_gcl, start_ns=start_ns, end_ns=end_ns,
                 bin_ms=args.bin_ms, nodes=names, skipped_nodes=skipped, flows=flows,
                 updates=[{k: v for k, v in u.items()} for u in updates], phases=phases, per_flow=per_flow,
-                switch_qdrops=sw_drops, connect_ms=conn_ms, ptp={k: v["ptp"] for k, v in info.items()})
+                switch_qdrops=sw_drops, switch_queue_samples=queue_samples,
+                host_counter_delta={n: {k: v - hosts_before[n][k] for k, v in counters.items()}
+                                    for n, counters in hosts_after.items()},
+                connect_ms=conn_ms, ptp={k: v["ptp"] for k, v in info.items()})
     with open(os.path.join(out, "updates.json"), "w") as fh:
         json.dump(meta, fh, indent=2, default=float)
 

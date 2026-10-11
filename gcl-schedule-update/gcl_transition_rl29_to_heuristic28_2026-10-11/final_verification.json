@@ -1,0 +1,9 @@
+{
+  "restored_ports": 17,
+  "all_gcls_match_initial": true,
+  "nodes": {
+    "S1": "no traffic generator running",
+    "S2": "no traffic generator running",
+    "S3": "no traffic generator running"
+  }
+}

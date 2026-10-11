@@ -1,0 +1,15 @@
+{
+  "source": "GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/prob3-rl-c9-on/5-rl-c9on-matrix",
+  "target": "GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/prob3-heuristic-c9-on/5-heuristic-c9on-matrix",
+  "flows_kept": 29,
+  "target_scheduled_flows": 28,
+  "strategy": "sequential",
+  "mode": "immediate",
+  "tcp_nodelay": false,
+  "duration_s": 30,
+  "update_at_s": 10,
+  "repetitions": 3,
+  "restore_original_gcl_after_each_run": true,
+  "only_gcls_changed": true,
+  "notes": "Transmit offsets, endpoints, VLANs, MSTP and all 29 current flows remain fixed. Queue counter sampling brackets phase boundaries."
+}

@@ -1,0 +1,70 @@
+{
+  "sw01/sw0p2": {
+    "gcl": "sgs  33600  0x7F\nsgs  12480  0x80\nsgs  8000  0x3F\nsgs  12480  0x40\nsgs  320  0x3F\nsgs  33600  0x80\nsgs  1600  0x3F\nsgs  12480  0x40\nsgs  16000  0x7F\nsgs  30720  0x80\nsgs  22400  0xBF\nsgs  13760  0x40\nsgs  36160  0x7F\nsgs  12480  0x80\nsgs  8000  0x3F\nsgs  12480  0x40\nsgs  35520  0xBF\nsgs  95360  0x40\nsgs  36160  0x7F\nsgs  12480  0x80\nsgs  8000  0x3F\nsgs  12480  0x40\nsgs  320  0x3F\nsgs  12480  0x80\nsgs  22720  0xBF\nsgs  45440  0x40\nsgs  36160  0xBF\nsgs  13760  0x40\nsgs  36160  0x7F\nsgs  12480  0x80\nsgs  8000  0x3F\nsgs  12480  0x40\nsgs  35520  0xBF\nsgs  61760  0x40\nsgs  36160  0xBF\n",
+    "cycle": "1/1250"
+  },
+  "sw01/sw0p4": {
+    "gcl": "sgs  8320  0x3F\nsgs  12480  0x80\nsgs  12480  0x40\nsgs  960  0x3F\nsgs  12480  0x80\nsgs  960  0x3F\nsgs  33280  0x40\nsgs  19200  0xBF\nsgs  17280  0x7F\nsgs  43520  0x80\nsgs  47360  0xBF\nsgs  12480  0x80\nsgs  140160  0x40\nsgs  47360  0xBF\nsgs  12480  0x80\nsgs  12480  0x40\nsgs  960  0x3F\nsgs  12480  0x80\nsgs  960  0x3F\nsgs  113280  0x40\nsgs  47360  0xBF\nsgs  12480  0x80\nsgs  131840  0x40\nsgs  47360  0xBF\n",
+    "cycle": "1/1250"
+  },
+  "sw02/sw0p2": {
+    "gcl": "sgs  49920  0x7F\nsgs  20800  0xBF\nsgs  12480  0x40\nsgs  4800  0x3F\nsgs  12480  0x80\nsgs  59520  0x7F\nsgs  31360  0x80\nsgs  58560  0x7F\nsgs  38080  0xBF\nsgs  86080  0x80\nsgs  25920  0xBF\nsgs  49920  0x7F\nsgs  20800  0xBF\nsgs  12480  0x40\nsgs  4800  0x3F\nsgs  103360  0x80\nsgs  58560  0x7F\nsgs  38080  0xBF\nsgs  15360  0x80\nsgs  46720  0x7F\nsgs  49920  0xBF\n",
+    "cycle": "1/1250"
+  },
+  "sw02/sw0p4": {
+    "gcl": "sgs  8320  0x3F\nsgs  12480  0x40\nsgs  24320  0x7F\nsgs  34880  0x80\nsgs  15040  0xBF\nsgs  12480  0x80\nsgs  42240  0x7F\nsgs  12480  0x40\nsgs  46080  0xBF\nsgs  136640  0x40\nsgs  63360  0xBF\nsgs  12480  0x40\nsgs  24320  0x7F\nsgs  41280  0x80\nsgs  13760  0xBF\nsgs  49600  0x7F\nsgs  12480  0x40\nsgs  46080  0xBF\nsgs  128320  0x40\nsgs  13440  0x7F\nsgs  49920  0xBF\n",
+    "cycle": "1/1250"
+  },
+  "sw03/sw0p4": {
+    "gcl": "sgs  26880  0x7F\nsgs  12480  0x80\nsgs  6400  0x3F\nsgs  12480  0x40\nsgs  1600  0x3F\nsgs  35520  0x80\nsgs  1600  0x3F\nsgs  12480  0x40\nsgs  14400  0x7F\nsgs  29760  0x80\nsgs  21760  0xBF\nsgs  15360  0x40\nsgs  36160  0x7F\nsgs  12480  0x80\nsgs  6400  0x3F\nsgs  15040  0x40\nsgs  36160  0xBF\nsgs  93760  0x40\nsgs  36160  0x7F\nsgs  12480  0x80\nsgs  6400  0x3F\nsgs  12480  0x40\nsgs  1600  0x3F\nsgs  12480  0x80\nsgs  24640  0xBF\nsgs  42240  0x40\nsgs  36160  0xBF\nsgs  15360  0x40\nsgs  36160  0x7F\nsgs  12480  0x80\nsgs  6400  0x3F\nsgs  15040  0x40\nsgs  36160  0xBF\nsgs  66880  0x40\nsgs  36160  0xBF\n",
+    "cycle": "1/1250"
+  },
+  "sw03/sw0p5": {
+    "gcl": "sgs  16640  0x7F\nsgs  12480  0x80\nsgs  12480  0x40\nsgs  1920  0x3F\nsgs  12480  0x80\nsgs  31040  0x40\nsgs  13120  0xBF\nsgs  23360  0x7F\nsgs  45760  0x80\nsgs  30720  0xBF\nsgs  16640  0x7F\nsgs  12480  0x80\nsgs  140160  0x40\nsgs  30720  0xBF\nsgs  16640  0x7F\nsgs  12480  0x80\nsgs  12480  0x40\nsgs  1920  0x3F\nsgs  12480  0x80\nsgs  113280  0x40\nsgs  30720  0xBF\nsgs  16640  0x7F\nsgs  12480  0x80\nsgs  123520  0x40\nsgs  47360  0xBF\n",
+    "cycle": "1/1250"
+  },
+  "sw04/sw0p4": {
+    "gcl": "sgs  49920  0x7F\nsgs  12480  0xBF\nsgs  12480  0x40\nsgs  4480  0x3F\nsgs  12480  0x80\nsgs  62080  0x7F\nsgs  28800  0x80\nsgs  17280  0xBF\nsgs  49920  0x7F\nsgs  29440  0xBF\nsgs  86400  0x80\nsgs  34240  0xBF\nsgs  49920  0x7F\nsgs  12480  0xBF\nsgs  12480  0x40\nsgs  4480  0x3F\nsgs  103360  0x80\nsgs  17280  0xBF\nsgs  49920  0x7F\nsgs  29440  0xBF\nsgs  24000  0x80\nsgs  46720  0x7F\nsgs  49920  0xBF\n",
+    "cycle": "1/1250"
+  },
+  "sw04/sw0p5": {
+    "gcl": "sgs  16640  0x7F\nsgs  12480  0x40\nsgs  23680  0x7F\nsgs  32320  0x80\nsgs  17600  0xBF\nsgs  12480  0x80\nsgs  44160  0x7F\nsgs  12480  0x40\nsgs  28160  0xBF\nsgs  16640  0x7F\nsgs  136640  0x40\nsgs  46720  0xBF\nsgs  16640  0x7F\nsgs  12480  0x40\nsgs  23680  0x7F\nsgs  43200  0x80\nsgs  63360  0x7F\nsgs  12480  0x40\nsgs  28160  0xBF\nsgs  16640  0x7F\nsgs  120000  0x40\nsgs  13440  0x7F\nsgs  49920  0xBF\n",
+    "cycle": "1/1250"
+  },
+  "sw05/sw0p4": {
+    "gcl": "sgs  24960  0x7F\nsgs  12480  0x80\nsgs  12480  0x40\nsgs  14400  0xBF\nsgs  28800  0x40\nsgs  4800  0x3F\nsgs  76160  0x80\nsgs  25920  0xBF\nsgs  24960  0x7F\nsgs  12480  0x80\nsgs  136640  0x40\nsgs  25920  0xBF\nsgs  24960  0x7F\nsgs  12480  0x80\nsgs  12480  0x40\nsgs  14400  0xBF\nsgs  12480  0x40\nsgs  21120  0xBF\nsgs  76160  0x80\nsgs  25920  0xBF\nsgs  24960  0x7F\nsgs  12480  0x80\nsgs  111680  0x40\nsgs  50880  0xBF\n",
+    "cycle": "1/1250"
+  },
+  "sw05/sw0p5": {
+    "gcl": "sgs  20160  0x7F\nsgs  12480  0x80\nsgs  4800  0x3F\nsgs  12480  0x40\nsgs  3840  0x3F\nsgs  36480  0x80\nsgs  1600  0x3F\nsgs  12480  0x40\nsgs  12800  0x7F\nsgs  28800  0x80\nsgs  21120  0xBF\nsgs  16960  0x40\nsgs  16000  0xBF\nsgs  20160  0x7F\nsgs  12480  0x80\nsgs  4800  0x3F\nsgs  18240  0x40\nsgs  36160  0xBF\nsgs  92160  0x40\nsgs  16000  0xBF\nsgs  20160  0x7F\nsgs  12480  0x80\nsgs  4800  0x3F\nsgs  12480  0x40\nsgs  3840  0x3F\nsgs  12480  0x80\nsgs  25600  0xBF\nsgs  39040  0x40\nsgs  19200  0x7F\nsgs  16960  0xBF\nsgs  16960  0x40\nsgs  16000  0xBF\nsgs  20160  0x7F\nsgs  12480  0x80\nsgs  4800  0x3F\nsgs  18240  0x40\nsgs  36160  0xBF\nsgs  72000  0x40\nsgs  36160  0xBF\n",
+    "cycle": "1/1250"
+  },
+  "sw06/sw0p4": {
+    "gcl": "sgs  24960  0x7F\nsgs  12480  0x40\nsgs  23040  0x7F\nsgs  29760  0x80\nsgs  20160  0x7F\nsgs  12480  0x80\nsgs  27200  0x7F\nsgs  16960  0xBF\nsgs  12480  0x40\nsgs  20480  0xBF\nsgs  24960  0x7F\nsgs  136640  0x40\nsgs  38400  0xBF\nsgs  24960  0x7F\nsgs  12480  0x40\nsgs  23040  0x7F\nsgs  43200  0x80\nsgs  46400  0x7F\nsgs  16960  0xBF\nsgs  12480  0x40\nsgs  20480  0xBF\nsgs  24960  0x7F\nsgs  111680  0x40\nsgs  13440  0x7F\nsgs  49920  0xBF\n",
+    "cycle": "1/1250"
+  },
+  "sw06/sw0p5": {
+    "gcl": "sgs  54080  0x7F\nsgs  12480  0x40\nsgs  4160  0x3F\nsgs  12480  0x80\nsgs  16960  0xBF\nsgs  47680  0x7F\nsgs  26240  0x80\nsgs  25920  0xBF\nsgs  49920  0x7F\nsgs  20800  0xBF\nsgs  86720  0x80\nsgs  42560  0xBF\nsgs  54080  0x7F\nsgs  12480  0x40\nsgs  4160  0x3F\nsgs  103360  0x80\nsgs  25920  0xBF\nsgs  49920  0x7F\nsgs  20800  0xBF\nsgs  32640  0x80\nsgs  46720  0x7F\nsgs  49920  0xBF\n",
+    "cycle": "1/1250"
+  },
+  "sw07/sw0p4": {
+    "gcl": "sgs  13440  0x7F\nsgs  12480  0x80\nsgs  3200  0x3F\nsgs  12480  0x40\nsgs  6080  0x3F\nsgs  12480  0x80\nsgs  12480  0xBF\nsgs  12480  0x80\nsgs  1600  0x3F\nsgs  12480  0x40\nsgs  11200  0x3F\nsgs  27840  0x80\nsgs  20480  0xBF\nsgs  18560  0x40\nsgs  22720  0xBF\nsgs  13440  0x7F\nsgs  12480  0x80\nsgs  3200  0x3F\nsgs  21440  0x40\nsgs  36160  0xBF\nsgs  90560  0x40\nsgs  22720  0xBF\nsgs  13440  0x7F\nsgs  12480  0x80\nsgs  3200  0x3F\nsgs  12480  0x40\nsgs  6080  0x3F\nsgs  12480  0x80\nsgs  26560  0xBF\nsgs  35840  0x40\nsgs  36160  0x7F\nsgs  18560  0x40\nsgs  22720  0xBF\nsgs  13440  0x7F\nsgs  12480  0x80\nsgs  3200  0x3F\nsgs  21440  0x40\nsgs  36160  0xBF\nsgs  77120  0x40\nsgs  36160  0xBF\n",
+    "cycle": "1/1250"
+  },
+  "sw07/sw0p5": {
+    "gcl": "sgs  33280  0x7F\nsgs  12480  0x80\nsgs  12480  0x40\nsgs  14400  0xBF\nsgs  27520  0x40\nsgs  8000  0x3F\nsgs  74240  0x80\nsgs  17600  0xBF\nsgs  33280  0x7F\nsgs  12480  0x80\nsgs  136640  0x40\nsgs  17600  0xBF\nsgs  33280  0x7F\nsgs  12480  0x80\nsgs  12480  0x40\nsgs  14400  0xBF\nsgs  12480  0x40\nsgs  23040  0xBF\nsgs  74240  0x80\nsgs  17600  0xBF\nsgs  33280  0x7F\nsgs  12480  0x80\nsgs  103360  0x40\nsgs  50880  0xBF\n",
+    "cycle": "1/1250"
+  },
+  "sw08/sw0p2": {
+    "gcl": "sgs  33280  0x3F\nsgs  33280  0x40\nsgs  1600  0x3F\nsgs  12480  0x80\nsgs  320  0x3F\nsgs  25280  0x40\nsgs  320  0x3F\nsgs  25280  0x80\nsgs  101440  0x3F\nsgs  33280  0x40\nsgs  166720  0x3F\nsgs  33280  0x40\nsgs  1600  0x3F\nsgs  12480  0x80\nsgs  320  0x3F\nsgs  12480  0x40\nsgs  25920  0x3F\nsgs  12480  0x80\nsgs  101440  0x3F\nsgs  33280  0x40\nsgs  133440  0x3F\n",
+    "cycle": "1/1250"
+  },
+  "sw08/sw0p4": {
+    "gcl": "sgs  45760  0x7F\nsgs  12480  0x40\nsgs  3840  0x3F\nsgs  12480  0x80\nsgs  25600  0xBF\nsgs  41600  0x7F\nsgs  23680  0x80\nsgs  34560  0xBF\nsgs  62080  0x7F\nsgs  87040  0x80\nsgs  50880  0xBF\nsgs  45760  0x7F\nsgs  12480  0x40\nsgs  3840  0x3F\nsgs  103360  0x80\nsgs  34560  0xBF\nsgs  62080  0x7F\nsgs  41280  0x80\nsgs  46720  0x7F\nsgs  49920  0xBF\n",
+    "cycle": "1/1250"
+  },
+  "sw08/sw0p5": {
+    "gcl": "sgs  6720  0x3F\nsgs  12480  0x80\nsgs  1600  0x3F\nsgs  12480  0x40\nsgs  640  0x3F\nsgs  12480  0x80\nsgs  4480  0x3F\nsgs  12480  0x40\nsgs  4160  0x3F\nsgs  12480  0x80\nsgs  20160  0xBF\nsgs  17920  0x7F\nsgs  12480  0x80\nsgs  19840  0x7F\nsgs  18240  0x40\nsgs  38080  0xBF\nsgs  12480  0x80\nsgs  1600  0x3F\nsgs  12480  0x40\nsgs  17600  0x7F\nsgs  117760  0x40\nsgs  38080  0xBF\nsgs  12480  0x80\nsgs  1600  0x3F\nsgs  12480  0x40\nsgs  640  0x3F\nsgs  12480  0x80\nsgs  4480  0x3F\nsgs  61440  0x40\nsgs  38080  0x7F\nsgs  18240  0x40\nsgs  38080  0xBF\nsgs  12480  0x80\nsgs  1600  0x3F\nsgs  12480  0x40\nsgs  17600  0x7F\nsgs  111040  0x40\nsgs  38080  0xBF\n",
+    "cycle": "1/1250"
+  }
+}

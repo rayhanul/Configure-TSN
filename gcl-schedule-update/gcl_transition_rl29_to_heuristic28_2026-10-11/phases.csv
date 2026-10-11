@@ -1,0 +1,10 @@
+trial,phase,sent,lost,loss_pct,deadline_misses,duration_ms,queue_drops,activation_ms,run
+1,before,730558,0,0.0,0,10078.361916,0,1573.8009,/home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/prob3-rl-c9-on/5-rl-c9on-matrix/results/update-loss-2026-10-11
+1,during update 1,114095,0,0.0,8338,1573.8009,0,1573.8009,/home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/prob3-rl-c9-on/5-rl-c9on-matrix/results/update-loss-2026-10-11
+1,after update 1,1330203,4,0.00030070598247034473,91738,18347.837184,0,1573.8009,/home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/prob3-rl-c9-on/5-rl-c9on-matrix/results/update-loss-2026-10-11
+2,before,730140,0,0.0,0,10070.823188,0,1694.816243,/home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/prob3-rl-c9-on/5-rl-c9on-matrix/results/update-loss-2026-10-11_2
+2,during update 1,122863,0,0.0,9021,1694.816243,0,1694.816243,/home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/prob3-rl-c9-on/5-rl-c9on-matrix/results/update-loss-2026-10-11_2
+2,after update 1,1321955,0,0.0,91164,18234.360569,0,1694.816243,/home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/prob3-rl-c9-on/5-rl-c9on-matrix/results/update-loss-2026-10-11_2
+3,before,729873,0,0.0,0,10067.422099,0,1605.393005,/home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/prob3-rl-c9-on/5-rl-c9on-matrix/results/update-loss-2026-10-11_3
+3,during update 1,116322,0,0.0,8600,1605.393005,0,1605.393005,/home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/prob3-rl-c9-on/5-rl-c9on-matrix/results/update-loss-2026-10-11_3
+3,after update 1,1328678,0,0.0,91626,18327.184896,0,1605.393005,/home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/prob3-rl-c9-on/5-rl-c9on-matrix/results/update-loss-2026-10-11_3
