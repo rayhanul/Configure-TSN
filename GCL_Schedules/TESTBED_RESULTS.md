@@ -16,25 +16,50 @@ frame whose latency exceeds its deadline (deadline = period); lost = sent but no
 
 ## Best results (dataset 4, ranked)
 
-Ranked by deadline misses, then frames lost, then max latency.
+Ranked by deadline misses, then frames lost, then max latency. Flows: admitted / offered (the 20
+base flows for SMT, heuristic and RL; the 20 base + 30 arriving flows for Problem 3). Latency over
+all received frames of the package (min / frame-weighted avg / max). Jitter per flow, averaged over
+the package's flows / its worst flow: stddev of latency, and RFC 3550 (mean |Δ latency| between
+consecutive frames). Every package: 0 switch queue drops.
 
-| Rank | Package | Flows | Delivered | Lost | Deadline misses | Max latency | Run |
-|---|---|---|---|---|---|---|---|
-| 1 | RL C9-on | 11 | 100.00% | 0 | 0 | 44.5 µs | `result-2026-10-10-dataset-testbed-4-saf/rl-c9-on/4-matrix-c9on/results/results-2026-10-10_2` |
-| 2 | SMT C9-off | 11 | 100.00% | 0 | 0 | 133.7 µs | `result-2026-10-09-dataset-testbed-4-avgwin/smt-c9-off/4-t3600-c9off-minlat/results/results-2026-10-10_5` |
-| 2 | RL C9-off | 11 | 100.00% | 0 | 0 | 133.7 µs | `result-2026-10-09-dataset-testbed-4-avgwin/rl-c9-off/4-matrix-c9off/results/results-2026-10-10_3` |
-| 4 | Problem 3 RL C9-off | 28 | 100.00% | 0 | 0 | 235.5 µs | `result-2026-10-09-dataset-testbed-4-avgwin/prob3-rl-c9-off/4-rl-c9off-matrix/results/results-2026-10-10_4` |
-| 5 | Problem 3 RL C9-on | 29 | 100.00% | 1 | 0 | 139.8 µs | `result-2026-10-10-dataset-testbed-4-saf/prob3-rl-c9-on/4-rl-c9on-matrix/results/results-2026-10-10_2` |
-| 6 | SMT C9-on | 11 | 100.00% | 4 | 0 | 62.1 µs | `result-2026-10-10-dataset-testbed-4-saf/smt-c9-on/4-saf-retimed-c9on/results/results-2026-10-10_3` |
-| 7 | Problem 3 heuristic C9-on | 27 | 100.00% | 4 | 0 | 408.2 µs | `result-2026-10-10-dataset-testbed-4-saf/prob3-heuristic-c9-on/4-heuristic-c9on-matrix/results/results-2026-10-10_2` |
-| 8 | heuristic C9-on | 11 | 100.00% | 8 | 0 | 156.6 µs | `result-2026-10-10-dataset-testbed-4-saf/heuristic-c9-on/4-matrix-c9on/results/results-2026-10-10_2` |
-| 9 | Problem 3 heuristic C9-off | 24 | 100.00% | 8 | 0 | 420.7 µs | `result-2026-10-09-dataset-testbed-4-avgwin/prob3-heuristic-c9-off/4-heuristic-c9off-matrix/results/results-2026-10-10_3` |
-| 10 | heuristic C9-off | 11 | 100.00% | 9 | 0 | 134.0 µs | `result-2026-10-09-dataset-testbed-4-avgwin/heuristic-c9-off/4-matrix-c9off/results/results-2026-10-10_3` |
+| Rank | Package | Flows (admitted / offered) | Delivered / lost / misses | Latency min / avg / max (µs) | Jitter stddev avg / max (µs) | Jitter RFC 3550 avg / max (µs) |
+|---|---|---|---|---|---|---|
+| 1 | RL C9-on | 11/20 | 100.00% / 0 / 0 | 21.0 / 33.6 / 44.5 | 0.1 / 0.3 | 0.1 / 0.2 |
+| 2 | SMT C9-off | 11/20 | 100.00% / 0 / 0 | 66.8 / 90.0 / 133.7 | 0.1 / 0.1 | 0.0 / 0.1 |
+| 2 | RL C9-off | 11/20 | 100.00% / 0 / 0 | 19.1 / 72.0 / 133.7 | 1.8 / 18.7 | 3.5 / 37.4 |
+| 4 | Problem 3 RL C9-off | 28/50 | 100.00% / 0 / 0 | 9.7 / 67.4 / 235.5 | 2.6 / 25.0 | 4.8 / 50.0 |
+| 5 | Problem 3 RL C9-on | 29/50 | 100.00% / 1 / 0 | 9.7 / 36.9 / 139.8 | 2.2 / 49.5 | 3.9 / 98.9 |
+| 6 | SMT C9-on | 11/20 | 100.00% / 4 / 0 | 21.0 / 39.1 / 62.1 | 0.1 / 0.2 | 0.0 / 0.0 |
+| 7 | Problem 3 heuristic C9-on | 27/50 | 100.00% / 4 / 0 | 9.6 / 38.6 / 408.2 | 0.6 / 4.8 | 0.8 / 7.3 |
+| 8 | heuristic C9-on | 11/20 | 100.00% / 8 / 0 | 21.3 / 34.7 / 156.6 | 0.2 / 0.5 | 0.1 / 0.2 |
+| 9 | Problem 3 heuristic C9-off | 24/50 | 100.00% / 8 / 0 | 12.8 / 82.4 / 420.7 | 2.5 / 49.9 | 4.6 / 99.8 |
+| 10 | heuristic C9-off | 11/20 | 100.00% / 9 / 0 | 19.0 / 73.7 / 134.0 | 0.6 / 5.7 | 0.6 / 6.6 |
+
+Other information per package:
+
+| Package | Frames sent | Worst latency, % of its deadline | Flows above the scheduler's e2e bound | Run |
+|---|---|---|---|---|
+| RL C9-on | 1,012,483 | 21% | 0 | `result-2026-10-10-dataset-testbed-4-saf/rl-c9-on/4-matrix-c9on/results/results-2026-10-10_2` |
+| SMT C9-off | 1,012,445 | 67% | 1 | `result-2026-10-09-dataset-testbed-4-avgwin/smt-c9-off/4-t3600-c9off-minlat/results/results-2026-10-10_5` |
+| RL C9-off | 1,012,488 | 67% | 0 | `result-2026-10-09-dataset-testbed-4-avgwin/rl-c9-off/4-matrix-c9off/results/results-2026-10-10_3` |
+| Problem 3 RL C9-off | 2,024,967 | 67% | 0 | `result-2026-10-09-dataset-testbed-4-avgwin/prob3-rl-c9-off/4-rl-c9off-matrix/results/results-2026-10-10_4` |
+| Problem 3 RL C9-on | 2,024,957 | 35% | 0 | `result-2026-10-10-dataset-testbed-4-saf/prob3-rl-c9-on/4-rl-c9on-matrix/results/results-2026-10-10_2` |
+| SMT C9-on | 1,012,484 | 24% | 1 | `result-2026-10-10-dataset-testbed-4-saf/smt-c9-on/4-saf-retimed-c9on/results/results-2026-10-10_3` |
+| Problem 3 heuristic C9-on | 1,912,365 | 51% | 0 | `result-2026-10-10-dataset-testbed-4-saf/prob3-heuristic-c9-on/4-heuristic-c9on-matrix/results/results-2026-10-10_2` |
+| heuristic C9-on | 1,012,448 | 39% | 1 | `result-2026-10-10-dataset-testbed-4-saf/heuristic-c9-on/4-matrix-c9on/results/results-2026-10-10_2` |
+| Problem 3 heuristic C9-off | 1,612,431 | 75% | 0 | `result-2026-10-09-dataset-testbed-4-avgwin/prob3-heuristic-c9-off/4-heuristic-c9off-matrix/results/results-2026-10-10_3` |
+| heuristic C9-off | 1,012,482 | 67% | 0 | `result-2026-10-09-dataset-testbed-4-avgwin/heuristic-c9-off/4-matrix-c9off/results/results-2026-10-10_3` |
 
 - **Fewest misses and losses:** the four packages with 0 misses and 0 lost frames: RL C9-on, SMT
   C9-off, RL C9-off and Problem 3 RL C9-off. The largest of them, Problem 3 RL C9-off, carries 28
   flows.
-- **Lowest latency:** RL C9-on (44.5 µs worst case), then SMT C9-on (62.1 µs).
+- **Lowest latency and jitter:** RL C9-on (44.5 µs worst case, 0.3 µs worst-flow stddev), then SMT
+  C9-on (62.1 µs). C9-on packages average 34-39 µs against 67-90 µs for C9-off.
+- **Most flows:** Problem 3 RL C9-on admits 29 of 50 flows; Problem 3 RL C9-off 28 with no frame lost.
+- **Jitter above a few µs** (up to 49.9 µs stddev) comes from a few flows whose latency differs
+  between the instances of a cycle (far-apart min and max); their frames still meet the deadline.
+- **Margin:** every frame arrived within 75% of its deadline (C9-on packages within 51%).
+- **Bound:** 3 packages each had one flow exceed the scheduler's e2e bound, still within deadline.
 - The few lost frames (34 in 13.6 million across all packages) are launch-time drops on the sending
   hosts; the switches dropped nothing.
 
