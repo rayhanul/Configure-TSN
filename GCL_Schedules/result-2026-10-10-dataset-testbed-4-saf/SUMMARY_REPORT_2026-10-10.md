@@ -26,9 +26,12 @@ Per-flow reports: `<package>/results/results-<date>[_n]/results.md`.
 ## Results
 
 Deadline = period, 30 s of traffic per package, deadline misses counted on received frames. "Lost"
-= sent but not received.
+= sent but not received. "Before the fixes" is round 1: each package as generated, run before any of
+fixes A-D (its first run, `results-2026-10-10`, in `../result-2026-10-09-dataset-testbed-4-avgwin/`).
+"After the fixes" is each package's latest run with all fixes in place: C9-off packages in the avgwin
+folder, the regenerated C9-on packages in this folder.
 
-| package | flows | as generated: delivered / lost / misses | final: delivered / lost / misses | final max latency |
+| package | flows | before the fixes (round 1): delivered / lost / misses | after the fixes (final round): delivered / lost / misses | final max latency |
 |---|---|---|---|---|
 | SMT C9-off | 11 | 100.00% / 21 / 74,994 | 100.00% / 0 / **0** | 133.7 µs |
 | SMT C9-on | 11 | 100.00% / 28 / 12,320 | 100.00% / 4 / **0** | 62.1 µs |
@@ -48,7 +51,7 @@ regenerated with fix B: Problem 3 admits a different set of extra flows when the
 
 | round | fixes in place | C9-off packages | C9-on packages |
 |---|---|---|---|
-| 1. as generated | none | 74,364–74,994 misses in 4 of 5 (RL: 0); Problem 3 RL lost 15,124 | 1–37,499 misses in all 5; Problem 3 RL lost 10,299 |
+| 1. before the fixes (as generated) | none | 74,364–74,994 misses in 4 of 5 (RL: 0); Problem 3 RL lost 15,124 | 1–37,499 misses in all 5; Problem 3 RL lost 10,299 |
 | 2. | A | 0 misses in 4 of 5; RL C9-off: 160 misses, 9,110 lost (D); 57–69 lost per Problem 3 package (C) | not run (round 3 regenerated them) |
 | 3. | A + B (etf delta 300 µs) | – | 0 misses in 4 of 5, SMT C9-on 1; 22–64 lost (C) |
 | 4. | A + B + C (etf delta 600 µs) | 0 misses, 0–9 lost in all 5 | 0 misses, 0–8 lost in 4 of 5; SMT C9-on: 314 misses, 10,600 lost (D) |
