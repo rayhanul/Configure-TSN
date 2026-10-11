@@ -35,7 +35,7 @@ TAI_UTC_S = 37
 SO_TIMESTAMPING = SCM_TIMESTAMPING = 37
 TS_FLAGS = (1 << 2) | (1 << 6)  # SOF_TIMESTAMPING_RX_HARDWARE | SOF_TIMESTAMPING_RAW_HARDWARE
 SO_TXTIME = SCM_TXTIME = 61
-ETF_DELTA_NS = 300_000   # must match gptp.sh launchtime: etf hands a frame to the NIC this long before its launch time
+ETF_DELTA_NS = 600_000   # must match gptp.sh launchtime: etf hands a frame to the NIC this long before its launch time
 LATE_MARGIN_NS = 50_000  # a frame not queued by launch - delta - margin would be dropped by etf: skip it instead
 
 

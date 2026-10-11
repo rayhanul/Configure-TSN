@@ -20,7 +20,7 @@ HERE=$(cd "$(dirname "$0")" && pwd)
 ENV=/etc/linuxptp/tsn-gptp.env      # ROLE, IF, CFG of the installed setup
 TAI_UTC=37                          # TAI - UTC in seconds (unchanged since 2017)
 THRESH_NS=${THRESH_NS:-1000}
-ETF_DELTA_NS=300000                 # etf hands a frame to the NIC this long before its launch time (gen_traffic.py uses the same)
+ETF_DELTA_NS=600000                 # etf hands a frame to the NIC this long before its launch time (gen_traffic.py uses the same)
 # -N 5: read the PHC 5 times per update and use the fastest read. On I210 the PCIe read takes ~3.7 us and
 # jitters; this cut the system clock's worst offset from 843 to ~510 ns (rms 228 -> 165 ns).
 PHC2SYS_OPTS=${PHC2SYS_OPTS:--N 5}
