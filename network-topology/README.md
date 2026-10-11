@@ -51,4 +51,7 @@ delay = about 145 us best case, within the 200 us shortest period).
 for `configure_gcl.py`, `configureManager.py`, `run_experiment.py`). Schedules must be generated
 for it: the current packages use routes over the unplugged links, so build a new testbed dataset
 from this topology in RL-TSN (`data/dataset-testbed/generate.py --topology ...`) and run the
-pipeline on it. `--mstp` can stay on (harmless); with no loops, the spanning tree blocks nothing.
+pipeline on it. `--mstp` can stay on: with no loops, the converged spanning tree blocks nothing. But
+after every admit mstpd re-converges for up to ~25 s and blocks ports for ~280 ms at a time, so wait
+for it before sending traffic: `Network-Configure-Manager/wait_stp_quiet.py --topology <file>`
+(`GCL_Schedules/run_testbed.sh` does this).
