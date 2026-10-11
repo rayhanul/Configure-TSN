@@ -1,0 +1,8 @@
+4,latency_e2e_mean_ns,smt,off,106349.1
+4,latency_e2e_mean_ns,smt,on,36967.3
+4,slack_ns,heuristic,off,10405440
+4,slack_ns,rl,off,9467520
+4,enlarge_min_window_violations,rl,off,0
+4,slack_ns,heuristic,on,10422720
+4,slack_ns,rl,on,9431360
+4,enlarge_min_window_violations,rl,on,0
