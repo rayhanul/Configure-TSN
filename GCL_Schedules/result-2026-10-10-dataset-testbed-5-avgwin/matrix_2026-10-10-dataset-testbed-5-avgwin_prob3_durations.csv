@@ -1,0 +1,5 @@
+id,method,variant,seconds
+5,heuristic,off,1.6
+5,heuristic,on,9.0
+5,rl,off,3.7
+5,rl,on,11.2

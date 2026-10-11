@@ -1,0 +1,40 @@
+GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/heuristic-c9-off/5-matrix-c9off: 10 flows, hop delays [2100, 3000, 4020] ns, guard 2400 ns, 4 cycles
+      id route    pcp  period deadline sched e2e worst (µs) @hop delay    measured min/avg/max
+
+PASS: every flow meets its deadline at every hop delay checked.
+GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/heuristic-c9-on/5-matrix-c9on: 10 flows, hop delays [2100, 3000, 4020] ns, guard 2400 ns, 4 cycles
+      id route    pcp  period deadline sched e2e worst (µs) @hop delay    measured min/avg/max
+
+PASS: every flow meets its deadline at every hop delay checked.
+GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/prob3-heuristic-c9-off/5-heuristic-c9off-matrix: 24 flows, hop delays [2100, 3000, 4020] ns, guard 2400 ns, 4 cycles
+      id route    pcp  period deadline sched e2e worst (µs) @hop delay    measured min/avg/max
+
+PASS: every flow meets its deadline at every hop delay checked.
+GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/prob3-heuristic-c9-on/5-heuristic-c9on-matrix: 28 flows, hop delays [2100, 3000, 4020] ns, guard 2400 ns, 4 cycles
+      id route    pcp  period deadline sched e2e worst (µs) @hop delay    measured min/avg/max
+
+PASS: every flow meets its deadline at every hop delay checked.
+GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/prob3-rl-c9-off/5-rl-c9off-matrix: 25 flows, hop delays [2100, 3000, 4020] ns, guard 2400 ns, 4 cycles
+      id route    pcp  period deadline sched e2e worst (µs) @hop delay    measured min/avg/max
+
+PASS: every flow meets its deadline at every hop delay checked.
+GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/prob3-rl-c9-on/5-rl-c9on-matrix: 29 flows, hop delays [2100, 3000, 4020] ns, guard 2400 ns, 4 cycles
+      id route    pcp  period deadline sched e2e worst (µs) @hop delay    measured min/avg/max
+
+PASS: every flow meets its deadline at every hop delay checked.
+GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/rl-c9-off/5-matrix-c9off: 10 flows, hop delays [2100, 3000, 4020] ns, guard 2400 ns, 4 cycles
+      id route    pcp  period deadline sched e2e worst (µs) @hop delay    measured min/avg/max
+
+PASS: every flow meets its deadline at every hop delay checked.
+GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/rl-c9-on/5-matrix-c9on: 10 flows, hop delays [2100, 3000, 4020] ns, guard 2400 ns, 4 cycles
+      id route    pcp  period deadline sched e2e worst (µs) @hop delay    measured min/avg/max
+
+PASS: every flow meets its deadline at every hop delay checked.
+GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/smt-c9-off/5-t3600-c9off-minlat: 10 flows, hop delays [2100, 3000, 4020] ns, guard 2400 ns, 4 cycles
+      id route    pcp  period deadline sched e2e worst (µs) @hop delay    measured min/avg/max
+
+PASS: every flow meets its deadline at every hop delay checked.
+GCL_Schedules/result-2026-10-10-dataset-testbed-5-avgwin/smt-c9-on/5-fair-retimed-c9on: 10 flows, hop delays [2100, 3000, 4020] ns, guard 2400 ns, 4 cycles
+      id route    pcp  period deadline sched e2e worst (µs) @hop delay    measured min/avg/max
+
+PASS: every flow meets its deadline at every hop delay checked.

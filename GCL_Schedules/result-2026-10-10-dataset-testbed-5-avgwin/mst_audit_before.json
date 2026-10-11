@@ -1,0 +1,50 @@
+{
+  "sw01": {
+    "instances": "{\"bridge\":\"br0\",\"mstids\":[\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"4094\"]}",
+    "region": "br0 MST Configuration Identifier:\n  Format Selector:      0\n  Configuration Name:   mstp_test\n  Revision Level:       1\n  Configuration Digest: 343BEA5B9C7000EB95601D6FFFA9E8C8\n",
+    "vid_to_fid": "br0 VID-to-FID allocation table:\n  FID 0: 1-9,39-4094\n  FID 1: 11,14,18\n  FID 2: 16,21,26,28,30,37\n  FID 3: 13,34,38\n  FID 4: 10,12,22,25,27,31,33,35\n  FID 5: 15,17,19,23\n  FID 6: 20,24,29,32,36\n",
+    "fid_to_msti": "br0 FID-to-MSTID allocation table:\n  MSTID 0: 0,7-4095\n  MSTID 1: 1\n  MSTID 2: 2\n  MSTID 3: 3\n  MSTID 4: 4\n  MSTID 5: 5\n  MSTID 6: 6\n"
+  },
+  "sw02": {
+    "instances": "{\"bridge\":\"br0\",\"mstids\":[\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"4094\"]}",
+    "region": "br0 MST Configuration Identifier:\n  Format Selector:      0\n  Configuration Name:   mstp_test\n  Revision Level:       1\n  Configuration Digest: 343BEA5B9C7000EB95601D6FFFA9E8C8\n",
+    "vid_to_fid": "br0 VID-to-FID allocation table:\n  FID 0: 1-9,39-4094\n  FID 1: 11,14,18\n  FID 2: 16,21,26,28,30,37\n  FID 3: 13,34,38\n  FID 4: 10,12,22,25,27,31,33,35\n  FID 5: 15,17,19,23\n  FID 6: 20,24,29,32,36\n",
+    "fid_to_msti": "br0 FID-to-MSTID allocation table:\n  MSTID 0: 0,7-4095\n  MSTID 1: 1\n  MSTID 2: 2\n  MSTID 3: 3\n  MSTID 4: 4\n  MSTID 5: 5\n  MSTID 6: 6\n"
+  },
+  "sw03": {
+    "instances": "{\"bridge\":\"br0\",\"mstids\":[\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"4094\"]}",
+    "region": "br0 MST Configuration Identifier:\n  Format Selector:      0\n  Configuration Name:   mstp_test\n  Revision Level:       1\n  Configuration Digest: 343BEA5B9C7000EB95601D6FFFA9E8C8\n",
+    "vid_to_fid": "br0 VID-to-FID allocation table:\n  FID 0: 1-9,39-4094\n  FID 1: 11,14,18\n  FID 2: 16,21,26,28,30,37\n  FID 3: 13,34,38\n  FID 4: 10,12,22,25,27,31,33,35\n  FID 5: 15,17,19,23\n  FID 6: 20,24,29,32,36\n",
+    "fid_to_msti": "br0 FID-to-MSTID allocation table:\n  MSTID 0: 0,7-4095\n  MSTID 1: 1\n  MSTID 2: 2\n  MSTID 3: 3\n  MSTID 4: 4\n  MSTID 5: 5\n  MSTID 6: 6\n"
+  },
+  "sw04": {
+    "instances": "{\"bridge\":\"br0\",\"mstids\":[\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"4094\"]}",
+    "region": "br0 MST Configuration Identifier:\n  Format Selector:      0\n  Configuration Name:   mstp_test\n  Revision Level:       1\n  Configuration Digest: 343BEA5B9C7000EB95601D6FFFA9E8C8\n",
+    "vid_to_fid": "br0 VID-to-FID allocation table:\n  FID 0: 1-9,39-4094\n  FID 1: 11,14,18\n  FID 2: 16,21,26,28,30,37\n  FID 3: 13,34,38\n  FID 4: 10,12,22,25,27,31,33,35\n  FID 5: 15,17,19,23\n  FID 6: 20,24,29,32,36\n",
+    "fid_to_msti": "br0 FID-to-MSTID allocation table:\n  MSTID 0: 0,7-4095\n  MSTID 1: 1\n  MSTID 2: 2\n  MSTID 3: 3\n  MSTID 4: 4\n  MSTID 5: 5\n  MSTID 6: 6\n"
+  },
+  "sw05": {
+    "instances": "{\"bridge\":\"br0\",\"mstids\":[\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"4094\"]}",
+    "region": "br0 MST Configuration Identifier:\n  Format Selector:      0\n  Configuration Name:   mstp_test\n  Revision Level:       1\n  Configuration Digest: 343BEA5B9C7000EB95601D6FFFA9E8C8\n",
+    "vid_to_fid": "br0 VID-to-FID allocation table:\n  FID 0: 1-9,39-4094\n  FID 1: 11,14,18\n  FID 2: 16,21,26,28,30,37\n  FID 3: 13,34,38\n  FID 4: 10,12,22,25,27,31,33,35\n  FID 5: 15,17,19,23\n  FID 6: 20,24,29,32,36\n",
+    "fid_to_msti": "br0 FID-to-MSTID allocation table:\n  MSTID 0: 0,7-4095\n  MSTID 1: 1\n  MSTID 2: 2\n  MSTID 3: 3\n  MSTID 4: 4\n  MSTID 5: 5\n  MSTID 6: 6\n"
+  },
+  "sw06": {
+    "instances": "{\"bridge\":\"br0\",\"mstids\":[\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"4094\"]}",
+    "region": "br0 MST Configuration Identifier:\n  Format Selector:      0\n  Configuration Name:   mstp_test\n  Revision Level:       1\n  Configuration Digest: 343BEA5B9C7000EB95601D6FFFA9E8C8\n",
+    "vid_to_fid": "br0 VID-to-FID allocation table:\n  FID 0: 1-9,39-4094\n  FID 1: 11,14,18\n  FID 2: 16,21,26,28,30,37\n  FID 3: 13,34,38\n  FID 4: 10,12,22,25,27,31,33,35\n  FID 5: 15,17,19,23\n  FID 6: 20,24,29,32,36\n",
+    "fid_to_msti": "br0 FID-to-MSTID allocation table:\n  MSTID 0: 0,7-4095\n  MSTID 1: 1\n  MSTID 2: 2\n  MSTID 3: 3\n  MSTID 4: 4\n  MSTID 5: 5\n  MSTID 6: 6\n"
+  },
+  "sw07": {
+    "instances": "{\"bridge\":\"br0\",\"mstids\":[\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"4094\"]}",
+    "region": "br0 MST Configuration Identifier:\n  Format Selector:      0\n  Configuration Name:   mstp_test\n  Revision Level:       1\n  Configuration Digest: 343BEA5B9C7000EB95601D6FFFA9E8C8\n",
+    "vid_to_fid": "br0 VID-to-FID allocation table:\n  FID 0: 1-9,39-4094\n  FID 1: 11,14,18\n  FID 2: 16,21,26,28,30,37\n  FID 3: 13,34,38\n  FID 4: 10,12,22,25,27,31,33,35\n  FID 5: 15,17,19,23\n  FID 6: 20,24,29,32,36\n",
+    "fid_to_msti": "br0 FID-to-MSTID allocation table:\n  MSTID 0: 0,7-4095\n  MSTID 1: 1\n  MSTID 2: 2\n  MSTID 3: 3\n  MSTID 4: 4\n  MSTID 5: 5\n  MSTID 6: 6\n"
+  },
+  "sw08": {
+    "instances": "{\"bridge\":\"br0\",\"mstids\":[\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"4094\"]}",
+    "region": "br0 MST Configuration Identifier:\n  Format Selector:      0\n  Configuration Name:   mstp_test\n  Revision Level:       1\n  Configuration Digest: 343BEA5B9C7000EB95601D6FFFA9E8C8\n",
+    "vid_to_fid": "br0 VID-to-FID allocation table:\n  FID 0: 1-9,39-4094\n  FID 1: 11,14,18\n  FID 2: 16,21,26,28,30,37\n  FID 3: 13,34,38\n  FID 4: 10,12,22,25,27,31,33,35\n  FID 5: 15,17,19,23\n  FID 6: 20,24,29,32,36\n",
+    "fid_to_msti": "br0 FID-to-MSTID allocation table:\n  MSTID 0: 0,7-4095\n  MSTID 1: 1\n  MSTID 2: 2\n  MSTID 3: 3\n  MSTID 4: 4\n  MSTID 5: 5\n  MSTID 6: 6\n"
+  }
+}

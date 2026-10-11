@@ -967,10 +967,18 @@ def _ssh_connect_once(host, user, password, timeout=15):
                            look_for_keys=False, allow_agent=False, timeout=timeout)
             return client
         except paramiko.AuthenticationException:
+            client.close()  # rejected keys must not leave unauthenticated transports open
             continue  # this key isn't authorized here; try the next one
+        except Exception:
+            client.close()
+            raise
     if password:
-        client.connect(host, username=user, password=password,
-                       look_for_keys=False, allow_agent=False, timeout=timeout)
+        try:
+            client.connect(host, username=user, password=password,
+                           look_for_keys=False, allow_agent=False, timeout=timeout)
+        except Exception:
+            client.close()
+            raise
         return client
     sock = socket.create_connection((host, 22), timeout=timeout)
     transport = paramiko.Transport(sock)

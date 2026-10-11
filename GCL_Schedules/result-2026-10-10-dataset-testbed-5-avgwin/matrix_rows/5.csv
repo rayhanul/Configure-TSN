@@ -1,0 +1,6 @@
+5,smt_off,fixed,10,20
+5,smt_on,fixed,10,20
+5,heuristic,off,14,40
+5,rl,off,15,40
+5,heuristic,on,18,40
+5,rl,on,19,40

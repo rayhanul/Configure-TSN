@@ -1,0 +1,11 @@
+group,admitted,offered,sent,received,lost,deadline_misses,latency_avg_us,latency_max_us,queue_drops,run
+smt-c9-off,10,20,824986,824986,0,2,79.077,471.9,none,smt-c9-off/5-t3600-c9off-minlat/results/results-2026-10-10/results.md
+smt-c9-on,10,20,824984,824979,5,15,37.536,242.2,none,smt-c9-on/5-fair-retimed-c9on/results/results-2026-10-10/results.md
+heuristic-c9-off,10,20,824985,824985,0,0,54.823,122.5,none,heuristic-c9-off/5-matrix-c9off/results/results-2026-10-11/results.md
+heuristic-c9-on,10,20,824981,824981,0,0,32.641,62.3,none,heuristic-c9-on/5-matrix-c9on/results/results-2026-10-11/results.md
+rl-c9-off,10,20,824985,824984,1,0,65.904,122.4,none,rl-c9-off/5-matrix-c9off/results/results-2026-10-11/results.md
+rl-c9-on,10,20,824976,824975,1,0,34.132,51.7,none,rl-c9-on/5-matrix-c9on/results/results-2026-10-11/results.md
+prob3-heuristic-c9-off,24,50,1499951,1499951,0,0,72.515,330.6,none,prob3-heuristic-c9-off/5-heuristic-c9off-matrix/results/results-2026-10-11/results.md
+prob3-heuristic-c9-on,28,50,1874962,1874962,0,0,55.751,277.7,none,prob3-heuristic-c9-on/5-heuristic-c9on-matrix/results/results-2026-10-11/results.md
+prob3-rl-c9-off,25,50,1874949,1874935,14,2,96.331,884.0,none,prob3-rl-c9-off/5-rl-c9off-matrix/results/results-2026-10-11/results.md
+prob3-rl-c9-on,29,50,2174809,2174808,1,0,47.295,187.3,none,prob3-rl-c9-on/5-rl-c9on-matrix/results/results-2026-10-11/results.md
