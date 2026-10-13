@@ -1,0 +1,19 @@
+2026-10-12T14:23:50 Authentication verified. Solving four datasets with two concurrent jobs, one CPU thread per job.
+2026-10-12T14:23:50 Dataset 7: solving started
+2026-10-12T14:23:50 Dataset 8: solving started
+2026-10-12T14:47:19 Dataset 7: all ten exports complete and validation recorded
+2026-10-12T14:47:19 Dataset 9: solving started
+2026-10-12T14:48:11 Dataset 8: all ten exports complete and validation recorded
+2026-10-12T14:48:11 Dataset 10: solving started
+2026-10-12T15:11:08 Dataset 9: all ten exports complete and validation recorded
+2026-10-12T15:12:33 Dataset 10: all ten exports complete and validation recorded
+2026-10-12T15:12:33 All four datasets solved. Starting sequential physical benchmarks.
+2026-10-12T15:12:38 Dataset 7: physical benchmark started
+2026-10-12T15:42:43 Dataset 7: all ten physical benchmarks complete
+2026-10-12T15:42:48 Dataset 8: physical benchmark started
+2026-10-12T16:03:01 Dataset 8: all ten physical benchmarks complete
+2026-10-12T16:03:05 Dataset 9: physical benchmark started
+2026-10-12T16:24:17 Dataset 9: all ten physical benchmarks complete
+2026-10-12T16:24:21 Dataset 10: physical benchmark started
+2026-10-12T16:45:25 Dataset 10: all ten physical benchmarks complete
+2026-10-12T16:45:25 COMPLETE: datasets 7–10 solved; all forty physical benchmarks complete. Last package remains active.

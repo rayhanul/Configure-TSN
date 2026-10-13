@@ -1,0 +1,305 @@
+[{"ifname":"sw0p1","vlans":[{"vlan":1,"flags":["PVID","Egress Untagged"]}]},{"ifname":"sw0p2","vlans":[{"vlan":1,"flags":["PVID","Egress Untagged"]},{"vlan":10},{"vlan":11},{"vlan":12},{"vlan":13},{"vlan":16},{"vlan":17},{"vlan":19},{"vlan":20},{"vlan":21},{"vlan":23},{"vlan":26},{"vlan":28},{"vlan":30},{"vlan":31},{"vlan":32},{"vlan":33},{"vlan":34},{"vlan":36},{"vlan":40}]},{"ifname":"sw0p3","vlans":[{"vlan":1,"flags":["PVID","Egress Untagged"]}]},{"ifname":"sw0p4","vlans":[{"vlan":1,"flags":["PVID","Egress Untagged"]},{"vlan":10},{"vlan":12},{"vlan":13},{"vlan":16},{"vlan":17},{"vlan":19},{"vlan":30},{"vlan":31},{"vlan":32},{"vlan":33},{"vlan":36}]},{"ifname":"sw0p5","vlans":[{"vlan":1,"flags":["PVID","Egress Untagged"]},{"vlan":11},{"vlan":20},{"vlan":21},{"vlan":23},{"vlan":26},{"vlan":28},{"vlan":34},{"vlan":40}]},{"ifname":"br0","vlans":[{"vlan":1,"flags":["PVID","Egress Untagged"]}]}]
+br0 MST Configuration Identifier:
+  Format Selector:      0
+  Configuration Name:   mstp_test
+  Revision Level:       1
+  Configuration Digest: 0974AA7D0DE91628890557F4B9ADF252
+br0:sw0p1 CIST info
+  enabled            yes                     role                 Designated
+  port id            8.001                   state                forwarding
+  external port cost 20000                   admin external cost  0
+  internal port cost 20000                   admin internal cost  0
+  designated root    8.000.00:80:82:86:5E:73 dsgn external cost   0
+  dsgn regional root 8.000.00:80:82:86:5E:73 dsgn internal cost   60000
+  designated bridge  8.000.00:80:82:86:5F:1B designated port      8.001
+  admin edge port    no                      auto edge port       yes
+  oper edge port     yes                     topology change ack  no
+  point-to-point     yes                     admin point-to-point yes
+  restricted role    no                      restricted TCN       no
+  port hello time    2                       disputed             no
+  bpdu guard port    no                      bpdu guard error     no
+  network port       no                      BA inconsistent      no
+  bpdu filter port   no                      Num RX BPDU Filtered 0
+  Num TX BPDU        102570                  Num TX TCN           0
+  Num RX BPDU        0                       Num RX TCN           0
+  Num Transition FWD 2591                    Num Transition BLK   2590
+  Rcvd BPDU          no                      Rcvd STP             no
+  Rcvd RSTP          no                      Send RSTP            yes
+  Rcvd TC Ack        no                      Rcvd TCN             no
+br0:sw0p2 CIST info
+  enabled            yes                     role                 Designated
+  port id            8.002                   state                forwarding
+  external port cost 20000                   admin external cost  0
+  internal port cost 20000                   admin internal cost  0
+  designated root    8.000.00:80:82:86:5E:73 dsgn external cost   0
+  dsgn regional root 8.000.00:80:82:86:5E:73 dsgn internal cost   60000
+  designated bridge  8.000.00:80:82:86:5F:1B designated port      8.002
+  admin edge port    no                      auto edge port       yes
+  oper edge port     yes                     topology change ack  no
+  point-to-point     yes                     admin point-to-point yes
+  restricted role    no                      restricted TCN       no
+  port hello time    2                       disputed             no
+  bpdu guard port    no                      bpdu guard error     no
+  network port       no                      BA inconsistent      no
+  bpdu filter port   no                      Num RX BPDU Filtered 0
+  Num TX BPDU        85476                   Num TX TCN           0
+  Num RX BPDU        0                       Num RX TCN           0
+  Num Transition FWD 2605                    Num Transition BLK   2604
+  Rcvd BPDU          no                      Rcvd STP             no
+  Rcvd RSTP          no                      Send RSTP            yes
+  Rcvd TC Ack        no                      Rcvd TCN             no
+br0:sw0p3 CIST info
+  enabled            no                      role                 Disabled
+  port id            8.003                   state                discarding
+  external port cost 200000000               admin external cost  0
+  internal port cost 200000000               admin internal cost  0
+  designated root    8.000.00:80:82:86:5F:1B dsgn external cost   0
+  dsgn regional root 8.000.00:80:82:86:5F:1B dsgn internal cost   0
+  designated bridge  8.000.00:80:82:86:5F:1B designated port      0.000
+  admin edge port    no                      auto edge port       yes
+  oper edge port     no                      topology change ack  no
+  point-to-point     yes                     admin point-to-point yes
+  restricted role    no                      restricted TCN       no
+  port hello time    2                       disputed             no
+  bpdu guard port    no                      bpdu guard error     no
+  network port       no                      BA inconsistent      no
+  bpdu filter port   no                      Num RX BPDU Filtered 0
+  Num TX BPDU        0                       Num TX TCN           0
+  Num RX BPDU        0                       Num RX TCN           0
+  Num Transition FWD 1                       Num Transition BLK   7
+  Rcvd BPDU          no                      Rcvd STP             no
+  Rcvd RSTP          no                      Send RSTP            yes
+  Rcvd TC Ack        no                      Rcvd TCN             no
+br0:sw0p4 CIST info
+  enabled            yes                     role                 Designated
+  port id            8.004                   state                forwarding
+  external port cost 20000                   admin external cost  0
+  internal port cost 20000                   admin internal cost  0
+  designated root    8.000.00:80:82:86:5E:73 dsgn external cost   0
+  dsgn regional root 8.000.00:80:82:86:5E:73 dsgn internal cost   60000
+  designated bridge  8.000.00:80:82:86:5F:1B designated port      8.004
+  admin edge port    no                      auto edge port       yes
+  oper edge port     no                      topology change ack  no
+  point-to-point     yes                     admin point-to-point yes
+  restricted role    no                      restricted TCN       no
+  port hello time    2                       disputed             no
+  bpdu guard port    no                      bpdu guard error     no
+  network port       no                      BA inconsistent      no
+  bpdu filter port   no                      Num RX BPDU Filtered 0
+  Num TX BPDU        105539                  Num TX TCN           4540
+  Num RX BPDU        63685                   Num RX TCN           3537
+  Num Transition FWD 6420                    Num Transition BLK   6424
+  Rcvd BPDU          no                      Rcvd STP             no
+  Rcvd RSTP          yes                     Send RSTP            yes
+  Rcvd TC Ack        no                      Rcvd TCN             no
+br0:sw0p5 CIST info
+  enabled            yes                     role                 Root
+  port id            8.005                   state                forwarding
+  external port cost 20000                   admin external cost  0
+  internal port cost 20000                   admin internal cost  0
+  designated root    8.000.00:80:82:86:5E:73 dsgn external cost   0
+  dsgn regional root 8.000.00:80:82:86:5E:73 dsgn internal cost   40000
+  designated bridge  8.000.00:80:82:87:D2:ED designated port      8.005
+  admin edge port    no                      auto edge port       yes
+  oper edge port     no                      topology change ack  no
+  point-to-point     yes                     admin point-to-point yes
+  restricted role    no                      restricted TCN       no
+  port hello time    2                       disputed             no
+  bpdu guard port    no                      bpdu guard error     no
+  network port       no                      BA inconsistent      no
+  bpdu filter port   no                      Num RX BPDU Filtered 0
+  Num TX BPDU        103778                  Num TX TCN           4052
+  Num RX BPDU        104298                  Num RX TCN           3949
+  Num Transition FWD 6464                    Num Transition BLK   6464
+  Rcvd BPDU          no                      Rcvd STP             no
+  Rcvd RSTP          yes                     Send RSTP            yes
+  Rcvd TC Ack        no                      Rcvd TCN             no
+PORT=sw0p2
+GatesEnabled:            YES
+ConfigPending:           NO
+ConfigChangeError:       97
+
+AdminCycleTime:          1/1250 sec
+AdminCycleTimeExtension: 0 nsec
+AdminControlListLength:  29 entries
+OperCycleTime:           1/1250 sec
+OperCycleTimeExtension:  0 nsec
+OperControlListLength:   29 entries
+
+CurrentTime (TAI):       2026-10-12 19:43:24.999693250 (1791834204.999693250)
+AdminBaseTime (TAI):     1970-01-01 00:00:00.000000000
+OperBaseTime (TAI):      1970-01-01 00:00:00.000000000
+ConfigChangeTime (TAI):  2026-10-12 19:41:14.705599751 
+
+SupportedCycleMax:       16000000/1000000000 sec
+SupportedIntervalMax:    20971200 nsec
+SupportedListMax:        255 entries
+TickGranularity:         3200 1/10 nsec
+
+portNumTrafficClasses:   8
+
+queueMaxSDUTable:
+TrafficClass   queueMaxSDU   TransmissionOverruns
+ 0                   1506   2
+ 1                   1506   2
+ 2                   1506   2
+ 3                   1506   2
+ 4                   1506   2
+ 5                   1506   2
+ 6                   1506   2
+ 7                   1506   2
+sgs  24320  0x3F
+sgs  12480  0x80
+sgs  13760  0x3F
+sgs  38720  0x40
+sgs  9920  0x3F
+sgs  12480  0x80
+sgs  12480  0x3F
+sgs  40640  0x40
+sgs  59520  0x3F
+sgs  12480  0x80
+sgs  13760  0x3F
+sgs  25280  0x40
+sgs  35840  0x3F
+sgs  12480  0x80
+sgs  100160  0x3F
+sgs  12480  0x80
+sgs  13760  0x3F
+sgs  38720  0x40
+sgs  22400  0x3F
+sgs  12480  0x80
+sgs  28160  0x3F
+sgs  12480  0x40
+sgs  59520  0x3F
+sgs  12480  0x80
+sgs  13760  0x3F
+sgs  25280  0x40
+sgs  35840  0x3F
+sgs  12480  0x80
+sgs  75840  0x3F
+PORT=sw0p3
+GatesEnabled:            NO
+ConfigPending:           NO
+ConfigChangeError:       0
+
+AdminCycleTime:          0/1 sec
+AdminCycleTimeExtension: 0 nsec
+AdminControlListLength:  0 entries
+OperCycleTime:           n/a
+OperCycleTimeExtension:  0 nsec
+OperControlListLength:   0 entries
+
+CurrentTime (TAI):       2026-10-12 19:43:25.016141786 (1791834205.016141786)
+AdminBaseTime (TAI):     1970-01-01 00:00:00.000000000
+OperBaseTime (TAI):      n/a
+ConfigChangeTime (TAI):  1970-01-01 00:00:00.000000000 
+
+SupportedCycleMax:       16000000/1000000000 sec
+SupportedIntervalMax:    20971200 nsec
+SupportedListMax:        255 entries
+TickGranularity:         3200 1/10 nsec
+
+portNumTrafficClasses:   8
+
+queueMaxSDUTable:
+TrafficClass   queueMaxSDU   TransmissionOverruns
+ 0                   1506   0
+ 1                   1506   0
+ 2                   1506   0
+ 3                   1506   0
+ 4                   1506   0
+ 5                   1506   0
+ 6                   1506   0
+ 7                   1506   0
+PORT=sw0p4
+GatesEnabled:            YES
+ConfigPending:           NO
+ConfigChangeError:       87
+
+AdminCycleTime:          1/1250 sec
+AdminCycleTimeExtension: 0 nsec
+AdminControlListLength:  9 entries
+OperCycleTime:           1/1250 sec
+OperCycleTimeExtension:  0 nsec
+OperControlListLength:   9 entries
+
+CurrentTime (TAI):       2026-10-12 19:43:25.032208959 (1791834205.032208959)
+AdminBaseTime (TAI):     1970-01-01 00:00:00.000000000
+OperBaseTime (TAI):      1970-01-01 00:00:00.000000000
+ConfigChangeTime (TAI):  2026-10-12 19:41:14.725600000 
+
+SupportedCycleMax:       16000000/1000000000 sec
+SupportedIntervalMax:    20971200 nsec
+SupportedListMax:        255 entries
+TickGranularity:         3200 1/10 nsec
+
+portNumTrafficClasses:   8
+
+queueMaxSDUTable:
+TrafficClass   queueMaxSDU   TransmissionOverruns
+ 0                   1506   9
+ 1                   1506   9
+ 2                   1506   9
+ 3                   1506   9
+ 4                   1506   9
+ 5                   1506   9
+ 6                   1506   9
+ 7                   1506   9
+sgs  12480  0x80
+sgs  20800  0x7F
+sgs  504320  0x40
+sgs  12480  0x7F
+sgs  49920  0xBF
+sgs  49920  0x7F
+sgs  50240  0xBF
+sgs  49920  0x7F
+sgs  49920  0xBF
+PORT=sw0p5
+GatesEnabled:            YES
+ConfigPending:           NO
+ConfigChangeError:       99
+
+AdminCycleTime:          1/1250 sec
+AdminCycleTimeExtension: 0 nsec
+AdminControlListLength:  14 entries
+OperCycleTime:           1/1250 sec
+OperCycleTimeExtension:  0 nsec
+OperControlListLength:   14 entries
+
+CurrentTime (TAI):       2026-10-12 19:43:25.048530444 (1791834205.048530444)
+AdminBaseTime (TAI):     1970-01-01 00:00:00.000000000
+OperBaseTime (TAI):      1970-01-01 00:00:00.000000000
+ConfigChangeTime (TAI):  2026-10-12 19:41:14.785600000 
+
+SupportedCycleMax:       16000000/1000000000 sec
+SupportedIntervalMax:    20971200 nsec
+SupportedListMax:        255 entries
+TickGranularity:         3200 1/10 nsec
+
+portNumTrafficClasses:   8
+
+queueMaxSDUTable:
+TrafficClass   queueMaxSDU   TransmissionOverruns
+ 0                   1506   0
+ 1                   1506   0
+ 2                   1506   0
+ 3                   1506   0
+ 4                   1506   0
+ 5                   1506   0
+ 6                   1506   0
+ 7                   1506   0
+sgs  8320  0x3F
+sgs  12480  0x80
+sgs  29120  0x7F
+sgs  41280  0xBF
+sgs  123520  0x40
+sgs  35200  0x7F
+sgs  50240  0xBF
+sgs  49920  0x7F
+sgs  58240  0xBF
+sgs  198080  0x80
+sgs  43520  0x7F
+sgs  50240  0xBF
+sgs  49920  0x7F
+sgs  49920  0xBF
+Control list length is set to 0 - no entries read.

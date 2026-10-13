@@ -1,0 +1,105 @@
+{
+  "active_package": "GCL_Schedules/result-2026-10-12-dataset-testbed-6-ring-avgwin/prob3-rl-c9-on/6-rl-c9on-matrix",
+  "scheduled_flows": 27,
+  "cycle_ns": 800000,
+  "verified_operational_ports": [
+    {
+      "port": "sw01-p2",
+      "entries": 14,
+      "matches_package": true
+    },
+    {
+      "port": "sw01-p4",
+      "entries": 30,
+      "matches_package": true
+    },
+    {
+      "port": "sw01-p5",
+      "entries": 21,
+      "matches_package": true
+    },
+    {
+      "port": "sw02-p2",
+      "entries": 29,
+      "matches_package": true
+    },
+    {
+      "port": "sw02-p4",
+      "entries": 17,
+      "matches_package": true
+    },
+    {
+      "port": "sw02-p5",
+      "entries": 9,
+      "matches_package": true
+    },
+    {
+      "port": "sw03-p4",
+      "entries": 15,
+      "matches_package": true
+    },
+    {
+      "port": "sw03-p5",
+      "entries": 26,
+      "matches_package": true
+    },
+    {
+      "port": "sw04-p4",
+      "entries": 15,
+      "matches_package": true
+    },
+    {
+      "port": "sw04-p5",
+      "entries": 17,
+      "matches_package": true
+    },
+    {
+      "port": "sw05-p4",
+      "entries": 31,
+      "matches_package": true
+    },
+    {
+      "port": "sw05-p5",
+      "entries": 13,
+      "matches_package": true
+    },
+    {
+      "port": "sw06-p4",
+      "entries": 23,
+      "matches_package": true
+    },
+    {
+      "port": "sw06-p5",
+      "entries": 18,
+      "matches_package": true
+    },
+    {
+      "port": "sw07-p4",
+      "entries": 13,
+      "matches_package": true
+    },
+    {
+      "port": "sw07-p5",
+      "entries": 27,
+      "matches_package": true
+    },
+    {
+      "port": "sw08-p2",
+      "entries": 34,
+      "matches_package": true
+    },
+    {
+      "port": "sw08-p4",
+      "entries": 15,
+      "matches_package": true
+    },
+    {
+      "port": "sw08-p5",
+      "entries": 13,
+      "matches_package": true
+    }
+  ],
+  "benchmark_packages_completed": 10,
+  "traffic_duration_seconds_per_package": 30,
+  "credential_stored": false
+}

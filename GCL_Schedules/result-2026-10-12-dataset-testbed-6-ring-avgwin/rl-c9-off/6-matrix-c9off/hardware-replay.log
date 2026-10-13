@@ -1,0 +1,4 @@
+/home/jdg24001/Documents/github/RL-TSN/result/result-2026-10-12-dataset-testbed-6-ring-avgwin/rl-c9-off/6-matrix-c9off: 10 flows, hop delays [2100, 3000, 4020] ns, guard 12400 ns, 4 cycles
+      id route    pcp  period deadline sched e2e worst (µs) @hop delay    measured min/avg/max
+
+PASS: every flow meets its deadline at every hop delay checked.

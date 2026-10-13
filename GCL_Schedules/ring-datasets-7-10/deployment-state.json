@@ -1,0 +1,110 @@
+{
+  "active_package": "GCL_Schedules/result-2026-10-12-dataset-testbed-10-ring-avgwin/prob3-rl-c9-on/10-rl-c9on-matrix",
+  "scheduled_flows": 38,
+  "cycle_ns": 800000,
+  "operational_readback": [
+    {
+      "port": "sw01-p2",
+      "entries": 40,
+      "matches_package": true
+    },
+    {
+      "port": "sw01-p4",
+      "entries": 19,
+      "matches_package": true
+    },
+    {
+      "port": "sw01-p5",
+      "entries": 11,
+      "matches_package": true
+    },
+    {
+      "port": "sw02-p2",
+      "entries": 11,
+      "matches_package": true
+    },
+    {
+      "port": "sw02-p4",
+      "entries": 19,
+      "matches_package": true
+    },
+    {
+      "port": "sw02-p5",
+      "entries": 24,
+      "matches_package": true
+    },
+    {
+      "port": "sw03-p4",
+      "entries": 27,
+      "matches_package": true
+    },
+    {
+      "port": "sw03-p5",
+      "entries": 22,
+      "matches_package": true
+    },
+    {
+      "port": "sw04-p4",
+      "entries": 14,
+      "matches_package": true
+    },
+    {
+      "port": "sw04-p5",
+      "entries": 19,
+      "matches_package": true
+    },
+    {
+      "port": "sw05-p4",
+      "entries": 22,
+      "matches_package": true
+    },
+    {
+      "port": "sw05-p5",
+      "entries": 27,
+      "matches_package": true
+    },
+    {
+      "port": "sw06-p4",
+      "entries": 19,
+      "matches_package": true
+    },
+    {
+      "port": "sw06-p5",
+      "entries": 14,
+      "matches_package": true
+    },
+    {
+      "port": "sw07-p4",
+      "entries": 22,
+      "matches_package": true
+    },
+    {
+      "port": "sw07-p5",
+      "entries": 22,
+      "matches_package": true
+    },
+    {
+      "port": "sw08-p2",
+      "entries": 18,
+      "matches_package": true
+    },
+    {
+      "port": "sw08-p4",
+      "entries": 14,
+      "matches_package": true
+    },
+    {
+      "port": "sw08-p5",
+      "entries": 22,
+      "matches_package": true
+    }
+  ],
+  "completed_datasets": [
+    7,
+    8,
+    9,
+    10
+  ],
+  "completed_physical_benchmarks": 40,
+  "traffic_duration_seconds_per_package": 30
+}

@@ -1,0 +1,48 @@
+[smt_sched-family] verified 19 GCL files, 72 checks, cycle 800000 ns
+
+19 check(s) SKIPPED (constraint disabled for this run):
+  - sw01-p2: window adjacency (C10) -- disabled for this run
+  - sw01-p4: window adjacency (C10) -- disabled for this run
+  - sw01-p5: window adjacency (C10) -- disabled for this run
+  - sw02-p2: window adjacency (C10) -- disabled for this run
+  - sw02-p4: window adjacency (C10) -- disabled for this run
+  - sw02-p5: window adjacency (C10) -- disabled for this run
+  - sw03-p4: window adjacency (C10) -- disabled for this run
+  - sw03-p5: window adjacency (C10) -- disabled for this run
+  - sw04-p4: window adjacency (C10) -- disabled for this run
+  - sw04-p5: window adjacency (C10) -- disabled for this run
+  - sw05-p4: window adjacency (C10) -- disabled for this run
+  - sw05-p5: window adjacency (C10) -- disabled for this run
+  - sw06-p4: window adjacency (C10) -- disabled for this run
+  - sw06-p5: window adjacency (C10) -- disabled for this run
+  - sw07-p4: window adjacency (C10) -- disabled for this run
+  - sw07-p5: window adjacency (C10) -- disabled for this run
+  - sw08-p2: window adjacency (C10) -- disabled for this run
+  - sw08-p4: window adjacency (C10) -- disabled for this run
+  - sw08-p5: window adjacency (C10) -- disabled for this run
+
+24 PROBLEM(S):
+  ! flow 20: recomputed e2e 109840 != reported 109760
+  ! flow 21: recomputed e2e 45840 != reported 45760
+  ! flow 22: recomputed e2e 76240 != reported 76160
+  ! flow 23: recomputed e2e 203920 != reported 203840
+  ! flow 24: recomputed e2e 79120 != reported 79040
+  ! flow 25: recomputed e2e 107280 != reported 107200
+  ! flow 27: recomputed e2e 45840 != reported 45760
+  ! flow 29: recomputed e2e 166480 != reported 166400
+  ! flow 30: recomputed e2e 308240 != reported 308160
+  ! flow 31: recomputed e2e 95760 != reported 95680
+  ! flow 32: recomputed e2e 95760 != reported 127360
+  ! flow 34: recomputed e2e 316560 != reported 316480
+  ! flow 35: recomputed e2e 212560 != reported 212480
+  ! flow 37: recomputed e2e 79120 != reported 79040
+  ! flow 38: recomputed e2e 96080 != reported 96000
+  ! flow 39: recomputed e2e 221840 != reported 221760
+  ! flow 41: recomputed e2e 79120 != reported 79040
+  ! flow 44: recomputed e2e 116240 != reported 116160
+  ! flow 52: recomputed e2e 83920 != reported 83840
+  ! flow 54: recomputed e2e 96080 != reported 96000
+  ! flow 55: recomputed e2e 79120 != reported 79040
+  ! flow 56: recomputed e2e 96080 != reported 96000
+  ! flow 57: recomputed e2e 108560 != reported 108480
+  ! flow 59: recomputed e2e 72400 != reported 72320

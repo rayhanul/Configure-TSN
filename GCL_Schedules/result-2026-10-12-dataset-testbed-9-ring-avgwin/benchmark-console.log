@@ -1,0 +1,92 @@
+=== 16:03:05 smt-c9-off/9-t3600-c9off-minlat
+  flows to admit: 11
+  GCL: 19/19 ports live
+  MST region: all 8 switches share digest 885E62E9F9A1F63B693B695388F4E3D6
+  spanning tree quiet on all 8 switches after 8 s (least quiet: sw02, 15 s)
+    11 sender routes pinged, 0 failed
+  - Delivered: **862427 / 862439 packets (100.00%)**
+  - Deadline misses: **6 (0.00% of received)**; flows with zero misses: 10 / 20
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-12-dataset-testbed-9-ring-avgwin/smt-c9-off/9-t3600-c9off-minlat/results/results-2026-10-12/results.md
+=== 16:05:09 smt-c9-on/9-fair-retimed-c9on
+  flows to admit: 11
+  GCL: 19/19 ports live
+  MST region: all 8 switches share digest 885E62E9F9A1F63B693B695388F4E3D6
+  spanning tree quiet on all 8 switches after 10 s (least quiet: sw02, 16 s)
+    11 sender routes pinged, 0 failed
+  - Delivered: **857793 / 862484 packets (99.46%)**
+  - Deadline misses: **175 (0.02% of received)**; flows with zero misses: 3 / 11
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-12-dataset-testbed-9-ring-avgwin/smt-c9-on/9-fair-retimed-c9on/results/results-2026-10-12/results.md
+=== 16:07:11 heuristic-c9-off/9-matrix-c9off
+  flows to admit: 11
+  GCL: 19/19 ports live
+  MST region: all 8 switches share digest 885E62E9F9A1F63B693B695388F4E3D6
+  spanning tree quiet on all 8 switches after 8 s (least quiet: sw02, 16 s)
+    11 sender routes pinged, 0 failed
+  - Delivered: **862479 / 862479 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 11 / 11
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-12-dataset-testbed-9-ring-avgwin/heuristic-c9-off/9-matrix-c9off/results/results-2026-10-12/results.md
+=== 16:09:12 heuristic-c9-on/9-matrix-c9on
+  flows to admit: 11
+  GCL: 19/19 ports live
+  MST region: all 8 switches share digest 885E62E9F9A1F63B693B695388F4E3D6
+  spanning tree quiet on all 8 switches after 10 s (least quiet: sw03, 16 s)
+    11 sender routes pinged, 0 failed
+  - Delivered: **862472 / 862478 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 11 / 11
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-12-dataset-testbed-9-ring-avgwin/heuristic-c9-on/9-matrix-c9on/results/results-2026-10-12/results.md
+=== 16:11:14 rl-c9-off/9-matrix-c9off
+  flows to admit: 11
+  GCL: 19/19 ports live
+  MST region: all 8 switches share digest 885E62E9F9A1F63B693B695388F4E3D6
+  spanning tree quiet on all 8 switches after 8 s (least quiet: sw01, 15 s)
+    11 sender routes pinged, 0 failed
+  - Delivered: **862492 / 862492 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 11 / 20
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-12-dataset-testbed-9-ring-avgwin/rl-c9-off/9-matrix-c9off/results/results-2026-10-12/results.md
+=== 16:13:14 rl-c9-on/9-matrix-c9on
+  flows to admit: 11
+  GCL: 19/19 ports live
+  MST region: all 8 switches share digest 885E62E9F9A1F63B693B695388F4E3D6
+  spanning tree quiet on all 8 switches after 8 s (least quiet: sw01, 15 s)
+    11 sender routes pinged, 0 failed
+  - Delivered: **862432 / 862442 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 11 / 20
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-12-dataset-testbed-9-ring-avgwin/rl-c9-on/9-matrix-c9on/results/results-2026-10-12/results.md
+=== 16:15:14 prob3-heuristic-c9-off/9-heuristic-c9off-matrix
+  flows to admit: 35
+  GCL: 19/19 ports live
+  MST region: all 8 switches share digest 30321B3C2DAA2A4D9CE9BC7D9AA7754A
+  spanning tree quiet on all 8 switches after 10 s (least quiet: sw01, 15 s)
+    35 sender routes pinged, 0 failed
+  - Delivered: **2287372 / 2287385 packets (100.00%)**
+  - Deadline misses: **1 (0.00% of received)**; flows with zero misses: 34 / 35
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-12-dataset-testbed-9-ring-avgwin/prob3-heuristic-c9-off/9-heuristic-c9off-matrix/results/results-2026-10-12/results.md
+=== 16:17:22 prob3-heuristic-c9-on/9-heuristic-c9on-matrix
+  flows to admit: 37
+  GCL: 19/19 ports live
+  MST region: all 8 switches share digest A0E102E7B3600A741C332CA855AE652C
+  spanning tree quiet on all 8 switches after 10 s (least quiet: sw01, 17 s)
+    37 sender routes pinged, 0 failed
+  - Delivered: **2362383 / 2362386 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 37 / 37
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-12-dataset-testbed-9-ring-avgwin/prob3-heuristic-c9-on/9-heuristic-c9on-matrix/results/results-2026-10-12/results.md
+=== 16:19:36 prob3-rl-c9-off/9-rl-c9off-matrix
+  flows to admit: 33
+  GCL: 19/19 ports live
+  MST region: all 8 switches share digest 03ECD215B7E03D6ACC4965D6E1046B41
+  spanning tree quiet on all 8 switches after 26 s (least quiet: sw01, 16 s)
+    33 sender routes pinged, 0 failed
+  - Delivered: **2287325 / 2287326 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 33 / 33
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-12-dataset-testbed-9-ring-avgwin/prob3-rl-c9-off/9-rl-c9off-matrix/results/results-2026-10-12/results.md
+=== 16:22:04 prob3-rl-c9-on/9-rl-c9on-matrix
+  flows to admit: 37
+  GCL: 19/19 ports live
+  MST region: all 8 switches share digest 86636BA71CFF650966CADE9A72A38E66
+  spanning tree quiet on all 8 switches after 10 s (least quiet: sw04, 15 s)
+    37 sender routes pinged, 0 failed
+  - Delivered: **2504512 / 2512414 packets (99.69%)**
+  - Deadline misses: **126 (0.01% of received)**; flows with zero misses: 24 / 37
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-12-dataset-testbed-9-ring-avgwin/prob3-rl-c9-on/9-rl-c9on-matrix/results/results-2026-10-12/results.md
+=== 16:24:17 all done: 10 package(s)
+summary: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-12-dataset-testbed-9-ring-avgwin/TESTBED_RESULTS_2026-10-12.md

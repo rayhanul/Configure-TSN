@@ -1,0 +1,20 @@
+Node S2: 7 in-scope flow(s), cycle 800000 ns, basetime 1791835672221600000 ns (TAI)
+
+  id=6   sender   vlan=12  192.168.12.10 <-> 192.168.12.11  pcp=7 frame=100B (payload 50B) period=200000ns phase=0ns deadline=200000ns route=['S2', 'sw08', 'sw07', 'sw05', 'sw03', 'sw01', 'S3']
+  id=7   sender   vlan=13  192.168.13.10 <-> 192.168.13.11  pcp=7 frame=100B (payload 50B) period=400000ns phase=24960ns deadline=400000ns route=['S2', 'sw08', 'sw06', 'sw04', 'sw02', 'S1']
+  id=8   sender   vlan=14  192.168.14.10 <-> 192.168.14.11  pcp=6 frame=400B (payload 350B) period=800000ns phase=74880ns deadline=800000ns route=['S2', 'sw08', 'sw07', 'sw05', 'sw03', 'sw01', 'S3']
+  id=9   receiver vlan=15  192.168.15.11 <-> 192.168.15.10  pcp=7 frame=500B (payload 450B) period=800000ns phase=87360ns deadline=800000ns route=['S3', 'sw01', 'sw03', 'sw05', 'sw07', 'sw08', 'S2']
+  id=12  receiver vlan=17  192.168.17.11 <-> 192.168.17.10  pcp=7 frame=200B (payload 150B) period=800000ns phase=24960ns deadline=800000ns route=['S1', 'sw02', 'sw04', 'sw06', 'sw08', 'S2']
+  id=16  sender   vlan=19  192.168.19.10 <-> 192.168.19.11  pcp=7 frame=500B (payload 450B) period=400000ns phase=49920ns deadline=400000ns route=['S2', 'sw08', 'sw06', 'sw04', 'sw02', 'S1']
+  id=20  sender   vlan=20  192.168.20.10 <-> 192.168.20.11  pcp=6 frame=200B (payload 150B) period=800000ns phase=99840ns deadline=800000ns route=['S2', 'sw08', 'sw06', 'sw04', 'sw02', 'S1']
+
+5 sender / 2 receiver flow(s); sending 30 s from TAI 1791835747.104, NIC launch time, real-time on CPU 5 (tx) / 1 (rx) ...
+
+Summary:
+  id=6 sender: 150000 packet(s) sent, 0 skipped
+  id=7 sender: 75000 packet(s) sent, 0 skipped
+  id=8 sender: 37500 packet(s) sent, 0 skipped
+  id=9 receiver: 37497 received, latency ns min/avg/max = 72266/72618/73039, jitter ns stddev/rfc3550 = 135/133, deadline=800000ns, misses=0, no_nic_ts=0
+  id=12 receiver: 37500 received, latency ns min/avg/max = 39684/40206/40909, jitter ns stddev/rfc3550 = 176/169, deadline=800000ns, misses=0, no_nic_ts=0
+  id=16 sender: 75000 packet(s) sent, 0 skipped
+  id=20 sender: 37500 packet(s) sent, 0 skipped
