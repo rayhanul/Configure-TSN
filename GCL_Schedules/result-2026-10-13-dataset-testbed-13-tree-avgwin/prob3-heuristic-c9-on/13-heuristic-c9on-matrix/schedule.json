@@ -1,0 +1,8616 @@
+{
+  "cycle_ns": 800000,
+  "hw": {
+    "link_rate_bps": 1000000000,
+    "t_tick_ns": 320,
+    "gcl_size": 255,
+    "proc_delay_ns": 4020,
+    "prop_delay_ns": 80,
+    "tt_queues": [
+      6,
+      7
+    ],
+    "be_queue_mask": 63,
+    "frame_overhead_bytes": 20,
+    "gate_guard_ns": 12400,
+    "c_max_ns": 16000000,
+    "interval_max_ns": 20971200,
+    "constrain_c1": true,
+    "constrain_c2": true,
+    "constrain_c5": true,
+    "constrain_c6_gcl_size": true,
+    "constrain_c7": true,
+    "constrain_c9": true,
+    "constrain_c10": false,
+    "store_and_forward": true
+  },
+  "flows": [
+    {
+      "uid": 2,
+      "id": 3,
+      "src": "S1",
+      "dst": "S3",
+      "route": [
+        "S1",
+        "sw02",
+        "sw04",
+        "sw06",
+        "sw08",
+        "sw07",
+        "sw05",
+        "sw03",
+        "sw01",
+        "S3"
+      ],
+      "size": 400,
+      "period": 400000,
+      "deadline": 400000,
+      "C_ns": 12480,
+      "release_offset_ns": 24960,
+      "scheduled": true,
+      "pcp": 7,
+      "phi_ns": 24960,
+      "offset_ns": 24960,
+      "e2e_ns": 74000,
+      "jitter_ns": 0,
+      "fixed": true,
+      "dynamic": false,
+      "hops": [
+        {
+          "port": "S1-p0",
+          "queue": 7,
+          "psi_ns": 24960,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw02-p4",
+          "queue": 7,
+          "psi_ns": 32640,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw04-p5",
+          "queue": 7,
+          "psi_ns": 40320,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw06-p4",
+          "queue": 7,
+          "psi_ns": 48000,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p5",
+          "queue": 7,
+          "psi_ns": 55680,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw07-p4",
+          "queue": 7,
+          "psi_ns": 63360,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw05-p5",
+          "queue": 7,
+          "psi_ns": 71040,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw03-p4",
+          "queue": 7,
+          "psi_ns": 78720,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw01-p2",
+          "queue": 7,
+          "psi_ns": 86400,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 4,
+      "id": 5,
+      "src": "S3",
+      "dst": "S2",
+      "route": [
+        "S3",
+        "sw01",
+        "sw03",
+        "sw05",
+        "sw07",
+        "sw08",
+        "S2"
+      ],
+      "size": 500,
+      "period": 200000,
+      "deadline": 200000,
+      "C_ns": 12480,
+      "release_offset_ns": 0,
+      "scheduled": true,
+      "pcp": 6,
+      "phi_ns": 0,
+      "offset_ns": 0,
+      "e2e_ns": 54160,
+      "jitter_ns": 0,
+      "fixed": true,
+      "dynamic": false,
+      "hops": [
+        {
+          "port": "S3-p0",
+          "queue": 6,
+          "psi_ns": 0,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw01-p4",
+          "queue": 6,
+          "psi_ns": 8320,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw03-p5",
+          "queue": 6,
+          "psi_ns": 16640,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw05-p4",
+          "queue": 6,
+          "psi_ns": 24960,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw07-p5",
+          "queue": 6,
+          "psi_ns": 33280,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p2",
+          "queue": 6,
+          "psi_ns": 41600,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 7,
+      "id": 8,
+      "src": "S3",
+      "dst": "S2",
+      "route": [
+        "S3",
+        "sw01",
+        "sw03",
+        "sw05",
+        "sw07",
+        "sw08",
+        "S2"
+      ],
+      "size": 500,
+      "period": 800000,
+      "deadline": 800000,
+      "C_ns": 12480,
+      "release_offset_ns": 62400,
+      "scheduled": true,
+      "pcp": 7,
+      "phi_ns": 62400,
+      "offset_ns": 62400,
+      "e2e_ns": 54160,
+      "jitter_ns": 0,
+      "fixed": true,
+      "dynamic": false,
+      "hops": [
+        {
+          "port": "S3-p0",
+          "queue": 7,
+          "psi_ns": 62400,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw01-p4",
+          "queue": 7,
+          "psi_ns": 70720,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw03-p5",
+          "queue": 7,
+          "psi_ns": 79040,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw05-p4",
+          "queue": 7,
+          "psi_ns": 87360,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw07-p5",
+          "queue": 7,
+          "psi_ns": 95680,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p2",
+          "queue": 7,
+          "psi_ns": 104000,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 8,
+      "id": 9,
+      "src": "S3",
+      "dst": "S2",
+      "route": [
+        "S3",
+        "sw01",
+        "sw03",
+        "sw05",
+        "sw07",
+        "sw08",
+        "S2"
+      ],
+      "size": 200,
+      "period": 400000,
+      "deadline": 400000,
+      "C_ns": 12480,
+      "release_offset_ns": 37440,
+      "scheduled": true,
+      "pcp": 6,
+      "phi_ns": 37440,
+      "offset_ns": 37440,
+      "e2e_ns": 42960,
+      "jitter_ns": 0,
+      "fixed": true,
+      "dynamic": false,
+      "hops": [
+        {
+          "port": "S3-p0",
+          "queue": 6,
+          "psi_ns": 37440,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw01-p4",
+          "queue": 6,
+          "psi_ns": 43520,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw03-p5",
+          "queue": 6,
+          "psi_ns": 49600,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw05-p4",
+          "queue": 6,
+          "psi_ns": 55680,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw07-p5",
+          "queue": 6,
+          "psi_ns": 61760,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p2",
+          "queue": 6,
+          "psi_ns": 67840,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 9,
+      "id": 10,
+      "src": "S2",
+      "dst": "S1",
+      "route": [
+        "S2",
+        "sw08",
+        "sw06",
+        "sw04",
+        "sw02",
+        "S1"
+      ],
+      "size": 300,
+      "period": 200000,
+      "deadline": 200000,
+      "C_ns": 12480,
+      "release_offset_ns": 0,
+      "scheduled": true,
+      "pcp": 7,
+      "phi_ns": 0,
+      "offset_ns": 0,
+      "e2e_ns": 39440,
+      "jitter_ns": 0,
+      "fixed": true,
+      "dynamic": false,
+      "hops": [
+        {
+          "port": "S2-p0",
+          "queue": 7,
+          "psi_ns": 0,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p4",
+          "queue": 7,
+          "psi_ns": 6720,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw06-p5",
+          "queue": 7,
+          "psi_ns": 13440,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw04-p4",
+          "queue": 7,
+          "psi_ns": 20160,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw02-p2",
+          "queue": 7,
+          "psi_ns": 26880,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 12,
+      "id": 13,
+      "src": "S2",
+      "dst": "S1",
+      "route": [
+        "S2",
+        "sw08",
+        "sw06",
+        "sw04",
+        "sw02",
+        "S1"
+      ],
+      "size": 500,
+      "period": 400000,
+      "deadline": 400000,
+      "C_ns": 12480,
+      "release_offset_ns": 49920,
+      "scheduled": true,
+      "pcp": 7,
+      "phi_ns": 49920,
+      "offset_ns": 49920,
+      "e2e_ns": 45840,
+      "jitter_ns": 0,
+      "fixed": true,
+      "dynamic": false,
+      "hops": [
+        {
+          "port": "S2-p0",
+          "queue": 7,
+          "psi_ns": 49920,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p4",
+          "queue": 7,
+          "psi_ns": 58240,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw06-p5",
+          "queue": 7,
+          "psi_ns": 66560,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw04-p4",
+          "queue": 7,
+          "psi_ns": 74880,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw02-p2",
+          "queue": 7,
+          "psi_ns": 83200,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 13,
+      "id": 14,
+      "src": "S1",
+      "dst": "S2",
+      "route": [
+        "S1",
+        "sw02",
+        "sw04",
+        "sw06",
+        "sw08",
+        "S2"
+      ],
+      "size": 200,
+      "period": 200000,
+      "deadline": 200000,
+      "C_ns": 12480,
+      "release_offset_ns": 0,
+      "scheduled": true,
+      "pcp": 7,
+      "phi_ns": 0,
+      "offset_ns": 0,
+      "e2e_ns": 36880,
+      "jitter_ns": 0,
+      "fixed": true,
+      "dynamic": false,
+      "hops": [
+        {
+          "port": "S1-p0",
+          "queue": 7,
+          "psi_ns": 0,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw02-p4",
+          "queue": 7,
+          "psi_ns": 6080,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw04-p5",
+          "queue": 7,
+          "psi_ns": 12160,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw06-p4",
+          "queue": 7,
+          "psi_ns": 18240,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p2",
+          "queue": 7,
+          "psi_ns": 24320,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 14,
+      "id": 15,
+      "src": "S1",
+      "dst": "S3",
+      "route": [
+        "S1",
+        "sw02",
+        "sw04",
+        "sw06",
+        "sw08",
+        "sw07",
+        "sw05",
+        "sw03",
+        "sw01",
+        "S3"
+      ],
+      "size": 100,
+      "period": 800000,
+      "deadline": 800000,
+      "C_ns": 12480,
+      "release_offset_ns": 49920,
+      "scheduled": true,
+      "pcp": 7,
+      "phi_ns": 49920,
+      "offset_ns": 49920,
+      "e2e_ns": 61840,
+      "jitter_ns": 0,
+      "fixed": true,
+      "dynamic": false,
+      "hops": [
+        {
+          "port": "S1-p0",
+          "queue": 7,
+          "psi_ns": 49920,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw02-p4",
+          "queue": 7,
+          "psi_ns": 56960,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw04-p5",
+          "queue": 7,
+          "psi_ns": 62080,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw06-p4",
+          "queue": 7,
+          "psi_ns": 67200,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p5",
+          "queue": 7,
+          "psi_ns": 72320,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw07-p4",
+          "queue": 7,
+          "psi_ns": 78720,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw05-p5",
+          "queue": 7,
+          "psi_ns": 83840,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw03-p4",
+          "queue": 7,
+          "psi_ns": 91520,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw01-p2",
+          "queue": 7,
+          "psi_ns": 99200,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 16,
+      "id": 17,
+      "src": "S2",
+      "dst": "S3",
+      "route": [
+        "S2",
+        "sw08",
+        "sw07",
+        "sw05",
+        "sw03",
+        "sw01",
+        "S3"
+      ],
+      "size": 100,
+      "period": 800000,
+      "deadline": 800000,
+      "C_ns": 12480,
+      "release_offset_ns": 99840,
+      "scheduled": true,
+      "pcp": 6,
+      "phi_ns": 99840,
+      "offset_ns": 99840,
+      "e2e_ns": 38160,
+      "jitter_ns": 0,
+      "fixed": true,
+      "dynamic": false,
+      "hops": [
+        {
+          "port": "S2-p0",
+          "queue": 6,
+          "psi_ns": 99840,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p5",
+          "queue": 6,
+          "psi_ns": 104960,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw07-p4",
+          "queue": 6,
+          "psi_ns": 110080,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw05-p5",
+          "queue": 6,
+          "psi_ns": 115200,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw03-p4",
+          "queue": 6,
+          "psi_ns": 120320,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw01-p2",
+          "queue": 6,
+          "psi_ns": 125440,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 18,
+      "id": 19,
+      "src": "S2",
+      "dst": "S3",
+      "route": [
+        "S2",
+        "sw08",
+        "sw07",
+        "sw05",
+        "sw03",
+        "sw01",
+        "S3"
+      ],
+      "size": 200,
+      "period": 200000,
+      "deadline": 200000,
+      "C_ns": 12480,
+      "release_offset_ns": 24960,
+      "scheduled": true,
+      "pcp": 6,
+      "phi_ns": 24960,
+      "offset_ns": 24960,
+      "e2e_ns": 42960,
+      "jitter_ns": 0,
+      "fixed": true,
+      "dynamic": false,
+      "hops": [
+        {
+          "port": "S2-p0",
+          "queue": 6,
+          "psi_ns": 24960,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p5",
+          "queue": 6,
+          "psi_ns": 31040,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw07-p4",
+          "queue": 6,
+          "psi_ns": 37120,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw05-p5",
+          "queue": 6,
+          "psi_ns": 43200,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw03-p4",
+          "queue": 6,
+          "psi_ns": 49280,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw01-p2",
+          "queue": 6,
+          "psi_ns": 55360,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 19,
+      "id": 20,
+      "src": "S2",
+      "dst": "S3",
+      "route": [
+        "S2",
+        "sw08",
+        "sw07",
+        "sw05",
+        "sw03",
+        "sw01",
+        "S3"
+      ],
+      "size": 300,
+      "period": 400000,
+      "deadline": 400000,
+      "C_ns": 12480,
+      "release_offset_ns": 74880,
+      "scheduled": true,
+      "pcp": 6,
+      "phi_ns": 74880,
+      "offset_ns": 74880,
+      "e2e_ns": 49680,
+      "jitter_ns": 0,
+      "fixed": true,
+      "dynamic": false,
+      "hops": [
+        {
+          "port": "S2-p0",
+          "queue": 6,
+          "psi_ns": 74880,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p5",
+          "queue": 6,
+          "psi_ns": 85120,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw07-p4",
+          "queue": 6,
+          "psi_ns": 91840,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw05-p5",
+          "queue": 6,
+          "psi_ns": 98560,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw03-p4",
+          "queue": 6,
+          "psi_ns": 105280,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw01-p2",
+          "queue": 6,
+          "psi_ns": 112000,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 20,
+      "id": 1,
+      "src": "S3",
+      "dst": "S2",
+      "route": [
+        "S3",
+        "sw01",
+        "sw03",
+        "sw05",
+        "sw07",
+        "sw08",
+        "S2"
+      ],
+      "size": 400,
+      "period": 400000,
+      "deadline": 400000,
+      "C_ns": 12480,
+      "release_offset_ns": 111040,
+      "scheduled": true,
+      "pcp": 6,
+      "phi_ns": 111040,
+      "offset_ns": 111040,
+      "e2e_ns": 109120,
+      "jitter_ns": 0,
+      "fixed": false,
+      "dynamic": true,
+      "hops": [
+        {
+          "port": "S3-p0",
+          "queue": 6,
+          "psi_ns": 111040,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw01-p4",
+          "queue": 6,
+          "psi_ns": 119360,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw03-p5",
+          "queue": 6,
+          "psi_ns": 127680,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw05-p4",
+          "queue": 6,
+          "psi_ns": 136000,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw07-p5",
+          "queue": 6,
+          "psi_ns": 200000,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p2",
+          "queue": 6,
+          "psi_ns": 207680,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 21,
+      "id": 2,
+      "src": "S1",
+      "dst": "S2",
+      "route": [
+        "S1",
+        "sw02",
+        "sw04",
+        "sw06",
+        "sw08",
+        "S2"
+      ],
+      "size": 200,
+      "period": 800000,
+      "deadline": 800000,
+      "C_ns": 12480,
+      "release_offset_ns": 12480,
+      "scheduled": true,
+      "pcp": 6,
+      "phi_ns": 12480,
+      "offset_ns": 12480,
+      "e2e_ns": 406080,
+      "jitter_ns": 0,
+      "fixed": false,
+      "dynamic": true,
+      "hops": [
+        {
+          "port": "S1-p0",
+          "queue": 6,
+          "psi_ns": 12480,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw02-p4",
+          "queue": 6,
+          "psi_ns": 18560,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw04-p5",
+          "queue": 6,
+          "psi_ns": 24640,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw06-p4",
+          "queue": 6,
+          "psi_ns": 400000,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p2",
+          "queue": 6,
+          "psi_ns": 406080,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 23,
+      "id": 6,
+      "src": "S3",
+      "dst": "S1",
+      "route": [
+        "S3",
+        "sw01",
+        "sw03",
+        "sw05",
+        "sw07",
+        "sw08",
+        "sw06",
+        "sw04",
+        "sw02",
+        "S1"
+      ],
+      "size": 400,
+      "period": 800000,
+      "deadline": 800000,
+      "C_ns": 12480,
+      "release_offset_ns": 49920,
+      "scheduled": true,
+      "pcp": 7,
+      "phi_ns": 49920,
+      "offset_ns": 49920,
+      "e2e_ns": 73920,
+      "jitter_ns": 0,
+      "fixed": false,
+      "dynamic": true,
+      "hops": [
+        {
+          "port": "S3-p0",
+          "queue": 7,
+          "psi_ns": 49920,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw01-p4",
+          "queue": 7,
+          "psi_ns": 57600,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw03-p5",
+          "queue": 7,
+          "psi_ns": 65280,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw05-p4",
+          "queue": 7,
+          "psi_ns": 72960,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw07-p5",
+          "queue": 7,
+          "psi_ns": 80640,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p4",
+          "queue": 7,
+          "psi_ns": 88320,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw06-p5",
+          "queue": 7,
+          "psi_ns": 96000,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw04-p4",
+          "queue": 7,
+          "psi_ns": 103680,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw02-p2",
+          "queue": 7,
+          "psi_ns": 111360,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 31,
+      "id": 23,
+      "src": "S3",
+      "dst": "S1",
+      "route": [
+        "S3",
+        "sw01",
+        "sw03",
+        "sw05",
+        "sw07",
+        "sw08",
+        "sw06",
+        "sw04",
+        "sw02",
+        "S1"
+      ],
+      "size": 400,
+      "period": 400000,
+      "deadline": 400000,
+      "C_ns": 12480,
+      "release_offset_ns": 123520,
+      "scheduled": true,
+      "pcp": 6,
+      "phi_ns": 123520,
+      "offset_ns": 123520,
+      "e2e_ns": 288960,
+      "jitter_ns": 75200,
+      "fixed": false,
+      "dynamic": true,
+      "hops": [
+        {
+          "port": "S3-p0",
+          "queue": 6,
+          "psi_ns": 123520,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw01-p4",
+          "queue": 6,
+          "psi_ns": 131840,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw03-p5",
+          "queue": 6,
+          "psi_ns": 200000,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw05-p4",
+          "queue": 6,
+          "psi_ns": 207680,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw07-p5",
+          "queue": 6,
+          "psi_ns": 215360,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p4",
+          "queue": 6,
+          "psi_ns": 303360,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw06-p5",
+          "queue": 6,
+          "psi_ns": 322880,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw04-p4",
+          "queue": 6,
+          "psi_ns": 330560,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw02-p2",
+          "queue": 6,
+          "psi_ns": 400000,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 34,
+      "id": 26,
+      "src": "S3",
+      "dst": "S1",
+      "route": [
+        "S3",
+        "sw01",
+        "sw03",
+        "sw05",
+        "sw07",
+        "sw08",
+        "sw06",
+        "sw04",
+        "sw02",
+        "S1"
+      ],
+      "size": 300,
+      "period": 800000,
+      "deadline": 800000,
+      "C_ns": 12480,
+      "release_offset_ns": 87360,
+      "scheduled": true,
+      "pcp": 7,
+      "phi_ns": 87360,
+      "offset_ns": 87360,
+      "e2e_ns": 95360,
+      "jitter_ns": 0,
+      "fixed": false,
+      "dynamic": true,
+      "hops": [
+        {
+          "port": "S3-p0",
+          "queue": 7,
+          "psi_ns": 87360,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw01-p4",
+          "queue": 7,
+          "psi_ns": 95680,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw03-p5",
+          "queue": 7,
+          "psi_ns": 104000,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw05-p4",
+          "queue": 7,
+          "psi_ns": 112320,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw07-p5",
+          "queue": 7,
+          "psi_ns": 120640,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p4",
+          "queue": 7,
+          "psi_ns": 150080,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw06-p5",
+          "queue": 7,
+          "psi_ns": 156800,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw04-p4",
+          "queue": 7,
+          "psi_ns": 163520,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw02-p2",
+          "queue": 7,
+          "psi_ns": 170240,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 37,
+      "id": 29,
+      "src": "S3",
+      "dst": "S1",
+      "route": [
+        "S3",
+        "sw01",
+        "sw03",
+        "sw05",
+        "sw07",
+        "sw08",
+        "sw06",
+        "sw04",
+        "sw02",
+        "S1"
+      ],
+      "size": 100,
+      "period": 400000,
+      "deadline": 400000,
+      "C_ns": 12480,
+      "release_offset_ns": 212480,
+      "scheduled": true,
+      "pcp": 6,
+      "phi_ns": 212480,
+      "offset_ns": 212480,
+      "e2e_ns": 212480,
+      "jitter_ns": 75200,
+      "fixed": false,
+      "dynamic": true,
+      "hops": [
+        {
+          "port": "S3-p0",
+          "queue": 6,
+          "psi_ns": 212480,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw01-p4",
+          "queue": 6,
+          "psi_ns": 220800,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw03-p5",
+          "queue": 6,
+          "psi_ns": 229120,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw05-p4",
+          "queue": 6,
+          "psi_ns": 237440,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw07-p5",
+          "queue": 6,
+          "psi_ns": 311040,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p4",
+          "queue": 6,
+          "psi_ns": 330560,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw06-p5",
+          "queue": 6,
+          "psi_ns": 335680,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw04-p4",
+          "queue": 6,
+          "psi_ns": 400000,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw02-p2",
+          "queue": 6,
+          "psi_ns": 412480,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 38,
+      "id": 30,
+      "src": "S1",
+      "dst": "S2",
+      "route": [
+        "S1",
+        "sw02",
+        "sw04",
+        "sw06",
+        "sw08",
+        "S2"
+      ],
+      "size": 300,
+      "period": 200000,
+      "deadline": 200000,
+      "C_ns": 12480,
+      "release_offset_ns": 87360,
+      "scheduled": true,
+      "pcp": 7,
+      "phi_ns": 87360,
+      "offset_ns": 87360,
+      "e2e_ns": 107200,
+      "jitter_ns": 12800,
+      "fixed": false,
+      "dynamic": true,
+      "hops": [
+        {
+          "port": "S1-p0",
+          "queue": 7,
+          "psi_ns": 87360,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw02-p4",
+          "queue": 7,
+          "psi_ns": 95680,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw04-p5",
+          "queue": 7,
+          "psi_ns": 150080,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw06-p4",
+          "queue": 7,
+          "psi_ns": 156800,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p2",
+          "queue": 7,
+          "psi_ns": 169280,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 39,
+      "id": 31,
+      "src": "S1",
+      "dst": "S3",
+      "route": [
+        "S1",
+        "sw02",
+        "sw04",
+        "sw06",
+        "sw08",
+        "sw07",
+        "sw05",
+        "sw03",
+        "sw01",
+        "S3"
+      ],
+      "size": 400,
+      "period": 800000,
+      "deadline": 800000,
+      "C_ns": 12480,
+      "release_offset_ns": 62400,
+      "scheduled": true,
+      "pcp": 7,
+      "phi_ns": 62400,
+      "offset_ns": 62400,
+      "e2e_ns": 419520,
+      "jitter_ns": 0,
+      "fixed": false,
+      "dynamic": true,
+      "hops": [
+        {
+          "port": "S1-p0",
+          "queue": 7,
+          "psi_ns": 62400,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw02-p4",
+          "queue": 7,
+          "psi_ns": 70080,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw04-p5",
+          "queue": 7,
+          "psi_ns": 77760,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw06-p4",
+          "queue": 7,
+          "psi_ns": 85440,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p5",
+          "queue": 7,
+          "psi_ns": 169920,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw07-p4",
+          "queue": 7,
+          "psi_ns": 177600,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw05-p5",
+          "queue": 7,
+          "psi_ns": 185280,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw03-p4",
+          "queue": 7,
+          "psi_ns": 461760,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw01-p2",
+          "queue": 7,
+          "psi_ns": 469440,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 45,
+      "id": 37,
+      "src": "S3",
+      "dst": "S1",
+      "route": [
+        "S3",
+        "sw01",
+        "sw03",
+        "sw05",
+        "sw07",
+        "sw08",
+        "sw06",
+        "sw04",
+        "sw02",
+        "S1"
+      ],
+      "size": 200,
+      "period": 800000,
+      "deadline": 800000,
+      "C_ns": 12480,
+      "release_offset_ns": 150080,
+      "scheduled": true,
+      "pcp": 7,
+      "phi_ns": 150080,
+      "offset_ns": 150080,
+      "e2e_ns": 236800,
+      "jitter_ns": 0,
+      "fixed": false,
+      "dynamic": true,
+      "hops": [
+        {
+          "port": "S3-p0",
+          "queue": 7,
+          "psi_ns": 150080,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw01-p4",
+          "queue": 7,
+          "psi_ns": 156160,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw03-p5",
+          "queue": 7,
+          "psi_ns": 162240,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw05-p4",
+          "queue": 7,
+          "psi_ns": 168320,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw07-p5",
+          "queue": 7,
+          "psi_ns": 350080,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p4",
+          "queue": 7,
+          "psi_ns": 356160,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw06-p5",
+          "queue": 7,
+          "psi_ns": 362240,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw04-p4",
+          "queue": 7,
+          "psi_ns": 368320,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw02-p2",
+          "queue": 7,
+          "psi_ns": 374400,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 49,
+      "id": 41,
+      "src": "S1",
+      "dst": "S2",
+      "route": [
+        "S1",
+        "sw02",
+        "sw04",
+        "sw06",
+        "sw08",
+        "S2"
+      ],
+      "size": 500,
+      "period": 400000,
+      "deadline": 400000,
+      "C_ns": 12480,
+      "release_offset_ns": 74880,
+      "scheduled": true,
+      "pcp": 7,
+      "phi_ns": 74880,
+      "offset_ns": 74880,
+      "e2e_ns": 106880,
+      "jitter_ns": 40000,
+      "fixed": false,
+      "dynamic": true,
+      "hops": [
+        {
+          "port": "S1-p0",
+          "queue": 7,
+          "psi_ns": 74880,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw02-p4",
+          "queue": 7,
+          "psi_ns": 83200,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw04-p5",
+          "queue": 7,
+          "psi_ns": 91520,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw06-p4",
+          "queue": 7,
+          "psi_ns": 120960,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p2",
+          "queue": 7,
+          "psi_ns": 129280,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 52,
+      "id": 44,
+      "src": "S1",
+      "dst": "S3",
+      "route": [
+        "S1",
+        "sw02",
+        "sw04",
+        "sw06",
+        "sw08",
+        "sw07",
+        "sw05",
+        "sw03",
+        "sw01",
+        "S3"
+      ],
+      "size": 400,
+      "period": 800000,
+      "deadline": 800000,
+      "C_ns": 12480,
+      "release_offset_ns": 437440,
+      "scheduled": true,
+      "pcp": 7,
+      "phi_ns": 437440,
+      "offset_ns": 437440,
+      "e2e_ns": 332800,
+      "jitter_ns": 0,
+      "fixed": false,
+      "dynamic": true,
+      "hops": [
+        {
+          "port": "S1-p0",
+          "queue": 7,
+          "psi_ns": 437440,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw02-p4",
+          "queue": 7,
+          "psi_ns": 445120,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw04-p5",
+          "queue": 7,
+          "psi_ns": 452800,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw06-p4",
+          "queue": 7,
+          "psi_ns": 460480,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p5",
+          "queue": 7,
+          "psi_ns": 468160,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw07-p4",
+          "queue": 7,
+          "psi_ns": 475840,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw05-p5",
+          "queue": 7,
+          "psi_ns": 483520,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw03-p4",
+          "queue": 7,
+          "psi_ns": 750080,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw01-p2",
+          "queue": 7,
+          "psi_ns": 757760,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 53,
+      "id": 45,
+      "src": "S3",
+      "dst": "S2",
+      "route": [
+        "S3",
+        "sw01",
+        "sw03",
+        "sw05",
+        "sw07",
+        "sw08",
+        "S2"
+      ],
+      "size": 300,
+      "period": 400000,
+      "deadline": 400000,
+      "C_ns": 12480,
+      "release_offset_ns": 162560,
+      "scheduled": true,
+      "pcp": 7,
+      "phi_ns": 162560,
+      "offset_ns": 162560,
+      "e2e_ns": 219200,
+      "jitter_ns": 12480,
+      "fixed": false,
+      "dynamic": true,
+      "hops": [
+        {
+          "port": "S3-p0",
+          "queue": 7,
+          "psi_ns": 162560,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw01-p4",
+          "queue": 7,
+          "psi_ns": 169280,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw03-p5",
+          "queue": 7,
+          "psi_ns": 176000,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw05-p4",
+          "queue": 7,
+          "psi_ns": 350080,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw07-p5",
+          "queue": 7,
+          "psi_ns": 362560,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p2",
+          "queue": 7,
+          "psi_ns": 369280,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 56,
+      "id": 48,
+      "src": "S3",
+      "dst": "S2",
+      "route": [
+        "S3",
+        "sw01",
+        "sw03",
+        "sw05",
+        "sw07",
+        "sw08",
+        "S2"
+      ],
+      "size": 200,
+      "period": 800000,
+      "deadline": 800000,
+      "C_ns": 12480,
+      "release_offset_ns": 74880,
+      "scheduled": true,
+      "pcp": 7,
+      "phi_ns": 74880,
+      "offset_ns": 74880,
+      "e2e_ns": 54080,
+      "jitter_ns": 0,
+      "fixed": false,
+      "dynamic": true,
+      "hops": [
+        {
+          "port": "S3-p0",
+          "queue": 7,
+          "psi_ns": 74880,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw01-p4",
+          "queue": 7,
+          "psi_ns": 83200,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw03-p5",
+          "queue": 7,
+          "psi_ns": 91520,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw05-p4",
+          "queue": 7,
+          "psi_ns": 99840,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw07-p5",
+          "queue": 7,
+          "psi_ns": 108160,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p2",
+          "queue": 7,
+          "psi_ns": 116480,
+          "delta_ns": 12480
+        }
+      ]
+    },
+    {
+      "uid": 57,
+      "id": 49,
+      "src": "S1",
+      "dst": "S2",
+      "route": [
+        "S1",
+        "sw02",
+        "sw04",
+        "sw06",
+        "sw08",
+        "S2"
+      ],
+      "size": 100,
+      "period": 800000,
+      "deadline": 800000,
+      "C_ns": 12480,
+      "release_offset_ns": 37440,
+      "scheduled": true,
+      "pcp": 6,
+      "phi_ns": 37440,
+      "offset_ns": 37440,
+      "e2e_ns": 701120,
+      "jitter_ns": 0,
+      "fixed": false,
+      "dynamic": true,
+      "hops": [
+        {
+          "port": "S1-p0",
+          "queue": 6,
+          "psi_ns": 37440,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw02-p4",
+          "queue": 6,
+          "psi_ns": 117120,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw04-p5",
+          "queue": 6,
+          "psi_ns": 424640,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw06-p4",
+          "queue": 6,
+          "psi_ns": 720960,
+          "delta_ns": 12480
+        },
+        {
+          "port": "sw08-p2",
+          "queue": 6,
+          "psi_ns": 726080,
+          "delta_ns": 12480
+        }
+      ]
+    }
+  ],
+  "ports": {
+    "S1-p0": {
+      "is_switch_port": false,
+      "n_gcl_entries": 18,
+      "utilisation": 0.2652,
+      "windows": [
+        {
+          "queue": 7,
+          "psi_ns": 0,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 13,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 12480,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 21,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 24960,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 2,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 37440,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 57,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 49920,
+          "delta_ns": 61120,
+          "required_ns": 49920,
+          "slack_ns": 11200,
+          "frames": [
+            {
+              "flow": 14,
+              "inst": 0
+            },
+            {
+              "flow": 39,
+              "inst": 0
+            },
+            {
+              "flow": 49,
+              "inst": 0
+            },
+            {
+              "flow": 38,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 111040,
+          "delta_ns": 39040,
+          "required_ns": 0,
+          "slack_ns": 39040,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 150080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 200000,
+          "delta_ns": 111040,
+          "required_ns": 24960,
+          "slack_ns": 86080,
+          "frames": [
+            {
+              "flow": 13,
+              "inst": 1
+            },
+            {
+              "flow": 38,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 311040,
+          "delta_ns": 39040,
+          "required_ns": 0,
+          "slack_ns": 39040,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 350080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 400000,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 13,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 412480,
+          "delta_ns": 12480,
+          "required_ns": 0,
+          "slack_ns": 12480,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 424960,
+          "delta_ns": 86080,
+          "required_ns": 49920,
+          "slack_ns": 36160,
+          "frames": [
+            {
+              "flow": 2,
+              "inst": 1
+            },
+            {
+              "flow": 52,
+              "inst": 0
+            },
+            {
+              "flow": 49,
+              "inst": 1
+            },
+            {
+              "flow": 38,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 511040,
+          "delta_ns": 39040,
+          "required_ns": 0,
+          "slack_ns": 39040,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 550080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 600000,
+          "delta_ns": 111040,
+          "required_ns": 24960,
+          "slack_ns": 86080,
+          "frames": [
+            {
+              "flow": 13,
+              "inst": 3
+            },
+            {
+              "flow": 38,
+              "inst": 3
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 711040,
+          "delta_ns": 39040,
+          "required_ns": 0,
+          "slack_ns": 39040,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 750080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        }
+      ],
+      "gcl": [
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 61120,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 39040,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 111040,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 39040,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 86080,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 39040,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 111040,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 39040,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        }
+      ]
+    },
+    "S2-p0": {
+      "is_switch_port": false,
+      "n_gcl_entries": 26,
+      "utilisation": 0.2028,
+      "windows": [
+        {
+          "queue": 7,
+          "psi_ns": 0,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 9,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 24960,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 49920,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 12,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 74880,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 19,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 99840,
+          "delta_ns": 16000,
+          "required_ns": 12480,
+          "slack_ns": 3520,
+          "frames": [
+            {
+              "flow": 16,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 200000,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 9,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 224960,
+          "delta_ns": 16000,
+          "required_ns": 12480,
+          "slack_ns": 3520,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 400000,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 9,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 424960,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 449920,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 12,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 474880,
+          "delta_ns": 16000,
+          "required_ns": 12480,
+          "slack_ns": 3520,
+          "frames": [
+            {
+              "flow": 19,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 600000,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 9,
+              "inst": 3
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 624960,
+          "delta_ns": 16000,
+          "required_ns": 12480,
+          "slack_ns": 3520,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 3
+            }
+          ]
+        }
+      ],
+      "gcl": [
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 16000,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 84160,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 16000,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 159040,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 16000,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 109120,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 16000,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 159040,
+          "mask": "0x3F",
+          "queue": null
+        }
+      ]
+    },
+    "S3-p0": {
+      "is_switch_port": false,
+      "n_gcl_entries": 18,
+      "utilisation": 0.2964,
+      "windows": [
+        {
+          "queue": 6,
+          "psi_ns": 0,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 12480,
+          "delta_ns": 24960,
+          "required_ns": 0,
+          "slack_ns": 24960,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 37440,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 8,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 49920,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 23,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 62400,
+          "delta_ns": 48640,
+          "required_ns": 37440,
+          "slack_ns": 11200,
+          "frames": [
+            {
+              "flow": 7,
+              "inst": 0
+            },
+            {
+              "flow": 56,
+              "inst": 0
+            },
+            {
+              "flow": 34,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 111040,
+          "delta_ns": 39040,
+          "required_ns": 24960,
+          "slack_ns": 14080,
+          "frames": [
+            {
+              "flow": 20,
+              "inst": 0
+            },
+            {
+              "flow": 31,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 150080,
+          "delta_ns": 49920,
+          "required_ns": 24960,
+          "slack_ns": 24960,
+          "frames": [
+            {
+              "flow": 45,
+              "inst": 0
+            },
+            {
+              "flow": 53,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 200000,
+          "delta_ns": 111040,
+          "required_ns": 24960,
+          "slack_ns": 86080,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 1
+            },
+            {
+              "flow": 37,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 311040,
+          "delta_ns": 39040,
+          "required_ns": 0,
+          "slack_ns": 39040,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 350080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 400000,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 412480,
+          "delta_ns": 24960,
+          "required_ns": 0,
+          "slack_ns": 24960,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 437440,
+          "delta_ns": 73600,
+          "required_ns": 12480,
+          "slack_ns": 61120,
+          "frames": [
+            {
+              "flow": 8,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 511040,
+          "delta_ns": 39040,
+          "required_ns": 24960,
+          "slack_ns": 14080,
+          "frames": [
+            {
+              "flow": 20,
+              "inst": 1
+            },
+            {
+              "flow": 31,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 550080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 53,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 600000,
+          "delta_ns": 111040,
+          "required_ns": 24960,
+          "slack_ns": 86080,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 3
+            },
+            {
+              "flow": 37,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 711040,
+          "delta_ns": 39040,
+          "required_ns": 0,
+          "slack_ns": 39040,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 750080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        }
+      ],
+      "gcl": [
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 24960,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 48640,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 39040,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 111040,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 39040,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 24960,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 73600,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 39040,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 111040,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 39040,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        }
+      ]
+    },
+    "sw01-p2": {
+      "is_switch_port": true,
+      "n_gcl_entries": 25,
+      "utilisation": 0.1872,
+      "windows": [
+        {
+          "queue": 6,
+          "psi_ns": 0,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 55360,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 67840,
+          "delta_ns": 18560,
+          "required_ns": 0,
+          "slack_ns": 18560,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 86400,
+          "delta_ns": 25280,
+          "required_ns": 24960,
+          "slack_ns": 320,
+          "frames": [
+            {
+              "flow": 2,
+              "inst": 0
+            },
+            {
+              "flow": 14,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 112000,
+          "delta_ns": 82240,
+          "required_ns": 24960,
+          "slack_ns": 57280,
+          "frames": [
+            {
+              "flow": 16,
+              "inst": 0
+            },
+            {
+              "flow": 19,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 200000,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 255360,
+          "delta_ns": 138880,
+          "required_ns": 12480,
+          "slack_ns": 126400,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 400000,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 455360,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 467840,
+          "delta_ns": 18560,
+          "required_ns": 12480,
+          "slack_ns": 6080,
+          "frames": [
+            {
+              "flow": 39,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 486400,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 2,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 512000,
+          "delta_ns": 82240,
+          "required_ns": 12480,
+          "slack_ns": 69760,
+          "frames": [
+            {
+              "flow": 19,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 600000,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 655360,
+          "delta_ns": 83520,
+          "required_ns": 12480,
+          "slack_ns": 71040,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 3
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 750080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 52,
+              "inst": 0
+            }
+          ]
+        }
+      ],
+      "gcl": [
+        {
+          "duration_ns": 49920,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 5440,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 18560,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 25280,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 320,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 82240,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 5760,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 5440,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 138880,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 5760,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 5440,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 18560,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 13120,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 82240,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 5760,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 5440,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 83520,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 11200,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        }
+      ]
+    },
+    "sw01-p4": {
+      "is_switch_port": true,
+      "n_gcl_entries": 22,
+      "utilisation": 0.2964,
+      "windows": [
+        {
+          "queue": 6,
+          "psi_ns": 8320,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 20800,
+          "delta_ns": 22720,
+          "required_ns": 0,
+          "slack_ns": 22720,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 43520,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 8,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 56000,
+          "delta_ns": 14720,
+          "required_ns": 12480,
+          "slack_ns": 2240,
+          "frames": [
+            {
+              "flow": 23,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 70720,
+          "delta_ns": 48640,
+          "required_ns": 37440,
+          "slack_ns": 11200,
+          "frames": [
+            {
+              "flow": 7,
+              "inst": 0
+            },
+            {
+              "flow": 56,
+              "inst": 0
+            },
+            {
+              "flow": 34,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 119360,
+          "delta_ns": 30720,
+          "required_ns": 24960,
+          "slack_ns": 5760,
+          "frames": [
+            {
+              "flow": 20,
+              "inst": 0
+            },
+            {
+              "flow": 31,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 150080,
+          "delta_ns": 49920,
+          "required_ns": 24960,
+          "slack_ns": 24960,
+          "frames": [
+            {
+              "flow": 45,
+              "inst": 0
+            },
+            {
+              "flow": 53,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 208320,
+          "delta_ns": 111040,
+          "required_ns": 24960,
+          "slack_ns": 86080,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 1
+            },
+            {
+              "flow": 37,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 319360,
+          "delta_ns": 30720,
+          "required_ns": 0,
+          "slack_ns": 30720,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 350080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 408320,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 420800,
+          "delta_ns": 22720,
+          "required_ns": 0,
+          "slack_ns": 22720,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 443520,
+          "delta_ns": 75840,
+          "required_ns": 12480,
+          "slack_ns": 63360,
+          "frames": [
+            {
+              "flow": 8,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 519360,
+          "delta_ns": 30720,
+          "required_ns": 24960,
+          "slack_ns": 5760,
+          "frames": [
+            {
+              "flow": 20,
+              "inst": 1
+            },
+            {
+              "flow": 31,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 550080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 53,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 608320,
+          "delta_ns": 102720,
+          "required_ns": 24960,
+          "slack_ns": 77760,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 3
+            },
+            {
+              "flow": 37,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 711040,
+          "delta_ns": 39040,
+          "required_ns": 0,
+          "slack_ns": 39040,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 750080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        }
+      ],
+      "gcl": [
+        {
+          "duration_ns": 8320,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 22720,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 14720,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 48640,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 30720,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 8320,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 111040,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 30720,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 8320,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 22720,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 75840,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 30720,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 8320,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 102720,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 39040,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        }
+      ]
+    },
+    "sw02-p2": {
+      "is_switch_port": true,
+      "n_gcl_entries": 23,
+      "utilisation": 0.2028,
+      "windows": [
+        {
+          "queue": 6,
+          "psi_ns": 0,
+          "delta_ns": 12480,
+          "required_ns": 0,
+          "slack_ns": 12480,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 12480,
+          "delta_ns": 14400,
+          "required_ns": 0,
+          "slack_ns": 14400,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 26880,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 9,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 49920,
+          "delta_ns": 33280,
+          "required_ns": 0,
+          "slack_ns": 33280,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 83200,
+          "delta_ns": 53120,
+          "required_ns": 24960,
+          "slack_ns": 28160,
+          "frames": [
+            {
+              "flow": 12,
+              "inst": 0
+            },
+            {
+              "flow": 23,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 136320,
+          "delta_ns": 13760,
+          "required_ns": 0,
+          "slack_ns": 13760,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 150080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 34,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 200000,
+          "delta_ns": 26880,
+          "required_ns": 0,
+          "slack_ns": 26880,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 226880,
+          "delta_ns": 109440,
+          "required_ns": 12480,
+          "slack_ns": 96960,
+          "frames": [
+            {
+              "flow": 9,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 336320,
+          "delta_ns": 13760,
+          "required_ns": 0,
+          "slack_ns": 13760,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 350080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 45,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 400000,
+          "delta_ns": 26880,
+          "required_ns": 24960,
+          "slack_ns": 1920,
+          "frames": [
+            {
+              "flow": 31,
+              "inst": 0
+            },
+            {
+              "flow": 37,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 426880,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 9,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 449920,
+          "delta_ns": 33280,
+          "required_ns": 0,
+          "slack_ns": 33280,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 483200,
+          "delta_ns": 53120,
+          "required_ns": 12480,
+          "slack_ns": 40640,
+          "frames": [
+            {
+              "flow": 12,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 536320,
+          "delta_ns": 13760,
+          "required_ns": 0,
+          "slack_ns": 13760,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 550080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 600000,
+          "delta_ns": 26880,
+          "required_ns": 0,
+          "slack_ns": 26880,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 626880,
+          "delta_ns": 82560,
+          "required_ns": 12480,
+          "slack_ns": 70080,
+          "frames": [
+            {
+              "flow": 9,
+              "inst": 3
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 709440,
+          "delta_ns": 40640,
+          "required_ns": 24960,
+          "slack_ns": 15680,
+          "frames": [
+            {
+              "flow": 31,
+              "inst": 1
+            },
+            {
+              "flow": 37,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 750080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        }
+      ],
+      "gcl": [
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 14400,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 10560,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 33280,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 53120,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 13760,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 26880,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 109440,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 13760,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 26880,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 10560,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 33280,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 53120,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 13760,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 26880,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 82560,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 40640,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        }
+      ]
+    },
+    "sw02-p4": {
+      "is_switch_port": true,
+      "n_gcl_entries": 20,
+      "utilisation": 0.2652,
+      "windows": [
+        {
+          "queue": 7,
+          "psi_ns": 6080,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 13,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 18560,
+          "delta_ns": 14080,
+          "required_ns": 12480,
+          "slack_ns": 1600,
+          "frames": [
+            {
+              "flow": 21,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 32640,
+          "delta_ns": 84480,
+          "required_ns": 62400,
+          "slack_ns": 22080,
+          "frames": [
+            {
+              "flow": 2,
+              "inst": 0
+            },
+            {
+              "flow": 14,
+              "inst": 0
+            },
+            {
+              "flow": 39,
+              "inst": 0
+            },
+            {
+              "flow": 49,
+              "inst": 0
+            },
+            {
+              "flow": 38,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 117120,
+          "delta_ns": 32960,
+          "required_ns": 12480,
+          "slack_ns": 20480,
+          "frames": [
+            {
+              "flow": 57,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 150080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 206080,
+          "delta_ns": 111040,
+          "required_ns": 24960,
+          "slack_ns": 86080,
+          "frames": [
+            {
+              "flow": 13,
+              "inst": 1
+            },
+            {
+              "flow": 38,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 317120,
+          "delta_ns": 32960,
+          "required_ns": 0,
+          "slack_ns": 32960,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 350080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 406080,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 13,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 418560,
+          "delta_ns": 14080,
+          "required_ns": 0,
+          "slack_ns": 14080,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 432640,
+          "delta_ns": 84480,
+          "required_ns": 49920,
+          "slack_ns": 34560,
+          "frames": [
+            {
+              "flow": 2,
+              "inst": 1
+            },
+            {
+              "flow": 52,
+              "inst": 0
+            },
+            {
+              "flow": 49,
+              "inst": 1
+            },
+            {
+              "flow": 38,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 517120,
+          "delta_ns": 32960,
+          "required_ns": 0,
+          "slack_ns": 32960,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 550080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 606080,
+          "delta_ns": 104960,
+          "required_ns": 24960,
+          "slack_ns": 80000,
+          "frames": [
+            {
+              "flow": 13,
+              "inst": 3
+            },
+            {
+              "flow": 38,
+              "inst": 3
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 711040,
+          "delta_ns": 39040,
+          "required_ns": 0,
+          "slack_ns": 39040,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 750080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        }
+      ],
+      "gcl": [
+        {
+          "duration_ns": 6080,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 14080,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 84480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 32960,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 6080,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 111040,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 32960,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 6080,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 14080,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 84480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 32960,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 6080,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 104960,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 39040,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        }
+      ]
+    },
+    "sw03-p4": {
+      "is_switch_port": true,
+      "n_gcl_entries": 21,
+      "utilisation": 0.1872,
+      "windows": [
+        {
+          "queue": 6,
+          "psi_ns": 0,
+          "delta_ns": 49280,
+          "required_ns": 0,
+          "slack_ns": 49280,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 49280,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 61760,
+          "delta_ns": 16960,
+          "required_ns": 0,
+          "slack_ns": 16960,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 78720,
+          "delta_ns": 25280,
+          "required_ns": 24960,
+          "slack_ns": 320,
+          "frames": [
+            {
+              "flow": 2,
+              "inst": 0
+            },
+            {
+              "flow": 14,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 105280,
+          "delta_ns": 82880,
+          "required_ns": 24960,
+          "slack_ns": 57920,
+          "frames": [
+            {
+              "flow": 16,
+              "inst": 0
+            },
+            {
+              "flow": 19,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 200000,
+          "delta_ns": 49280,
+          "required_ns": 0,
+          "slack_ns": 49280,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 249280,
+          "delta_ns": 138880,
+          "required_ns": 12480,
+          "slack_ns": 126400,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 400000,
+          "delta_ns": 49280,
+          "required_ns": 0,
+          "slack_ns": 49280,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 449280,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 461760,
+          "delta_ns": 16960,
+          "required_ns": 12480,
+          "slack_ns": 4480,
+          "frames": [
+            {
+              "flow": 39,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 478720,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 2,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 505280,
+          "delta_ns": 82880,
+          "required_ns": 12480,
+          "slack_ns": 70400,
+          "frames": [
+            {
+              "flow": 19,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 600000,
+          "delta_ns": 49280,
+          "required_ns": 0,
+          "slack_ns": 49280,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 649280,
+          "delta_ns": 89600,
+          "required_ns": 12480,
+          "slack_ns": 77120,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 3
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 750080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 52,
+              "inst": 0
+            }
+          ]
+        }
+      ],
+      "gcl": [
+        {
+          "duration_ns": 49280,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 16960,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 25280,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 1280,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 82880,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 11840,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 49280,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 138880,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 11840,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 49280,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 16960,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 14080,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 82880,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 11840,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 49280,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 89600,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 11200,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        }
+      ]
+    },
+    "sw03-p5": {
+      "is_switch_port": true,
+      "n_gcl_entries": 22,
+      "utilisation": 0.2964,
+      "windows": [
+        {
+          "queue": 6,
+          "psi_ns": 0,
+          "delta_ns": 16640,
+          "required_ns": 0,
+          "slack_ns": 16640,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 16640,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 29120,
+          "delta_ns": 20480,
+          "required_ns": 0,
+          "slack_ns": 20480,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 49600,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 8,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 62080,
+          "delta_ns": 16960,
+          "required_ns": 12480,
+          "slack_ns": 4480,
+          "frames": [
+            {
+              "flow": 23,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 79040,
+          "delta_ns": 48640,
+          "required_ns": 37440,
+          "slack_ns": 11200,
+          "frames": [
+            {
+              "flow": 7,
+              "inst": 0
+            },
+            {
+              "flow": 56,
+              "inst": 0
+            },
+            {
+              "flow": 34,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 127680,
+          "delta_ns": 22400,
+          "required_ns": 12480,
+          "slack_ns": 9920,
+          "frames": [
+            {
+              "flow": 20,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 150080,
+          "delta_ns": 49920,
+          "required_ns": 24960,
+          "slack_ns": 24960,
+          "frames": [
+            {
+              "flow": 45,
+              "inst": 0
+            },
+            {
+              "flow": 53,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 200000,
+          "delta_ns": 16640,
+          "required_ns": 12480,
+          "slack_ns": 4160,
+          "frames": [
+            {
+              "flow": 31,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 216640,
+          "delta_ns": 111040,
+          "required_ns": 24960,
+          "slack_ns": 86080,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 1
+            },
+            {
+              "flow": 37,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 327680,
+          "delta_ns": 22400,
+          "required_ns": 0,
+          "slack_ns": 22400,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 350080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 400000,
+          "delta_ns": 16640,
+          "required_ns": 0,
+          "slack_ns": 16640,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 416640,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 429120,
+          "delta_ns": 20480,
+          "required_ns": 0,
+          "slack_ns": 20480,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 449600,
+          "delta_ns": 78080,
+          "required_ns": 12480,
+          "slack_ns": 65600,
+          "frames": [
+            {
+              "flow": 8,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 527680,
+          "delta_ns": 22400,
+          "required_ns": 12480,
+          "slack_ns": 9920,
+          "frames": [
+            {
+              "flow": 20,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 550080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 53,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 600000,
+          "delta_ns": 16640,
+          "required_ns": 12480,
+          "slack_ns": 4160,
+          "frames": [
+            {
+              "flow": 31,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 616640,
+          "delta_ns": 94400,
+          "required_ns": 24960,
+          "slack_ns": 69440,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 3
+            },
+            {
+              "flow": 37,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 711040,
+          "delta_ns": 39040,
+          "required_ns": 0,
+          "slack_ns": 39040,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 750080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        }
+      ],
+      "gcl": [
+        {
+          "duration_ns": 16640,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 20480,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 16960,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 48640,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 22400,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 16640,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 111040,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 22400,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 16640,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 20480,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 78080,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 22400,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 16640,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 94400,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 39040,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        }
+      ]
+    },
+    "sw04-p4": {
+      "is_switch_port": true,
+      "n_gcl_entries": 23,
+      "utilisation": 0.2028,
+      "windows": [
+        {
+          "queue": 6,
+          "psi_ns": 0,
+          "delta_ns": 12480,
+          "required_ns": 0,
+          "slack_ns": 12480,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 20160,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 9,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 32640,
+          "delta_ns": 17280,
+          "required_ns": 0,
+          "slack_ns": 17280,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 49920,
+          "delta_ns": 24960,
+          "required_ns": 0,
+          "slack_ns": 24960,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 74880,
+          "delta_ns": 54720,
+          "required_ns": 24960,
+          "slack_ns": 29760,
+          "frames": [
+            {
+              "flow": 12,
+              "inst": 0
+            },
+            {
+              "flow": 23,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 129600,
+          "delta_ns": 20480,
+          "required_ns": 0,
+          "slack_ns": 20480,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 150080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 34,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 200000,
+          "delta_ns": 20160,
+          "required_ns": 0,
+          "slack_ns": 20160,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 220160,
+          "delta_ns": 109440,
+          "required_ns": 12480,
+          "slack_ns": 96960,
+          "frames": [
+            {
+              "flow": 9,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 329600,
+          "delta_ns": 20480,
+          "required_ns": 12480,
+          "slack_ns": 8000,
+          "frames": [
+            {
+              "flow": 31,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 350080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 45,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 400000,
+          "delta_ns": 20160,
+          "required_ns": 12480,
+          "slack_ns": 7680,
+          "frames": [
+            {
+              "flow": 37,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 420160,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 9,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 432640,
+          "delta_ns": 17280,
+          "required_ns": 0,
+          "slack_ns": 17280,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 449920,
+          "delta_ns": 24960,
+          "required_ns": 0,
+          "slack_ns": 24960,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 474880,
+          "delta_ns": 54720,
+          "required_ns": 12480,
+          "slack_ns": 42240,
+          "frames": [
+            {
+              "flow": 12,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 529600,
+          "delta_ns": 20480,
+          "required_ns": 0,
+          "slack_ns": 20480,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 550080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 600000,
+          "delta_ns": 20160,
+          "required_ns": 0,
+          "slack_ns": 20160,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 620160,
+          "delta_ns": 89280,
+          "required_ns": 12480,
+          "slack_ns": 76800,
+          "frames": [
+            {
+              "flow": 9,
+              "inst": 3
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 709440,
+          "delta_ns": 40640,
+          "required_ns": 24960,
+          "slack_ns": 15680,
+          "frames": [
+            {
+              "flow": 31,
+              "inst": 1
+            },
+            {
+              "flow": 37,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 750080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        }
+      ],
+      "gcl": [
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 7680,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 17280,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 24960,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 54720,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 20480,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 20160,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 109440,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 20480,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 20160,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 17280,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 24960,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 54720,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 20480,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 20160,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 89280,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 40640,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        }
+      ]
+    },
+    "sw04-p5": {
+      "is_switch_port": true,
+      "n_gcl_entries": 20,
+      "utilisation": 0.2652,
+      "windows": [
+        {
+          "queue": 7,
+          "psi_ns": 12160,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 13,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 24640,
+          "delta_ns": 15680,
+          "required_ns": 12480,
+          "slack_ns": 3200,
+          "frames": [
+            {
+              "flow": 21,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 40320,
+          "delta_ns": 82880,
+          "required_ns": 49920,
+          "slack_ns": 32960,
+          "frames": [
+            {
+              "flow": 2,
+              "inst": 0
+            },
+            {
+              "flow": 14,
+              "inst": 0
+            },
+            {
+              "flow": 39,
+              "inst": 0
+            },
+            {
+              "flow": 49,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 123200,
+          "delta_ns": 26880,
+          "required_ns": 0,
+          "slack_ns": 26880,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 150080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 38,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 212160,
+          "delta_ns": 111040,
+          "required_ns": 24960,
+          "slack_ns": 86080,
+          "frames": [
+            {
+              "flow": 13,
+              "inst": 1
+            },
+            {
+              "flow": 38,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 323200,
+          "delta_ns": 26880,
+          "required_ns": 0,
+          "slack_ns": 26880,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 350080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 412160,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 13,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 424640,
+          "delta_ns": 15680,
+          "required_ns": 12480,
+          "slack_ns": 3200,
+          "frames": [
+            {
+              "flow": 57,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 440320,
+          "delta_ns": 82880,
+          "required_ns": 49920,
+          "slack_ns": 32960,
+          "frames": [
+            {
+              "flow": 2,
+              "inst": 1
+            },
+            {
+              "flow": 52,
+              "inst": 0
+            },
+            {
+              "flow": 49,
+              "inst": 1
+            },
+            {
+              "flow": 38,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 523200,
+          "delta_ns": 26880,
+          "required_ns": 0,
+          "slack_ns": 26880,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 550080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 612160,
+          "delta_ns": 98880,
+          "required_ns": 12480,
+          "slack_ns": 86400,
+          "frames": [
+            {
+              "flow": 13,
+              "inst": 3
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 711040,
+          "delta_ns": 39040,
+          "required_ns": 0,
+          "slack_ns": 39040,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 750080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 38,
+              "inst": 3
+            }
+          ]
+        }
+      ],
+      "gcl": [
+        {
+          "duration_ns": 12160,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 15680,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 82880,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 26880,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 12160,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 111040,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 26880,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 12160,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 15680,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 82880,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 26880,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 12160,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 98880,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 39040,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        }
+      ]
+    },
+    "sw05-p4": {
+      "is_switch_port": true,
+      "n_gcl_entries": 24,
+      "utilisation": 0.2964,
+      "windows": [
+        {
+          "queue": 6,
+          "psi_ns": 0,
+          "delta_ns": 24960,
+          "required_ns": 0,
+          "slack_ns": 24960,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 24960,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 37440,
+          "delta_ns": 12480,
+          "required_ns": 0,
+          "slack_ns": 12480,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 55680,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 8,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 68160,
+          "delta_ns": 19200,
+          "required_ns": 12480,
+          "slack_ns": 6720,
+          "frames": [
+            {
+              "flow": 23,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 87360,
+          "delta_ns": 48640,
+          "required_ns": 37440,
+          "slack_ns": 11200,
+          "frames": [
+            {
+              "flow": 7,
+              "inst": 0
+            },
+            {
+              "flow": 56,
+              "inst": 0
+            },
+            {
+              "flow": 34,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 136000,
+          "delta_ns": 14080,
+          "required_ns": 12480,
+          "slack_ns": 1600,
+          "frames": [
+            {
+              "flow": 20,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 150080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 45,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 200000,
+          "delta_ns": 24960,
+          "required_ns": 12480,
+          "slack_ns": 12480,
+          "frames": [
+            {
+              "flow": 31,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 224960,
+          "delta_ns": 111040,
+          "required_ns": 24960,
+          "slack_ns": 86080,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 1
+            },
+            {
+              "flow": 37,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 336000,
+          "delta_ns": 14080,
+          "required_ns": 0,
+          "slack_ns": 14080,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 350080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 53,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 400000,
+          "delta_ns": 24960,
+          "required_ns": 0,
+          "slack_ns": 24960,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 424960,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 437440,
+          "delta_ns": 12480,
+          "required_ns": 0,
+          "slack_ns": 12480,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 455680,
+          "delta_ns": 80320,
+          "required_ns": 12480,
+          "slack_ns": 67840,
+          "frames": [
+            {
+              "flow": 8,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 536000,
+          "delta_ns": 14080,
+          "required_ns": 12480,
+          "slack_ns": 1600,
+          "frames": [
+            {
+              "flow": 20,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 550080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 53,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 600000,
+          "delta_ns": 24960,
+          "required_ns": 12480,
+          "slack_ns": 12480,
+          "frames": [
+            {
+              "flow": 31,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 624960,
+          "delta_ns": 86080,
+          "required_ns": 24960,
+          "slack_ns": 61120,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 3
+            },
+            {
+              "flow": 37,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 711040,
+          "delta_ns": 39040,
+          "required_ns": 0,
+          "slack_ns": 39040,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 750080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        }
+      ],
+      "gcl": [
+        {
+          "duration_ns": 24960,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 5760,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 19200,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 48640,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 14080,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 24960,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 111040,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 14080,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 24960,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 5760,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 80320,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 14080,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 24960,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 86080,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 39040,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        }
+      ]
+    },
+    "sw05-p5": {
+      "is_switch_port": true,
+      "n_gcl_entries": 21,
+      "utilisation": 0.1872,
+      "windows": [
+        {
+          "queue": 6,
+          "psi_ns": 0,
+          "delta_ns": 43200,
+          "required_ns": 0,
+          "slack_ns": 43200,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 43200,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 55680,
+          "delta_ns": 15360,
+          "required_ns": 0,
+          "slack_ns": 15360,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 71040,
+          "delta_ns": 25280,
+          "required_ns": 24960,
+          "slack_ns": 320,
+          "frames": [
+            {
+              "flow": 2,
+              "inst": 0
+            },
+            {
+              "flow": 14,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 98560,
+          "delta_ns": 83520,
+          "required_ns": 24960,
+          "slack_ns": 58560,
+          "frames": [
+            {
+              "flow": 16,
+              "inst": 0
+            },
+            {
+              "flow": 19,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 182080,
+          "delta_ns": 17920,
+          "required_ns": 12480,
+          "slack_ns": 5440,
+          "frames": [
+            {
+              "flow": 39,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 200000,
+          "delta_ns": 43200,
+          "required_ns": 0,
+          "slack_ns": 43200,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 243200,
+          "delta_ns": 138880,
+          "required_ns": 12480,
+          "slack_ns": 126400,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 382080,
+          "delta_ns": 17920,
+          "required_ns": 0,
+          "slack_ns": 17920,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 400000,
+          "delta_ns": 43200,
+          "required_ns": 0,
+          "slack_ns": 43200,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 443200,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 455680,
+          "delta_ns": 15360,
+          "required_ns": 0,
+          "slack_ns": 15360,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 471040,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 2,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 483520,
+          "delta_ns": 15040,
+          "required_ns": 12480,
+          "slack_ns": 2560,
+          "frames": [
+            {
+              "flow": 52,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 498560,
+          "delta_ns": 83520,
+          "required_ns": 12480,
+          "slack_ns": 71040,
+          "frames": [
+            {
+              "flow": 19,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 582080,
+          "delta_ns": 17920,
+          "required_ns": 0,
+          "slack_ns": 17920,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 600000,
+          "delta_ns": 43200,
+          "required_ns": 0,
+          "slack_ns": 43200,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 643200,
+          "delta_ns": 95680,
+          "required_ns": 12480,
+          "slack_ns": 83200,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 3
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 750080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        }
+      ],
+      "gcl": [
+        {
+          "duration_ns": 43200,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 15360,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 25280,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 2240,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 83520,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 17920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 43200,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 138880,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 17920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 43200,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 15360,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 15040,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 83520,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 17920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 43200,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 95680,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 11200,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        }
+      ]
+    },
+    "sw06-p4": {
+      "is_switch_port": true,
+      "n_gcl_entries": 21,
+      "utilisation": 0.2652,
+      "windows": [
+        {
+          "queue": 6,
+          "psi_ns": 0,
+          "delta_ns": 12480,
+          "required_ns": 0,
+          "slack_ns": 12480,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 18240,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 13,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 30720,
+          "delta_ns": 17280,
+          "required_ns": 0,
+          "slack_ns": 17280,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 48000,
+          "delta_ns": 91200,
+          "required_ns": 49920,
+          "slack_ns": 41280,
+          "frames": [
+            {
+              "flow": 2,
+              "inst": 0
+            },
+            {
+              "flow": 14,
+              "inst": 0
+            },
+            {
+              "flow": 39,
+              "inst": 0
+            },
+            {
+              "flow": 49,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 150080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 38,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 200000,
+          "delta_ns": 18240,
+          "required_ns": 0,
+          "slack_ns": 18240,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 218240,
+          "delta_ns": 120960,
+          "required_ns": 12480,
+          "slack_ns": 108480,
+          "frames": [
+            {
+              "flow": 13,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 350080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 38,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 400000,
+          "delta_ns": 18240,
+          "required_ns": 12480,
+          "slack_ns": 5760,
+          "frames": [
+            {
+              "flow": 21,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 418240,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 13,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 430720,
+          "delta_ns": 17280,
+          "required_ns": 0,
+          "slack_ns": 17280,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 448000,
+          "delta_ns": 91200,
+          "required_ns": 37440,
+          "slack_ns": 53760,
+          "frames": [
+            {
+              "flow": 2,
+              "inst": 1
+            },
+            {
+              "flow": 52,
+              "inst": 0
+            },
+            {
+              "flow": 49,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 550080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 38,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 600000,
+          "delta_ns": 18240,
+          "required_ns": 0,
+          "slack_ns": 18240,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 618240,
+          "delta_ns": 102720,
+          "required_ns": 12480,
+          "slack_ns": 90240,
+          "frames": [
+            {
+              "flow": 13,
+              "inst": 3
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 720960,
+          "delta_ns": 29120,
+          "required_ns": 12480,
+          "slack_ns": 16640,
+          "frames": [
+            {
+              "flow": 57,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 750080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 38,
+              "inst": 3
+            }
+          ]
+        }
+      ],
+      "gcl": [
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 5760,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 17280,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 91200,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 10880,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 18240,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 120960,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 10880,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 18240,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 17280,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 91200,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 10880,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 18240,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 102720,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 29120,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        }
+      ]
+    },
+    "sw06-p5": {
+      "is_switch_port": true,
+      "n_gcl_entries": 23,
+      "utilisation": 0.2028,
+      "windows": [
+        {
+          "queue": 6,
+          "psi_ns": 0,
+          "delta_ns": 12480,
+          "required_ns": 0,
+          "slack_ns": 12480,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 13440,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 9,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 25920,
+          "delta_ns": 24000,
+          "required_ns": 0,
+          "slack_ns": 24000,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 49920,
+          "delta_ns": 16640,
+          "required_ns": 0,
+          "slack_ns": 16640,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 66560,
+          "delta_ns": 56320,
+          "required_ns": 24960,
+          "slack_ns": 31360,
+          "frames": [
+            {
+              "flow": 12,
+              "inst": 0
+            },
+            {
+              "flow": 23,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 122880,
+          "delta_ns": 27200,
+          "required_ns": 0,
+          "slack_ns": 27200,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 150080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 34,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 200000,
+          "delta_ns": 13440,
+          "required_ns": 0,
+          "slack_ns": 13440,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 213440,
+          "delta_ns": 109440,
+          "required_ns": 12480,
+          "slack_ns": 96960,
+          "frames": [
+            {
+              "flow": 9,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 322880,
+          "delta_ns": 27200,
+          "required_ns": 24960,
+          "slack_ns": 2240,
+          "frames": [
+            {
+              "flow": 31,
+              "inst": 0
+            },
+            {
+              "flow": 37,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 350080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 45,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 400000,
+          "delta_ns": 13440,
+          "required_ns": 0,
+          "slack_ns": 13440,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 413440,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 9,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 425920,
+          "delta_ns": 24000,
+          "required_ns": 0,
+          "slack_ns": 24000,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 449920,
+          "delta_ns": 16640,
+          "required_ns": 0,
+          "slack_ns": 16640,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 466560,
+          "delta_ns": 56320,
+          "required_ns": 12480,
+          "slack_ns": 43840,
+          "frames": [
+            {
+              "flow": 12,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 522880,
+          "delta_ns": 27200,
+          "required_ns": 0,
+          "slack_ns": 27200,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 550080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 600000,
+          "delta_ns": 13440,
+          "required_ns": 0,
+          "slack_ns": 13440,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 613440,
+          "delta_ns": 96000,
+          "required_ns": 12480,
+          "slack_ns": 83520,
+          "frames": [
+            {
+              "flow": 9,
+              "inst": 3
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 709440,
+          "delta_ns": 40640,
+          "required_ns": 24960,
+          "slack_ns": 15680,
+          "frames": [
+            {
+              "flow": 31,
+              "inst": 1
+            },
+            {
+              "flow": 37,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 750080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        }
+      ],
+      "gcl": [
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 960,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 24000,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 16640,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 56320,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 27200,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 13440,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 109440,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 27200,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 13440,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 24000,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 16640,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 56320,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 27200,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 13440,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 96000,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 40640,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        }
+      ]
+    },
+    "sw07-p4": {
+      "is_switch_port": true,
+      "n_gcl_entries": 23,
+      "utilisation": 0.1872,
+      "windows": [
+        {
+          "queue": 6,
+          "psi_ns": 0,
+          "delta_ns": 37120,
+          "required_ns": 0,
+          "slack_ns": 37120,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 37120,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 49920,
+          "delta_ns": 13440,
+          "required_ns": 0,
+          "slack_ns": 13440,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 63360,
+          "delta_ns": 27840,
+          "required_ns": 24960,
+          "slack_ns": 2880,
+          "frames": [
+            {
+              "flow": 2,
+              "inst": 0
+            },
+            {
+              "flow": 14,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 91840,
+          "delta_ns": 84160,
+          "required_ns": 24960,
+          "slack_ns": 59200,
+          "frames": [
+            {
+              "flow": 16,
+              "inst": 0
+            },
+            {
+              "flow": 19,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 176000,
+          "delta_ns": 24000,
+          "required_ns": 12480,
+          "slack_ns": 11520,
+          "frames": [
+            {
+              "flow": 39,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 200000,
+          "delta_ns": 37120,
+          "required_ns": 0,
+          "slack_ns": 37120,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 237120,
+          "delta_ns": 138880,
+          "required_ns": 12480,
+          "slack_ns": 126400,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 376000,
+          "delta_ns": 24000,
+          "required_ns": 0,
+          "slack_ns": 24000,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 400000,
+          "delta_ns": 37120,
+          "required_ns": 0,
+          "slack_ns": 37120,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 437120,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 449920,
+          "delta_ns": 13440,
+          "required_ns": 0,
+          "slack_ns": 13440,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 463360,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 2,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 475840,
+          "delta_ns": 16000,
+          "required_ns": 12480,
+          "slack_ns": 3520,
+          "frames": [
+            {
+              "flow": 52,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 491840,
+          "delta_ns": 84160,
+          "required_ns": 12480,
+          "slack_ns": 71680,
+          "frames": [
+            {
+              "flow": 19,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 576000,
+          "delta_ns": 24000,
+          "required_ns": 0,
+          "slack_ns": 24000,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 600000,
+          "delta_ns": 37120,
+          "required_ns": 0,
+          "slack_ns": 37120,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 637120,
+          "delta_ns": 101760,
+          "required_ns": 12480,
+          "slack_ns": 89280,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 3
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 750080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        }
+      ],
+      "gcl": [
+        {
+          "duration_ns": 37120,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 320,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 13440,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 27840,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 640,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 84160,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 24000,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 37120,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 138880,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 24000,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 37120,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 320,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 13440,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 16000,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 84160,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 24000,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 37120,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 101760,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 11200,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        }
+      ]
+    },
+    "sw07-p5": {
+      "is_switch_port": true,
+      "n_gcl_entries": 22,
+      "utilisation": 0.2964,
+      "windows": [
+        {
+          "queue": 6,
+          "psi_ns": 0,
+          "delta_ns": 33280,
+          "required_ns": 0,
+          "slack_ns": 33280,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 33280,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 61760,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 8,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 74240,
+          "delta_ns": 21440,
+          "required_ns": 12480,
+          "slack_ns": 8960,
+          "frames": [
+            {
+              "flow": 23,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 95680,
+          "delta_ns": 48640,
+          "required_ns": 37440,
+          "slack_ns": 11200,
+          "frames": [
+            {
+              "flow": 7,
+              "inst": 0
+            },
+            {
+              "flow": 56,
+              "inst": 0
+            },
+            {
+              "flow": 34,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 150080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 200000,
+          "delta_ns": 33280,
+          "required_ns": 24960,
+          "slack_ns": 8320,
+          "frames": [
+            {
+              "flow": 20,
+              "inst": 0
+            },
+            {
+              "flow": 31,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 233280,
+          "delta_ns": 111040,
+          "required_ns": 24960,
+          "slack_ns": 86080,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 1
+            },
+            {
+              "flow": 37,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 350080,
+          "delta_ns": 49920,
+          "required_ns": 24960,
+          "slack_ns": 24960,
+          "frames": [
+            {
+              "flow": 45,
+              "inst": 0
+            },
+            {
+              "flow": 53,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 400000,
+          "delta_ns": 33280,
+          "required_ns": 0,
+          "slack_ns": 33280,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 433280,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 461760,
+          "delta_ns": 82560,
+          "required_ns": 12480,
+          "slack_ns": 70080,
+          "frames": [
+            {
+              "flow": 8,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 550080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 600000,
+          "delta_ns": 33280,
+          "required_ns": 24960,
+          "slack_ns": 8320,
+          "frames": [
+            {
+              "flow": 20,
+              "inst": 1
+            },
+            {
+              "flow": 31,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 633280,
+          "delta_ns": 77760,
+          "required_ns": 12480,
+          "slack_ns": 65280,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 3
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 711040,
+          "delta_ns": 39040,
+          "required_ns": 12480,
+          "slack_ns": 26560,
+          "frames": [
+            {
+              "flow": 37,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 750080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 53,
+              "inst": 1
+            }
+          ]
+        }
+      ],
+      "gcl": [
+        {
+          "duration_ns": 33280,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 16000,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 21440,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 48640,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 5760,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 33280,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 111040,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 5760,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 33280,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 16000,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 82560,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 5760,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 33280,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 77760,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 39040,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        }
+      ]
+    },
+    "sw08-p2": {
+      "is_switch_port": true,
+      "n_gcl_entries": 28,
+      "utilisation": 0.3744,
+      "windows": [
+        {
+          "queue": 6,
+          "psi_ns": 0,
+          "delta_ns": 24320,
+          "required_ns": 0,
+          "slack_ns": 24320,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 24320,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 13,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 41600,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 54080,
+          "delta_ns": 13760,
+          "required_ns": 0,
+          "slack_ns": 13760,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 67840,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 8,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 80320,
+          "delta_ns": 19840,
+          "required_ns": 0,
+          "slack_ns": 19840,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 104000,
+          "delta_ns": 65280,
+          "required_ns": 37440,
+          "slack_ns": 27840,
+          "frames": [
+            {
+              "flow": 7,
+              "inst": 0
+            },
+            {
+              "flow": 56,
+              "inst": 0
+            },
+            {
+              "flow": 49,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 169280,
+          "delta_ns": 30720,
+          "required_ns": 12480,
+          "slack_ns": 18240,
+          "frames": [
+            {
+              "flow": 38,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 200000,
+          "delta_ns": 24320,
+          "required_ns": 12480,
+          "slack_ns": 11840,
+          "frames": [
+            {
+              "flow": 20,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 224320,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 13,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 241600,
+          "delta_ns": 127680,
+          "required_ns": 12480,
+          "slack_ns": 115200,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 369280,
+          "delta_ns": 30720,
+          "required_ns": 24960,
+          "slack_ns": 5760,
+          "frames": [
+            {
+              "flow": 53,
+              "inst": 0
+            },
+            {
+              "flow": 38,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 400000,
+          "delta_ns": 24320,
+          "required_ns": 12480,
+          "slack_ns": 11840,
+          "frames": [
+            {
+              "flow": 21,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 424320,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 13,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 441600,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 454080,
+          "delta_ns": 13760,
+          "required_ns": 0,
+          "slack_ns": 13760,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 467840,
+          "delta_ns": 101440,
+          "required_ns": 12480,
+          "slack_ns": 88960,
+          "frames": [
+            {
+              "flow": 8,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 569280,
+          "delta_ns": 30720,
+          "required_ns": 24960,
+          "slack_ns": 5760,
+          "frames": [
+            {
+              "flow": 49,
+              "inst": 1
+            },
+            {
+              "flow": 38,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 600000,
+          "delta_ns": 24320,
+          "required_ns": 12480,
+          "slack_ns": 11840,
+          "frames": [
+            {
+              "flow": 20,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 624320,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 13,
+              "inst": 3
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 641600,
+          "delta_ns": 103360,
+          "required_ns": 24960,
+          "slack_ns": 78400,
+          "frames": [
+            {
+              "flow": 4,
+              "inst": 3
+            },
+            {
+              "flow": 57,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 750080,
+          "delta_ns": 49920,
+          "required_ns": 24960,
+          "slack_ns": 24960,
+          "frames": [
+            {
+              "flow": 53,
+              "inst": 1
+            },
+            {
+              "flow": 38,
+              "inst": 3
+            }
+          ]
+        }
+      ],
+      "gcl": [
+        {
+          "duration_ns": 24320,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 4800,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 13760,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 19840,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 3840,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 65280,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 30720,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 24320,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 4800,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 127680,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 30720,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 24320,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 4800,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 13760,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 101440,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 30720,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 24320,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 4800,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 103360,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 5120,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        }
+      ]
+    },
+    "sw08-p4": {
+      "is_switch_port": true,
+      "n_gcl_entries": 23,
+      "utilisation": 0.2028,
+      "windows": [
+        {
+          "queue": 7,
+          "psi_ns": 6720,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 9,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 19200,
+          "delta_ns": 30720,
+          "required_ns": 0,
+          "slack_ns": 30720,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 58240,
+          "delta_ns": 45120,
+          "required_ns": 24960,
+          "slack_ns": 20160,
+          "frames": [
+            {
+              "flow": 12,
+              "inst": 0
+            },
+            {
+              "flow": 23,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 103360,
+          "delta_ns": 46720,
+          "required_ns": 0,
+          "slack_ns": 46720,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 150080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 34,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 206720,
+          "delta_ns": 96640,
+          "required_ns": 12480,
+          "slack_ns": 84160,
+          "frames": [
+            {
+              "flow": 9,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 303360,
+          "delta_ns": 46720,
+          "required_ns": 24960,
+          "slack_ns": 21760,
+          "frames": [
+            {
+              "flow": 31,
+              "inst": 0
+            },
+            {
+              "flow": 37,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 350080,
+          "delta_ns": 49920,
+          "required_ns": 12480,
+          "slack_ns": 37440,
+          "frames": [
+            {
+              "flow": 45,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 406720,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 9,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 419200,
+          "delta_ns": 30720,
+          "required_ns": 0,
+          "slack_ns": 30720,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 458240,
+          "delta_ns": 45120,
+          "required_ns": 12480,
+          "slack_ns": 32640,
+          "frames": [
+            {
+              "flow": 12,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 503360,
+          "delta_ns": 46720,
+          "required_ns": 0,
+          "slack_ns": 46720,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 550080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        },
+        {
+          "queue": 7,
+          "psi_ns": 606720,
+          "delta_ns": 89920,
+          "required_ns": 12480,
+          "slack_ns": 77440,
+          "frames": [
+            {
+              "flow": 9,
+              "inst": 3
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 700160,
+          "delta_ns": 49920,
+          "required_ns": 24960,
+          "slack_ns": 24960,
+          "frames": [
+            {
+              "flow": 31,
+              "inst": 1
+            },
+            {
+              "flow": 37,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 750080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        }
+      ],
+      "gcl": [
+        {
+          "duration_ns": 6720,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 30720,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 8320,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 45120,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 46720,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 6720,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 96640,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 46720,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 6720,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 30720,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 8320,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 45120,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 46720,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 6720,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 89920,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 3520,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        }
+      ]
+    },
+    "sw08-p5": {
+      "is_switch_port": true,
+      "n_gcl_entries": 21,
+      "utilisation": 0.1872,
+      "windows": [
+        {
+          "queue": 6,
+          "psi_ns": 0,
+          "delta_ns": 31040,
+          "required_ns": 0,
+          "slack_ns": 31040,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 31040,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 55680,
+          "delta_ns": 29120,
+          "required_ns": 24960,
+          "slack_ns": 4160,
+          "frames": [
+            {
+              "flow": 2,
+              "inst": 0
+            },
+            {
+              "flow": 14,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 85120,
+          "delta_ns": 84800,
+          "required_ns": 24960,
+          "slack_ns": 59840,
+          "frames": [
+            {
+              "flow": 16,
+              "inst": 0
+            },
+            {
+              "flow": 19,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 169920,
+          "delta_ns": 30080,
+          "required_ns": 12480,
+          "slack_ns": 17600,
+          "frames": [
+            {
+              "flow": 39,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 200000,
+          "delta_ns": 31040,
+          "required_ns": 0,
+          "slack_ns": 31040,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 231040,
+          "delta_ns": 138880,
+          "required_ns": 12480,
+          "slack_ns": 126400,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 369920,
+          "delta_ns": 30080,
+          "required_ns": 0,
+          "slack_ns": 30080,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 400000,
+          "delta_ns": 31040,
+          "required_ns": 0,
+          "slack_ns": 31040,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 431040,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 2
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 455680,
+          "delta_ns": 12480,
+          "required_ns": 12480,
+          "slack_ns": 0,
+          "frames": [
+            {
+              "flow": 2,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 468160,
+          "delta_ns": 16960,
+          "required_ns": 12480,
+          "slack_ns": 4480,
+          "frames": [
+            {
+              "flow": 52,
+              "inst": 0
+            }
+          ]
+        },
+        {
+          "queue": 6,
+          "psi_ns": 485120,
+          "delta_ns": 84800,
+          "required_ns": 12480,
+          "slack_ns": 72320,
+          "frames": [
+            {
+              "flow": 19,
+              "inst": 1
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 569920,
+          "delta_ns": 30080,
+          "required_ns": 0,
+          "slack_ns": 30080,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 600000,
+          "delta_ns": 31040,
+          "required_ns": 0,
+          "slack_ns": 31040,
+          "frames": []
+        },
+        {
+          "queue": 6,
+          "psi_ns": 631040,
+          "delta_ns": 107840,
+          "required_ns": 12480,
+          "slack_ns": 95360,
+          "frames": [
+            {
+              "flow": 18,
+              "inst": 3
+            }
+          ]
+        },
+        {
+          "queue": 7,
+          "psi_ns": 750080,
+          "delta_ns": 49920,
+          "required_ns": 0,
+          "slack_ns": 49920,
+          "frames": []
+        }
+      ],
+      "gcl": [
+        {
+          "duration_ns": 31040,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12160,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 29120,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 320,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 84800,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 30080,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 31040,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 138880,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 30080,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 31040,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 12160,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 12480,
+          "mask": "0x80",
+          "queue": 7
+        },
+        {
+          "duration_ns": 16960,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 84800,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 30080,
+          "mask": "0xBF",
+          "queue": 7
+        },
+        {
+          "duration_ns": 31040,
+          "mask": "0x7F",
+          "queue": 6
+        },
+        {
+          "duration_ns": 107840,
+          "mask": "0x40",
+          "queue": 6
+        },
+        {
+          "duration_ns": 11200,
+          "mask": "0x3F",
+          "queue": null
+        },
+        {
+          "duration_ns": 49920,
+          "mask": "0xBF",
+          "queue": 7
+        }
+      ]
+    }
+  }
+}

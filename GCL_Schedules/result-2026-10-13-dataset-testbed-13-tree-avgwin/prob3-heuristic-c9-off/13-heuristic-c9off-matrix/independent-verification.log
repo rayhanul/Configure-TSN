@@ -1,0 +1,34 @@
+[smt_sched-family] verified 17 GCL files, 57 checks, cycle 800000 ns
+
+17 check(s) SKIPPED (constraint disabled for this run):
+  - sw01-p2: window adjacency (C10) -- disabled for this run
+  - sw01-p4: window adjacency (C10) -- disabled for this run
+  - sw02-p2: window adjacency (C10) -- disabled for this run
+  - sw02-p4: window adjacency (C10) -- disabled for this run
+  - sw03-p4: window adjacency (C10) -- disabled for this run
+  - sw03-p5: window adjacency (C10) -- disabled for this run
+  - sw04-p4: window adjacency (C10) -- disabled for this run
+  - sw04-p5: window adjacency (C10) -- disabled for this run
+  - sw05-p4: window adjacency (C10) -- disabled for this run
+  - sw05-p5: window adjacency (C10) -- disabled for this run
+  - sw06-p4: window adjacency (C10) -- disabled for this run
+  - sw06-p5: window adjacency (C10) -- disabled for this run
+  - sw07-p4: window adjacency (C10) -- disabled for this run
+  - sw07-p5: window adjacency (C10) -- disabled for this run
+  - sw08-p2: window adjacency (C10) -- disabled for this run
+  - sw08-p4: window adjacency (C10) -- disabled for this run
+  - sw08-p5: window adjacency (C10) -- disabled for this run
+
+12 PROBLEM(S):
+  ! flow 20: recomputed e2e 95760 != reported 95680
+  ! flow 21: recomputed e2e 312400 != reported 312320
+  ! flow 23: recomputed e2e 412560 != reported 412480
+  ! flow 34: recomputed e2e 203920 != reported 203840
+  ! flow 39: recomputed e2e 151760 != reported 151680
+  ! flow 40: recomputed e2e 150160 != reported 150080
+  ! flow 45: recomputed e2e 201360 != reported 201280
+  ! flow 49: recomputed e2e 134800 != reported 134720
+  ! flow 52: recomputed e2e 151760 != reported 151680
+  ! flow 53: recomputed e2e 95760 != reported 95680
+  ! flow 56: recomputed e2e 612560 != reported 612480
+  ! flow 57: recomputed e2e 224720 != reported 224640

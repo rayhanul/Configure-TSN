@@ -1,0 +1,92 @@
+=== 13:44:16 smt-c9-off/13-t3600-c9off-minlat
+  flows to admit: 11
+  GCL: 17/17 ports live
+  MST region: all 8 switches share digest EE34C922C73624BEB1D9379FCC5C8FE9
+  spanning tree quiet on all 8 switches after 8 s (least quiet: sw04, 16 s)
+    11 sender routes pinged, 0 failed
+  - Delivered: **1012440 / 1012450 packets (100.00%)**
+  - Deadline misses: **4 (0.00% of received)**; flows with zero misses: 10 / 20
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-13-dataset-testbed-13-tree-avgwin/smt-c9-off/13-t3600-c9off-minlat/results/results-2026-10-13/results.md
+=== 13:46:22 smt-c9-on/13-fair-retimed-c9on
+  flows to admit: 11
+  GCL: 17/17 ports live
+  MST region: all 8 switches share digest EE34C922C73624BEB1D9379FCC5C8FE9
+  spanning tree quiet on all 8 switches after 4 s (least quiet: sw03, 15 s)
+    11 sender routes pinged, 0 failed
+  - Delivered: **1012441 / 1012451 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 11 / 11
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-13-dataset-testbed-13-tree-avgwin/smt-c9-on/13-fair-retimed-c9on/results/results-2026-10-13/results.md
+=== 13:48:19 heuristic-c9-off/13-matrix-c9off
+  flows to admit: 11
+  GCL: 17/17 ports live
+  MST region: all 8 switches share digest EE34C922C73624BEB1D9379FCC5C8FE9
+  spanning tree quiet on all 8 switches after 4 s (least quiet: sw04, 16 s)
+    11 sender routes pinged, 0 failed
+  - Delivered: **1012487 / 1012487 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 11 / 11
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-13-dataset-testbed-13-tree-avgwin/heuristic-c9-off/13-matrix-c9off/results/results-2026-10-13/results.md
+=== 13:50:17 heuristic-c9-on/13-matrix-c9on
+  flows to admit: 11
+  GCL: 17/17 ports live
+  MST region: all 8 switches share digest EE34C922C73624BEB1D9379FCC5C8FE9
+  spanning tree quiet on all 8 switches after 4 s (least quiet: sw04, 15 s)
+    11 sender routes pinged, 0 failed
+  - Delivered: **1012482 / 1012482 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 11 / 11
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-13-dataset-testbed-13-tree-avgwin/heuristic-c9-on/13-matrix-c9on/results/results-2026-10-13/results.md
+=== 13:52:14 rl-c9-off/13-matrix-c9off
+  flows to admit: 11
+  GCL: 17/17 ports live
+  MST region: all 8 switches share digest EE34C922C73624BEB1D9379FCC5C8FE9
+  spanning tree quiet on all 8 switches after 8 s (least quiet: sw04, 17 s)
+    11 sender routes pinged, 0 failed
+  - Delivered: **1012484 / 1012484 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 11 / 20
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-13-dataset-testbed-13-tree-avgwin/rl-c9-off/13-matrix-c9off/results/results-2026-10-13/results.md
+=== 13:54:15 rl-c9-on/13-matrix-c9on
+  flows to admit: 11
+  GCL: 17/17 ports live
+  MST region: all 8 switches share digest EE34C922C73624BEB1D9379FCC5C8FE9
+  spanning tree quiet on all 8 switches after 4 s (least quiet: sw07, 15 s)
+    11 sender routes pinged, 0 failed
+  - Delivered: **1012468 / 1012475 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 11 / 20
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-13-dataset-testbed-13-tree-avgwin/rl-c9-on/13-matrix-c9on/results/results-2026-10-13/results.md
+=== 13:56:13 prob3-heuristic-c9-off/13-heuristic-c9off-matrix
+  flows to admit: 23
+  GCL: 17/17 ports live
+  MST region: all 8 switches share digest 1407B3737C4D77F5F6AF8CBE1BEAA4F4
+  spanning tree quiet on all 8 switches after 8 s (least quiet: sw03, 16 s)
+    23 sender routes pinged, 0 failed
+  - Delivered: **1574883 / 1574904 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 23 / 23
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-13-dataset-testbed-13-tree-avgwin/prob3-heuristic-c9-off/13-heuristic-c9off-matrix/results/results-2026-10-13/results.md
+=== 13:58:17 prob3-heuristic-c9-on/13-heuristic-c9on-matrix
+  flows to admit: 25
+  GCL: 17/17 ports live
+  MST region: all 8 switches share digest 13AEEA9F94AB91A02EA0F326FDDD9675
+  spanning tree quiet on all 8 switches after 6 s (least quiet: sw04, 16 s)
+    25 sender routes pinged, 0 failed
+  - Delivered: **1837459 / 1837459 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 25 / 25
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-13-dataset-testbed-13-tree-avgwin/prob3-heuristic-c9-on/13-heuristic-c9on-matrix/results/results-2026-10-13/results.md
+=== 14:00:22 prob3-rl-c9-off/13-rl-c9off-matrix
+  flows to admit: 27
+  GCL: 17/17 ports live
+  MST region: all 8 switches share digest F9D8A312936B1D17468C2F83CC7574B1
+  spanning tree quiet on all 8 switches after 6 s (least quiet: sw04, 16 s)
+    27 sender routes pinged, 0 failed
+  - Delivered: **1987471 / 1987471 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 27 / 27
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-13-dataset-testbed-13-tree-avgwin/prob3-rl-c9-off/13-rl-c9off-matrix/results/results-2026-10-13/results.md
+=== 14:02:27 prob3-rl-c9-on/13-rl-c9on-matrix
+  flows to admit: 28
+  GCL: 17/17 ports live
+  MST region: all 8 switches share digest 0CE68ABD33B22507E0B4E920447ADF2D
+  spanning tree quiet on all 8 switches after 8 s (least quiet: sw03, 16 s)
+    28 sender routes pinged, 0 failed
+  - Delivered: **1949898 / 1949915 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 28 / 28
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-13-dataset-testbed-13-tree-avgwin/prob3-rl-c9-on/13-rl-c9on-matrix/results/results-2026-10-13/results.md
+=== 14:04:34 all done: 10 package(s)
+summary: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/result-2026-10-13-dataset-testbed-13-tree-avgwin/TESTBED_RESULTS_2026-10-13.md

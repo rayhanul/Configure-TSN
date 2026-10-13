@@ -1,0 +1,52 @@
+[
+  {
+    "package": "heuristic-c9-off/13-matrix-c9off",
+    "independent-verification": 0,
+    "hardware-replay": 0
+  },
+  {
+    "package": "heuristic-c9-on/13-matrix-c9on",
+    "independent-verification": 0,
+    "hardware-replay": 0
+  },
+  {
+    "package": "prob3-heuristic-c9-off/13-heuristic-c9off-matrix",
+    "independent-verification": 1,
+    "hardware-replay": 0
+  },
+  {
+    "package": "prob3-heuristic-c9-on/13-heuristic-c9on-matrix",
+    "independent-verification": 1,
+    "hardware-replay": 0
+  },
+  {
+    "package": "prob3-rl-c9-off/13-rl-c9off-matrix",
+    "independent-verification": 1,
+    "hardware-replay": 0
+  },
+  {
+    "package": "prob3-rl-c9-on/13-rl-c9on-matrix",
+    "independent-verification": 1,
+    "hardware-replay": 0
+  },
+  {
+    "package": "rl-c9-off/13-matrix-c9off",
+    "independent-verification": 0,
+    "hardware-replay": 0
+  },
+  {
+    "package": "rl-c9-on/13-matrix-c9on",
+    "independent-verification": 0,
+    "hardware-replay": 0
+  },
+  {
+    "package": "smt-c9-off/13-t3600-c9off-minlat",
+    "independent-verification": 0,
+    "hardware-replay": 0
+  },
+  {
+    "package": "smt-c9-on/13-fair-retimed-c9on",
+    "independent-verification": 0,
+    "hardware-replay": 0
+  }
+]

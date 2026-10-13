@@ -1,0 +1,99 @@
+{
+  "active_package": "GCL_Schedules/result-2026-10-13-dataset-testbed-13-tree-avgwin/prob3-rl-c9-on/13-rl-c9on-matrix",
+  "scheduled_flows": 28,
+  "cycle_ns": 800000,
+  "operational_readback": [
+    {
+      "port": "sw01-p2",
+      "entries": 23,
+      "matches_package": true
+    },
+    {
+      "port": "sw01-p4",
+      "entries": 19,
+      "matches_package": true
+    },
+    {
+      "port": "sw02-p2",
+      "entries": 28,
+      "matches_package": true
+    },
+    {
+      "port": "sw02-p4",
+      "entries": 21,
+      "matches_package": true
+    },
+    {
+      "port": "sw03-p4",
+      "entries": 25,
+      "matches_package": true
+    },
+    {
+      "port": "sw03-p5",
+      "entries": 22,
+      "matches_package": true
+    },
+    {
+      "port": "sw04-p4",
+      "entries": 34,
+      "matches_package": true
+    },
+    {
+      "port": "sw04-p5",
+      "entries": 23,
+      "matches_package": true
+    },
+    {
+      "port": "sw05-p4",
+      "entries": 22,
+      "matches_package": true
+    },
+    {
+      "port": "sw05-p5",
+      "entries": 25,
+      "matches_package": true
+    },
+    {
+      "port": "sw06-p4",
+      "entries": 24,
+      "matches_package": true
+    },
+    {
+      "port": "sw06-p5",
+      "entries": 32,
+      "matches_package": true
+    },
+    {
+      "port": "sw07-p4",
+      "entries": 25,
+      "matches_package": true
+    },
+    {
+      "port": "sw07-p5",
+      "entries": 19,
+      "matches_package": true
+    },
+    {
+      "port": "sw08-p2",
+      "entries": 28,
+      "matches_package": true
+    },
+    {
+      "port": "sw08-p4",
+      "entries": 29,
+      "matches_package": true
+    },
+    {
+      "port": "sw08-p5",
+      "entries": 28,
+      "matches_package": true
+    }
+  ],
+  "completed_datasets": [
+    11,
+    12,
+    13
+  ],
+  "completed_physical_benchmarks": 30,
+  "traffic_duration_seconds_per_package": 30
+}

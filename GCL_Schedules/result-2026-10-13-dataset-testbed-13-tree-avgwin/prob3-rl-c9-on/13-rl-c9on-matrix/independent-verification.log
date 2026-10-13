@@ -1,0 +1,39 @@
+[smt_sched-family] verified 17 GCL files, 62 checks, cycle 800000 ns
+
+17 check(s) SKIPPED (constraint disabled for this run):
+  - sw01-p2: window adjacency (C10) -- disabled for this run
+  - sw01-p4: window adjacency (C10) -- disabled for this run
+  - sw02-p2: window adjacency (C10) -- disabled for this run
+  - sw02-p4: window adjacency (C10) -- disabled for this run
+  - sw03-p4: window adjacency (C10) -- disabled for this run
+  - sw03-p5: window adjacency (C10) -- disabled for this run
+  - sw04-p4: window adjacency (C10) -- disabled for this run
+  - sw04-p5: window adjacency (C10) -- disabled for this run
+  - sw05-p4: window adjacency (C10) -- disabled for this run
+  - sw05-p5: window adjacency (C10) -- disabled for this run
+  - sw06-p4: window adjacency (C10) -- disabled for this run
+  - sw06-p5: window adjacency (C10) -- disabled for this run
+  - sw07-p4: window adjacency (C10) -- disabled for this run
+  - sw07-p5: window adjacency (C10) -- disabled for this run
+  - sw08-p2: window adjacency (C10) -- disabled for this run
+  - sw08-p4: window adjacency (C10) -- disabled for this run
+  - sw08-p5: window adjacency (C10) -- disabled for this run
+
+17 PROBLEM(S):
+  ! flow 20: recomputed e2e 109200 != reported 109120
+  ! flow 21: recomputed e2e 125200 != reported 125120
+  ! flow 22: recomputed e2e 92240 != reported 92160
+  ! flow 23: recomputed e2e 140880 != reported 140800
+  ! flow 31: recomputed e2e 184720 != reported 184640
+  ! flow 32: recomputed e2e 108880 != reported 108800
+  ! flow 34: recomputed e2e 300560 != reported 300480
+  ! flow 37: recomputed e2e 108880 != reported 108800
+  ! flow 39: recomputed e2e 148240 != reported 148160
+  ! flow 45: recomputed e2e 437840 != reported 437760
+  ! flow 46: recomputed e2e 143440 != reported 308800
+  ! flow 49: recomputed e2e 111440 != reported 111360
+  ! flow 52: recomputed e2e 148240 != reported 148160
+  ! flow 53: recomputed e2e 235920 != reported 235840
+  ! flow 54: recomputed e2e 108880 != reported 108800
+  ! flow 56: recomputed e2e 111120 != reported 111040
+  ! flow 57: recomputed e2e 113040 != reported 112960
