@@ -5,7 +5,7 @@ TASK = Path(__file__).resolve().parent
 CONFIGURE = TASK.parents[1]
 rows = []
 links = []
-for i in range(7, 11):
+for i in range(6, 11):
     root = CONFIGURE / f'GCL_Schedules/result-2026-10-12-dataset-testbed-{i}-ring-avgwin'
     reports = sorted(root.glob('TESTBED_RESULTS_*.md'))
     if not reports:
@@ -21,11 +21,11 @@ for i in range(7, 11):
                 count += 1
     if count != 10:
         raise SystemExit(f'Dataset {i}: only {count}/10 table rows')
-text = '''# Ring datasets 7–10: physical benchmark comparison
+text = '''# Ring datasets 6–10: physical benchmark comparison
 
-Four distinct traffic draws (seeds 43–46), same eight-switch ring topology and hardware profile. Each dataset contains 20 initial flows and 30 additional flows. The previous scheduling pipeline was retained, including one million RL steps, C9 off/on, max overlay, three-frame minimum windows, average-size new windows, and per-instance admission.
+Five distinct traffic draws (seeds 42–46), same eight-switch ring topology and hardware profile. Each dataset contains 20 initial flows and 30 additional flows. The previous scheduling pipeline was retained, including one million RL steps, C9 off/on, max overlay, three-frame minimum windows, average-size new windows, and per-instance admission.
 
-Forty schedule packages were deployed sequentially. Each package was checked for live GCLs, admitted with VLAN/MSTP configuration, checked for spanning-tree quiet and route connectivity, and measured with 30 seconds of traffic on all end stations.
+Fifty schedule packages were deployed sequentially. Each package was checked for live GCLs, admitted with VLAN/MSTP configuration, checked for spanning-tree quiet and route connectivity, and measured with 30 seconds of traffic on all end stations.
 
 The existing admission latency-report validation limitations remain; see each result directory's `validation.json` and package `independent-verification.log`. Physical measurements are single trials, not proof of deadline guarantees.
 
@@ -34,5 +34,11 @@ The existing admission latency-report validation limitations remain; see each re
 ''' + '\n'.join(rows) + '\n\nFull dataset reports:\n\n' + '\n'.join(links) + '\n'
 # Links are relative to this file, which sits one directory beneath GCL_Schedules.
 text = text.replace('](result-', '](../result-')
-(TASK / 'BENCHMARK_RESULTS.md').write_text(text)
+# Keep the hand-written final-configuration paragraph from the previous version.
+out = TASK / 'BENCHMARK_RESULTS.md'
+if out.exists():
+    final = [p for p in out.read_text().split('\n\n') if p.startswith('Final live configuration')]
+    if final:
+        text = text.replace('Five distinct traffic draws', final[0] + '\n\nFive distinct traffic draws', 1)
+out.write_text(text)
 print(TASK / 'BENCHMARK_RESULTS.md')

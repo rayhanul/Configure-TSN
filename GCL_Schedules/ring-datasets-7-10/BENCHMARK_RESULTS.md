@@ -1,15 +1,25 @@
-# Ring datasets 7–10: physical benchmark comparison
+# Ring datasets 6–10: physical benchmark comparison
 
 Final live configuration: **dataset 10, Problem 3 RL C9-on, 38 scheduled flows**, cycle 800,000 ns. All 19 operational GCLs were read back after the benchmarks and matched the package. Final trial: 2,699,833 / 2,699,834 packets delivered, zero deadline misses.
 
-Four distinct traffic draws (seeds 43–46), same eight-switch ring topology and hardware profile. Each dataset contains 20 initial flows and 30 additional flows. The previous scheduling pipeline was retained, including one million RL steps, C9 off/on, max overlay, three-frame minimum windows, average-size new windows, and per-instance admission.
+Five distinct traffic draws (seeds 42–46), same eight-switch ring topology and hardware profile. Each dataset contains 20 initial flows and 30 additional flows. The previous scheduling pipeline was retained, including one million RL steps, C9 off/on, max overlay, three-frame minimum windows, average-size new windows, and per-instance admission.
 
-Forty schedule packages were deployed sequentially. Each package was checked for live GCLs, admitted with VLAN/MSTP configuration, checked for spanning-tree quiet and route connectivity, and measured with 30 seconds of traffic on all end stations.
+Fifty schedule packages were deployed sequentially. Each package was checked for live GCLs, admitted with VLAN/MSTP configuration, checked for spanning-tree quiet and route connectivity, and measured with 30 seconds of traffic on all end stations.
 
 The existing admission latency-report validation limitations remain; see each result directory's `validation.json` and package `independent-verification.log`. Physical measurements are single trials, not proof of deadline guarantees.
 
 | Dataset | Package | Scheduled / offered | Sent | Received | Lost | Deadline misses (%) | Latency min / avg / max (µs) | Jitter best / avg / worst (µs) |
 |---|---|---|---|---|---|---|---|---|
+| 6 | SMT C9-off | 10 / 20 | 1,012,447 | 1,012,447 | 0 | 5 (0.00%) | 20.5 / 53.6 / 834.1 | 0.1 / 1.1 / 9.2 |
+| 6 | SMT C9-on | 10 / 20 | 1,012,459 | 1,012,452 | 7 | 7 (0.00%) | 12.4 / 23.8 / 815.0 | 0.1 / 1.2 / 10.9 |
+| 6 | heuristic C9-off | 10 / 20 | 1,012,470 | 1,012,470 | 0 | 0 (0.00%) | 8.1 / 48.1 / 83.8 | 0.1 / 0.1 / 0.2 |
+| 6 | heuristic C9-on | 10 / 20 | 1,012,470 | 1,012,470 | 0 | 0 (0.00%) | 8.1 / 21.8 / 42.3 | 0.1 / 0.3 / 1.4 |
+| 6 | RL C9-off | 10 / 20 | 1,012,449 | 1,012,437 | 12 | 0 (0.00%) | 8.1 / 47.3 / 83.8 | 0.1 / 0.1 / 0.2 |
+| 6 | RL C9-on | 10 / 20 | 1,012,460 | 1,012,459 | 1 | 1 (0.00%) | 6.6 / 21.7 / 217.1 | 0.1 / 0.4 / 2.8 |
+| 6 | Problem 3 heuristic C9-off | 25 / 50 | 1,799,968 | 1,794,077 | 5,891 | 125 (0.01%) | 5.0 / 78.5 / 320817.7 | 0.1 / 1745.7 / 6533.7 |
+| 6 | Problem 3 heuristic C9-on | 25 / 50 | 1,799,950 | 1,799,939 | 11 | 0 (0.00%) | 5.0 / 58.8 / 488.3 | 0.1 / 0.4 / 3.8 |
+| 6 | Problem 3 RL C9-off | 27 / 50 | 2,099,945 | 2,099,874 | 71 | 1 (0.00%) | 5.0 / 56.2 / 602.8 | 0.1 / 0.2 / 1.4 |
+| 6 | Problem 3 RL C9-on | 27 / 50 | 2,024,948 | 2,024,946 | 2 | 1 (0.00%) | 5.0 / 36.7 / 209.6 | 0.1 / 9.8 / 97.2 |
 | 7 | SMT C9-off | 11 / 20 | 1,012,475 | 1,012,475 | 0 | 0 (0.00%) | 33.5 / 60.7 / 83.8 | 0.1 / 0.1 / 0.1 |
 | 7 | SMT C9-on | 11 / 20 | 1,012,469 | 1,005,015 | 7,454 | 224 (0.02%) | 10.5 / 73.1 / 320842.1 | 0.1 / 3540.3 / 9066.0 |
 | 7 | heuristic C9-off | 11 / 20 | 1,012,468 | 1,012,468 | 0 | 0 (0.00%) | 22.0 / 49.2 / 67.2 | 0.1 / 0.1 / 0.2 |
@@ -53,6 +63,7 @@ The existing admission latency-report validation limitations remain; see each re
 
 Full dataset reports:
 
+- [Dataset 6](../result-2026-10-12-dataset-testbed-6-ring-avgwin/TESTBED_RESULTS_2026-10-12.md)
 - [Dataset 7](../result-2026-10-12-dataset-testbed-7-ring-avgwin/TESTBED_RESULTS_2026-10-12.md)
 - [Dataset 8](../result-2026-10-12-dataset-testbed-8-ring-avgwin/TESTBED_RESULTS_2026-10-12.md)
 - [Dataset 9](../result-2026-10-12-dataset-testbed-9-ring-avgwin/TESTBED_RESULTS_2026-10-12.md)
