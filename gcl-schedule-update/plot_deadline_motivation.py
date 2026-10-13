@@ -25,26 +25,24 @@ def main():
     plt.rcParams.update({"font.family": "serif", "font.size": 9,
                          "axes.labelsize": 10, "pdf.fonttype": 42,
                          "ps.fonttype": 42, "svg.fonttype": "none"})
-    fig, ax = plt.subplots(figsize=(3.45, 2.8))
-    fig.subplots_adjust(left=.18, right=.97, top=.95, bottom=.29)
-    bars = ax.bar([0, 1], rates, width=.52, color=["#C9D2DA", "#A8BDCE"],
-                  edgecolor="#465565", linewidth=.7, zorder=3)
+    fig, ax = plt.subplots(figsize=(3.45, 2.35))
+    fig.subplots_adjust(left=.18, right=.97, top=.95, bottom=.18)
+    # Match the slate-purple / dusty-rose palette in per_switch_activation.png.
+    bars = ax.bar([0, 1], rates, width=.42, color=["#5d587a", "#c08d80"],
+                  edgecolor="#52514e", linewidth=.7, zorder=3)
     bars[1].set_hatch("///")
     for x, value in enumerate(rates):
         ax.text(x, value + .22, f"{value:.2f}%\n{misses[x]:,} misses",
-                ha="center", va="bottom", fontsize=10, color="#303840")
+                ha="center", va="bottom", fontsize=10, color="#0b0b0b")
     ax.set_xticks([0, 1], ["Before activation", "During activation"])
     ax.set_ylabel("Deadline-miss rate (%)")
     ax.set_ylim(0, 10)
     ax.set_yticks([0, 2, 4, 6, 8])
     ax.set_xlim(-.65, 1.65)
     ax.set_axisbelow(True)
-    ax.grid(axis="y", color=".87", linewidth=.5)
+    ax.grid(axis="y", color="#e4e3df", linewidth=.5)
     ax.spines[["top", "right"]].set_visible(False)
     ax.tick_params(axis="x", length=0, pad=8)
-    fig.text(.5, .095, f"{sent[0]:,} transmitted packets per phase\n"
-             f"Counts matched per flow and trial; {trials} trials",
-             ha="center", va="center", fontsize=8)
     stem = root / "deadline_misses_equal_count"
     for ext in ("pdf", "svg", "png"):
         fig.savefig(stem.with_suffix("." + ext), dpi=600, facecolor="white")

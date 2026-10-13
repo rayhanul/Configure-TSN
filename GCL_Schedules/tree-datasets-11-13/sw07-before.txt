@@ -1,0 +1,40 @@
+-------------------------------------------------------------------------------
+LLDP neighbors:
+-------------------------------------------------------------------------------
+Interface:    sw0p4, via: LLDP, RID: 1, Time: 3 days, 03:34:53
+  Chassis:     
+    ChassisID:    mac 00:80:82:87:db:8e
+    SysName:      de-eval-board
+    SysDescr:     Poky (Yocto Project Reference Distro) 3.1.14 (dunfell) Linux 5.15.24-tttech #1 SMP PREEMPT Sun Feb 27 22:36:33 UTC 2022 armv7l
+    MgmtIP:       192.168.0.3
+    MgmtIP:       fe80::280:82ff:fe87:db8d
+    Capability:   Bridge, on
+    Capability:   Router, off
+    Capability:   Wlan, off
+    Capability:   Station, off
+  Port:        
+    PortID:       mac 00:80:82:87:db:90
+    PortDescr:    sw0p4
+    TTL:          120
+-------------------------------------------------------------------------------
+Interface:    sw0p5, via: LLDP, RID: 2, Time: 3 days, 03:34:52
+  Chassis:     
+    ChassisID:    mac 00:80:82:86:5f:1c
+    SysName:      de-eval-board
+    SysDescr:     Poky (Yocto Project Reference Distro) 3.1.14 (dunfell) Linux 5.15.24-tttech #1 SMP PREEMPT Sun Feb 27 22:36:33 UTC 2022 armv7l
+    MgmtIP:       192.168.0.8
+    MgmtIP:       fe80::280:82ff:fe86:5f1b
+    Capability:   Bridge, on
+    Capability:   Router, off
+    Capability:   Wlan, off
+    Capability:   Station, off
+  Port:        
+    PortID:       mac 00:80:82:86:5f:1f
+    PortDescr:    sw0p5
+    TTL:          120
+-------------------------------------------------------------------------------
+[{"ifindex":1,"ifname":"lo","flags":["LOOPBACK","UP","LOWER_UP"],"mtu":65536,"qdisc":"noqueue","operstate":"UNKNOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"loopback","address":"00:00:00:00:00:00","broadcast":"00:00:00:00:00:00"},{"ifindex":2,"ifname":"eth0","flags":["BROADCAST","MULTICAST"],"mtu":1500,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"00:80:82:87:d2:ea","broadcast":"ff:ff:ff:ff:ff:ff"},{"ifindex":3,"link":null,"ifname":"sit0","flags":["NOARP"],"mtu":1480,"qdisc":"noop","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"sit","address":"0.0.0.0","broadcast":"0.0.0.0"},{"ifindex":4,"ifname":"sw0p1","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":1500,"qdisc":"pfifo_fast","master":"br0","operstate":"UNKNOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"00:80:82:87:d2:ed","broadcast":"ff:ff:ff:ff:ff:ff","permaddr":"ba:ab:4b:a3:02:00"},{"ifindex":5,"ifname":"sw0p2","flags":["NO-CARRIER","BROADCAST","MULTICAST","UP"],"mtu":1500,"qdisc":"pfifo_fast","master":"br0","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"00:80:82:87:d2:ee","broadcast":"ff:ff:ff:ff:ff:ff","permaddr":"ba:ab:4b:a3:02:01"},{"ifindex":6,"ifname":"sw0p3","flags":["NO-CARRIER","BROADCAST","MULTICAST","UP"],"mtu":1500,"qdisc":"pfifo_fast","master":"br0","operstate":"DOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"00:80:82:87:d2:ef","broadcast":"ff:ff:ff:ff:ff:ff","permaddr":"ba:ab:4b:a3:02:02"},{"ifindex":7,"ifname":"sw0p4","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":1500,"qdisc":"pfifo_fast","master":"br0","operstate":"UP","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"00:80:82:87:d2:f0","broadcast":"ff:ff:ff:ff:ff:ff","permaddr":"ba:ab:4b:a3:02:03"},{"ifindex":8,"ifname":"sw0p5","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":1500,"qdisc":"pfifo_fast","master":"br0","operstate":"UP","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"00:80:82:87:d2:f1","broadcast":"ff:ff:ff:ff:ff:ff","permaddr":"ba:ab:4b:a3:02:04"},{"ifindex":9,"ifname":"sw0ep","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":1500,"qdisc":"mqprio","operstate":"UNKNOWN","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"00:80:82:87:d2:ea","broadcast":"ff:ff:ff:ff:ff:ff","permaddr":"ba:ab:4b:a3:02:ff"},{"ifindex":10,"ifname":"br0","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":1500,"qdisc":"noqueue","operstate":"UP","linkmode":"DEFAULT","group":"default","txqlen":1000,"link_type":"ether","address":"00:80:82:87:d2:ed","broadcast":"ff:ff:ff:ff:ff:ff"}]
+MAC=sw0p2:00:80:82:87:d2:ee
+MAC=sw0p3:00:80:82:87:d2:ef
+MAC=sw0p4:00:80:82:87:d2:f0
+MAC=sw0p5:00:80:82:87:d2:f1
