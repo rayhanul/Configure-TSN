@@ -1,0 +1,1313 @@
+[info] cycle time read from /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/rerun-dataset-11-tree-quiet60/prob3-rl-c9-off/11-rl-c9off-matrix/schedule.json: 800000 ns
+Plan: 8 switch(es), 17 port(s), cycle time 800000 ns (1/1250 s)
+  sw01 @ 192.168.0.1: sw0p2, sw0p4
+  sw02 @ 192.168.0.2: sw0p2, sw0p4
+  sw03 @ 192.168.0.5: sw0p4, sw0p5
+  sw04 @ 192.168.0.4: sw0p4, sw0p5
+  sw05 @ 192.168.0.3: sw0p4, sw0p5
+  sw06 @ 192.168.0.6: sw0p4, sw0p5
+  sw07 @ 192.168.0.7: sw0p4, sw0p5
+  sw08 @ 192.168.0.8: sw0p2, sw0p4, sw0p5
+
+-- sw01 (192.168.0.1) --
+   (TickGranularity for sw01: 320 ns)
+   wrcl sw0p2: OK
+   wrcl sw0p4: OK
+
+-- sw02 (192.168.0.2) --
+   (TickGranularity for sw02: 320 ns)
+   wrcl sw0p2: OK
+   wrcl sw0p4: OK
+
+-- sw03 (192.168.0.5) --
+   (TickGranularity for sw03: 320 ns)
+   wrcl sw0p4: OK
+   wrcl sw0p5: OK
+
+-- sw04 (192.168.0.4) --
+   (TickGranularity for sw04: 320 ns)
+   wrcl sw0p4: OK
+   wrcl sw0p5: OK
+
+-- sw05 (192.168.0.3) --
+   (TickGranularity for sw05: 320 ns)
+   wrcl sw0p4: OK
+   wrcl sw0p5: OK
+
+-- sw06 (192.168.0.6) --
+   (TickGranularity for sw06: 320 ns)
+   wrcl sw0p4: OK
+   wrcl sw0p5: OK
+
+-- sw07 (192.168.0.7) --
+   (TickGranularity for sw07: 320 ns)
+   wrcl sw0p4: OK
+   wrcl sw0p5: OK
+
+-- sw08 (192.168.0.8) --
+   (TickGranularity for sw08: 320 ns)
+   wrcl sw0p2: OK
+   wrcl sw0p4: OK
+   wrcl sw0p5: OK
+
+Common basetime: 1791918301.694393623  (reference sw01/sw0p2 CurrentTime 1791918241.694393623 + 60s lead)
+   configure sw01/sw0p2: OK
+   configure sw01/sw0p4: OK
+   configure sw02/sw0p2: OK
+   configure sw02/sw0p4: OK
+   configure sw03/sw0p4: OK
+   configure sw03/sw0p5: OK
+   configure sw04/sw0p4: OK
+   configure sw04/sw0p5: OK
+   configure sw05/sw0p4: OK
+   configure sw05/sw0p5: OK
+   configure sw06/sw0p4: OK
+   configure sw06/sw0p5: OK
+   configure sw07/sw0p4: OK
+   configure sw07/sw0p5: OK
+   configure sw08/sw0p2: OK
+   configure sw08/sw0p4: OK
+   configure sw08/sw0p5: OK
+
+Gate grid: 1791918241715199751 ns (TAI), phase 799751 ns of the cycle; requested basetime phase 793623 ns. Saved to /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/rerun-dataset-11-tree-quiet60/prob3-rl-c9-off/11-rl-c9off-matrix/basetime.json
+
+Verifying (comparing AdminControlList to OperControlList -- they must match for the new schedule to actually be live):
+   sw01/sw0p2: LIVE
+   sw01/sw0p4: LIVE
+   sw02/sw0p2: LIVE
+   sw02/sw0p4: LIVE
+   sw03/sw0p4: LIVE
+   sw03/sw0p5: LIVE
+   sw04/sw0p4: LIVE
+   sw04/sw0p5: LIVE
+   sw05/sw0p4: LIVE
+   sw05/sw0p5: LIVE
+   sw06/sw0p4: LIVE
+   sw06/sw0p5: LIVE
+   sw07/sw0p4: LIVE
+   sw07/sw0p5: LIVE
+   sw08/sw0p2: LIVE
+   sw08/sw0p4: LIVE
+   sw08/sw0p5: LIVE
+[SKIP] flow 1 (id=1) route ['S1', 'sw00', 'sw01', 'sw03', 'S2']: route node 'sw00' is not defined in the topology.
+[SKIP] flow 2 (id=1) route ['S1', 'sw00', 'sw02', 'sw03', 'S2']: route node 'sw00' is not defined in the topology.
+Querying 11 node(s) live for --hard reset (S2 locally, the rest over SSH; this connects even without --apply)...
+-- reset: S1 (137.99.253.118)
+[137.99.253.118] RUN ip link del enp1s0.10 2>/dev/null || true
+[137.99.253.118] RUN ip link del enp1s0.12 2>/dev/null || true
+[137.99.253.118] RUN ip link del enp1s0.13 2>/dev/null || true
+[137.99.253.118] RUN ip link del enp1s0.14 2>/dev/null || true
+[137.99.253.118] RUN ip link del enp1s0.17 2>/dev/null || true
+[137.99.253.118] RUN ip link del enp1s0.19 2>/dev/null || true
+[137.99.253.118] RUN ip link del enp1s0.20 2>/dev/null || true
+[137.99.253.118] RUN ip link del enp1s0.22 2>/dev/null || true
+[137.99.253.118] RUN ip link del enp1s0.23 2>/dev/null || true
+[137.99.253.118] RUN ip link del enp1s0.24 2>/dev/null || true
+[137.99.253.118] RUN ip link del enp1s0.25 2>/dev/null || true
+[137.99.253.118] RUN ip link del enp1s0.26 2>/dev/null || true
+[137.99.253.118] RUN ip link del enp1s0.27 2>/dev/null || true
+[137.99.253.118] RUN ip link del enp1s0.28 2>/dev/null || true
+[137.99.253.118] RUN ip link del enp1s0.29 2>/dev/null || true
+[137.99.253.118] RUN ip link del enp1s0.30 2>/dev/null || true
+[137.99.253.118] RUN ip link del enp1s0.31 2>/dev/null || true
+[137.99.253.118] RUN ip link del enp1s0.32 2>/dev/null || true
+[137.99.253.118] RUN ip link del enp1s0.33 2>/dev/null || true
+[137.99.253.118] RUN ip link del enp1s0.35 2>/dev/null || true
+[137.99.253.118] RUN ip link del enp1s0.36 2>/dev/null || true
+-- reset: S2 (local)
+    [local] OK  ip link del enp1s0.10 2>/dev/null || true
+    [local] OK  ip link del enp1s0.11 2>/dev/null || true
+    [local] OK  ip link del enp1s0.12 2>/dev/null || true
+    [local] OK  ip link del enp1s0.13 2>/dev/null || true
+    [local] OK  ip link del enp1s0.14 2>/dev/null || true
+    [local] OK  ip link del enp1s0.15 2>/dev/null || true
+    [local] OK  ip link del enp1s0.16 2>/dev/null || true
+    [local] OK  ip link del enp1s0.18 2>/dev/null || true
+    [local] OK  ip link del enp1s0.19 2>/dev/null || true
+    [local] OK  ip link del enp1s0.21 2>/dev/null || true
+    [local] OK  ip link del enp1s0.23 2>/dev/null || true
+    [local] OK  ip link del enp1s0.25 2>/dev/null || true
+    [local] OK  ip link del enp1s0.26 2>/dev/null || true
+    [local] OK  ip link del enp1s0.27 2>/dev/null || true
+    [local] OK  ip link del enp1s0.28 2>/dev/null || true
+    [local] OK  ip link del enp1s0.29 2>/dev/null || true
+    [local] OK  ip link del enp1s0.30 2>/dev/null || true
+    [local] OK  ip link del enp1s0.34 2>/dev/null || true
+    [local] OK  ip link del enp1s0.35 2>/dev/null || true
+    [local] OK  ip link del enp1s0.36 2>/dev/null || true
+-- reset: S3 (137.99.252.240)
+[137.99.252.240] RUN ip link del enp1s0.11 2>/dev/null || true
+[137.99.252.240] RUN ip link del enp1s0.15 2>/dev/null || true
+[137.99.252.240] RUN ip link del enp1s0.16 2>/dev/null || true
+[137.99.252.240] RUN ip link del enp1s0.17 2>/dev/null || true
+[137.99.252.240] RUN ip link del enp1s0.18 2>/dev/null || true
+[137.99.252.240] RUN ip link del enp1s0.20 2>/dev/null || true
+[137.99.252.240] RUN ip link del enp1s0.21 2>/dev/null || true
+[137.99.252.240] RUN ip link del enp1s0.22 2>/dev/null || true
+[137.99.252.240] RUN ip link del enp1s0.24 2>/dev/null || true
+[137.99.252.240] RUN ip link del enp1s0.31 2>/dev/null || true
+[137.99.252.240] RUN ip link del enp1s0.32 2>/dev/null || true
+[137.99.252.240] RUN ip link del enp1s0.33 2>/dev/null || true
+[137.99.252.240] RUN ip link del enp1s0.34 2>/dev/null || true
+
+-- reset: sw01 (192.168.0.1)
+[192.168.0.1] RUN bridge vlan del dev sw0p2 vid 11 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p2 vid 15 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p2 vid 16 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p2 vid 17 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p2 vid 18 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p2 vid 20 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p2 vid 21 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p2 vid 22 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p2 vid 24 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p2 vid 31 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p2 vid 32 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p2 vid 33 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p2 vid 34 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p4 vid 11 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p4 vid 15 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p4 vid 16 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p4 vid 17 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p4 vid 18 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p4 vid 20 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p4 vid 21 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p4 vid 22 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p4 vid 24 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p4 vid 31 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p4 vid 32 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p4 vid 33 2>/dev/null || true
+[192.168.0.1] RUN bridge vlan del dev sw0p4 vid 34 2>/dev/null || true
+-- reset: sw02 (192.168.0.2)
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 10 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 12 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 13 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 14 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 17 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 19 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 20 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 22 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 23 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 24 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 25 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 26 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 27 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 28 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 29 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 30 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 31 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 32 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 33 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 35 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p2 vid 36 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 10 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 12 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 13 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 14 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 17 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 19 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 20 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 22 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 23 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 24 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 25 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 26 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 27 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 28 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 29 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 30 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 31 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 32 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 33 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 35 2>/dev/null || true
+[192.168.0.2] RUN bridge vlan del dev sw0p4 vid 36 2>/dev/null || true
+-- reset: sw03 (192.168.0.5)
+[192.168.0.5] RUN bridge vlan del dev sw0p4 vid 11 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p4 vid 15 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p4 vid 16 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p4 vid 17 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p4 vid 18 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p4 vid 20 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p4 vid 21 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p4 vid 22 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p4 vid 24 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p4 vid 31 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p4 vid 32 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p4 vid 33 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p4 vid 34 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p5 vid 11 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p5 vid 15 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p5 vid 16 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p5 vid 17 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p5 vid 18 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p5 vid 20 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p5 vid 21 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p5 vid 22 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p5 vid 24 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p5 vid 31 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p5 vid 32 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p5 vid 33 2>/dev/null || true
+[192.168.0.5] RUN bridge vlan del dev sw0p5 vid 34 2>/dev/null || true
+-- reset: sw04 (192.168.0.4)
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 10 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 12 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 13 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 14 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 17 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 19 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 20 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 22 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 23 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 24 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 25 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 26 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 27 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 28 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 29 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 30 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 31 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 32 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 33 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 35 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p4 vid 36 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 10 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 12 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 13 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 14 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 17 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 19 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 20 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 22 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 23 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 24 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 25 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 26 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 27 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 28 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 29 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 30 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 31 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 32 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 33 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 35 2>/dev/null || true
+[192.168.0.4] RUN bridge vlan del dev sw0p5 vid 36 2>/dev/null || true
+-- reset: sw05 (192.168.0.3)
+[192.168.0.3] RUN bridge vlan del dev sw0p4 vid 11 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p4 vid 15 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p4 vid 16 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p4 vid 17 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p4 vid 18 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p4 vid 20 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p4 vid 21 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p4 vid 22 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p4 vid 24 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p4 vid 31 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p4 vid 32 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p4 vid 33 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p4 vid 34 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p5 vid 11 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p5 vid 15 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p5 vid 16 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p5 vid 17 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p5 vid 18 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p5 vid 20 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p5 vid 21 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p5 vid 22 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p5 vid 24 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p5 vid 31 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p5 vid 32 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p5 vid 33 2>/dev/null || true
+[192.168.0.3] RUN bridge vlan del dev sw0p5 vid 34 2>/dev/null || true
+-- reset: sw06 (192.168.0.6)
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 10 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 12 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 13 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 14 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 17 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 19 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 20 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 22 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 23 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 24 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 25 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 26 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 27 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 28 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 29 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 30 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 31 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 32 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 33 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 35 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p4 vid 36 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 10 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 12 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 13 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 14 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 17 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 19 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 20 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 22 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 23 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 24 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 25 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 26 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 27 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 28 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 29 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 30 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 31 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 32 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 33 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 35 2>/dev/null || true
+[192.168.0.6] RUN bridge vlan del dev sw0p5 vid 36 2>/dev/null || true
+-- reset: sw07 (192.168.0.7)
+[192.168.0.7] RUN bridge vlan del dev sw0p4 vid 11 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p4 vid 15 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p4 vid 16 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p4 vid 17 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p4 vid 18 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p4 vid 20 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p4 vid 21 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p4 vid 22 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p4 vid 24 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p4 vid 31 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p4 vid 32 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p4 vid 33 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p4 vid 34 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p5 vid 11 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p5 vid 15 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p5 vid 16 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p5 vid 17 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p5 vid 18 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p5 vid 20 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p5 vid 21 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p5 vid 22 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p5 vid 24 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p5 vid 31 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p5 vid 32 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p5 vid 33 2>/dev/null || true
+[192.168.0.7] RUN bridge vlan del dev sw0p5 vid 34 2>/dev/null || true
+-- reset: sw08 (192.168.0.8)
+[192.168.0.8] RUN bridge vlan del dev sw0p2 vid 10 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p2 vid 11 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p2 vid 12 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p2 vid 13 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p2 vid 14 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p2 vid 15 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p2 vid 16 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p2 vid 18 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p2 vid 19 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p2 vid 21 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p2 vid 23 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p2 vid 25 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p2 vid 26 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p2 vid 27 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p2 vid 28 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p2 vid 29 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p2 vid 30 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p2 vid 34 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p2 vid 35 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p2 vid 36 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 10 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 12 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 13 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 14 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 17 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 19 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 20 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 22 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 23 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 24 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 25 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 26 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 27 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 28 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 29 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 30 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 31 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 32 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 33 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 35 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p4 vid 36 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p5 vid 11 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p5 vid 15 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p5 vid 16 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p5 vid 17 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p5 vid 18 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p5 vid 20 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p5 vid 21 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p5 vid 22 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p5 vid 24 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p5 vid 31 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p5 vid 32 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p5 vid 33 2>/dev/null || true
+[192.168.0.8] RUN bridge vlan del dev sw0p5 vid 34 2>/dev/null || true
+
+Cleared .tsn_state.json.
+    [local] OK  ip link del enp1s0.10 2>/dev/null || true
+    [local] OK  ip link add link enp1s0 name enp1s0.10 type vlan id 10
+    [local] OK  ip addr add 192.168.10.11/24 dev enp1s0.10
+    [local] OK  ip link set dev enp1s0.10 up
+    [local] OK  ip link set enp1s0.10 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+    [local] OK  ip link set dev enp1s0 up
+    [local] OK  ip link del enp1s0.11 2>/dev/null || true
+    [local] OK  ip link add link enp1s0 name enp1s0.11 type vlan id 11
+    [local] OK  ip addr add 192.168.11.11/24 dev enp1s0.11
+[137.99.252.240] RUN ip link del enp1s0.11 2>/dev/null || true
+[137.99.252.240] RUN ip link add link enp1s0 name enp1s0.11 type vlan id 11
+[137.99.252.240] RUN ip addr add 192.168.11.10/24 dev enp1s0.11
+[137.99.252.240] RUN ip link set dev enp1s0.11 up
+[137.99.252.240] RUN ip link set enp1s0.11 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.252.240] RUN ip link set dev enp1s0 up
+[137.99.252.240] RUN ip link del enp1s0.15 2>/dev/null || true
+[137.99.252.240] RUN ip link add link enp1s0 name enp1s0.15 type vlan id 15
+[137.99.252.240] RUN ip addr add 192.168.15.10/24 dev enp1s0.15
+[137.99.252.240] RUN ip link set dev enp1s0.15 up
+[137.99.252.240] RUN ip link set enp1s0.15 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.252.240] RUN ip link set dev enp1s0 up
+[137.99.252.240] RUN ip link del enp1s0.16 2>/dev/null || true
+[137.99.252.240] RUN ip link add link enp1s0 name enp1s0.16 type vlan id 16
+[137.99.252.240] RUN ip addr add 192.168.16.10/24 dev enp1s0.16
+[137.99.252.240] RUN ip link set dev enp1s0.16 up
+[137.99.252.240] RUN ip link set enp1s0.16 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.252.240] RUN ip link set dev enp1s0 up
+[137.99.252.240] RUN ip link del enp1s0.17 2>/dev/null || true
+[137.99.252.240] RUN ip link add link enp1s0 name enp1s0.17 type vlan id 17
+[137.99.252.240] RUN ip addr add 192.168.17.10/24 dev enp1s0.17
+[137.99.252.240] RUN ip link set dev enp1s0.17 up
+[137.99.252.240] RUN ip link set enp1s0.17 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.252.240] RUN ip link set dev enp1s0 up
+[137.99.252.240] RUN ip link del enp1s0.18 2>/dev/null || true
+[137.99.252.240] RUN ip link add link enp1s0 name enp1s0.18 type vlan id 18
+[137.99.252.240] RUN ip addr add 192.168.18.11/24 dev enp1s0.18
+[137.99.252.240] RUN ip link set dev enp1s0.18 up
+[137.99.252.240] RUN ip link set enp1s0.18 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.252.240] RUN ip link set dev enp1s0 up
+[137.99.252.240] RUN ip link del enp1s0.20 2>/dev/null || true
+[137.99.252.240] RUN ip link add link enp1s0 name enp1s0.20 type vlan id 20
+[137.99.252.240] RUN ip addr add 192.168.20.11/24 dev enp1s0.20
+[137.99.252.240] RUN ip link set dev enp1s0.20 up
+[137.99.252.240] RUN ip link set enp1s0.20 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.252.240] RUN ip link set dev enp1s0 up
+[137.99.252.240] RUN ip link del enp1s0.21 2>/dev/null || true
+[137.99.252.240] RUN ip link add link enp1s0 name enp1s0.21 type vlan id 21
+[137.99.252.240] RUN ip addr add 192.168.21.11/24 dev enp1s0.21
+[137.99.252.240] RUN ip link set dev enp1s0.21 up
+[137.99.252.240] RUN ip link set enp1s0.21 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.252.240] RUN ip link set dev enp1s0 up
+[137.99.252.240] RUN ip link del enp1s0.22 2>/dev/null || true
+[137.99.252.240] RUN ip link add link enp1s0 name enp1s0.22 type vlan id 22
+[137.99.252.240] RUN ip addr add 192.168.22.11/24 dev enp1s0.22
+[137.99.252.240] RUN ip link set dev enp1s0.22 up
+[137.99.252.240] RUN ip link set enp1s0.22 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.252.240] RUN ip link set dev enp1s0 up
+[137.99.252.240] RUN ip link del enp1s0.23 2>/dev/null || true
+[137.99.252.240] RUN ip link add link enp1s0 name enp1s0.23 type vlan id 23
+[137.99.252.240] RUN ip addr add 192.168.23.11/24 dev enp1s0.23
+[137.99.252.240] RUN ip link set dev enp1s0.23 up
+[137.99.252.240] RUN ip link set enp1s0.23 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.252.240] RUN ip link set dev enp1s0 up
+[137.99.252.240] RUN ip link del enp1s0.24 2>/dev/null || true
+[137.99.252.240] RUN ip link add link enp1s0 name enp1s0.24 type vlan id 24
+[137.99.252.240] RUN ip addr add 192.168.24.10/24 dev enp1s0.24
+[137.99.252.240] RUN ip link set dev enp1s0.24 up
+[137.99.252.240] RUN ip link set enp1s0.24 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.252.240] RUN ip link set dev enp1s0 up
+[137.99.252.240] RUN ip link del enp1s0.26 2>/dev/null || true
+[137.99.252.240] RUN ip link add link enp1s0 name enp1s0.26 type vlan id 26
+[137.99.252.240] RUN ip addr add 192.168.26.10/24 dev enp1s0.26
+[137.99.252.240] RUN ip link set dev enp1s0.26 up
+[137.99.252.240] RUN ip link set enp1s0.26 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.252.240] RUN ip link set dev enp1s0 up
+[137.99.252.240] RUN ip link del enp1s0.31 2>/dev/null || true
+[137.99.252.240] RUN ip link add link enp1s0 name enp1s0.31 type vlan id 31
+[137.99.252.240] RUN ip addr add 192.168.31.10/24 dev enp1s0.31
+[137.99.252.240] RUN ip link set dev enp1s0.31 up
+[137.99.252.240] RUN ip link set enp1s0.31 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.252.240] RUN ip link set dev enp1s0 up
+[137.99.252.240] RUN ip link del enp1s0.32 2>/dev/null || true
+[137.99.252.240] RUN ip link add link enp1s0 name enp1s0.32 type vlan id 32
+[137.99.252.240] RUN ip addr add 192.168.32.10/24 dev enp1s0.32
+[137.99.252.240] RUN ip link set dev enp1s0.32 up
+[137.99.252.240] RUN ip link set enp1s0.32 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.252.240] RUN ip link set dev enp1s0 up
+[137.99.252.240] RUN ip link del enp1s0.33 2>/dev/null || true
+[137.99.252.240] RUN ip link add link enp1s0 name enp1s0.33 type vlan id 33
+[137.99.252.240] RUN ip addr add 192.168.33.11/24 dev enp1s0.33
+[137.99.252.240] RUN ip link set dev enp1s0.33 up
+[137.99.252.240] RUN ip link set enp1s0.33 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.252.240] RUN ip link set dev enp1s0 up
+
+[137.99.253.118] RUN ip link del enp1s0.10 2>/dev/null || true
+[137.99.253.118] RUN ip link add link enp1s0 name enp1s0.10 type vlan id 10
+[137.99.253.118] RUN ip addr add 192.168.10.10/24 dev enp1s0.10
+[137.99.253.118] RUN ip link set dev enp1s0.10 up
+[137.99.253.118] RUN ip link set enp1s0.10 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.253.118] RUN ip link set dev enp1s0 up
+[137.99.253.118] RUN ip link del enp1s0.12 2>/dev/null || true
+[137.99.253.118] RUN ip link add link enp1s0 name enp1s0.12 type vlan id 12
+[137.99.253.118] RUN ip addr add 192.168.12.10/24 dev enp1s0.12
+[137.99.253.118] RUN ip link set dev enp1s0.12 up
+[137.99.253.118] RUN ip link set enp1s0.12 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.253.118] RUN ip link set dev enp1s0 up
+[137.99.253.118] RUN ip link del enp1s0.13 2>/dev/null || true
+[137.99.253.118] RUN ip link add link enp1s0 name enp1s0.13 type vlan id 13
+[137.99.253.118] RUN ip addr add 192.168.13.11/24 dev enp1s0.13
+[137.99.253.118] RUN ip link set dev enp1s0.13 up
+[137.99.253.118] RUN ip link set enp1s0.13 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.253.118] RUN ip link set dev enp1s0 up
+[137.99.253.118] RUN ip link del enp1s0.14 2>/dev/null || true
+[137.99.253.118] RUN ip link add link enp1s0 name enp1s0.14 type vlan id 14
+[137.99.253.118] RUN ip addr add 192.168.14.11/24 dev enp1s0.14
+[137.99.253.118] RUN ip link set dev enp1s0.14 up
+[137.99.253.118] RUN ip link set enp1s0.14 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.253.118] RUN ip link set dev enp1s0 up
+[137.99.253.118] RUN ip link del enp1s0.17 2>/dev/null || true
+[137.99.253.118] RUN ip link add link enp1s0 name enp1s0.17 type vlan id 17
+[137.99.253.118] RUN ip addr add 192.168.17.11/24 dev enp1s0.17
+[137.99.253.118] RUN ip link set dev enp1s0.17 up
+[137.99.253.118] RUN ip link set enp1s0.17 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.253.118] RUN ip link set dev enp1s0 up
+[137.99.253.118] RUN ip link del enp1s0.19 2>/dev/null || true
+[137.99.253.118] RUN ip link add link enp1s0 name enp1s0.19 type vlan id 19
+[137.99.253.118] RUN ip addr add 192.168.19.10/24 dev enp1s0.19
+[137.99.253.118] RUN ip link set dev enp1s0.19 up
+[137.99.253.118] RUN ip link set enp1s0.19 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.253.118] RUN ip link set dev enp1s0 up
+[137.99.253.118] RUN ip link del enp1s0.22 2>/dev/null || true
+[137.99.253.118] RUN ip link add link enp1s0 name enp1s0.22 type vlan id 22
+[137.99.253.118] RUN ip addr add 192.168.22.10/24 dev enp1s0.22
+[137.99.253.118] RUN ip link set dev enp1s0.22 up
+[137.99.253.118] RUN ip link set enp1s0.22 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.253.118] RUN ip link set dev enp1s0 up
+[137.99.253.118] RUN ip link del enp1s0.24 2>/dev/null || true
+[137.99.253.118] RUN ip link add link enp1s0 name enp1s0.24 type vlan id 24
+[137.99.253.118] RUN ip addr add 192.168.24.11/24 dev enp1s0.24
+[137.99.253.118] RUN ip link set dev enp1s0.24 up
+[137.99.253.118] RUN ip link set enp1s0.24 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.253.118] RUN ip link set dev enp1s0 up
+[137.99.253.118] RUN ip link del enp1s0.25 2>/dev/null || true
+[137.99.253.118] RUN ip link add link enp1s0 name enp1s0.25 type vlan id 25
+[137.99.253.118] RUN ip addr add 192.168.25.10/24 dev enp1s0.25
+[137.99.253.118] RUN ip link set dev enp1s0.25 up
+[137.99.253.118] RUN ip link set enp1s0.25 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.253.118] RUN ip link set dev enp1s0 up
+[137.99.253.118] RUN ip link del enp1s0.26 2>/dev/null || true
+[137.99.253.118] RUN ip link add link enp1s0 name enp1s0.26 type vlan id 26
+[137.99.253.118] RUN ip addr add 192.168.26.11/24 dev enp1s0.26
+[137.99.253.118] RUN ip link set dev enp1s0.26 up
+[137.99.253.118] RUN ip link set enp1s0.26 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.253.118] RUN ip link set dev enp1s0 up
+[137.99.253.118] RUN ip link del enp1s0.27 2>/dev/null || true
+[137.99.253.118] RUN ip link add link enp1s0 name enp1s0.27 type vlan id 27
+[137.99.253.118] RUN ip addr add 192.168.27.11/24 dev enp1s0.27
+[137.99.253.118] RUN ip link set dev enp1s0.27 up
+[137.99.253.118] RUN ip link set enp1s0.27 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.253.118] RUN ip link set dev enp1s0 up
+[137.99.253.118] RUN ip link del enp1s0.28 2>/dev/null || true
+[137.99.253.118] RUN ip link add link enp1s0 name enp1s0.28 type vlan id 28
+[137.99.253.118] RUN ip addr add 192.168.28.11/24 dev enp1s0.28
+[137.99.253.118] RUN ip link set dev enp1s0.28 up
+[137.99.253.118] RUN ip link set enp1s0.28 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.253.118] RUN ip link set dev enp1s0 up
+[137.99.253.118] RUN ip link del enp1s0.29 2>/dev/null || true
+[137.99.253.118] RUN ip link add link enp1s0 name enp1s0.29 type vlan id 29
+[137.99.253.118] RUN ip addr add 192.168.29.11/24 dev enp1s0.29
+[137.99.253.118] RUN ip link set dev enp1s0.29 up
+[137.99.253.118] RUN ip link set enp1s0.29 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.253.118] RUN ip link set dev enp1s0 up
+[137.99.253.118] RUN ip link del enp1s0.30 2>/dev/null || true
+[137.99.253.118] RUN ip link add link enp1s0 name enp1s0.30 type vlan id 30
+[137.99.253.118] RUN ip addr add 192.168.30.11/24 dev enp1s0.30
+[137.99.253.118] RUN ip link set dev enp1s0.30 up
+[137.99.253.118] RUN ip link set enp1s0.30 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.253.118] RUN ip link set dev enp1s0 up
+[137.99.253.118] RUN ip link del enp1s0.31 2>/dev/null || true
+[137.99.253.118] RUN ip link add link enp1s0 name enp1s0.31 type vlan id 31
+[137.99.253.118] RUN ip addr add 192.168.31.11/24 dev enp1s0.31
+[137.99.253.118] RUN ip link set dev enp1s0.31 up
+[137.99.253.118] RUN ip link set enp1s0.31 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.253.118] RUN ip link set dev enp1s0 up
+[137.99.253.118] RUN ip link del enp1s0.32 2>/dev/null || true
+[137.99.253.118] RUN ip link add link enp1s0 name enp1s0.32 type vlan id 32
+[137.99.253.118] RUN ip addr add 192.168.32.11/24 dev enp1s0.32
+[137.99.253.118] RUN ip link set dev enp1s0.32 up
+[137.99.253.118] RUN ip link set enp1s0.32 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.253.118] RUN ip link set dev enp1s0 up
+[137.99.253.118] RUN ip link del enp1s0.33 2>/dev/null || true
+[137.99.253.118] RUN ip link add link enp1s0 name enp1s0.33 type vlan id 33
+[137.99.253.118] RUN ip addr add 192.168.33.10/24 dev enp1s0.33
+[137.99.253.118] RUN ip link set dev enp1s0.33 up
+[137.99.253.118] RUN ip link set enp1s0.33 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.253.118] RUN ip link set dev enp1s0 up
+[137.99.253.118] RUN ip link del enp1s0.34 2>/dev/null || true
+[137.99.253.118] RUN ip link add link enp1s0 name enp1s0.34 type vlan id 34
+[137.99.253.118] RUN ip addr add 192.168.34.11/24 dev enp1s0.34
+[137.99.253.118] RUN ip link set dev enp1s0.34 up
+[137.99.253.118] RUN ip link set enp1s0.34 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[137.99.253.118] RUN ip link set dev enp1s0 up
+    [local] OK  ip link set dev enp1s0.11 up
+    [local] OK  ip link set enp1s0.11 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+    [local] OK  ip link set dev enp1s0 up
+[192.168.0.1] RUN bridge vlan add dev sw0p2 vid 11
+[192.168.0.1] RUN bridge vlan add dev sw0p4 vid 11
+[192.168.0.1] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.1] RUN bridge vlan add dev sw0p2 vid 15
+[192.168.0.1] RUN bridge vlan add dev sw0p4 vid 15
+[192.168.0.1] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.1] RUN bridge vlan add dev sw0p2 vid 16
+[192.168.0.1] RUN bridge vlan add dev sw0p4 vid 16
+[192.168.0.1] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.1] RUN bridge vlan add dev sw0p2 vid 17
+[192.168.0.1] RUN bridge vlan add dev sw0p4 vid 17
+[192.168.0.1] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.1] RUN bridge vlan add dev sw0p4 vid 18
+[192.168.0.1] RUN bridge vlan add dev sw0p2 vid 18
+[192.168.0.1] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.1] RUN bridge vlan add dev sw0p4 vid 20
+[192.168.0.1] RUN bridge vlan add dev sw0p2 vid 20
+[192.168.0.1] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.1] RUN bridge vlan add dev sw0p4 vid 21
+[192.168.0.1] RUN bridge vlan add dev sw0p2 vid 21
+[192.168.0.1] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.1] RUN bridge vlan add dev sw0p4 vid 22
+[192.168.0.1] RUN bridge vlan add dev sw0p2 vid 22
+[192.168.0.1] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.1] RUN bridge vlan add dev sw0p4 vid 23
+[192.168.0.1] RUN bridge vlan add dev sw0p2 vid 23
+[192.168.0.1] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.1] RUN bridge vlan add dev sw0p2 vid 24
+[192.168.0.1] RUN bridge vlan add dev sw0p4 vid 24
+[192.168.0.1] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.1] RUN bridge vlan add dev sw0p2 vid 26
+[192.168.0.1] RUN bridge vlan add dev sw0p4 vid 26
+[192.168.0.1] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.1] RUN bridge vlan add dev sw0p2 vid 31
+[192.168.0.1] RUN bridge vlan add dev sw0p4 vid 31
+[192.168.0.1] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.1] RUN bridge vlan add dev sw0p2 vid 32
+[192.168.0.1] RUN bridge vlan add dev sw0p4 vid 32
+[192.168.0.1] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.1] RUN bridge vlan add dev sw0p4 vid 33
+[192.168.0.1] RUN bridge vlan add dev sw0p2 vid 33
+[192.168.0.1] RUN ip link set dev br0 type bridge vlan_filtering 1
+    [local] OK  ip link del enp1s0.12 2>/dev/null || true
+    [local] OK  ip link add link enp1s0 name enp1s0.12 type vlan id 12
+[192.168.0.6] RUN bridge vlan add dev sw0p5 vid 10
+[192.168.0.6] RUN bridge vlan add dev sw0p4 vid 10
+[192.168.0.6] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.6] RUN bridge vlan add dev sw0p5 vid 12
+[192.168.0.6] RUN bridge vlan add dev sw0p4 vid 12
+[192.168.0.6] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.6] RUN bridge vlan add dev sw0p4 vid 13
+[192.168.0.6] RUN bridge vlan add dev sw0p5 vid 13
+[192.168.0.6] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.6] RUN bridge vlan add dev sw0p4 vid 14
+[192.168.0.6] RUN bridge vlan add dev sw0p5 vid 14
+[192.168.0.6] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.6] RUN bridge vlan add dev sw0p4 vid 17
+[192.168.0.6] RUN bridge vlan add dev sw0p5 vid 17
+[192.168.0.6] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.6] RUN bridge vlan add dev sw0p5 vid 19
+[192.168.0.6] RUN bridge vlan add dev sw0p4 vid 19
+[192.168.0.6] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.6] RUN bridge vlan add dev sw0p5 vid 22
+[192.168.0.6] RUN bridge vlan add dev sw0p4 vid 22
+[192.168.0.6] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.6] RUN bridge vlan add dev sw0p4 vid 24
+[192.168.0.6] RUN bridge vlan add dev sw0p5 vid 24
+[192.168.0.6] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.6] RUN bridge vlan add dev sw0p5 vid 25
+[192.168.0.6] RUN bridge vlan add dev sw0p4 vid 25
+[192.168.0.6] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.6] RUN bridge vlan add dev sw0p4 vid 26
+[192.168.0.6] RUN bridge vlan add dev sw0p5 vid 26
+[192.168.0.6] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.6] RUN bridge vlan add dev sw0p4 vid 27
+[192.168.0.6] RUN bridge vlan add dev sw0p5 vid 27
+[192.168.0.6] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.6] RUN bridge vlan add dev sw0p4 vid 28
+[192.168.0.6] RUN bridge vlan add dev sw0p5 vid 28
+[192.168.0.6] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.6] RUN bridge vlan add dev sw0p4 vid 29
+[192.168.0.6] RUN bridge vlan add dev sw0p5 vid 29
+[192.168.0.6] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.6] RUN bridge vlan add dev sw0p4 vid 30
+[192.168.0.6] RUN bridge vlan add dev sw0p5 vid 30
+[192.168.0.6] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.6] RUN bridge vlan add dev sw0p4 vid 31
+[192.168.0.6] RUN bridge vlan add dev sw0p5 vid 31
+[192.168.0.6] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.6] RUN bridge vlan add dev sw0p4 vid 32
+[192.168.0.6] RUN bridge vlan add dev sw0p5 vid 32
+[192.168.0.6] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.6] RUN bridge vlan add dev sw0p5 vid 33
+[192.168.0.6] RUN bridge vlan add dev sw0p4 vid 33
+[192.168.0.6] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.6] RUN bridge vlan add dev sw0p4 vid 34
+[192.168.0.6] RUN bridge vlan add dev sw0p5 vid 34
+[192.168.0.6] RUN ip link set dev br0 type bridge vlan_filtering 1
+    [local] OK  ip addr add 192.168.12.11/24 dev enp1s0.12
+[192.168.0.4] RUN bridge vlan add dev sw0p4 vid 10
+[192.168.0.4] RUN bridge vlan add dev sw0p5 vid 10
+[192.168.0.4] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.4] RUN bridge vlan add dev sw0p4 vid 12
+[192.168.0.4] RUN bridge vlan add dev sw0p5 vid 12
+[192.168.0.4] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.4] RUN bridge vlan add dev sw0p5 vid 13
+[192.168.0.4] RUN bridge vlan add dev sw0p4 vid 13
+[192.168.0.4] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.4] RUN bridge vlan add dev sw0p5 vid 14
+[192.168.0.4] RUN bridge vlan add dev sw0p4 vid 14
+[192.168.0.4] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.4] RUN bridge vlan add dev sw0p5 vid 17
+[192.168.0.4] RUN bridge vlan add dev sw0p4 vid 17
+[192.168.0.4] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.4] RUN bridge vlan add dev sw0p4 vid 19
+[192.168.0.4] RUN bridge vlan add dev sw0p5 vid 19
+[192.168.0.4] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.4] RUN bridge vlan add dev sw0p4 vid 22
+[192.168.0.4] RUN bridge vlan add dev sw0p5 vid 22
+[192.168.0.4] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.4] RUN bridge vlan add dev sw0p5 vid 24
+[192.168.0.4] RUN bridge vlan add dev sw0p4 vid 24
+[192.168.0.4] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.4] RUN bridge vlan add dev sw0p4 vid 25
+[192.168.0.4] RUN bridge vlan add dev sw0p5 vid 25
+[192.168.0.4] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.4] RUN bridge vlan add dev sw0p5 vid 26
+[192.168.0.4] RUN bridge vlan add dev sw0p4 vid 26
+[192.168.0.4] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.4] RUN bridge vlan add dev sw0p5 vid 27
+[192.168.0.4] RUN bridge vlan add dev sw0p4 vid 27
+[192.168.0.4] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.4] RUN bridge vlan add dev sw0p5 vid 28
+[192.168.0.4] RUN bridge vlan add dev sw0p4 vid 28
+[192.168.0.4] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.4] RUN bridge vlan add dev sw0p5 vid 29
+[192.168.0.4] RUN bridge vlan add dev sw0p4 vid 29
+[192.168.0.4] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.4] RUN bridge vlan add dev sw0p5 vid 30
+[192.168.0.4] RUN bridge vlan add dev sw0p4 vid 30
+[192.168.0.4] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.4] RUN bridge vlan add dev sw0p5 vid 31
+[192.168.0.4] RUN bridge vlan add dev sw0p4 vid 31
+[192.168.0.4] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.4] RUN bridge vlan add dev sw0p5 vid 32
+[192.168.0.4] RUN bridge vlan add dev sw0p4 vid 32
+[192.168.0.4] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.4] RUN bridge vlan add dev sw0p4 vid 33
+[192.168.0.4] RUN bridge vlan add dev sw0p5 vid 33
+[192.168.0.4] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.4] RUN bridge vlan add dev sw0p5 vid 34
+[192.168.0.4] RUN bridge vlan add dev sw0p4 vid 34
+[192.168.0.4] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.2] RUN bridge vlan add dev sw0p2 vid 10
+[192.168.0.2] RUN bridge vlan add dev sw0p4 vid 10
+[192.168.0.2] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.2] RUN bridge vlan add dev sw0p2 vid 12
+[192.168.0.2] RUN bridge vlan add dev sw0p4 vid 12
+[192.168.0.2] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.2] RUN bridge vlan add dev sw0p4 vid 13
+[192.168.0.2] RUN bridge vlan add dev sw0p2 vid 13
+[192.168.0.2] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.2] RUN bridge vlan add dev sw0p4 vid 14
+[192.168.0.2] RUN bridge vlan add dev sw0p2 vid 14
+[192.168.0.2] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.2] RUN bridge vlan add dev sw0p4 vid 17
+[192.168.0.2] RUN bridge vlan add dev sw0p2 vid 17
+[192.168.0.2] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.2] RUN bridge vlan add dev sw0p2 vid 19
+[192.168.0.2] RUN bridge vlan add dev sw0p4 vid 19
+[192.168.0.2] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.2] RUN bridge vlan add dev sw0p2 vid 22
+[192.168.0.2] RUN bridge vlan add dev sw0p4 vid 22
+[192.168.0.2] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.2] RUN bridge vlan add dev sw0p4 vid 24
+[192.168.0.2] RUN bridge vlan add dev sw0p2 vid 24
+[192.168.0.2] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.2] RUN bridge vlan add dev sw0p2 vid 25
+[192.168.0.2] RUN bridge vlan add dev sw0p4 vid 25
+[192.168.0.2] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.2] RUN bridge vlan add dev sw0p4 vid 26
+[192.168.0.2] RUN bridge vlan add dev sw0p2 vid 26
+[192.168.0.2] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.2] RUN bridge vlan add dev sw0p4 vid 27
+[192.168.0.2] RUN bridge vlan add dev sw0p2 vid 27
+[192.168.0.2] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.2] RUN bridge vlan add dev sw0p4 vid 28
+[192.168.0.2] RUN bridge vlan add dev sw0p2 vid 28
+[192.168.0.2] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.2] RUN bridge vlan add dev sw0p4 vid 29
+[192.168.0.2] RUN bridge vlan add dev sw0p2 vid 29
+[192.168.0.2] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.2] RUN bridge vlan add dev sw0p4 vid 30
+[192.168.0.2] RUN bridge vlan add dev sw0p2 vid 30
+[192.168.0.2] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.2] RUN bridge vlan add dev sw0p4 vid 31
+[192.168.0.2] RUN bridge vlan add dev sw0p2 vid 31
+[192.168.0.2] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.2] RUN bridge vlan add dev sw0p4 vid 32
+[192.168.0.2] RUN bridge vlan add dev sw0p2 vid 32
+[192.168.0.2] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.2] RUN bridge vlan add dev sw0p2 vid 33
+[192.168.0.2] RUN bridge vlan add dev sw0p4 vid 33
+[192.168.0.2] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.2] RUN bridge vlan add dev sw0p4 vid 34
+[192.168.0.2] RUN bridge vlan add dev sw0p2 vid 34
+[192.168.0.2] RUN ip link set dev br0 type bridge vlan_filtering 1
+    [local] OK  ip link set dev enp1s0.12 up
+    [local] OK  ip link set enp1s0.12 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+[192.168.0.8] RUN bridge vlan add dev sw0p4 vid 10
+[192.168.0.8] RUN bridge vlan add dev sw0p2 vid 10
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p5 vid 11
+[192.168.0.8] RUN bridge vlan add dev sw0p2 vid 11
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p4 vid 12
+[192.168.0.8] RUN bridge vlan add dev sw0p2 vid 12
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p2 vid 13
+[192.168.0.8] RUN bridge vlan add dev sw0p4 vid 13
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p2 vid 14
+[192.168.0.8] RUN bridge vlan add dev sw0p4 vid 14
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p5 vid 15
+[192.168.0.8] RUN bridge vlan add dev sw0p2 vid 15
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p5 vid 16
+[192.168.0.8] RUN bridge vlan add dev sw0p2 vid 16
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p5 vid 17
+[192.168.0.8] RUN bridge vlan add dev sw0p4 vid 17
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p2 vid 18
+[192.168.0.8] RUN bridge vlan add dev sw0p5 vid 18
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p4 vid 19
+[192.168.0.8] RUN bridge vlan add dev sw0p2 vid 19
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p2 vid 20
+[192.168.0.8] RUN bridge vlan add dev sw0p5 vid 20
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p2 vid 21
+[192.168.0.8] RUN bridge vlan add dev sw0p5 vid 21
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p4 vid 22
+[192.168.0.8] RUN bridge vlan add dev sw0p5 vid 22
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p2 vid 23
+[192.168.0.8] RUN bridge vlan add dev sw0p5 vid 23
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p5 vid 24
+[192.168.0.8] RUN bridge vlan add dev sw0p4 vid 24
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p4 vid 25
+[192.168.0.8] RUN bridge vlan add dev sw0p2 vid 25
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p5 vid 26
+[192.168.0.8] RUN bridge vlan add dev sw0p4 vid 26
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p2 vid 27
+[192.168.0.8] RUN bridge vlan add dev sw0p4 vid 27
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p2 vid 28
+[192.168.0.8] RUN bridge vlan add dev sw0p4 vid 28
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p2 vid 29
+[192.168.0.8] RUN bridge vlan add dev sw0p4 vid 29
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p2 vid 30
+[192.168.0.8] RUN bridge vlan add dev sw0p4 vid 30
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p5 vid 31
+[192.168.0.8] RUN bridge vlan add dev sw0p4 vid 31
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p5 vid 32
+[192.168.0.8] RUN bridge vlan add dev sw0p4 vid 32
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p4 vid 33
+[192.168.0.8] RUN bridge vlan add dev sw0p5 vid 33
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.8] RUN bridge vlan add dev sw0p2 vid 34
+[192.168.0.8] RUN bridge vlan add dev sw0p4 vid 34
+[192.168.0.8] RUN ip link set dev br0 type bridge vlan_filtering 1
+    [local] OK  ip link set dev enp1s0 up
+    [local] OK  ip link del enp1s0.13 2>/dev/null || true
+    [local] OK  ip link add link enp1s0 name enp1s0.13 type vlan id 13
+    [local] OK  ip addr add 192.168.13.10/24 dev enp1s0.13
+[192.168.0.5] RUN bridge vlan add dev sw0p4 vid 11
+[192.168.0.5] RUN bridge vlan add dev sw0p5 vid 11
+[192.168.0.5] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.5] RUN bridge vlan add dev sw0p4 vid 15
+[192.168.0.5] RUN bridge vlan add dev sw0p5 vid 15
+[192.168.0.5] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.5] RUN bridge vlan add dev sw0p4 vid 16
+[192.168.0.5] RUN bridge vlan add dev sw0p5 vid 16
+[192.168.0.5] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.5] RUN bridge vlan add dev sw0p4 vid 17
+[192.168.0.5] RUN bridge vlan add dev sw0p5 vid 17
+[192.168.0.5] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.5] RUN bridge vlan add dev sw0p5 vid 18
+[192.168.0.5] RUN bridge vlan add dev sw0p4 vid 18
+[192.168.0.5] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.5] RUN bridge vlan add dev sw0p5 vid 20
+[192.168.0.5] RUN bridge vlan add dev sw0p4 vid 20
+[192.168.0.5] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.5] RUN bridge vlan add dev sw0p5 vid 21
+[192.168.0.5] RUN bridge vlan add dev sw0p4 vid 21
+[192.168.0.5] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.5] RUN bridge vlan add dev sw0p5 vid 22
+[192.168.0.5] RUN bridge vlan add dev sw0p4 vid 22
+[192.168.0.5] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.5] RUN bridge vlan add dev sw0p5 vid 23
+[192.168.0.5] RUN bridge vlan add dev sw0p4 vid 23
+[192.168.0.5] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.5] RUN bridge vlan add dev sw0p4 vid 24
+[192.168.0.5] RUN bridge vlan add dev sw0p5 vid 24
+[192.168.0.5] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.5] RUN bridge vlan add dev sw0p4 vid 26
+[192.168.0.5] RUN bridge vlan add dev sw0p5 vid 26
+[192.168.0.5] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.5] RUN bridge vlan add dev sw0p4 vid 31
+[192.168.0.5] RUN bridge vlan add dev sw0p5 vid 31
+[192.168.0.5] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.5] RUN bridge vlan add dev sw0p4 vid 32
+[192.168.0.5] RUN bridge vlan add dev sw0p5 vid 32
+[192.168.0.5] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.5] RUN bridge vlan add dev sw0p5 vid 33
+[192.168.0.5] RUN bridge vlan add dev sw0p4 vid 33
+[192.168.0.5] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.3] RUN bridge vlan add dev sw0p5 vid 11
+[192.168.0.3] RUN bridge vlan add dev sw0p4 vid 11
+[192.168.0.3] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.3] RUN bridge vlan add dev sw0p5 vid 15
+[192.168.0.3] RUN bridge vlan add dev sw0p4 vid 15
+[192.168.0.3] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.3] RUN bridge vlan add dev sw0p5 vid 16
+[192.168.0.3] RUN bridge vlan add dev sw0p4 vid 16
+[192.168.0.3] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.3] RUN bridge vlan add dev sw0p5 vid 17
+[192.168.0.3] RUN bridge vlan add dev sw0p4 vid 17
+[192.168.0.3] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.3] RUN bridge vlan add dev sw0p4 vid 18
+[192.168.0.3] RUN bridge vlan add dev sw0p5 vid 18
+[192.168.0.3] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.3] RUN bridge vlan add dev sw0p4 vid 20
+[192.168.0.3] RUN bridge vlan add dev sw0p5 vid 20
+[192.168.0.3] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.3] RUN bridge vlan add dev sw0p4 vid 21
+[192.168.0.3] RUN bridge vlan add dev sw0p5 vid 21
+[192.168.0.3] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.3] RUN bridge vlan add dev sw0p4 vid 22
+[192.168.0.3] RUN bridge vlan add dev sw0p5 vid 22
+[192.168.0.3] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.3] RUN bridge vlan add dev sw0p4 vid 23
+[192.168.0.3] RUN bridge vlan add dev sw0p5 vid 23
+[192.168.0.3] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.3] RUN bridge vlan add dev sw0p5 vid 24
+[192.168.0.3] RUN bridge vlan add dev sw0p4 vid 24
+[192.168.0.3] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.3] RUN bridge vlan add dev sw0p5 vid 26
+[192.168.0.3] RUN bridge vlan add dev sw0p4 vid 26
+[192.168.0.3] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.3] RUN bridge vlan add dev sw0p5 vid 31
+[192.168.0.3] RUN bridge vlan add dev sw0p4 vid 31
+[192.168.0.3] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.3] RUN bridge vlan add dev sw0p5 vid 32
+[192.168.0.3] RUN bridge vlan add dev sw0p4 vid 32
+[192.168.0.3] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.3] RUN bridge vlan add dev sw0p4 vid 33
+[192.168.0.3] RUN bridge vlan add dev sw0p5 vid 33
+[192.168.0.3] RUN ip link set dev br0 type bridge vlan_filtering 1
+    [local] OK  ip link set dev enp1s0.13 up
+    [local] OK  ip link set enp1s0.13 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+    [local] OK  ip link set dev enp1s0 up
+[192.168.0.7] RUN bridge vlan add dev sw0p4 vid 11
+[192.168.0.7] RUN bridge vlan add dev sw0p5 vid 11
+[192.168.0.7] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.7] RUN bridge vlan add dev sw0p4 vid 15
+[192.168.0.7] RUN bridge vlan add dev sw0p5 vid 15
+[192.168.0.7] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.7] RUN bridge vlan add dev sw0p4 vid 16
+[192.168.0.7] RUN bridge vlan add dev sw0p5 vid 16
+[192.168.0.7] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.7] RUN bridge vlan add dev sw0p4 vid 17
+[192.168.0.7] RUN bridge vlan add dev sw0p5 vid 17
+[192.168.0.7] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.7] RUN bridge vlan add dev sw0p5 vid 18
+[192.168.0.7] RUN bridge vlan add dev sw0p4 vid 18
+[192.168.0.7] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.7] RUN bridge vlan add dev sw0p5 vid 20
+[192.168.0.7] RUN bridge vlan add dev sw0p4 vid 20
+[192.168.0.7] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.7] RUN bridge vlan add dev sw0p5 vid 21
+[192.168.0.7] RUN bridge vlan add dev sw0p4 vid 21
+[192.168.0.7] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.7] RUN bridge vlan add dev sw0p5 vid 22
+[192.168.0.7] RUN bridge vlan add dev sw0p4 vid 22
+[192.168.0.7] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.7] RUN bridge vlan add dev sw0p5 vid 23
+[192.168.0.7] RUN bridge vlan add dev sw0p4 vid 23
+[192.168.0.7] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.7] RUN bridge vlan add dev sw0p4 vid 24
+[192.168.0.7] RUN bridge vlan add dev sw0p5 vid 24
+[192.168.0.7] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.7] RUN bridge vlan add dev sw0p4 vid 26
+[192.168.0.7] RUN bridge vlan add dev sw0p5 vid 26
+[192.168.0.7] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.7] RUN bridge vlan add dev sw0p4 vid 31
+[192.168.0.7] RUN bridge vlan add dev sw0p5 vid 31
+[192.168.0.7] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.7] RUN bridge vlan add dev sw0p4 vid 32
+[192.168.0.7] RUN bridge vlan add dev sw0p5 vid 32
+[192.168.0.7] RUN ip link set dev br0 type bridge vlan_filtering 1
+[192.168.0.7] RUN bridge vlan add dev sw0p5 vid 33
+[192.168.0.7] RUN bridge vlan add dev sw0p4 vid 33
+[192.168.0.7] RUN ip link set dev br0 type bridge vlan_filtering 1
+    [local] OK  ip link del enp1s0.14 2>/dev/null || true
+    [local] OK  ip link add link enp1s0 name enp1s0.14 type vlan id 14
+    [local] OK  ip addr add 192.168.14.10/24 dev enp1s0.14
+    [local] OK  ip link set dev enp1s0.14 up
+    [local] OK  ip link set enp1s0.14 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+    [local] OK  ip link set dev enp1s0 up
+    [local] OK  ip link del enp1s0.15 2>/dev/null || true
+    [local] OK  ip link add link enp1s0 name enp1s0.15 type vlan id 15
+    [local] OK  ip addr add 192.168.15.11/24 dev enp1s0.15
+    [local] OK  ip link set dev enp1s0.15 up
+    [local] OK  ip link set enp1s0.15 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+    [local] OK  ip link set dev enp1s0 up
+    [local] OK  ip link del enp1s0.16 2>/dev/null || true
+    [local] OK  ip link add link enp1s0 name enp1s0.16 type vlan id 16
+    [local] OK  ip addr add 192.168.16.11/24 dev enp1s0.16
+    [local] OK  ip link set dev enp1s0.16 up
+    [local] OK  ip link set enp1s0.16 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+    [local] OK  ip link set dev enp1s0 up
+    [local] OK  ip link del enp1s0.18 2>/dev/null || true
+    [local] OK  ip link add link enp1s0 name enp1s0.18 type vlan id 18
+    [local] OK  ip addr add 192.168.18.10/24 dev enp1s0.18
+    [local] OK  ip link set dev enp1s0.18 up
+    [local] OK  ip link set enp1s0.18 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+    [local] OK  ip link set dev enp1s0 up
+    [local] OK  ip link del enp1s0.19 2>/dev/null || true
+    [local] OK  ip link add link enp1s0 name enp1s0.19 type vlan id 19
+    [local] OK  ip addr add 192.168.19.11/24 dev enp1s0.19
+    [local] OK  ip link set dev enp1s0.19 up
+    [local] OK  ip link set enp1s0.19 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+    [local] OK  ip link set dev enp1s0 up
+    [local] OK  ip link del enp1s0.20 2>/dev/null || true
+    [local] OK  ip link add link enp1s0 name enp1s0.20 type vlan id 20
+    [local] OK  ip addr add 192.168.20.10/24 dev enp1s0.20
+    [local] OK  ip link set dev enp1s0.20 up
+    [local] OK  ip link set enp1s0.20 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+    [local] OK  ip link set dev enp1s0 up
+    [local] OK  ip link del enp1s0.21 2>/dev/null || true
+    [local] OK  ip link add link enp1s0 name enp1s0.21 type vlan id 21
+    [local] OK  ip addr add 192.168.21.10/24 dev enp1s0.21
+    [local] OK  ip link set dev enp1s0.21 up
+    [local] OK  ip link set enp1s0.21 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+    [local] OK  ip link set dev enp1s0 up
+    [local] OK  ip link del enp1s0.23 2>/dev/null || true
+    [local] OK  ip link add link enp1s0 name enp1s0.23 type vlan id 23
+    [local] OK  ip addr add 192.168.23.10/24 dev enp1s0.23
+    [local] OK  ip link set dev enp1s0.23 up
+    [local] OK  ip link set enp1s0.23 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+    [local] OK  ip link set dev enp1s0 up
+    [local] OK  ip link del enp1s0.25 2>/dev/null || true
+    [local] OK  ip link add link enp1s0 name enp1s0.25 type vlan id 25
+    [local] OK  ip addr add 192.168.25.11/24 dev enp1s0.25
+    [local] OK  ip link set dev enp1s0.25 up
+    [local] OK  ip link set enp1s0.25 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+    [local] OK  ip link set dev enp1s0 up
+    [local] OK  ip link del enp1s0.27 2>/dev/null || true
+    [local] OK  ip link add link enp1s0 name enp1s0.27 type vlan id 27
+    [local] OK  ip addr add 192.168.27.10/24 dev enp1s0.27
+    [local] OK  ip link set dev enp1s0.27 up
+    [local] OK  ip link set enp1s0.27 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+    [local] OK  ip link set dev enp1s0 up
+    [local] OK  ip link del enp1s0.28 2>/dev/null || true
+    [local] OK  ip link add link enp1s0 name enp1s0.28 type vlan id 28
+    [local] OK  ip addr add 192.168.28.10/24 dev enp1s0.28
+    [local] OK  ip link set dev enp1s0.28 up
+    [local] OK  ip link set enp1s0.28 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+    [local] OK  ip link set dev enp1s0 up
+    [local] OK  ip link del enp1s0.29 2>/dev/null || true
+    [local] OK  ip link add link enp1s0 name enp1s0.29 type vlan id 29
+    [local] OK  ip addr add 192.168.29.10/24 dev enp1s0.29
+    [local] OK  ip link set dev enp1s0.29 up
+    [local] OK  ip link set enp1s0.29 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+    [local] OK  ip link set dev enp1s0 up
+    [local] OK  ip link del enp1s0.30 2>/dev/null || true
+    [local] OK  ip link add link enp1s0 name enp1s0.30 type vlan id 30
+    [local] OK  ip addr add 192.168.30.10/24 dev enp1s0.30
+    [local] OK  ip link set dev enp1s0.30 up
+    [local] OK  ip link set enp1s0.30 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+    [local] OK  ip link set dev enp1s0 up
+    [local] OK  ip link del enp1s0.34 2>/dev/null || true
+    [local] OK  ip link add link enp1s0 name enp1s0.34 type vlan id 34
+    [local] OK  ip addr add 192.168.34.10/24 dev enp1s0.34
+    [local] OK  ip link set dev enp1s0.34 up
+    [local] OK  ip link set enp1s0.34 type vlan egress-qos-map 0:0 1:1 2:2 3:3 4:4 5:6 6:6 7:7
+    [local] OK  ip link set dev enp1s0 up
+[192.168.0.7] RUN mstpctl setmstconfid br0 1 rtas_tree_cist
+[192.168.0.7] RUN mstpctl setvid2fid br0 0:1-4094
+[192.168.0.7] RUN mstpctl setfid2mstid br0 0:0-4095
+[192.168.0.7] RUN mstpctl setforcevers br0 rstp
+[192.168.0.7] RUN mstpctl settreeprio br0 0 8
+[192.168.0.7] RUN mstpctl setportp2p br0 sw0p4 yes
+[192.168.0.7] RUN mstpctl settreeportcost br0 sw0p4 0 0
+[192.168.0.7] RUN mstpctl setportp2p br0 sw0p5 yes
+[192.168.0.7] RUN mstpctl settreeportcost br0 sw0p5 0 0
+[192.168.0.7] RUN mstpctl showmstconfid br0
+br0 MST Configuration Identifier:
+  Format Selector:      0
+  Configuration Name:   rtas_tree_cist
+  Revision Level:       1
+  Configuration Digest: AC36177F50283CD4B83821D8AB26DE62
+[192.168.0.1] RUN mstpctl setmstconfid br0 1 rtas_tree_cist
+[192.168.0.1] RUN mstpctl setvid2fid br0 0:1-4094
+[192.168.0.1] RUN mstpctl setfid2mstid br0 0:0-4095
+[192.168.0.1] RUN mstpctl setforcevers br0 rstp
+[192.168.0.1] RUN mstpctl settreeprio br0 0 8
+[192.168.0.1] RUN mstpctl setportp2p br0 sw0p2 yes
+[192.168.0.1] RUN mstpctl settreeportcost br0 sw0p2 0 0
+[192.168.0.1] RUN mstpctl setportp2p br0 sw0p4 yes
+[192.168.0.1] RUN mstpctl settreeportcost br0 sw0p4 0 0
+[192.168.0.1] RUN mstpctl showmstconfid br0
+br0 MST Configuration Identifier:
+  Format Selector:      0
+  Configuration Name:   rtas_tree_cist
+  Revision Level:       1
+  Configuration Digest: AC36177F50283CD4B83821D8AB26DE62
+[192.168.0.3] RUN mstpctl setmstconfid br0 1 rtas_tree_cist
+[192.168.0.3] RUN mstpctl setvid2fid br0 0:1-4094
+[192.168.0.3] RUN mstpctl setfid2mstid br0 0:0-4095
+[192.168.0.3] RUN mstpctl setforcevers br0 rstp
+[192.168.0.3] RUN mstpctl settreeprio br0 0 8
+[192.168.0.3] RUN mstpctl setportp2p br0 sw0p4 yes
+[192.168.0.3] RUN mstpctl settreeportcost br0 sw0p4 0 0
+[192.168.0.3] RUN mstpctl setportp2p br0 sw0p5 yes
+[192.168.0.3] RUN mstpctl settreeportcost br0 sw0p5 0 0
+[192.168.0.3] RUN mstpctl showmstconfid br0
+br0 MST Configuration Identifier:
+  Format Selector:      0
+  Configuration Name:   rtas_tree_cist
+  Revision Level:       1
+  Configuration Digest: AC36177F50283CD4B83821D8AB26DE62
+[192.168.0.2] RUN mstpctl setmstconfid br0 1 rtas_tree_cist
+[192.168.0.2] RUN mstpctl setvid2fid br0 0:1-4094
+[192.168.0.2] RUN mstpctl setfid2mstid br0 0:0-4095
+[192.168.0.2] RUN mstpctl setforcevers br0 rstp
+[192.168.0.2] RUN mstpctl settreeprio br0 0 8
+[192.168.0.2] RUN mstpctl setportp2p br0 sw0p2 yes
+[192.168.0.2] RUN mstpctl settreeportcost br0 sw0p2 0 0
+[192.168.0.2] RUN mstpctl setportp2p br0 sw0p4 yes
+[192.168.0.2] RUN mstpctl settreeportcost br0 sw0p4 0 0
+[192.168.0.2] RUN mstpctl showmstconfid br0
+br0 MST Configuration Identifier:
+  Format Selector:      0
+  Configuration Name:   rtas_tree_cist
+  Revision Level:       1
+  Configuration Digest: AC36177F50283CD4B83821D8AB26DE62
+[192.168.0.5] RUN mstpctl setmstconfid br0 1 rtas_tree_cist
+[192.168.0.5] RUN mstpctl setvid2fid br0 0:1-4094
+[192.168.0.5] RUN mstpctl setfid2mstid br0 0:0-4095
+[192.168.0.5] RUN mstpctl setforcevers br0 rstp
+[192.168.0.5] RUN mstpctl settreeprio br0 0 8
+[192.168.0.5] RUN mstpctl setportp2p br0 sw0p4 yes
+[192.168.0.5] RUN mstpctl settreeportcost br0 sw0p4 0 0
+[192.168.0.5] RUN mstpctl setportp2p br0 sw0p5 yes
+[192.168.0.5] RUN mstpctl settreeportcost br0 sw0p5 0 0
+[192.168.0.5] RUN mstpctl showmstconfid br0
+br0 MST Configuration Identifier:
+  Format Selector:      0
+  Configuration Name:   rtas_tree_cist
+  Revision Level:       1
+  Configuration Digest: AC36177F50283CD4B83821D8AB26DE62
+[192.168.0.6] RUN mstpctl setmstconfid br0 1 rtas_tree_cist
+[192.168.0.6] RUN mstpctl setvid2fid br0 0:1-4094
+[192.168.0.6] RUN mstpctl setfid2mstid br0 0:0-4095
+[192.168.0.6] RUN mstpctl setforcevers br0 rstp
+[192.168.0.6] RUN mstpctl settreeprio br0 0 8
+[192.168.0.6] RUN mstpctl setportp2p br0 sw0p4 yes
+[192.168.0.6] RUN mstpctl settreeportcost br0 sw0p4 0 0
+[192.168.0.6] RUN mstpctl setportp2p br0 sw0p5 yes
+[192.168.0.6] RUN mstpctl settreeportcost br0 sw0p5 0 0
+[192.168.0.6] RUN mstpctl showmstconfid br0
+br0 MST Configuration Identifier:
+  Format Selector:      0
+  Configuration Name:   rtas_tree_cist
+  Revision Level:       1
+  Configuration Digest: AC36177F50283CD4B83821D8AB26DE62
+[192.168.0.8] RUN mstpctl setmstconfid br0 1 rtas_tree_cist
+[192.168.0.8] RUN mstpctl setvid2fid br0 0:1-4094
+[192.168.0.8] RUN mstpctl setfid2mstid br0 0:0-4095
+[192.168.0.8] RUN mstpctl setforcevers br0 rstp
+[192.168.0.8] RUN mstpctl settreeprio br0 0 8
+[192.168.0.8] RUN mstpctl setportp2p br0 sw0p2 yes
+[192.168.0.8] RUN mstpctl settreeportcost br0 sw0p2 0 0
+[192.168.0.8] RUN mstpctl setportp2p br0 sw0p4 yes
+[192.168.0.8] RUN mstpctl settreeportcost br0 sw0p4 0 0
+[192.168.0.8] RUN mstpctl setportp2p br0 sw0p5 yes
+[192.168.0.8] RUN mstpctl settreeportcost br0 sw0p5 0 0
+[192.168.0.8] RUN mstpctl showmstconfid br0
+br0 MST Configuration Identifier:
+  Format Selector:      0
+  Configuration Name:   rtas_tree_cist
+  Revision Level:       1
+  Configuration Digest: AC36177F50283CD4B83821D8AB26DE62
+[192.168.0.4] RUN mstpctl setmstconfid br0 1 rtas_tree_cist
+[192.168.0.4] RUN mstpctl setvid2fid br0 0:1-4094
+[192.168.0.4] RUN mstpctl setfid2mstid br0 0:0-4095
+[192.168.0.4] RUN mstpctl setforcevers br0 rstp
+[192.168.0.4] RUN mstpctl settreeprio br0 0 8
+[192.168.0.4] RUN mstpctl setportp2p br0 sw0p4 yes
+[192.168.0.4] RUN mstpctl settreeportcost br0 sw0p4 0 0
+[192.168.0.4] RUN mstpctl setportp2p br0 sw0p5 yes
+[192.168.0.4] RUN mstpctl settreeportcost br0 sw0p5 0 0
+[192.168.0.4] RUN mstpctl showmstconfid br0
+br0 MST Configuration Identifier:
+  Format Selector:      0
+  Configuration Name:   rtas_tree_cist
+  Revision Level:       1
+  Configuration Digest: AC36177F50283CD4B83821D8AB26DE62
+
+MST region: all 8 switches share digest AC36177F50283CD4B83821D8AB26DE62
+State saved to .tsn_state.json
+Wrote endpoint config to /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/rerun-dataset-11-tree-quiet60/prob3-rl-c9-off/11-rl-c9off-matrix/endpoints.json
+CLEAN S1 removed []
+CLEAN S2 removed []
+CLEAN S3 removed []
+spanning tree quiet on all 8 switches after 1 s (least quiet: sw03, 172 s)
+  25 sender routes pinged, 0 failed
+WARMUP: all 25 routes reachable on attempt 1
+Results: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/rerun-dataset-11-tree-quiet60/prob3-rl-c9-off/11-rl-c9off-matrix/results/results-2026-10-13
+Connecting to S1, S2, S3 ...
+Preflight:
+  S1: TAI offset 37.0 s, ptp4l/phc2sys active/active
+  S2: TAI offset 37.0 s, ptp4l/phc2sys active/active
+  S3: TAI offset 37.0 s, ptp4l/phc2sys active/active
+Connectivity:
+  25 sender routes pinged, 0 failed
+Counters before:
+Traffic:
+  senders start at TAI 1791918306.246 (8 s from now), run 30 s
+Counters after:
+
+# Traffic run: rerun-dataset-11-tree-quiet60/prob3-rl-c9-off/11-rl-c9off-matrix, 2026-10-13 15:04
+
+25 flows, 30 s, S1/S2/S3 concurrently, all senders starting at the same TAI instant on the GCL grid (`basetime.json`). Mode: NIC launch time (1000 µs sender lead), NIC RX timestamps, real-time processes. Raw output: `results_<node>.log`.
+
+## Summary
+
+- Delivered: **1679575 / 1687427 packets (99.53%)**
+- Deadline misses: **120 (0.01% of received)**; flows with zero misses: 12 / 25
+
+| receiving node | flows | delivered | avg latency (µs) | deadline misses |
+|---|---|---|---|---|
+| S1 | 12 | 99.73% | 121.4 | 0.01% |
+| S2 | 7 | 99.40% | 94.4 | 0.01% |
+| S3 | 6 | 99.40% | 146.3 | 0.01% |
+
+Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/rerun-dataset-11-tree-quiet60/prob3-rl-c9-off/11-rl-c9off-matrix/results/results-2026-10-13/results.md

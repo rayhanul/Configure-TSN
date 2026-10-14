@@ -1,0 +1,25 @@
+[smt_sched-family] verified 17 GCL files, 44 checks, cycle 800000 ns
+
+17 check(s) SKIPPED (constraint disabled for this run):
+  - sw01-p2: window adjacency (C10) -- disabled for this run
+  - sw01-p4: window adjacency (C10) -- disabled for this run
+  - sw02-p2: window adjacency (C10) -- disabled for this run
+  - sw02-p4: window adjacency (C10) -- disabled for this run
+  - sw03-p4: window adjacency (C10) -- disabled for this run
+  - sw03-p5: window adjacency (C10) -- disabled for this run
+  - sw04-p4: window adjacency (C10) -- disabled for this run
+  - sw04-p5: window adjacency (C10) -- disabled for this run
+  - sw05-p4: window adjacency (C10) -- disabled for this run
+  - sw05-p5: window adjacency (C10) -- disabled for this run
+  - sw06-p4: window adjacency (C10) -- disabled for this run
+  - sw06-p5: window adjacency (C10) -- disabled for this run
+  - sw07-p4: window adjacency (C10) -- disabled for this run
+  - sw07-p5: window adjacency (C10) -- disabled for this run
+  - sw08-p2: window adjacency (C10) -- disabled for this run
+  - sw08-p4: window adjacency (C10) -- disabled for this run
+  - sw08-p5: window adjacency (C10) -- disabled for this run
+
+1 hw MISMATCH(ES) vs. seed result/result-2026-10-13-dataset-testbed-11-tree-avgwin/smt-c9-on/11-fair-retimed-c9on (auto-discovered from report.md):
+  ~ could not load seed at result/result-2026-10-13-dataset-testbed-11-tree-avgwin/smt-c9-on/11-fair-retimed-c9on: [Errno 2] No such file or directory: 'result/result-2026-10-13-dataset-testbed-11-tree-avgwin/smt-c9-on/11-fair-retimed-c9on/schedule.json'
+
+OK - emitted GCLs are internally consistent and satisfy the non-skipped constraints above (smt_sched-family).

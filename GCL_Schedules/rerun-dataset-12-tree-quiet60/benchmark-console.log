@@ -1,0 +1,102 @@
+=== 15:07:03 smt-c9-off/12-t3600-c9off-minlat
+  flows to admit: 11
+  GCL: 17/17 ports live
+  MST region: all 8 switches share digest AC36177F50283CD4B83821D8AB26DE62
+  spanning tree quiet on all 8 switches after 1 s (least quiet: sw03, 390 s)
+    11 sender routes pinged, 0 failed
+    11 sender routes pinged, 0 failed
+  - Delivered: **937488 / 937488 packets (100.00%)**
+  - Deadline misses: **6 (0.00% of received)**; flows with zero misses: 10 / 20
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/rerun-dataset-12-tree-quiet60/smt-c9-off/12-t3600-c9off-minlat/results/results-2026-10-13/results.md
+=== 15:08:49 smt-c9-on/12-fair-retimed-c9on
+  flows to admit: 11
+  GCL: 17/17 ports live
+  MST region: all 8 switches share digest AC36177F50283CD4B83821D8AB26DE62
+  spanning tree quiet on all 8 switches after 1 s (least quiet: sw03, 493 s)
+    11 sender routes pinged, 0 failed
+    11 sender routes pinged, 0 failed
+  - Delivered: **937484 / 937484 packets (100.00%)**
+  - Deadline misses: **6 (0.00% of received)**; flows with zero misses: 9 / 11
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/rerun-dataset-12-tree-quiet60/smt-c9-on/12-fair-retimed-c9on/results/results-2026-10-13/results.md
+=== 15:10:32 heuristic-c9-off/12-matrix-c9off
+  flows to admit: 11
+  GCL: 17/17 ports live
+  MST region: all 8 switches share digest AC36177F50283CD4B83821D8AB26DE62
+  spanning tree quiet on all 8 switches after 1 s (least quiet: sw03, 656 s)
+    11 sender routes pinged, 0 failed
+    11 sender routes pinged, 0 failed
+  - Delivered: **937493 / 937493 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 11 / 11
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/rerun-dataset-12-tree-quiet60/heuristic-c9-off/12-matrix-c9off/results/results-2026-10-13/results.md
+=== 15:13:15 heuristic-c9-on/12-matrix-c9on
+  flows to admit: 11
+  GCL: 17/17 ports live
+  MST region: all 8 switches share digest AC36177F50283CD4B83821D8AB26DE62
+  spanning tree quiet on all 8 switches after 1 s (least quiet: sw03, 820 s)
+    11 sender routes pinged, 0 failed
+    11 sender routes pinged, 0 failed
+  - Delivered: **937485 / 937485 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 11 / 11
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/rerun-dataset-12-tree-quiet60/heuristic-c9-on/12-matrix-c9on/results/results-2026-10-13/results.md
+=== 15:15:59 rl-c9-off/12-matrix-c9off
+  flows to admit: 11
+  GCL: 17/17 ports live
+  MST region: all 8 switches share digest AC36177F50283CD4B83821D8AB26DE62
+  spanning tree quiet on all 8 switches after 1 s (least quiet: sw03, 983 s)
+    11 sender routes pinged, 0 failed
+    11 sender routes pinged, 0 failed
+  - Delivered: **937411 / 937424 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 11 / 20
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/rerun-dataset-12-tree-quiet60/rl-c9-off/12-matrix-c9off/results/results-2026-10-13/results.md
+=== 15:18:42 rl-c9-on/12-matrix-c9on
+  flows to admit: 11
+  GCL: 17/17 ports live
+  MST region: all 8 switches share digest AC36177F50283CD4B83821D8AB26DE62
+  spanning tree quiet on all 8 switches after 1 s (least quiet: sw03, 1146 s)
+    11 sender routes pinged, 0 failed
+    11 sender routes pinged, 0 failed
+  - Delivered: **937485 / 937485 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 11 / 20
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/rerun-dataset-12-tree-quiet60/rl-c9-on/12-matrix-c9on/results/results-2026-10-13/results.md
+=== 15:21:25 prob3-heuristic-c9-off/12-heuristic-c9off-matrix
+  flows to admit: 34
+  GCL: 17/17 ports live
+  MST region: all 8 switches share digest AC36177F50283CD4B83821D8AB26DE62
+  spanning tree quiet on all 8 switches after 1 s (least quiet: sw03, 1317 s)
+    34 sender routes pinged, 0 failed
+    34 sender routes pinged, 0 failed
+  - Delivered: **2212466 / 2212467 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 34 / 34
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/rerun-dataset-12-tree-quiet60/prob3-heuristic-c9-off/12-heuristic-c9off-matrix/results/results-2026-10-13/results.md
+=== 15:24:16 prob3-heuristic-c9-on/12-heuristic-c9on-matrix
+  flows to admit: 36
+  GCL: 17/17 ports live
+  MST region: all 8 switches share digest AC36177F50283CD4B83821D8AB26DE62
+  spanning tree quiet on all 8 switches after 1 s (least quiet: sw04, 1492 s)
+    36 sender routes pinged, 0 failed
+    36 sender routes pinged, 0 failed
+  - Delivered: **2362459 / 2362462 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 36 / 36
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/rerun-dataset-12-tree-quiet60/prob3-heuristic-c9-on/12-heuristic-c9on-matrix/results/results-2026-10-13/results.md
+=== 15:27:12 prob3-rl-c9-off/12-rl-c9off-matrix
+  flows to admit: 33
+  GCL: 17/17 ports live
+  MST region: all 8 switches share digest AC36177F50283CD4B83821D8AB26DE62
+  spanning tree quiet on all 8 switches after 1 s (least quiet: sw03, 1668 s)
+    33 sender routes pinged, 0 failed
+    33 sender routes pinged, 0 failed
+  - Delivered: **2212472 / 2212472 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 33 / 33
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/rerun-dataset-12-tree-quiet60/prob3-rl-c9-off/12-rl-c9off-matrix/results/results-2026-10-13/results.md
+=== 15:30:08 prob3-rl-c9-on/12-rl-c9on-matrix
+  flows to admit: 37
+  GCL: 17/17 ports live
+  MST region: all 8 switches share digest AC36177F50283CD4B83821D8AB26DE62
+  spanning tree quiet on all 8 switches after 1 s (least quiet: sw03, 1844 s)
+    37 sender routes pinged, 0 failed
+    37 sender routes pinged, 0 failed
+  - Delivered: **2587401 / 2587422 packets (100.00%)**
+  - Deadline misses: **0 (0.00% of received)**; flows with zero misses: 37 / 37
+  Full report: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/rerun-dataset-12-tree-quiet60/prob3-rl-c9-on/12-rl-c9on-matrix/results/results-2026-10-13/results.md
+=== 15:33:03 all done: 10 package(s)
+summary: /home/jdg24001/Documents/github/Configure-TSN/GCL_Schedules/rerun-dataset-12-tree-quiet60/TESTBED_RESULTS_2026-10-13.md

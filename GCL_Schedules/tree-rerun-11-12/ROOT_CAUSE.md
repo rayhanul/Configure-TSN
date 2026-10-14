@@ -1,0 +1,15 @@
+# Tree datasets 11 and 12: rerun changes
+
+The original measurements are preserved in each rerun directory's ORIGINAL_TESTBED_RESULTS.md and in the original result directories.
+
+Dataset 11 SMT C9-off: a 60-second quiet period and three ping attempts still left flow IDs 5 and 7 (S2 to S1, VLANs 13 and 14) unreachable. Live MSTI 2 inspection showed sw02-p4 in discarding state with root priority 0 at sw02, while sw04, sw06 and sw08 reported a different regional root at priority 8. Both traffic VLANs mapped to FID/MSTI 2. The original 187,500 lost packets correspond exactly to those two flows (150,000 + 37,500). The failed preflight produced no new traffic measurement.
+
+The tree-specific rerun helper maps all VLANs to CIST (FID 0 / MSTID 0), with identical region configuration and default CIST costs/priorities across all switches. It refuses disconnected or cyclic switch topologies. A physical tree has one route between each endpoint pair, so separate direction-specific instances are unnecessary. Existing VLAN membership, GCL entries, flow admission and offered traffic remain unchanged.
+
+The rerun also requires 60 seconds of spanning-tree quiet (previously 15), retries route pings up to three times and aborts measurement if any sender route remains unreachable. Each package receives one 30-second measurement after successful preflight. All measured outcomes are retained; results are not selected by performance.
+
+The original admission latency-report validation limitations remain. Deployment changes do not fix scheduler export consistency.
+
+After seven measured dataset 11 packages, RL C9-on showed switch queue drops despite CIST kernel port-state logs remaining unchanged during the trial. Unused MST instances 1–6 and 4094 were still registered. Attempted deletion was rejected by all switches (CTL_delete_msti return -1); the affected configuration attempt produced no traffic measurement. The helper then switched all bridges explicitly to RSTP while retaining CIST/FID-0 mapping. The remaining three dataset 11 trials and all dataset 12 trials use this protocol. The seven earlier measurements were retained rather than repeated or selected by performance. The queue-drop cause beyond the proven initial MSTI forwarding problem is not established.
+
+The final configuration adds a minimum elapsed 60-second hardware-settling interval after each admission, independent of the spanning-tree quiet age. This applies from dataset 12 heuristic C9-off onward and to all ten final dataset 11 confirmations. The initial two dataset 12 trials did not use that extra interval. Final dataset 11 measurements are saved separately in rerun-dataset-11-tree-rstp-settled; all ten intermediate dataset 11 trials remain available. Thirty traffic trials were measured in total. Final measured loss totals: dataset 11 28 (original 187,525), dataset 12 38 (original 42,493). Final measured deadline misses: dataset 11 19 (original 17; no improvement), dataset 12 12 (original 423). The remaining misses occur in the SMT approaches. These single trials establish observed outcomes, not a causal isolation of the timing failures or a deadline guarantee.

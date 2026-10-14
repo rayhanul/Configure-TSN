@@ -1,0 +1,117 @@
+{
+  "active_package": "GCL_Schedules/rerun-dataset-11-tree-rstp-settled/prob3-rl-c9-on/11-rl-c9on-matrix",
+  "scheduled_flows": 27,
+  "cycle_ns": 800000,
+  "operational_readback": [
+    {
+      "port": "sw01-p2",
+      "entries": 24,
+      "matches_package": true,
+      "forwarding": true
+    },
+    {
+      "port": "sw01-p4",
+      "entries": 18,
+      "matches_package": true,
+      "forwarding": true
+    },
+    {
+      "port": "sw02-p2",
+      "entries": 24,
+      "matches_package": true,
+      "forwarding": true
+    },
+    {
+      "port": "sw02-p4",
+      "entries": 29,
+      "matches_package": true,
+      "forwarding": true
+    },
+    {
+      "port": "sw03-p4",
+      "entries": 23,
+      "matches_package": true,
+      "forwarding": true
+    },
+    {
+      "port": "sw03-p5",
+      "entries": 18,
+      "matches_package": true,
+      "forwarding": true
+    },
+    {
+      "port": "sw04-p4",
+      "entries": 23,
+      "matches_package": true,
+      "forwarding": true
+    },
+    {
+      "port": "sw04-p5",
+      "entries": 32,
+      "matches_package": true,
+      "forwarding": true
+    },
+    {
+      "port": "sw05-p4",
+      "entries": 18,
+      "matches_package": true,
+      "forwarding": true
+    },
+    {
+      "port": "sw05-p5",
+      "entries": 21,
+      "matches_package": true,
+      "forwarding": true
+    },
+    {
+      "port": "sw06-p4",
+      "entries": 30,
+      "matches_package": true,
+      "forwarding": true
+    },
+    {
+      "port": "sw06-p5",
+      "entries": 21,
+      "matches_package": true,
+      "forwarding": true
+    },
+    {
+      "port": "sw07-p4",
+      "entries": 23,
+      "matches_package": true,
+      "forwarding": true
+    },
+    {
+      "port": "sw07-p5",
+      "entries": 15,
+      "matches_package": true,
+      "forwarding": true
+    },
+    {
+      "port": "sw08-p2",
+      "entries": 25,
+      "matches_package": true,
+      "forwarding": true
+    },
+    {
+      "port": "sw08-p4",
+      "entries": 21,
+      "matches_package": true,
+      "forwarding": true
+    },
+    {
+      "port": "sw08-p5",
+      "entries": 23,
+      "matches_package": true,
+      "forwarding": true
+    }
+  ],
+  "completed_datasets": [
+    11,
+    12
+  ],
+  "completed_final_comparison_trials": 20,
+  "completed_intermediate_trials": 10,
+  "forwarding_protocol": "RSTP / CIST",
+  "traffic_duration_seconds_per_package": 30
+}
